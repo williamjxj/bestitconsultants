@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom global styles can be added below */
+body {
+    @apply bg-white text-gray-900;
+}
+
+a {
+    @apply text-blue-600 hover:text-blue-500;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+}
+
+button {
+    @apply bg-blue-500 text-white rounded px-4 py-2;
+}
+
+.dark {
+    @apply bg-gray-900 text-white;
+}
