@@ -1,13 +1,33 @@
-import React from 'react';
-import Layout from './layout';
+'use client';
 
-const HomePage: React.FC = () => {
-    return (
-        <Layout>
-            <h1 className="text-4xl font-bold text-center mt-10">Welcome to Best IT Consultants</h1>
-            <p className="text-lg text-center mt-4">Your one-stop solution for all IT consulting needs.</p>
-        </Layout>
-    );
-};
+import HeroSection from './components/HeroSection';
+import AboutSummary from './components/AboutSummary';
+import ServicesSummary from './components/ServicesSummary';
+import PortfolioPreview from './components/PortfolioPreview';
+import TestimonialsPreview from './components/TestimonialsPreview';
+import ContactSnippet from './components/ContactSnippet';
 
-export default HomePage;
+// HomePage component
+export default function HomePage() {
+  return (
+    <div className="space-y-16 md:space-y-24">
+      {/* Hero section: Main introductory content */}
+      <HeroSection />
+
+      {/* AboutSummary section: Brief overview of the company */}
+      <AboutSummary />
+
+      {/* ServicesSummary section: Highlights of services offered */}
+      <ServicesSummary />
+
+      {/* PortfolioPreview section: Sneak peek of projects */}
+      <PortfolioPreview />
+
+      {/* TestimonialsPreview section: Client feedback */}
+      <TestimonialsPreview />
+
+      {/* ContactSnippet section: Quick contact call to action */}
+      <ContactSnippet />
+    </div>
+  );
+}

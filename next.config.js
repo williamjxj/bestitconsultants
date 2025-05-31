@@ -1,8 +1,7 @@
+const path = require('path');
+
 module.exports = {
   reactStrictMode: true,
-  experimental: {
-    appDir: true,
-  },
   webpack: (config) => {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),

@@ -12,7 +12,6 @@ This project is structured using Next.js 15.2.4, React 19, TypeScript 5, and Tai
 - **TypeScript Support**: Strict TypeScript configuration for type safety.
 - **TailwindCSS**: Styled with TailwindCSS for responsive design and utility-first CSS.
 - **ESLint**: Integrated ESLint with recommended rules for maintaining code quality.
-- **Testing**: Jest and React Testing Library for unit testing components.
 - **Dark Mode**: Configured dark mode support using TailwindCSS.
 
 ## Project Structure
@@ -33,7 +32,6 @@ bestitconsultants
 ├── tailwind.config.ts
 ├── postcss.config.js
 ├── eslint.config.js
-├── jest.config.js
 ├── prettier.config.js
 └── README.md
 ```

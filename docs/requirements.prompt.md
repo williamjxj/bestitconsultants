@@ -18,7 +18,6 @@ Define and configure a modern Next.js 15.2.4 project with the following technica
 - Implement Next.js app directory structure
 - Add type checking for API routes
 - Configure module path aliases
-- Set up Jest/React Testing Library
 - Add Prettier integration
 
 ### Project Structure:
