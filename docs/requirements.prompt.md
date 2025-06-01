@@ -1,13 +1,19 @@
-## Env
+## This APP (Gemini 2.5 Pro, Claude Sonnet 4)
+
+- Use **Gemini 2.5 Pro** for for code generation
+- Use **Copilot** (`claude sonnet 4`) for integration and refactoring `gemini codes`
+
+## Gemini 2.5 Pro Requirements
+
+- Always use latest version of Next.js
+- Use context7 as assistant for best practices
 
 Define and configure a modern Next.js 15.2.4 project with the following technical specifications:
 
-### Required Dependencies:
-
-- React 19
-- TailwindCSS 4
-- TypeScript 5
-- ESLint 9
+- React ^19
+- TailwindCSS ^4
+- TypeScript ^5
+- ESLint ^9
 
 ### Project Requirements:
 
