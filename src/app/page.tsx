@@ -1,16 +1,16 @@
-'use client';
+'use client'
 
-import HeroSection from '@/components/home/HeroSection';
-import AboutSummary from '@/components/home/AboutSummary';
-import ServicesSummary from '@/components/home/ServicesSummary';
-import PortfolioPreview from '@/components/home/PortfolioPreview';
-import TestimonialsPreview from '@/components/home/TestimonialsPreview';
-import ContactSnippet from '@/components/home/ContactSnippet';
+import AboutSummary from '@/components/home/AboutSummary'
+import ContactSnippet from '@/components/home/ContactSnippet'
+import HeroSection from '@/components/home/HeroSection'
+import PortfolioPreview from '@/components/home/PortfolioPreview'
+import ServicesSummary from '@/components/home/ServicesSummary'
+import TestimonialsPreview from '@/components/home/TestimonialsPreview'
 
 // HomePage component
 export default function HomePage() {
   return (
-    <div className="space-y-16 md:space-y-24">
+    <div className='space-y-16 md:space-y-24'>
       {/* Hero section: Main introductory content */}
       <HeroSection />
 
@@ -29,5 +29,5 @@ export default function HomePage() {
       {/* ContactSnippet section: Quick contact call to action */}
       <ContactSnippet />
     </div>
-  );
+  )
 }

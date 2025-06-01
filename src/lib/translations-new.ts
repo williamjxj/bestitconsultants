@@ -812,15 +812,18 @@ export const translations = {
   },
   // For now, we'll use the English translations for other languages
   // In a real implementation, you would translate all content
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   fr: {} as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   es: {} as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   cn: {} as any,
-};
+}
 
 // Set other languages to English for now
-translations.fr = { ...translations.en };
-translations.es = { ...translations.en };
-translations.cn = { ...translations.en };
+translations.fr = { ...translations.en }
+translations.es = { ...translations.en }
+translations.cn = { ...translations.en }
 
-export type Language = 'en' | 'fr' | 'es' | 'cn';
-export type TranslationKeys = typeof translations.en;
+export type Language = 'en' | 'fr' | 'es' | 'cn'
+export type TranslationKeys = typeof translations.en

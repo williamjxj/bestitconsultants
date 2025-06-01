@@ -1,8 +1,8 @@
 {
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always",
-    "source.fixAll.prettier": "always"
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
@@ -23,14 +23,35 @@
     "typescript",
     "typescriptreact"
   ],
+  "eslint.format.enable": false,
   "prettier.requireConfig": true,
   "typescript.preferences.includePackageJsonAutoImports": "on",
-  "editor.rulers": [
-    80
-  ],
+  "typescript.preferences.organizeImportsOnSave": false,
+  "editor.rulers": [80],
+  "files.eol": "\n",
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.cache": true,
+    "**/coverage": true
+  },
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/.next": true
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+  "typescript.suggest.autoImports": true,
+  "javascript.suggest.autoImports": true,
   "github.copilot.chat.codesearch.enabled": true
 }

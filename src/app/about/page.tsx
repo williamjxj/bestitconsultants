@@ -1,18 +1,11 @@
-'use client';
+'use client'
 
-import { useLanguage } from '@/contexts/LanguageContext';
-import {
-  Users,
-  Globe,
-  Briefcase,
-  Award,
-  Target,
-  Lightbulb,
-  MapPin,
-} from 'lucide-react';
+import { Users, Globe, Award, Target, Lightbulb, MapPin } from 'lucide-react'
+
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function AboutPage() {
-  const { translations } = useLanguage();
+  const { language } = useLanguage()
 
   // Detailed content for the about page
   const aboutContent = {
@@ -164,66 +157,65 @@ export default function AboutPage() {
         text: '多年来，BestITConsulting Ltd 已成功交付了众多跨行业的项目，包括电子商务、医疗保健、金融、物流和教育。我们的项目案例展示了我们应对复杂挑战并交付强大、可扩展且用户友好的软件的能力。我们为高客户保留率和积极反馈感到自豪，这反映了我们对质量和成果的执着追求。',
       },
     },
-  };
+  }
 
   const currentContent =
-    aboutContent[translations.language as keyof typeof aboutContent] ||
-    aboutContent.en;
+    aboutContent[language as keyof typeof aboutContent] || aboutContent.en
 
   return (
-    <div className="bg-white py-12 md:py-16">
-      <div className="container mx-auto px-4 space-y-12 md:space-y-16">
+    <div className='bg-white py-12 md:py-16'>
+      <div className='container mx-auto px-4 space-y-12 md:space-y-16'>
         {/* Page Header */}
-        <header className="text-center border-b pb-8 border-gray-200">
-          <h1 className="text-4xl md:text-5xl font-bold text-blue-700 mb-4">
+        <header className='text-center border-b pb-8 border-gray-200'>
+          <h1 className='text-4xl md:text-5xl font-bold text-blue-700 mb-4'>
             {currentContent.title}
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className='text-lg md:text-xl text-gray-600 max-w-3xl mx-auto'>
             {currentContent.intro}
           </p>
         </header>
 
         {/* Mission and Vision */}
-        <section className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div className="p-6 bg-blue-50 rounded-lg shadow-md">
-            <Target size={40} className="mb-3 text-blue-600" />
-            <h2 className="text-2xl font-semibold text-gray-800 mb-3">
+        <section className='grid md:grid-cols-2 gap-8 md:gap-12 items-center'>
+          <div className='p-6 bg-blue-50 rounded-lg shadow-md'>
+            <Target size={40} className='mb-3 text-blue-600' />
+            <h2 className='text-2xl font-semibold text-gray-800 mb-3'>
               {currentContent.mission.title}
             </h2>
-            <p className="text-gray-700 leading-relaxed">
+            <p className='text-gray-700 leading-relaxed'>
               {currentContent.mission.text}
             </p>
           </div>
-          <div className="p-6 bg-green-50 rounded-lg shadow-md">
-            <Lightbulb size={40} className="mb-3 text-green-600" />
-            <h2 className="text-2xl font-semibold text-gray-800 mb-3">
+          <div className='p-6 bg-green-50 rounded-lg shadow-md'>
+            <Lightbulb size={40} className='mb-3 text-green-600' />
+            <h2 className='text-2xl font-semibold text-gray-800 mb-3'>
               {currentContent.vision.title}
             </h2>
-            <p className="text-gray-700 leading-relaxed">
+            <p className='text-gray-700 leading-relaxed'>
               {currentContent.vision.text}
             </p>
           </div>
         </section>
 
         {/* Our Expert Team */}
-        <section className="p-8 bg-gray-50 rounded-lg shadow-lg">
-          <div className="flex flex-col md:flex-row items-center md:space-x-8">
+        <section className='p-8 bg-gray-50 rounded-lg shadow-lg'>
+          <div className='flex flex-col md:flex-row items-center md:space-x-8'>
             <Users
               size={60}
-              className="text-indigo-600 mb-6 md:mb-0 flex-shrink-0"
+              className='text-indigo-600 mb-6 md:mb-0 flex-shrink-0'
             />
             <div>
-              <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+              <h2 className='text-3xl font-semibold text-gray-800 mb-4'>
                 {currentContent.team.title}
               </h2>
-              <p className="text-gray-700 leading-relaxed mb-6">
+              <p className='text-gray-700 leading-relaxed mb-6'>
                 {currentContent.team.text}
               </p>
-              <div className="flex flex-wrap gap-3">
-                {currentContent.team.skills.map((skill) => (
+              <div className='flex flex-wrap gap-3'>
+                {currentContent.team.skills.map(skill => (
                   <span
                     key={skill}
-                    className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium"
+                    className='bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium'
                   >
                     {skill}
                   </span>
@@ -234,26 +226,26 @@ export default function AboutPage() {
         </section>
 
         {/* Global Presence */}
-        <section className="p-8 bg-white rounded-lg shadow-md border border-gray-200">
-          <div className="flex flex-col md:flex-row items-center md:space-x-8">
+        <section className='p-8 bg-white rounded-lg shadow-md border border-gray-200'>
+          <div className='flex flex-col md:flex-row items-center md:space-x-8'>
             <Globe
               size={60}
-              className="text-teal-600 mb-6 md:mb-0 flex-shrink-0"
+              className='text-teal-600 mb-6 md:mb-0 flex-shrink-0'
             />
             <div>
-              <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+              <h2 className='text-3xl font-semibold text-gray-800 mb-4'>
                 {currentContent.locations.title}
               </h2>
-              <p className="text-gray-700 leading-relaxed mb-4">
+              <p className='text-gray-700 leading-relaxed mb-4'>
                 {currentContent.locations.text}
               </p>
-              <div className="space-y-2">
-                <p className="font-medium text-gray-700">
-                  <MapPin size={16} className="inline mr-2 text-teal-500" />
+              <div className='space-y-2'>
+                <p className='font-medium text-gray-700'>
+                  <MapPin size={16} className='inline mr-2 text-teal-500' />
                   Vancouver, Canada (HQ)
                 </p>
-                <p className="font-medium text-gray-700">
-                  <MapPin size={16} className="inline mr-2 text-teal-500" />
+                <p className='font-medium text-gray-700'>
+                  <MapPin size={16} className='inline mr-2 text-teal-500' />
                   East Asia Branch
                 </p>
               </div>
@@ -262,17 +254,17 @@ export default function AboutPage() {
         </section>
 
         {/* Proven Accomplishments */}
-        <section className="p-8 bg-purple-50 rounded-lg shadow-lg">
-          <div className="flex flex-col md:flex-row items-center md:space-x-8">
+        <section className='p-8 bg-purple-50 rounded-lg shadow-lg'>
+          <div className='flex flex-col md:flex-row items-center md:space-x-8'>
             <Award
               size={60}
-              className="text-purple-600 mb-6 md:mb-0 flex-shrink-0"
+              className='text-purple-600 mb-6 md:mb-0 flex-shrink-0'
             />
             <div>
-              <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+              <h2 className='text-3xl font-semibold text-gray-800 mb-4'>
                 {currentContent.achievements.title}
               </h2>
-              <p className="text-gray-700 leading-relaxed">
+              <p className='text-gray-700 leading-relaxed'>
                 {currentContent.achievements.text}
               </p>
             </div>
@@ -280,5 +272,5 @@ export default function AboutPage() {
         </section>
       </div>
     </div>
-  );
+  )
 }
