@@ -53,5 +53,14 @@
   },
   "typescript.suggest.autoImports": true,
   "javascript.suggest.autoImports": true,
-  "github.copilot.chat.codesearch.enabled": true
+  "github.copilot.chat.codesearch.enabled": true,
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 100
+  },
+  "markdownlint.config": {
+    "extends": ".markdownlint.json"
+  }
 }

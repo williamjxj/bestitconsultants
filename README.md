@@ -73,6 +73,7 @@ formatting:
 - **ESLint**: Configured with TypeScript, React, and accessibility rules
 - **Prettier**: Handles code formatting with consistent style
 - **EditorConfig**: Ensures consistent coding styles across different editors
+- **Markdownlint**: Lints and formats markdown files for consistency
 
 #### Available Scripts
 
@@ -88,7 +89,9 @@ npm run lint:fix     # Auto-fix ESLint errors
 npm run format       # Format code with Prettier
 npm run format:check # Check if code is formatted
 npm run type-check   # Run TypeScript type checking
-npm run check-all    # Run all checks (type, lint, format)
+npm run markdown:lint # Lint markdown files
+npm run markdown:fix # Auto-fix markdown issues
+npm run check-all    # Run all checks (type, lint, format, markdown)
 ```
 
 #### VS Code Integration

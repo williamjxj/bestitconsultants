@@ -8,6 +8,7 @@
     "formulahendry.auto-rename-tag",
     "christian-kohler.path-intellisense",
     "zignd.html-css-class-completion",
-    "ms-vscode.vscode-json"
+    "ms-vscode.vscode-json",
+    "davidanson.vscode-markdownlint"
   ]
 }
