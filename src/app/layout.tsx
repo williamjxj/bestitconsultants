@@ -1,8 +1,8 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
-import { LanguageProvider } from './components/LanguageContext';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import { LanguageProvider } from '@/contexts/LanguageContext';
+import Navbar from '@/components/common/Navbar';
+import Footer from '@/components/common/Footer';
 
 // Initialize Inter font with Latin subset
 const inter = Inter({ subsets: ['latin'] });

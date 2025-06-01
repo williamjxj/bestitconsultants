@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useLanguage } from './LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { useState } from 'react';
 import { Globe, Menu, X } from 'lucide-react';
 

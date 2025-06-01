@@ -1,11 +1,11 @@
 'use client';
 
-import HeroSection from './components/HeroSection';
-import AboutSummary from './components/AboutSummary';
-import ServicesSummary from './components/ServicesSummary';
-import PortfolioPreview from './components/PortfolioPreview';
-import TestimonialsPreview from './components/TestimonialsPreview';
-import ContactSnippet from './components/ContactSnippet';
+import HeroSection from '@/components/home/HeroSection';
+import AboutSummary from '@/components/home/AboutSummary';
+import ServicesSummary from '@/components/home/ServicesSummary';
+import PortfolioPreview from '@/components/home/PortfolioPreview';
+import TestimonialsPreview from '@/components/home/TestimonialsPreview';
+import ContactSnippet from '@/components/home/ContactSnippet';
 
 // HomePage component
 export default function HomePage() {

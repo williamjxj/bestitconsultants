@@ -1,6 +1,6 @@
 'use client';
 
-import { useLanguage } from './LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function AboutSummary() {
   const { translations } = useLanguage();
