@@ -28,11 +28,6 @@ export async function POST(request: NextRequest) {
       newsletter,
     } = body
 
-    // Debug logging (using console.error to pass linting)
-    console.error('=== CONTACT FORM DEBUG ===')
-    console.error('Customer email (from form):', email)
-    console.error('Customer name:', name)
-
     // Validate required fields
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -43,7 +38,6 @@ export async function POST(request: NextRequest) {
 
     // Check if Resend API key is configured
     if (!process.env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY not configured')
       return NextResponse.json(
         {
           error: 'Email service not configured. Please contact administrator.',
@@ -54,15 +48,7 @@ export async function POST(request: NextRequest) {
 
     // Get business email from environment variable
     const businessEmailAddress =
-      process.env.BUSINESS_EMAIL || 'jxjwilliam@gmail.com'
-    console.error(
-      'Business email (where notification goes):',
-      businessEmailAddress
-    )
-    console.error(
-      'Resend API Key configured:',
-      process.env.RESEND_API_KEY ? 'YES' : 'NO'
-    )
+      process.env.BUSINESS_EMAIL || 'williamjxj@gmail.com'
 
     const resend = await getResendInstance()
 
@@ -140,7 +126,6 @@ export async function POST(request: NextRequest) {
     `
 
     // Send email to business owner using Resend's default domain
-    console.error('Attempting to send business notification email...')
     const businessEmailResult = await resend.emails.send({
       from: 'BestITConsulting <onboarding@resend.dev>', // Using Resend's default verified domain
       to: [businessEmailAddress],
@@ -148,10 +133,8 @@ export async function POST(request: NextRequest) {
       html: businessEmailHtml,
       replyTo: email, // Allow direct reply to customer
     })
-    console.error('Business email result:', businessEmailResult)
 
     // Send auto-reply to customer using Resend's default domain
-    console.error('Attempting to send customer auto-reply email...')
     const customerEmailResult = await resend.emails.send({
       from: 'BestITConsulting <onboarding@resend.dev>', // Using Resend's default verified domain
       to: [email],
@@ -159,7 +142,6 @@ export async function POST(request: NextRequest) {
       html: customerEmailHtml,
       replyTo: businessEmailAddress, // Allow replies to go to business email
     })
-    console.error('Customer email result:', customerEmailResult)
 
     return NextResponse.json(
       {

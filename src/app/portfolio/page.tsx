@@ -1,6 +1,20 @@
 'use client'
 
-import Image from 'next/image'
+import {
+  Brain,
+  Building2,
+  Landmark,
+  Database,
+  Globe,
+  ShoppingCart,
+  Truck,
+  Diamond,
+  Zap,
+  Car,
+  Laptop,
+  Plane,
+  CreditCard,
+} from 'lucide-react'
 import React, { useState } from 'react'
 
 import { Badge } from '@/components/ui/badge'
@@ -19,7 +33,7 @@ const portfolioItems = [
     title: 'Xperi ML Data Pipelines',
     description:
       'Machine Learning Data Pipelines and Experiment Collection Manager for AI-related tasks. Developed using microservices architecture with React.js, Node.js, Python and Java. Optimized GPU/CPU performance in Kubernetes environments with Kubeflow, CUDA, and MLOps workflows.',
-    imageUrl: '/portfolio/xperi.png',
+    icon: Brain,
     category: 'ai',
     tech: [
       'React.js',
@@ -43,7 +57,7 @@ const portfolioItems = [
     title: 'Credit Suisse Real-Time Trading Platform',
     description:
       'Real-time stock integration system with existing datasets via various pipelines and microservices. Built with React/Node.js, WebSockets, MongoDB, and Python for high-frequency trading operations.',
-    imageUrl: '/portfolio/credit-suisse.png',
+    icon: CreditCard,
     category: 'fintech',
     tech: [
       'React',
@@ -65,7 +79,7 @@ const portfolioItems = [
     title: 'HSBC Banking Onboarding Services',
     description:
       'Retail Business Banking onboarding services for small and medium customers. Built with React, Redux, Java Spring Boot microservices, Node.js + MongoDB, and mobile apps for SME banking.',
-    imageUrl: '/portfolio/hsbc.png',
+    icon: Landmark,
     category: 'fintech',
     tech: [
       'React',
@@ -87,7 +101,7 @@ const portfolioItems = [
     title: 'HSBC Transformers ETL Platform',
     description:
       'Semi-ETL self-service platform supporting file extraction, data processing, and reporting. Features PDF processing, XML parsing, file management, and citizen-developer workflow creation with drag-and-drop interface.',
-    imageUrl: '/portfolio/hsbc-transformers.png',
+    icon: Database,
     category: 'enterprise',
     tech: [
       'WPF',
@@ -109,7 +123,7 @@ const portfolioItems = [
     title: 'WebMD Advertisement Platform',
     description:
       'Web-based advertisement delivery system using JavaScript, HTML5/CSS3, Google DFP, Node.js, and jQuery. Integrated with Google DFP, Adobe tools, and Media.net header-bidding to significantly improve revenue.',
-    imageUrl: '/portfolio/webmd.png',
+    icon: Globe,
     category: 'web',
     tech: [
       'JavaScript',
@@ -131,7 +145,7 @@ const portfolioItems = [
     title: 'BestBuy Canada E-commerce',
     description:
       'E-commerce platform improvements including product gallery updates, multi-video features, 360 rotate, desktop/tablet/mobile optimization, warranties, and shopping cart enhancements.',
-    imageUrl: '/portfolio/bestbuy.png',
+    icon: ShoppingCart,
     category: 'ecommerce',
     tech: ['JavaScript', 'HTML5', 'CSS3', 'Responsive Design', 'E-commerce'],
     client: 'BestBuy Canada',
@@ -146,7 +160,7 @@ const portfolioItems = [
     title: 'FedEx Global Inventory System (APEC Award Winner)',
     description:
       'FedEx GIVS (Global Inventory Visibility System) and EC-IV system. Includes Global Clearance System for Australia, South Korea, and China. Wireless application for mobile tracking awarded APEC 2002 accolade.',
-    imageUrl: '/portfolio/fedex.png',
+    icon: Truck,
     category: 'enterprise',
     tech: [
       'Java',
@@ -168,7 +182,7 @@ const portfolioItems = [
     title: 'Tiffany Global E-Commerce Platform',
     description:
       'World Of Tiffany (WOT) CMS and frontend system, global site maintenance, Compass Case management system, and EOM order management. Served multiple international markets including US, CA, AU, BE, MX.',
-    imageUrl: '/portfolio/tiffany.png',
+    icon: Diamond,
     category: 'ecommerce',
     tech: [
       '.NET MVC',
@@ -191,7 +205,7 @@ const portfolioItems = [
     title: 'Netherlands Government Energy Systems',
     description:
       'Gas energy integration systems for Gate & TAQA companies. Microsoft BizTalk integration solution for 20+ servers managing 100+ daily message types, improving processing from 2 hours to under 1 minute.',
-    imageUrl: '/portfolio/netherlands-gov.png',
+    icon: Zap,
     category: 'enterprise',
     tech: ['BizTalk', 'Oracle', 'SQL Server', 'Web Services', 'JBoss', 'Linux'],
     client: 'Netherlands Government (via IBM)',
@@ -206,7 +220,7 @@ const portfolioItems = [
     title: 'GM Asset & Business Management',
     description:
       'GM ABM applications supporting Assets, Datamart, Global Lease management, and Product Order systems. PSP/TSP implementation with team leadership and professional development programs.',
-    imageUrl: '/portfolio/gm.png',
+    icon: Car,
     category: 'enterprise',
     tech: ['VB.NET', 'ASP.NET', 'SQL Server', 'SSIS', 'DTS', 'Agent Jobs'],
     client: 'General Motors (via HP)',
@@ -221,7 +235,7 @@ const portfolioItems = [
     title: 'Huawei MateBook Assistant',
     description:
       'Desktop application for MateBook devices with localization for 54 languages and 100+ countries. Includes user guides, driver updates, PSI functionality, and MateTrans file sharing between devices.',
-    imageUrl: '/portfolio/huawei.png',
+    icon: Laptop,
     category: 'desktop',
     tech: ['WPF', 'UWP', 'MVVM', 'Localization', 'COM', 'Multi-language'],
     client: 'Huawei (via iSoftstone)',
@@ -236,7 +250,7 @@ const portfolioItems = [
     title: 'Aerospace Engineering Knowledge System',
     description:
       'Enterprise Knowledge Portal (EKP) system with resource navigation, expert networks, and aerospace industry data analytics. Provides intelligence, technical documentation, and global aerospace industry insights.',
-    imageUrl: '/portfolio/aerospace.png',
+    icon: Plane,
     category: 'enterprise',
     tech: [
       'EKP Systems',
@@ -256,7 +270,7 @@ const portfolioItems = [
     title: 'Supply Chain Finance Platform',
     description:
       'Risk management and electronic signature platform for supply chain financing. Features multi-level approval, contract management, loan processing, and real-time monitoring with mobile integration.',
-    imageUrl: '/portfolio/supply-chain.png',
+    icon: Building2,
     category: 'fintech',
     tech: [
       'Java',
@@ -333,12 +347,10 @@ export default function PortfolioPage() {
               key={index}
               className='group hover:shadow-xl transition-all duration-300 border-0 bg-white/50 backdrop-blur-sm overflow-hidden'
             >
-              <div className='aspect-video relative overflow-hidden bg-gradient-to-br from-blue-100 to-purple-100'>
-                <Image
-                  src={project.imageUrl}
-                  alt={project.title}
-                  fill
-                  className='object-cover group-hover:scale-105 transition-transform duration-300'
+              <div className='aspect-video relative overflow-hidden bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center'>
+                <project.icon
+                  size={80}
+                  className='text-blue-600 group-hover:scale-105 transition-transform duration-300'
                 />
                 <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent' />
                 <div className='absolute bottom-4 left-4 text-white'>

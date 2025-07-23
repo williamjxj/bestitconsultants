@@ -3,21 +3,13 @@
 import {
   ExternalLink,
   Building2,
-  Users,
-  Camera,
-  Sparkles,
-  Code2,
-  LayoutDashboard,
-  Target,
-  ShoppingBag,
-  GraduationCap,
   Globe,
   BarChart3,
-  ImageIcon,
   Zap,
   Code,
   Heart,
   Baby,
+  ShoppingBag,
 } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -25,96 +17,79 @@ import { useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 
-interface BookmarkItem {
-  id: number
-  title: string
+interface Website {
+  name: string
   url: string
   description: string
   category: string
-  meaningfulIcon?: React.ComponentType<{ className?: string }>
+  icon: React.ComponentType<{ className?: string }>
+  status: string
 }
 
-const bookmarkData: BookmarkItem[] = [
+const websites: Website[] = [
   {
-    id: 1028,
-    title: 'Best IT Consulting',
-    url: 'https://bestitconsulting.vercel.app',
-    description:
-      'Professional IT consulting services and digital transformation solutions for modern businesses',
-    category: 'Business',
-    meaningfulIcon: Building2,
+    name: 'Face Fusion Agent',
+    url: 'https://face-fusion-agent.vercel.app',
+    description: 'AI-powered face fusion and manipulation tool',
+    category: 'AI/ML',
+    icon: Code,
+    status: 'active',
   },
   {
-    id: 1029,
-    title: 'Best IT Consultants',
-    url: 'https://bestitconsultants.vercel.app',
-    description:
-      'Expert consulting platform connecting businesses with top-tier technology consultants',
-    category: 'Business',
-    meaningfulIcon: Users,
-  },
-  {
-    id: 1049,
-    title: 'Image Gallery App',
-    url: 'https://gallery.vercel.app',
-    description:
-      'Modern image gallery application with advanced filtering, search, and organization features',
-    category: 'Media',
-    meaningfulIcon: Camera,
-  },
-  {
-    id: 1050,
-    title: 'AI Face Fusion',
-    url: 'https://facefusion.vercel.app',
-    description:
-      'Cutting-edge AI-powered face swapping technology with real-time processing capabilities',
-    category: 'AI',
-    meaningfulIcon: Sparkles,
-  },
-  {
-    id: 1051,
-    title: 'Next.js MCP Template',
-    url: 'https://nextjs-mcp-template.vercel.app',
-    description:
-      'Production-ready Next.js template with MCP integration, authentication, and modern development tools',
+    name: 'NextJS Supabase',
+    url: 'https://nextjs-supabase-kappa-nine.vercel.app',
+    description: 'Full-stack web application with authentication',
     category: 'Development',
-    meaningfulIcon: Code2,
+    icon: Code,
+    status: 'active',
   },
   {
-    id: 1052,
-    title: 'Next.js Dashboard',
-    url: 'https://nextjs-dashboard.vercel.app',
-    description:
-      'Comprehensive analytics dashboard built with Next.js featuring real-time data visualization',
-    category: 'Development',
-    meaningfulIcon: LayoutDashboard,
-  },
-  {
-    id: 1070,
-    title: 'BidMaster Hub',
-    url: 'https://bidmaster-hub.vercel.app',
-    description:
-      'Project discovery platform enabling seamless bidding, collaboration, and project management',
-    category: 'Business',
-    meaningfulIcon: Target,
-  },
-  {
-    id: 1071,
-    title: 'Premium Products Gallery',
-    url: 'https://products-gallery.vercel.app',
-    description:
-      'Sophisticated marketplace platform showcasing premium products with advanced e-commerce features',
+    name: 'Manus AI Shop',
+    url: 'https://manus-ai-shop.vercel.app',
+    description: 'AI-powered e-commerce platform',
     category: 'E-commerce',
-    meaningfulIcon: ShoppingBag,
+    icon: ShoppingBag,
+    status: 'active',
   },
   {
-    id: 1072,
-    title: 'Friendship Corner Daycare',
-    url: 'https://friendship-daycare.vercel.app',
-    description:
-      'Montessori-based daycare services in Coquitlam, BC, focusing on early childhood development',
+    name: 'BidMaster Hub',
+    url: 'https://bidmaster-hub.vercel.app/',
+    description: 'Project bidding management platform',
+    category: 'Business',
+    icon: Building2,
+    status: 'active',
+  },
+  {
+    name: 'NextJS MCP Template',
+    url: 'https://nextjs-mcp-template.vercel.app/',
+    description: 'Model Context Protocol template application',
+    category: 'Development',
+    icon: Code,
+    status: 'beta',
+  },
+  {
+    name: 'Friendship Daycare',
+    url: 'https://friendshipdaycare.vercel.app/',
+    description: 'Childcare and daycare management system',
     category: 'Education',
-    meaningfulIcon: GraduationCap,
+    icon: Heart,
+    status: 'active',
+  },
+  {
+    name: 'Best IT Consulting',
+    url: 'https://bestitconsulting.vercel.app/',
+    description: 'IT consulting and services platform',
+    category: 'Business',
+    icon: Building2,
+    status: 'active',
+  },
+  {
+    name: 'Best IT Consultants',
+    url: 'https://bestitconsultants.vercel.app/',
+    description: 'Professional IT consulting services',
+    category: 'Business',
+    icon: Building2,
+    status: 'active',
   },
 ]
 
@@ -122,9 +97,7 @@ const getCategoryIcon = (category: string) => {
   switch (category) {
     case 'Business':
       return <BarChart3 className='h-3 w-3' />
-    case 'Media':
-      return <ImageIcon className='h-3 w-3' />
-    case 'AI':
+    case 'AI/ML':
       return <Zap className='h-3 w-3' />
     case 'Development':
       return <Code className='h-3 w-3' />
@@ -140,124 +113,200 @@ const getCategoryIcon = (category: string) => {
 const getCategoryColor = (category: string) => {
   switch (category) {
     case 'Business':
-      return 'bg-blue-500/20 text-blue-200 border-blue-400/30 backdrop-blur-sm'
-    case 'Media':
-      return 'bg-purple-500/20 text-purple-200 border-purple-400/30 backdrop-blur-sm'
-    case 'AI':
-      return 'bg-yellow-500/20 text-yellow-200 border-yellow-400/30 backdrop-blur-sm'
+      return 'bg-blue-50 text-blue-700 border-blue-300 hover:bg-blue-100'
+    case 'AI/ML':
+      return 'bg-yellow-50 text-yellow-700 border-yellow-300 hover:bg-yellow-100'
     case 'Development':
-      return 'bg-green-500/20 text-green-200 border-green-400/30 backdrop-blur-sm'
+      return 'bg-green-50 text-green-700 border-green-300 hover:bg-green-100'
     case 'E-commerce':
-      return 'bg-pink-500/20 text-pink-200 border-pink-400/30 backdrop-blur-sm'
+      return 'bg-pink-50 text-pink-700 border-pink-300 hover:bg-pink-100'
     case 'Education':
-      return 'bg-orange-500/20 text-orange-200 border-orange-400/30 backdrop-blur-sm'
+      return 'bg-orange-50 text-orange-700 border-orange-300 hover:bg-orange-100'
     default:
-      return 'bg-gray-500/20 text-gray-200 border-gray-400/30 backdrop-blur-sm'
+      return 'bg-gray-50 text-gray-700 border-gray-300 hover:bg-gray-100'
   }
 }
 
 const getFaviconUrl = (url: string) => {
   try {
-    const domain = new URL(url).hostname
+    // Extract domain using regex to avoid URL constructor issues
+    const domain = url.replace(/^https?:\/\//, '').split('/')[0]
     return `https://www.google.com/s2/favicons?domain=${domain}&sz=32`
   } catch {
     return null
   }
 }
 
+// Screenshot API service for website thumbnails
+const getScreenshotUrl = (url: string) => {
+  try {
+    // Using a free screenshot API service
+    const encodedUrl = encodeURIComponent(url)
+    // Alternative services you can use:
+    // 1. Screenshot API (free tier): https://screenshotapi.net/
+    // 2. ScreenshotMachine: https://screenshotmachine.com/
+    // 3. Htmlcsstoimage: https://htmlcsstoimage.com/
+
+    // Using screenshotapi.net (free tier)
+    return `https://shot.screenshotapi.net/screenshot?token=YOUR_API_TOKEN&url=${encodedUrl}&width=400&height=300&output=image&file_type=png&wait_for_event=load`
+  } catch {
+    return null
+  }
+}
+
+// Fallback placeholder for screenshots
+const getPlaceholderScreenshot = (category: string) => {
+  const placeholders = {
+    Business:
+      'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop&crop=center',
+    'AI/ML':
+      'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop&crop=center',
+    Development:
+      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop&crop=center',
+    'E-commerce':
+      'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop&crop=center',
+    Education:
+      'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&h=300&fit=crop&crop=center',
+  }
+  return (
+    placeholders[category as keyof typeof placeholders] ||
+    placeholders['Development']
+  )
+}
+
 export default function BookmarkList() {
-  const [faviconErrors, setFaviconErrors] = useState<Set<number>>(new Set())
+  const [faviconErrors, setFaviconErrors] = useState<Set<string>>(new Set())
+  const [screenshotErrors, setScreenshotErrors] = useState<Set<string>>(
+    new Set()
+  )
 
   const handleItemClick = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer')
   }
 
-  const handleFaviconError = (id: number) => {
-    setFaviconErrors(prev => new Set(prev).add(id))
+  const handleFaviconError = (name: string) => {
+    setFaviconErrors(prev => new Set(prev).add(name))
   }
 
-  const renderIcon = (bookmark: BookmarkItem) => {
-    const faviconUrl = getFaviconUrl(bookmark.url)
-    const shouldUseFavicon = faviconUrl && !faviconErrors.has(bookmark.id)
+  const handleScreenshotError = (name: string) => {
+    setScreenshotErrors(prev => new Set(prev).add(name))
+  }
+
+  const renderIcon = (website: Website) => {
+    const faviconUrl = getFaviconUrl(website.url)
+    const shouldUseFavicon = faviconUrl && !faviconErrors.has(website.name)
 
     if (shouldUseFavicon) {
       return (
-        <div className='relative w-8 h-8 rounded-lg overflow-hidden bg-gradient-to-br from-white/20 to-white/10 flex items-center justify-center border border-white/30 shadow-lg backdrop-blur-sm'>
+        <div className='relative w-10 h-10 rounded-xl overflow-hidden bg-white shadow-md flex items-center justify-center border border-gray-200'>
           <Image
             src={faviconUrl || '/placeholder.svg'}
             alt=''
-            width={24}
-            height={24}
-            className='w-6 h-6 object-cover'
-            onError={() => handleFaviconError(bookmark.id)}
+            width={32}
+            height={32}
+            className='w-8 h-8 object-cover'
+            onError={() => handleFaviconError(website.name)}
           />
         </div>
       )
     }
 
     // Use meaningful icon if favicon fails or doesn't exist
-    const IconComponent = bookmark.meaningfulIcon || Globe
+    const IconComponent = website.icon || Globe
     return (
-      <div className='w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500/25 to-blue-500/15 flex items-center justify-center border border-cyan-400/30 shadow-lg group-hover:from-cyan-400/30 group-hover:to-blue-400/20 transition-all duration-300 backdrop-blur-sm'>
-        <IconComponent className='h-5 w-5 text-cyan-300' />
+      <div className='w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-md'>
+        <IconComponent className='h-6 w-6 text-white' />
+      </div>
+    )
+  }
+
+  const renderScreenshot = (website: Website) => {
+    const screenshotUrl = getScreenshotUrl(website.url)
+    const placeholderUrl = getPlaceholderScreenshot(website.category)
+    const shouldUseScreenshot =
+      screenshotUrl && !screenshotErrors.has(website.name)
+
+    return (
+      <div className='relative w-24 h-18 rounded-lg overflow-hidden bg-gray-100 border border-gray-200 shadow-sm flex-shrink-0'>
+        <Image
+          src={shouldUseScreenshot ? screenshotUrl : placeholderUrl}
+          alt={`Screenshot of ${website.name}`}
+          width={96}
+          height={72}
+          className='w-full h-full object-cover'
+          onError={() => handleScreenshotError(website.name)}
+        />
+        <div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent' />
       </div>
     )
   }
 
   return (
-    <div className='w-full space-y-4'>
-      {bookmarkData.map(bookmark => (
+    <div className='w-full space-y-6'>
+      {websites.map(website => (
         <Card
-          key={bookmark.id}
-          className='group cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/20 hover:border-cyan-400/50 hover:-translate-y-1 border border-white/20 bg-white/10 backdrop-blur-lg hover:bg-white/20 shadow-xl'
+          key={website.name}
+          className='group cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 hover:border-blue-300 hover:-translate-y-1 border border-gray-200 bg-white hover:bg-blue-50/30 shadow-sm'
           role='button'
           tabIndex={0}
-          title={bookmark.description}
-          aria-label={`Open ${bookmark.title}`}
-          onClick={() => handleItemClick(bookmark.url)}
+          title={website.description}
+          aria-label={`Open ${website.name}`}
+          onClick={() => handleItemClick(website.url)}
           onKeyDown={e => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault()
-              handleItemClick(bookmark.url)
+              handleItemClick(website.url)
             }
           }}
         >
-          <CardContent className='p-5'>
-            <div className='flex items-center gap-4'>
+          <CardContent className='p-6'>
+            <div className='flex items-center gap-6'>
+              {/* Screenshot Thumbnail */}
+              <div className='flex-shrink-0'>{renderScreenshot(website)}</div>
+
               {/* Enhanced Icon */}
-              <div className='flex-shrink-0'>{renderIcon(bookmark)}</div>
+              <div className='flex-shrink-0'>{renderIcon(website)}</div>
 
               {/* Content */}
               <div className='flex-1 min-w-0'>
                 <div className='flex items-center justify-between gap-4'>
                   <div className='flex-1 min-w-0'>
-                    <h3 className='font-semibold text-lg text-white truncate group-hover:text-cyan-300 transition-colors duration-200 tracking-tight mb-1'>
-                      {bookmark.title}
+                    <h3 className='font-bold text-xl text-gray-900 truncate group-hover:text-blue-700 transition-colors duration-200 tracking-tight mb-2'>
+                      {website.name}
                     </h3>
-                    <p className='text-sm text-blue-200/70 truncate font-medium mb-2'>
-                      {bookmark.url
+                    <p className='text-sm text-blue-600 truncate font-medium mb-3 group-hover:text-blue-700'>
+                      {website.url
                         .replace('https://', '')
                         .replace('http://', '')}
                     </p>
-                    <p className='text-sm text-blue-100/80 leading-relaxed line-clamp-2'>
-                      {bookmark.description}
+                    <p className='text-base text-gray-700 leading-relaxed line-clamp-2 group-hover:text-gray-800'>
+                      {website.description}
                     </p>
                   </div>
 
-                  <div className='flex items-center gap-3 flex-shrink-0'>
-                    {bookmark.category && (
+                  <div className='flex items-center gap-4 flex-shrink-0'>
+                    {website.category && (
                       <Badge
                         variant='outline'
-                        className={`text-xs px-3 py-1.5 border font-medium transition-all duration-200 ${getCategoryColor(bookmark.category)}`}
+                        className={`text-sm px-4 py-2 border-2 font-semibold transition-all duration-200 ${getCategoryColor(website.category)}`}
                       >
-                        <span className='mr-1.5'>
-                          {getCategoryIcon(bookmark.category)}
+                        <span className='mr-2 text-base'>
+                          {getCategoryIcon(website.category)}
                         </span>
-                        {bookmark.category}
+                        {website.category}
                       </Badge>
                     )}
 
-                    <ExternalLink className='h-5 w-5 text-blue-200/60 group-hover:text-cyan-300 group-hover:scale-110 transition-all duration-200' />
+                    {website.status === 'beta' && (
+                      <Badge
+                        variant='outline'
+                        className='text-xs px-2 py-1 bg-orange-50 text-orange-700 border-orange-300'
+                      >
+                        BETA
+                      </Badge>
+                    )}
+
+                    <ExternalLink className='h-6 w-6 text-gray-400 group-hover:text-blue-600 group-hover:scale-110 transition-all duration-200' />
                   </div>
                 </div>
               </div>

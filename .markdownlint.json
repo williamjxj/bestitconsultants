@@ -19,6 +19,7 @@
   "MD033": {
     "allowed_elements": ["br", "img", "a", "div", "span", "strong", "em", "code", "pre", "sup", "sub", "details", "summary"]
   },
+  "MD034": false,
   "MD040": false,
   "MD041": false,
   "MD046": {

@@ -6,6 +6,8 @@ export const translations = {
       about: 'About Us',
       services: 'Services',
       portfolio: 'Portfolio',
+      team: 'Our Team',
+      ourWork: 'Our Work',
       testimonials: 'Testimonials',
       contact: 'Contact Us',
     },
@@ -18,7 +20,7 @@ export const translations = {
     aboutSummary: {
       title: 'Who We Are',
       content:
-        'BestITConsulting Ltd is a premier software outsourcing company with a team of dedicated full-stack engineers. We specialize in JavaScript, TypeScript, Python, Java, .NET, and more. Headquartered in Vancouver, Canada, with a strategic branch in East Asia, we bridge global talent with your project needs.',
+        'BestITConsulting Ltd is a premier software outsourcing company founded by experienced professionals with 20+ years in the industry. We specialize in full-stack development, AI/ML solutions, and enterprise systems. Headquartered in Vancouver, Canada, with strategic partnerships in Asia, we bridge global talent with your project needs.',
       learnMore: 'Learn More About Us',
     },
     servicesSummary: {
@@ -152,29 +154,40 @@ export const translations = {
           'World-class engineers and consultants ready to tackle your challenges',
         members: [
           {
-            name: 'Alex Chen',
-            role: 'Chief Technology Officer',
-            bio: '15+ years in software architecture and team leadership',
-            image: '/team/alex.jpg',
+            name: 'William Jiang',
+            role: 'Founder & CEO, Senior Full-Stack Engineer',
+            bio: '20+ years in full-stack development, software architecture, and AI-driven solutions. Former tech lead at Xperi, EPAM, WebMD, and BestBuy.',
+            image: '/team/william.jpg',
             specialties: [
-              'System Architecture',
-              'Cloud Solutions',
-              'Team Leadership',
+              'React.js & Node.js',
+              'AI/ML & MLOps',
+              'Cloud Architecture',
+              'Microservices',
             ],
           },
           {
-            name: 'Sarah Rodriguez',
-            role: 'Lead Full-Stack Developer',
-            bio: 'Expert in modern web technologies and scalable applications',
-            image: '/team/sarah.jpg',
-            specialties: ['React/Next.js', 'Node.js', 'Database Design'],
+            name: 'Shamin Yang',
+            role: '.NET Specialist & Senior Developer',
+            bio: '20+ years .NET development with HSBC, PMP certified. Expert in enterprise systems, automation, and RPA solutions.',
+            image: '/team/shamin.jpg',
+            specialties: [
+              '.NET Core & Blazor',
+              'Enterprise Systems',
+              'RPA & Automation',
+              'DevOps & CI/CD',
+            ],
           },
           {
-            name: 'Michael Johnson',
-            role: 'AI/ML Specialist',
-            bio: 'PhD in Computer Science, specialized in machine learning',
-            image: '/team/michael.jpg',
-            specialties: ['Machine Learning', 'Data Science', 'Python'],
+            name: 'Chengdu Partner Team',
+            role: 'Development Center',
+            bio: 'Specialized development team in China with 10+ years experience. Expert in mobile development, embedded systems, and enterprise solutions.',
+            image: '/team/chengdu.jpg',
+            specialties: [
+              'Mobile Development',
+              'Embedded Systems',
+              'OA/ERP Systems',
+              'Cost Management',
+            ],
           },
         ],
       },
@@ -182,12 +195,12 @@ export const translations = {
         title: 'Our Impact',
         items: [
           {
-            number: '150+',
+            number: '200+',
             label: 'Projects Completed',
             description: 'Successfully delivered across industries',
           },
           {
-            number: '50+',
+            number: '60+',
             label: 'Happy Clients',
             description: 'From startups to Fortune 500 companies',
           },
@@ -197,9 +210,9 @@ export const translations = {
             description: 'Based on post-project surveys',
           },
           {
-            number: '5+',
+            number: '20+',
             label: 'Years Experience',
-            description: 'In software development and consulting',
+            description: 'Combined team experience in software development',
           },
         ],
       },
@@ -799,6 +812,21 @@ export const translations = {
         address: '9727 152B Street, Surrey, BC V3R 0G5, Canada',
         description: 'Located in Surrey, BC - Greater Vancouver Area',
       },
+    },
+    ourWork: {
+      title: 'Our Work',
+      subtitle:
+        'Explore our portfolio of external projects and collaborations. These represent our diverse expertise and successful partnerships across various industries and technologies.',
+      introTitle: 'Featured Projects & Partnerships',
+      introDescription:
+        "Below you'll find a curated collection of external projects and tools that showcase our technical expertise and industry connections. These projects span multiple categories including business solutions, AI development, e-commerce platforms, and educational tools.",
+      projectsTitle: 'Project Showcase',
+      projectsDescription:
+        'Discover our external collaborations and featured projects. Click on any project to explore it directly.',
+      ctaTitle: 'Ready to Start Your Project?',
+      ctaDescription:
+        "Let's discuss how we can bring your vision to life with the same expertise and dedication shown in these projects.",
+      ctaButton: 'Get Started Today',
     },
     footer: {
       copy: '© {year} BestITConsulting Ltd. All rights reserved.',

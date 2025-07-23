@@ -6,6 +6,8 @@ export const translations = {
       about: 'About Us',
       services: 'Services',
       portfolio: 'Portfolio',
+      team: 'Our Team',
+      ourWork: 'Our Work',
       testimonials: 'Testimonials',
       contact: 'Contact Us',
     },
@@ -799,6 +801,21 @@ export const translations = {
         address: '123 Tech Street, Vancouver, BC, Canada',
         description: "Located in the heart of Vancouver's tech district",
       },
+    },
+    ourWork: {
+      title: 'Our Work',
+      subtitle:
+        'Explore our portfolio of external projects and collaborations. These represent our diverse expertise and successful partnerships across various industries and technologies.',
+      introTitle: 'Featured Projects & Partnerships',
+      introDescription:
+        "Below you'll find a curated collection of external projects and tools that showcase our technical expertise and industry connections. These projects span multiple categories including business solutions, AI development, e-commerce platforms, and educational tools.",
+      projectsTitle: 'Project Showcase',
+      projectsDescription:
+        'Discover our external collaborations and featured projects. Click on any project to explore it directly.',
+      ctaTitle: 'Ready to Start Your Project?',
+      ctaDescription:
+        "Let's discuss how we can bring your vision to life with the same expertise and dedication shown in these projects.",
+      ctaButton: 'Get Started Today',
     },
     footer: {
       copy: '© {year} BestITConsulting Ltd. All rights reserved.',
