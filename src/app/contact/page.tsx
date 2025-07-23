@@ -37,6 +37,12 @@ export default function ContactPage() {
     newsletter: false,
   })
 
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null
+    message: string
+  }>({ type: null, message: '' })
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -52,10 +58,55 @@ export default function ContactPage() {
     setFormData(prev => ({ ...prev, newsletter: checked }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.warn('Form submitted:', formData)
+    setIsSubmitting(true)
+    setSubmitStatus({ type: null, message: '' })
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message:
+            "Thank you! Your message has been sent successfully. We'll get back to you soon.",
+        })
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          phone: '',
+          service: '',
+          budget: '',
+          timeline: '',
+          message: '',
+          newsletter: false,
+        })
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: result.error || 'Failed to send message. Please try again.',
+        })
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setSubmitStatus({
+        type: 'error',
+        message: 'Network error. Please check your connection and try again.',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -266,8 +317,28 @@ export default function ContactPage() {
                     </Label>
                   </div>
 
-                  <Button type='submit' className='w-full' size='lg'>
-                    {translations.contact.form.submit}
+                  {/* Submit Status */}
+                  {submitStatus.type && (
+                    <div
+                      className={`p-4 rounded-lg text-center ${
+                        submitStatus.type === 'success'
+                          ? 'bg-green-100 text-green-800 border border-green-200'
+                          : 'bg-red-100 text-red-800 border border-red-200'
+                      }`}
+                    >
+                      {submitStatus.message}
+                    </div>
+                  )}
+
+                  <Button
+                    type='submit'
+                    className='w-full'
+                    size='lg'
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting
+                      ? 'Sending...'
+                      : translations.contact.form.submit}
                   </Button>
                 </form>
               </CardContent>
@@ -394,24 +465,93 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Location Map Placeholder */}
+        {/* Location Map */}
         <div className='mt-20'>
           <h2 className='text-3xl font-bold text-center mb-12'>
             {translations.contact.location.title}
           </h2>
-          <Card className='border-0 shadow-xl overflow-hidden'>
-            <div className='aspect-video bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center'>
-              <div className='text-center'>
-                <div className='text-4xl mb-4'>🗺️</div>
-                <div className='text-xl font-medium text-gray-700'>
-                  {translations.contact.location.address}
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+            {/* Address Information */}
+            <Card className='border-0 shadow-xl'>
+              <CardHeader>
+                <CardTitle className='flex items-center space-x-2'>
+                  <span className='text-2xl'>📍</span>
+                  <span>Our Location</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className='space-y-4'>
+                <div>
+                  <h4 className='font-semibold text-lg mb-2'>Address</h4>
+                  <p className='text-gray-600'>
+                    9727 152B Street
+                    <br />
+                    Surrey, BC V3R 0G5
+                    <br />
+                    Canada
+                  </p>
                 </div>
-                <div className='text-gray-600 mt-2'>
-                  {translations.contact.location.description}
+                <div>
+                  <h4 className='font-semibold text-lg mb-2'>Get Directions</h4>
+                  <div className='space-y-2'>
+                    <Button
+                      variant='outline'
+                      className='w-full justify-start'
+                      asChild
+                    >
+                      <a
+                        href='https://maps.google.com/maps?q=9727+152B+Street,+Surrey,+BC+V3R+0G5,+Canada'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                      >
+                        <span className='mr-2'>🗺️</span>
+                        Open in Google Maps
+                      </a>
+                    </Button>
+                    <Button
+                      variant='outline'
+                      className='w-full justify-start'
+                      asChild
+                    >
+                      <a
+                        href='https://maps.apple.com/?q=9727+152B+Street,+Surrey,+BC+V3R+0G5,+Canada'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                      >
+                        <span className='mr-2'>🍎</span>
+                        Open in Apple Maps
+                      </a>
+                    </Button>
+                  </div>
                 </div>
+                <div>
+                  <h4 className='font-semibold text-lg mb-2'>
+                    Nearby Landmarks
+                  </h4>
+                  <ul className='text-gray-600 space-y-1'>
+                    <li>• Near Guildford Town Centre</li>
+                    <li>• Close to Highway 1 access</li>
+                    <li>• 15 minutes from Surrey Central</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Google Maps Embed */}
+            <Card className='border-0 shadow-xl overflow-hidden'>
+              <div className='aspect-square lg:aspect-video'>
+                <iframe
+                  src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2607.1!2d-122.813385!3d49.196667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548676c8b7a8f5f1%3A0x123456789abcdef!2s9727%20152B%20St%2C%20Surrey%2C%20BC%20V3R%200G5%2C%20Canada!5e0!3m2!1sen!2sus!4v1640995200000!5m2!1sen!2sus'
+                  width='100%'
+                  height='100%'
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading='lazy'
+                  referrerPolicy='no-referrer-when-downgrade'
+                  title='BestITConsulting Office Location - 9727 152B Street, Surrey, BC'
+                />
               </div>
-            </div>
-          </Card>
+            </Card>
+          </div>
         </div>
       </div>
     </div>

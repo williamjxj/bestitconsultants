@@ -18,6 +18,7 @@ export default function Navbar() {
     { href: '/about', label: translations.navbar.about },
     { href: '/services', label: translations.navbar.services },
     { href: '/portfolio', label: translations.navbar.portfolio },
+    { href: '/team', label: translations.navbar.team }, // New Team link
     { href: '/testimonials', label: translations.navbar.testimonials },
     { href: '/contact', label: translations.navbar.contact },
   ]

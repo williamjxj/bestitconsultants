@@ -1,0 +1,61 @@
+WILLIAM JIANG
+Senior Full-Stack Engineer, (236)992-3846 | , Vancouver Canada
+Summary
+Experienced technology professional with 20+ years in full-stack development, software architecture, and AI-driven solutions.
+Frontend: React.js, Material-UI, Redux, React Router, Gatsby
+Backend: Node.js, Express.js, Next.js, Python, DBMS(PostgreSQL, MySQL)/MongoDB, Microservices, GraphQL, Java, C
+Software Architecture: Framework design, workflow implementation, data pipelines
+AI & tools: ChatGPT, GitHub Copilot, Claude 3.5, Perplexity, VS Code, git, Markdown
+DevOps: Kubernetes, Docker, Automation, CI/CD, Linux, AWS, MLOps
+Data and Observability: Kafka, ElasticSearch, Prometheus, data visualization
+Agile Methodologies: Agile/Scrum, Atlassian, JIRA
+Additional Expertise: LangChain, LlamaIndex, Hugging Face, RAG, Flask, Chatbox
+Global Experience: professional work in the US, Canada, China, and Singapore
+Skills and Awards:
+Proven expertise and extensive experience in software development and design, showcasing a robust skill set encompassing a wide range of technologies and methodologies.
+Significant software contributor to a major FedEx project awarded APEC 2002 accolade in Shanghai China.
+My software program was awarded a First-Class accolade in Shaanxi province, China for CDMA application.
+A dedicated, responsible, self-directed leader who enjoys working, sharing ideas, and problem-solving with others. 
+Github: , and more are available on demand.
+LinkedIn: 
+Education & Certificates:
+Xi'an Jiaotong University, China, Sep 1987 - Jul 1991, Bachelor’s degree of Engineer
+Universal Learning Institute, Vancouver, Canada, Mar 2005 - Mar 2006, Diploma of Business Management
+Work Experience
+Mar 2021 - Present – Senior Full-stack Engineer (Remote), Xperi, San Jose, USA
+- MLDP (Machine Learning Data Pipelines) and Experiment Collection Manager Projects: Developed using microservices architecture with React.js, Node.js, Python and Java for AI-related tasks. Focused on full-stack development to optimize GPU/CPU performance in Kubernetes environments. Managed AI model training using tools such as Kubeflow, YOLO, CUDA, Ergo, Airflow, and Weights & Biases (WandB).
+- MLOps Workflows Management: Implemented and managed MLOps workflows using Kubernetes, Docker, Jenkins, AWS, and artifact repositories to streamline machine learning operations and deployment processes.
+
+
+Dec 2018 - Feb-2020 – React/Full-stack Engineer, Software Architect, EPAM, Shenzhen, China
+Customer: Swiss Credit Suisse
+As a technical architect in EPAM China, my work is Credit Suisse Stock real-time integration with existing datasets via various pipelines and microservices: React/Node.js, WebSockets, MongoDB, Python
+
+Sep-2017 - Dec-2018 – Full-stack Engineer, Software Architect, China Soft, Xi’an, China
+Customer: HSBC
+As a software architect in China Soft, I worked primarily for customers of HSBC Bank.
+- Built applications of Retail Business Banking Onboarding services for small and medium customers: React, Redux, Java Spring Boot Micro-services, Node.js + MongoDB
+- React.js mobile Apps development for SME
+
+Nov-2014 - Aug-2017 – Senior Frontend Engineer, WebMD, New York City, USA
+Responsible for providing web advertisement services to help WebMD maximize revenues. 
+- Work in the Consumer-UI team to build web-based bridges to deliver various advertisements by using JavaScript, HTML5/CSS3, google DFP, Node.js, jQuery, and lots of 3rd-party libraries (Nativo, Acamai, PubMatic, Lotame, Adobe cloud). 
+- Integrate Google DFP (DoubleClick for Publishers), and Adobe analysis tools, with Media.net header-bidding advertisements, to significantly improve WebMD’s profits.
+- Implement advertisement documents store and access: AngularJS, Node.js, MongoDB, Amazon S3 Cloud Service.
+- Collaborated with various teams to implement a complete Big Data pipeline with real-time processing.
+
+
+Mar-2007 - Jul-2014 - Senior JavaScript Engineer, BestBuy, Vancouver, Canada
+Work for Best Buy Canada to improve existing apps and add new features.
+- Update Bestbuy product gallery’s images/thumbnails, add new features like multi-videos, 360 rotate, etc for Desktop, Tablet, and Mobile. It is available at both  and . 
+- BestBuy Warranties and Shopping cart clearance project
+
+Oct-2000 - Dec-2004 – Computer Programmer Analyst, FedEx, Singapore
+Design and develop FedEx GIVS (Global Inventory Visibility System) and EC-IV (E-Commerce Inventory Visibility) System.
+- FedEx Global Clearance System for Australia, South Korea, and China.
+- Integrated and maintained FedEx Asia-Pacific tracking shipment data source (inbound and outbound): This project greatly improved performance and updated and simplified structure.
+- Wireless Application: To provide mobile users easy access to the FedEx tracking system. This project was awarded on APEC 2002 in Shanghai, China.
+
+Sep-1995 - Sep-2000 – Software Engineer, ZTE (Zhongxing Telecom), Shenzhen, China
+CDMA system security programming, Network communication between Data Center and CDMA Base Stations: TCP/IP, C/C++, Oracle.
+

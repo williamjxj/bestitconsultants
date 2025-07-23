@@ -1,49 +1,48 @@
 'use client'
 
-import { Users, Globe, Award, Target, Lightbulb, MapPin } from 'lucide-react'
+import { Award, Globe, Lightbulb, MapPin, Target, Users } from 'lucide-react'
+import React from 'react'
 
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function AboutPage() {
   const { language } = useLanguage()
 
-  // Detailed content for the about page
+  // Detailed content for the about page based on real team information
   const aboutContent = {
     en: {
       title: 'About BestITConsulting Ltd',
       intro:
-        'We are a dynamic and forward-thinking software outsourcing company dedicated to helping businesses achieve their technological goals. With a strong foundation in innovation and a commitment to excellence, we deliver cutting-edge solutions tailored to your unique needs.',
+        'We are a premier software outsourcing company founded by industry veterans with over 60 years of combined experience. Led by CEO William Jiang, our international team has delivered successful projects for Fortune 500 companies including Xperi, Credit Suisse, HSBC, WebMD, and BestBuy Canada.',
       mission: {
         title: 'Our Mission',
-        text: "To empower businesses worldwide with superior software solutions, driven by expertise, collaboration, and a passion for technology. We strive to be a trusted partner in our clients' success stories.",
+        text: 'To empower businesses worldwide with exceptional software solutions, leveraging our deep expertise in AI/ML, enterprise systems, and cloud technologies. We combine North American innovation with Asian efficiency to deliver world-class results.',
       },
       vision: {
         title: 'Our Vision',
-        text: 'To be a globally recognized leader in software outsourcing, known for our innovative approaches, exceptional talent, and unwavering commitment to client satisfaction and technological advancement.',
+        text: 'To be the premier global software outsourcing partner, recognized for our innovative AI-driven solutions, Fortune 500 track record, and commitment to delivering measurable business value through technology excellence.',
       },
       team: {
-        title: 'Our Expert Team',
-        text: 'Our core strength lies in our team of highly skilled and experienced full-stack engineers. Proficient in a wide range of technologies including JavaScript (React, Node.js, Next.js), TypeScript, Python (Django, Flask), Java (Spring Boot), .NET, and more. We foster a culture of continuous learning and collaboration to stay at the forefront of technology.',
+        title: 'Our Proven Expert Team',
+        text: 'Our leadership team brings decades of real-world experience from top-tier companies. William Jiang (20+ years, Founder & CEO) has architected systems for Xperi, Credit Suisse, and HSBC. Our Chengdu partner leads 20+ developers specializing in enterprise solutions. Shamin Yang brings 20+ years of .NET expertise from IBM, HSBC, and HP projects.',
         skills: [
-          'JavaScript & TypeScript',
-          'Python & Django/Flask',
-          'Java & Spring Boot',
-          '.NET Core & Framework',
-          'React, Angular, Vue.js',
-          'Node.js & Express',
-          'Cloud Platforms (AWS, Azure, GCP)',
-          'DevOps & CI/CD',
-          'Database Management (SQL & NoSQL)',
-          'AI & Machine Learning',
+          'AI & Machine Learning (MLOps, CUDA, Kubeflow)',
+          'Enterprise Software (.NET, Java Spring Boot)',
+          'Full-Stack Development (React, Node.js, Python)',
+          'Cloud & DevOps (AWS, Kubernetes, Docker)',
+          'RPA & Automation (UiPath, BluePrism)',
+          'Mobile Development (Android, iOS, React Native)',
+          'Database Systems (Oracle, SQL Server, MongoDB)',
+          'System Integration & Microservices',
         ],
       },
       locations: {
-        title: 'Our Global Presence',
-        text: 'Strategically headquartered in Vancouver, Canada, a vibrant hub for technological innovation, we also operate a key branch in East Asia. This dual presence allows us to leverage global talent pools, offer round-the-clock support, and provide cost-effective solutions while maintaining close collaboration with our clients across different time zones.',
+        title: 'Strategic Global Presence',
+        text: 'Headquartered in Vancouver, Canada with our core development center in Chengdu, China. This strategic positioning combines North American business acumen with Asian technical excellence, enabling us to deliver Fortune 500 quality at competitive rates with 24/7 development cycles.',
       },
       achievements: {
-        title: 'Proven Accomplishments',
-        text: 'Over the years, BestITConsulting Ltd has successfully delivered a multitude of projects across various industries, including e-commerce, healthcare, finance, logistics, and education. Our portfolio showcases our ability to tackle complex challenges and deliver robust, scalable, and user-friendly software. We pride ourselves on high client retention rates and positive feedback, reflecting our dedication to quality and results.',
+        title: 'Proven Track Record',
+        text: 'Our team has delivered mission-critical systems for global leaders: ML Data Pipelines for Xperi, real-time trading systems for Credit Suisse, banking platforms for HSBC, Big Data solutions for WebMD, and e-commerce systems for BestBuy Canada. Our APEC 2002 award-winning FedEx project and government systems demonstrate our versatility across industries.',
       },
     },
     fr: {

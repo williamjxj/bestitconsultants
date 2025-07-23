@@ -23,7 +23,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={`${inter.className} bg-gray-50 text-gray-800`}>
+      <body
+        className={`${inter.className} bg-gray-50 text-gray-800`}
+        suppressHydrationWarning={true}
+      >
         {/* LanguageProvider wraps the entire application to provide language context */}
         <LanguageProvider>
           <div className='flex flex-col min-h-screen'>

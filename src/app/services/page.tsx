@@ -1,5 +1,8 @@
 'use client'
 
+import { CheckCircle } from 'lucide-react'
+import React from 'react'
+
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -11,16 +14,82 @@ import {
 } from '@/components/ui/card'
 import { useLanguage } from '@/contexts/LanguageContext'
 
-const serviceIcons = {
-  'web-development': '🌐',
-  'mobile-apps': '📱',
-  'cloud-solutions': '☁️',
-  'ai-ml': '🤖',
-  devops: '⚙️',
-  consulting: '💼',
-}
+const services = [
+  {
+    title: 'AI & Machine Learning Solutions',
+    description:
+      'Enterprise-grade AI/ML solutions with proven track record. From ML Data Pipelines at Xperi to real-time trading systems, we deliver production-ready AI solutions with MLOps, Kubernetes optimization, and modern AI tool integration.',
+    features: [
+      'ML Data Pipelines & MLOps (Kubeflow, CUDA, Airflow)',
+      'GPU/CPU Optimization in Kubernetes',
+      'AI Tool Integration (ChatGPT, Claude, LangChain)',
+      'Real-time Data Processing & Analytics',
+      'Model Training & Deployment Automation',
+    ],
+  },
+  {
+    title: 'Enterprise Software Development',
+    description:
+      'Full-stack enterprise applications with Fortune 500 experience. From HSBC banking platforms to Credit Suisse trading systems, we build scalable, secure enterprise solutions using modern architectures.',
+    features: [
+      'React.js, Node.js, Python Full-Stack Development',
+      '.NET Core, Java Spring Boot Enterprise Apps',
+      'Microservices Architecture & GraphQL APIs',
+      'Real-time Systems (WebSockets, Trading Platforms)',
+      'Banking & Financial Services Compliance',
+    ],
+  },
+  {
+    title: 'System Integration & Automation',
+    description:
+      'Expert system integration and business process automation. From Netherlands Government energy systems to enterprise ETL platforms, we connect complex systems and automate critical business processes.',
+    features: [
+      'RPA Solutions (UiPath, BluePrism, WorkFusion)',
+      'ETL Platforms & Data Integration',
+      'BizTalk & Enterprise Service Bus',
+      'API Integration & Legacy Modernization',
+      'Government & Enterprise System Integration',
+    ],
+  },
+  {
+    title: 'Cloud & DevOps Solutions',
+    description:
+      'Complete cloud transformation and DevOps implementation. With experience at major cloud providers and container orchestration, we deliver scalable, reliable cloud solutions for enterprise workloads.',
+    features: [
+      'Kubernetes & Docker Container Orchestration',
+      'AWS, Azure, Google Cloud Migration',
+      'CI/CD Pipeline Implementation (Jenkins, TeamCity)',
+      'Infrastructure as Code & Automation',
+      'Monitoring & Observability (Prometheus, ElasticSearch)',
+    ],
+  },
+  {
+    title: 'Mobile & Cross-Platform Development',
+    description:
+      'Native and cross-platform mobile solutions from concept to deployment. With experience in enterprise mobile apps for major corporations, we deliver high-performance mobile applications.',
+    features: [
+      'iOS Native Development (Swift, Objective-C)',
+      'Android Native Development (Java, Kotlin)',
+      'React Native Cross-Platform Solutions',
+      'Enterprise Mobile App Architecture',
+      'App Store & Play Store Deployment',
+    ],
+  },
+  {
+    title: 'OA & Enterprise Management Systems',
+    description:
+      'Specialized enterprise management solutions including OA systems, ERP, engineering cost management, and government project implementations. Proven success with major Chinese enterprises and government agencies.',
+    features: [
+      'OA Systems (Task, Project, Asset Management)',
+      'Engineering Cost Management Systems',
+      'ERP, MES, EKP Enterprise Solutions',
+      'Government & Military Project Systems',
+      'Supply Chain Finance Platforms',
+    ],
+  },
+]
 
-export default function ServicesPage() {
+const ServicesPage = () => {
   const { translations } = useLanguage()
 
   return (
@@ -38,48 +107,24 @@ export default function ServicesPage() {
 
         {/* Services Grid */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16'>
-          {translations.services.list.map((service, index) => (
+          {services.map(service => (
             <Card
-              key={index}
+              key={service.title}
               className='h-full hover:shadow-lg transition-shadow duration-300 border-0 bg-white/50 backdrop-blur-sm'
             >
               <CardHeader>
-                <div className='text-4xl mb-4'>
-                  {serviceIcons[service.icon as keyof typeof serviceIcons] ||
-                    '💻'}
-                </div>
                 <CardTitle className='text-xl mb-2'>{service.title}</CardTitle>
-                <CardDescription className='text-gray-600'>
-                  {service.description}
-                </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className='space-y-4'>
-                  <div className='flex flex-wrap gap-2'>
-                    {service.technologies?.map((tech, techIndex) => (
-                      <Badge
-                        key={techIndex}
-                        variant='secondary'
-                        className='text-xs'
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className='pt-4'>
-                    <p className='text-sm text-gray-500 mb-3'>
-                      {translations.services.deliverables}:
-                    </p>
-                    <ul className='text-sm space-y-1'>
-                      {service.deliverables?.map((deliverable, delIndex) => (
-                        <li key={delIndex} className='flex items-start'>
-                          <span className='text-green-500 mr-2'>✓</span>
-                          {deliverable}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                <p className='mb-4'>{service.description}</p>
+                <ul>
+                  {service.features.map(feature => (
+                    <li key={feature} className='flex items-center mb-2'>
+                      <CheckCircle className='w-5 h-5 text-green-500 mr-2' />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
               </CardContent>
             </Card>
           ))}
@@ -112,7 +157,9 @@ export default function ServicesPage() {
             {translations.services.pricing.plans.map((plan, index) => (
               <Card
                 key={index}
-                className={`relative ${plan.popular ? 'border-purple-500 border-2' : ''}`}
+                className={`relative ${
+                  plan.popular ? 'border-purple-500 border-2' : ''
+                }`}
               >
                 {plan.popular && (
                   <Badge className='absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-500'>
@@ -136,7 +183,9 @@ export default function ServicesPage() {
                     ))}
                   </ul>
                   <Button
-                    className={`w-full ${plan.popular ? 'bg-purple-600 hover:bg-purple-700' : ''}`}
+                    className={`w-full ${
+                      plan.popular ? 'bg-purple-600 hover:bg-purple-700' : ''
+                    }`}
                     variant={plan.popular ? 'default' : 'outline'}
                   >
                     {translations.services.pricing.getStarted}
@@ -172,3 +221,5 @@ export default function ServicesPage() {
     </div>
   )
 }
+
+export default ServicesPage
