@@ -91,6 +91,14 @@ const websites: Website[] = [
     icon: Building2,
     status: 'active',
   },
+  {
+    name: 'Erongdan',
+    url: 'https://www.erongdan.com',
+    description: 'Digital solutions and business services platform',
+    category: 'Business',
+    icon: Building2,
+    status: 'active',
+  },
 ]
 
 const getCategoryIcon = (category: string) => {
