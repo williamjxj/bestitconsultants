@@ -1,84 +1,88 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Calendar, ExternalLink, TrendingUp, Users, Zap } from 'lucide-react'
+import { Calendar, ExternalLink, TrendingUp, Users, Zap, RefreshCw } from 'lucide-react'
 import Image from 'next/image'
+import { useState, useEffect } from 'react'
 
-// Mock data for AI news - in a real app, this would come from an API
-const aiNews = [
-  {
-    id: 1,
-    title: 'OpenAI Releases GPT-4 Turbo with Enhanced Reasoning Capabilities',
-    excerpt: 'The latest iteration brings improved mathematical reasoning and code generation, with 128k context window for complex problem solving.',
-    date: '2025-01-25',
-    category: 'AI Models',
-    readTime: '5 min read',
-    image: '/api/placeholder/400/250',
-    trending: true,
-    tags: ['GPT-4', 'OpenAI', 'LLM', 'Reasoning']
-  },
-  {
-    id: 2,
-    title: 'Google DeepMind Unveils AlphaFold 3 for Protein Structure Prediction',
-    excerpt: 'Revolutionary AI model predicts protein structures with unprecedented accuracy, accelerating drug discovery and biomedical research.',
-    date: '2025-01-24',
-    category: 'Biotech AI',
-    readTime: '7 min read',
-    image: '/api/placeholder/400/250',
-    trending: true,
-    tags: ['DeepMind', 'AlphaFold', 'Protein', 'Biotech']
-  },
-  {
-    id: 3,
-    title: 'Anthropic Claude 3.5 Sonnet Achieves New Benchmarks in AI Safety',
-    excerpt: 'Latest model demonstrates improved constitutional AI training, reducing harmful outputs while maintaining helpfulness.',
-    date: '2025-01-23',
-    category: 'AI Safety',
-    readTime: '6 min read',
-    image: '/api/placeholder/400/250',
-    trending: false,
-    tags: ['Claude', 'Safety', 'Constitutional AI', 'Anthropic']
-  },
-  {
-    id: 4,
-    title: 'Microsoft Copilot Studio Enables Custom AI Agents for Enterprises',
-    excerpt: 'New platform allows businesses to create specialized AI assistants for internal processes and customer interactions.',
-    date: '2025-01-22',
-    category: 'Enterprise AI',
-    readTime: '4 min read',
-    image: '/api/placeholder/400/250',
-    trending: false,
-    tags: ['Microsoft', 'Copilot', 'Enterprise', 'AI Agents']
-  },
-  {
-    id: 5,
-    title: 'Meta AI Research Breakthrough in Multimodal Understanding',
-    excerpt: 'New architecture enables seamless processing of text, images, and audio in a unified model framework.',
-    date: '2025-01-21',
-    category: 'Research',
-    readTime: '8 min read',
-    image: '/api/placeholder/400/250',
-    trending: true,
-    tags: ['Meta', 'Multimodal', 'Research', 'AI Architecture']
-  },
-  {
-    id: 6,
-    title: 'Tesla FSD v12.3 Shows Significant Improvement in Urban Driving',
-    excerpt: 'Latest full self-driving update demonstrates enhanced decision-making in complex traffic scenarios.',
-    date: '2025-01-20',
-    category: 'Autonomous Vehicles',
-    readTime: '5 min read',
-    image: '/api/placeholder/400/250',
-    trending: false,
-    tags: ['Tesla', 'FSD', 'Autonomous', 'Driving']
-  }
-]
+import { aiNewsService } from '@/services/ai-news'
+import { webScrapingService } from '@/services/web-scraping'
+import type { AINewsArticle, NewsCategory } from '@/types/ai-news'
 
-const categories = ['All', 'AI Models', 'Biotech AI', 'AI Safety', 'Enterprise AI', 'Research', 'Autonomous Vehicles']
+const categories: (NewsCategory | 'All')[] = ['All', 'AI Models', 'Biotech AI', 'AI Safety', 'Enterprise AI', 'Research', 'Autonomous Vehicles']
 
 export default function AINewsPage() {
-  const trendingNews = aiNews.filter(news => news.trending)
-  const allNews = aiNews
+  const [articles, setArticles] = useState<AINewsArticle[]>([])
+  const [trendingArticles, setTrendingArticles] = useState<AINewsArticle[]>([])
+  const [filteredArticles, setFilteredArticles] = useState<AINewsArticle[]>([])
+  const [selectedCategory, setSelectedCategory] = useState<NewsCategory | 'All'>('All')
+  const [isLoading, setIsLoading] = useState(true)
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  // Load articles from service
+  useEffect(() => {
+    const loadArticles = async () => {
+      try {
+        setIsLoading(true)
+        setError(null)
+
+        const result = await aiNewsService.getArticles()
+        setArticles(result.articles)
+        setFilteredArticles(result.articles)
+
+        const trending = await aiNewsService.getTrendingArticles()
+        setTrendingArticles(trending)
+      } catch (err) {
+        console.error('Error loading articles:', err)
+        setError('Failed to load articles')
+        // Fallback to empty state
+        setArticles([])
+        setFilteredArticles([])
+        setTrendingArticles([])
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadArticles()
+  }, [])
+
+  // Filter articles by category
+  useEffect(() => {
+    if (selectedCategory === 'All') {
+      setFilteredArticles(articles)
+    } else {
+      const filtered = articles.filter(article => article.category === selectedCategory)
+      setFilteredArticles(filtered)
+    }
+  }, [selectedCategory, articles])
+
+  // Handle category filter
+  const handleCategoryFilter = (category: NewsCategory | 'All') => {
+    setSelectedCategory(category)
+  }
+
+  // Handle content refresh
+  const handleRefresh = async () => {
+    try {
+      setIsRefreshing(true)
+      await webScrapingService.refreshContent()
+
+      // Reload articles after refresh
+      const result = await aiNewsService.getArticles()
+      setArticles(result.articles)
+      setFilteredArticles(result.articles)
+
+      const trending = await aiNewsService.getTrendingArticles()
+      setTrendingArticles(trending)
+    } catch (err) {
+      console.error('Error refreshing content:', err)
+      setError('Failed to refresh content')
+    } finally {
+      setIsRefreshing(false)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
@@ -124,6 +128,16 @@ export default function AINewsPage() {
               <Users className="w-5 h-5 mr-2" />
               <span className="text-sm font-medium">Expert Insights</span>
             </div>
+            <button
+              onClick={handleRefresh}
+              disabled={isRefreshing}
+              className="flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 hover:bg-white/30 transition-colors duration-300 disabled:opacity-50"
+            >
+              <RefreshCw className={`w-5 h-5 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
+              <span className="text-sm font-medium">
+                {isRefreshing ? 'Refreshing...' : 'Refresh Content'}
+              </span>
+            </button>
           </motion.div>
         </div>
       </motion.section>
@@ -141,71 +155,97 @@ export default function AINewsPage() {
             Trending Now
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {trendingNews.map((news, index) => (
-              <motion.article
-                key={news.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+          {isLoading ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div className="h-48 bg-gray-200 animate-pulse"></div>
+                  <div className="p-6">
+                    <div className="h-6 bg-gray-200 rounded animate-pulse mb-3"></div>
+                    <div className="h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
+                    <div className="h-4 bg-gray-200 rounded animate-pulse mb-4"></div>
+                    <div className="h-4 bg-gray-200 rounded animate-pulse w-1/2"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : error ? (
+            <div className="text-center text-gray-600">
+              <p>Unable to load trending articles at this time.</p>
+              <button
+                onClick={() => window.location.reload()}
+                className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
               >
-                <div className="relative">
-                  <Image
-                    src={news.image}
-                    alt={news.title}
-                    width={400}
-                    height={250}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      Trending
-                    </span>
-                  </div>
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {news.category}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
-                    {news.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">
-                    {news.excerpt}
-                  </p>
-
-                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                    <div className="flex items-center">
-                      <Calendar className="w-4 h-4 mr-1" />
-                      {news.date}
-                    </div>
-                    <span>{news.readTime}</span>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {news.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs"
-                      >
-                        {tag}
+                Try Again
+              </button>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {trendingArticles.map((article, index) => (
+                <motion.article
+                  key={article.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="relative">
+                    <Image
+                      src={article.image_url || '/api/placeholder/400/250'}
+                      alt={article.title}
+                      width={400}
+                      height={250}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        Trending
                       </span>
-                    ))}
+                    </div>
+                    <div className="absolute top-4 right-4">
+                      <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {article.category}
+                      </span>
+                    </div>
                   </div>
 
-                  <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center">
-                    Read More
-                    <ExternalLink className="w-4 h-4 ml-2" />
-                  </button>
-                </div>
-              </motion.article>
-            ))}
-          </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                      {article.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4 line-clamp-3">
+                      {article.excerpt}
+                    </p>
+
+                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                      <div className="flex items-center">
+                        <Calendar className="w-4 h-4 mr-1" />
+                        {new Date(article.date).toLocaleDateString()}
+                      </div>
+                      <span>{article.read_time}</span>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {article.tags?.map((tag) => (
+                        <span
+                          key={tag}
+                          className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center">
+                      Read More
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </button>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -231,73 +271,108 @@ export default function AINewsPage() {
             {categories.map((category) => (
               <button
                 key={category}
-                className="px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-300"
+                onClick={() => handleCategoryFilter(category)}
+                className={`px-4 py-2 rounded-full border transition-all duration-300 ${
+                  selectedCategory === category
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'border-gray-300 text-gray-700 hover:bg-blue-600 hover:text-white hover:border-blue-600'
+                }`}
               >
                 {category}
               </button>
             ))}
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {allNews.map((news, index) => (
-              <motion.article
-                key={news.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100"
+          {isLoading ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+                  <div className="h-48 bg-gray-200 animate-pulse"></div>
+                  <div className="p-6">
+                    <div className="h-6 bg-gray-200 rounded animate-pulse mb-3"></div>
+                    <div className="h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
+                    <div className="h-4 bg-gray-200 rounded animate-pulse mb-4"></div>
+                    <div className="h-4 bg-gray-200 rounded animate-pulse w-1/2"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : error ? (
+            <div className="text-center text-gray-600">
+              <p>Unable to load articles at this time.</p>
+              <button
+                onClick={() => window.location.reload()}
+                className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
               >
-                <div className="relative">
-                  <Image
-                    src={news.image}
-                    alt={news.title}
-                    width={400}
-                    height={250}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {news.category}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
-                    {news.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">
-                    {news.excerpt}
-                  </p>
-
-                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                    <div className="flex items-center">
-                      <Calendar className="w-4 h-4 mr-1" />
-                      {news.date}
-                    </div>
-                    <span>{news.readTime}</span>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {news.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs"
-                      >
-                        {tag}
+                Try Again
+              </button>
+            </div>
+          ) : filteredArticles.length === 0 ? (
+            <div className="text-center text-gray-600">
+              <p>No articles found for the selected category.</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredArticles.map((article, index) => (
+                <motion.article
+                  key={article.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100"
+                >
+                  <div className="relative">
+                    <Image
+                      src={article.image_url || '/api/placeholder/400/250'}
+                      alt={article.title}
+                      width={400}
+                      height={250}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="absolute top-4 right-4">
+                      <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {article.category}
                       </span>
-                    ))}
+                    </div>
                   </div>
 
-                  <button className="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-blue-600 hover:text-white transition-colors duration-300 flex items-center justify-center">
-                    Read More
-                    <ExternalLink className="w-4 h-4 ml-2" />
-                  </button>
-                </div>
-              </motion.article>
-            ))}
-          </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                      {article.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4 line-clamp-3">
+                      {article.excerpt}
+                    </p>
+
+                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                      <div className="flex items-center">
+                        <Calendar className="w-4 h-4 mr-1" />
+                        {new Date(article.date).toLocaleDateString()}
+                      </div>
+                      <span>{article.read_time}</span>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {article.tags?.map((tag) => (
+                        <span
+                          key={tag}
+                          className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <button className="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-blue-600 hover:text-white transition-colors duration-300 flex items-center justify-center">
+                      Read More
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </button>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

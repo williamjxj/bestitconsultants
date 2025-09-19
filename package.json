@@ -13,7 +13,10 @@
     "type-check": "tsc --noEmit",
     "markdown:lint": "markdownlint '**/*.md' --ignore-path .markdownlintignore",
     "markdown:fix": "markdownlint '**/*.md' --ignore-path .markdownlintignore --fix",
-    "check-all": "npm run type-check && npm run lint && npm run format:check && npm run markdown:lint"
+    "check-all": "npm run type-check && npm run lint && npm run format:check && npm run markdown:lint",
+    "db:setup": "node scripts/setup-database.js",
+    "db:migrate": "node scripts/setup-database.js",
+    "db:seed": "node scripts/setup-database.js"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

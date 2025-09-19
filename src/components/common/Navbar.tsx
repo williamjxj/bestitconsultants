@@ -2,25 +2,74 @@
 
 import { Globe, Menu, X } from 'lucide-react'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 
 import { useLanguage } from '@/contexts/LanguageContext'
+import { navigationService } from '@/services/navigation'
+import type { NavigationItem } from '@/types/navigation'
 
 // Navbar component
 export default function Navbar() {
   const { language, changeLanguage, translations } = useLanguage()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false)
+  const [navItems, setNavItems] = useState<NavigationItem[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const pathname = usePathname()
 
-  // Simplified navigation links - removed testimonials, grouped logically
-  const navLinks = [
-    { href: '/', label: translations.navbar.home, category: 'main' },
-    { href: '/about', label: translations.navbar.about, category: 'company' },
-    { href: '/services', label: translations.navbar.services, category: 'services' },
-    { href: '/portfolio', label: translations.navbar.portfolio, category: 'work' },
-    { href: '/team', label: translations.navbar.team, category: 'company' },
-    { href: '/ai-news', label: 'AI News', category: 'resources' },
-    { href: '/contact', label: translations.navbar.contact, category: 'main' },
+  // Load navigation items from service
+  useEffect(() => {
+    const loadNavigationItems = async () => {
+      try {
+        setIsLoading(true)
+        const items = await navigationService.getNavigationItems()
+
+        // Map service items to component format with translations
+        const mappedItems = items.map(item => ({
+          ...item,
+          label: getTranslatedLabel(item.id, translations)
+        }))
+
+        setNavItems(mappedItems)
+
+        // Update active item based on current path
+        navigationService.updateActiveItem(pathname)
+      } catch (error) {
+        console.error('Error loading navigation items:', error)
+        // Fallback to static navigation
+        setNavItems(getFallbackNavItems(translations))
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadNavigationItems()
+  }, [pathname, translations])
+
+  // Get translated label for navigation item
+  const getTranslatedLabel = (id: string, translations: any): string => {
+    const labelMap: Record<string, string> = {
+      'home': translations.navbar.home,
+      'about': translations.navbar.about,
+      'services': translations.navbar.services,
+      'portfolio': translations.navbar.portfolio,
+      'team': translations.navbar.team,
+      'ai-news': 'AI News',
+      'contact': translations.navbar.contact,
+    }
+    return labelMap[id] || id
+  }
+
+  // Fallback navigation items
+  const getFallbackNavItems = (translations: any): NavigationItem[] => [
+    { id: 'home', label: translations.navbar.home, href: '/', category: 'main', order: 1, isActive: false, isVisible: true },
+    { id: 'about', label: translations.navbar.about, href: '/about', category: 'company', order: 2, isActive: false, isVisible: true },
+    { id: 'services', label: translations.navbar.services, href: '/services', category: 'services', order: 3, isActive: false, isVisible: true },
+    { id: 'portfolio', label: translations.navbar.portfolio, href: '/portfolio', category: 'work', order: 4, isActive: false, isVisible: true },
+    { id: 'team', label: translations.navbar.team, href: '/team', category: 'company', order: 5, isActive: false, isVisible: true },
+    { id: 'ai-news', label: 'AI News', href: '/ai-news', category: 'resources', order: 6, isActive: false, isVisible: true },
+    { id: 'contact', label: translations.navbar.contact, href: '/contact', category: 'main', order: 7, isActive: false, isVisible: true },
   ]
 
   // Available languages for the switcher
@@ -52,16 +101,28 @@ export default function Navbar() {
 
           {/* Desktop Navigation Links with improved styling */}
           <div className='hidden md:flex space-x-8 items-center'>
-            {navLinks.map(link => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className='text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium relative group'
-              >
-                {link.label}
-                <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full'></span>
-              </Link>
-            ))}
+            {isLoading ? (
+              <div className='flex space-x-8'>
+                {[...Array(7)].map((_, i) => (
+                  <div key={i} className='h-6 w-16 bg-gray-200 rounded animate-pulse'></div>
+                ))}
+              </div>
+            ) : (
+              navItems.map(link => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium relative group ${
+                    link.isActive ? 'text-blue-600' : ''
+                  }`}
+                >
+                  {link.label}
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${
+                    link.isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}></span>
+                </Link>
+              ))
+            )}
           </div>
 
           {/* Language Switcher and Mobile Menu Toggle */}
@@ -114,17 +175,27 @@ export default function Navbar() {
         }`}>
           <div className='py-4 border-t border-gray-200'>
             <div className='flex flex-col space-y-3'>
-              {navLinks.map((link, index) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className='text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 px-4 rounded-lg hover:bg-blue-50 transform hover:translate-x-2'
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {isLoading ? (
+                <div className='space-y-3'>
+                  {[...Array(7)].map((_, i) => (
+                    <div key={i} className='h-8 w-24 bg-gray-200 rounded animate-pulse'></div>
+                  ))}
+                </div>
+              ) : (
+                navItems.map((link, index) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 px-4 rounded-lg hover:bg-blue-50 transform hover:translate-x-2 ${
+                      link.isActive ? 'text-blue-600 bg-blue-50' : ''
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    style={{ animationDelay: `${index * 50}ms` }}
+                  >
+                    {link.label}
+                  </Link>
+                ))
+              )}
 
               {/* Mobile Language Switcher */}
               <div className='pt-3 border-t border-gray-200'>

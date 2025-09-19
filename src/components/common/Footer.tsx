@@ -1,10 +1,74 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { testimonialsService } from '@/services/testimonials'
+import type { Testimonial } from '@/types/testimonial'
 
 export default function Footer() {
   const { translations } = useLanguage()
   const currentYear = new Date().getFullYear()
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  // Load testimonials from service
+  useEffect(() => {
+    const loadTestimonials = async () => {
+      try {
+        setIsLoading(true)
+        setError(null)
+        const data = await testimonialsService.getTestimonials()
+        setTestimonials(data)
+      } catch (err) {
+        console.error('Error loading testimonials:', err)
+        setError('Failed to load testimonials')
+        // Fallback to static testimonials
+        setTestimonials(getFallbackTestimonials())
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadTestimonials()
+  }, [])
+
+  // Fallback testimonials
+  const getFallbackTestimonials = (): Testimonial[] => [
+    {
+      id: 'fallback-1',
+      quote: 'AI-assisted design completely changed our process. We now explore more ideas in less time.',
+      author: 'Ms. Zhang',
+      title: 'Textile Director',
+      company: 'Shanghai Textile Co.',
+      isVisible: true,
+      order: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      id: 'fallback-2',
+      quote: 'The team\'s responsiveness is impressive. They adapted designs to our needs instantly.',
+      author: 'Ms. Wang',
+      title: 'Hotel Procurement',
+      company: 'Luxury Hotels Group',
+      isVisible: true,
+      order: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      id: 'fallback-3',
+      quote: 'AI brings fresh ideas every season, revitalizing our industry.',
+      author: 'Mr. Chen',
+      title: 'Fashion Magazine Editor',
+      company: 'Style Weekly',
+      isVisible: true,
+      order: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+  ]
 
   return (
     <footer className='bg-gradient-to-br from-gray-900 to-gray-800 text-white py-16'>
@@ -14,26 +78,38 @@ export default function Footer() {
           <h3 className='text-3xl font-bold text-center mb-8 text-blue-400'>
             What Our Clients Say
           </h3>
-          <div className='grid md:grid-cols-3 gap-6 max-w-6xl mx-auto'>
-            <div className='bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300'>
-              <p className='italic mb-4 text-gray-200'>
-                "AI-assisted design completely changed our process. We now explore more ideas in less time."
-              </p>
-              <span className='font-semibold text-blue-300'>– Ms. Zhang, Textile Director</span>
+          {isLoading ? (
+            <div className='grid md:grid-cols-3 gap-6 max-w-6xl mx-auto'>
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className='bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20'>
+                  <div className='h-4 bg-gray-300 rounded animate-pulse mb-4'></div>
+                  <div className='h-4 bg-gray-300 rounded animate-pulse mb-4'></div>
+                  <div className='h-4 bg-gray-300 rounded animate-pulse w-3/4'></div>
+                </div>
+              ))}
             </div>
-            <div className='bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300'>
-              <p className='italic mb-4 text-gray-200'>
-                "The team's responsiveness is impressive. They adapted designs to our needs instantly."
-              </p>
-              <span className='font-semibold text-blue-300'>– Ms. Wang, Hotel Procurement</span>
+          ) : error ? (
+            <div className='text-center text-gray-300'>
+              <p>Unable to load testimonials at this time.</p>
             </div>
-            <div className='bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300'>
-              <p className='italic mb-4 text-gray-200'>
-                "AI brings fresh ideas every season, revitalizing our industry."
-              </p>
-              <span className='font-semibold text-blue-300'>– Mr. Chen, Fashion Magazine Editor</span>
+          ) : (
+            <div className='grid md:grid-cols-3 gap-6 max-w-6xl mx-auto'>
+              {testimonials.slice(0, 3).map((testimonial, index) => (
+                <div
+                  key={testimonial.id}
+                  className='bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300'
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <p className='italic mb-4 text-gray-200'>
+                    "{testimonial.quote}"
+                  </p>
+                  <span className='font-semibold text-blue-300'>
+                    – {testimonial.author}, {testimonial.title}
+                  </span>
+                </div>
+              ))}
             </div>
-          </div>
+          )}
         </div>
 
         <div className='grid md:grid-cols-4 gap-8'>
