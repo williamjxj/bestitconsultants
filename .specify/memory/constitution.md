@@ -1,7 +1,7 @@
 <!-- Sync Impact Report:
-Version change: 1.1.0 → 1.2.0
+Version change: 1.2.0 → 1.3.0
 Modified principles: N/A (no changes to existing principles)
-Added sections: Team Structure Standards, Homepage Layout Requirements, Enhanced Service Categories, Case Study Standards
+Added sections: UI/UX Standards, Animation Requirements, Navigation Standards, AI News Integration
 Removed sections: N/A
 Templates requiring updates: ✅ plan-template.md, ✅ spec-template.md, ✅ tasks-template.md
 Follow-up TODOs: None
@@ -261,6 +261,68 @@ All case studies MUST include these specific examples with measurable outcomes:
 - **Client Results**: Include client testimonials with specific outcomes
 - **SEO Blurb**: "Real results: 90% proposal acceptance rate, 30% repeat client growth, and faster innovation cycles"
 
+## UI/UX Standards
+
+### Navigation Requirements (MANDATORY)
+- **Simplified Menu**: Maximum 7 navigation items with logical categorization
+- **Categories**: main, company, services, work, resources
+- **Removed Items**: Testimonials moved to footer section
+- **New Items**: AI News page for latest trends and updates
+- **Responsive Design**: Mobile-first approach with smooth animations
+
+### Animation Standards (MANDATORY)
+- **Framer Motion**: All animations MUST use Framer Motion library
+- **Page Transitions**: Smooth fade-in and slide-up animations for all sections
+- **Hover Effects**: Scale and translate effects on interactive elements
+- **Loading States**: Skeleton screens and progressive loading animations
+- **Performance**: All animations MUST maintain 60fps on mobile devices
+
+### Component Library Standards (MANDATORY)
+- **shadcn/ui**: Replace all Radix UI components with shadcn/ui equivalents
+- **Custom Components**: Maintain consistent design system across all components
+- **Accessibility**: All components MUST meet WCAG 2.1 AA standards
+- **TypeScript**: Strict typing for all component props and state
+
+## Animation Requirements
+
+### Page-Level Animations (MANDATORY)
+- **Hero Section**: Fade-in with staggered text animation
+- **Section Reveals**: whileInView animations for all content sections
+- **Scroll Triggers**: Smooth reveal animations as content enters viewport
+- **Loading States**: Skeleton screens for all dynamic content
+
+### Interactive Animations (MANDATORY)
+- **Button Hover**: Scale and color transitions (300ms duration)
+- **Card Hover**: Lift effect with shadow enhancement
+- **Navigation**: Smooth underline animations for active states
+- **Mobile Menu**: Slide-down animation with staggered item reveals
+
+### Performance Standards (MANDATORY)
+- **Animation Duration**: Maximum 600ms for page transitions
+- **Stagger Delays**: Maximum 100ms between sequential animations
+- **Reduced Motion**: Respect user's motion preferences
+- **GPU Acceleration**: Use transform and opacity for smooth animations
+
+## AI News Integration
+
+### Content Requirements (MANDATORY)
+- **Latest Trends**: Curated AI news and industry updates
+- **Categories**: AI Models, Biotech AI, AI Safety, Enterprise AI, Research, Autonomous Vehicles
+- **Update Frequency**: Weekly content updates with trending indicators
+- **SEO Optimization**: AI-focused keywords and meta descriptions
+
+### Page Structure (MANDATORY)
+- **Hero Section**: Gradient background with animated elements
+- **Trending Section**: Highlighted trending news with special styling
+- **Category Filter**: Interactive filtering by news categories
+- **Newsletter Signup**: Email subscription for AI trend updates
+
+### Technical Implementation (MANDATORY)
+- **Responsive Grid**: 3-column layout on desktop, single column on mobile
+- **Image Optimization**: Next.js Image component with lazy loading
+- **Performance**: Core Web Vitals compliance for all animations
+- **Accessibility**: Screen reader support for all interactive elements
+
 ## Governance
 
 This constitution supersedes all other development practices. Amendments require:
@@ -271,4 +333,4 @@ This constitution supersedes all other development practices. Amendments require
 
 All pull requests MUST verify compliance with these principles. Complexity additions MUST be justified with business value. Use `.specify/templates/` for structured development guidance.
 
-**Version**: 1.2.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27
+**Version**: 1.3.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27

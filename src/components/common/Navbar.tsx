@@ -12,16 +12,15 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false)
 
-  // Navigation links data
+  // Simplified navigation links - removed testimonials, grouped logically
   const navLinks = [
-    { href: '/', label: translations.navbar.home },
-    { href: '/about', label: translations.navbar.about },
-    { href: '/services', label: translations.navbar.services },
-    { href: '/portfolio', label: translations.navbar.portfolio },
-    { href: '/team', label: translations.navbar.team }, // Team link
-    { href: '/our-work', label: translations.navbar.ourWork }, // Our Work link
-    { href: '/testimonials', label: translations.navbar.testimonials },
-    { href: '/contact', label: translations.navbar.contact },
+    { href: '/', label: translations.navbar.home, category: 'main' },
+    { href: '/about', label: translations.navbar.about, category: 'company' },
+    { href: '/services', label: translations.navbar.services, category: 'services' },
+    { href: '/portfolio', label: translations.navbar.portfolio, category: 'work' },
+    { href: '/team', label: translations.navbar.team, category: 'company' },
+    { href: '/ai-news', label: 'AI News', category: 'resources' },
+    { href: '/contact', label: translations.navbar.contact, category: 'main' },
   ]
 
   // Available languages for the switcher
@@ -40,23 +39,27 @@ export default function Navbar() {
   }
 
   return (
-    <nav className='bg-white shadow-md sticky top-0 z-50'>
+    <nav className='bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-100'>
       <div className='container mx-auto px-4'>
         <div className='flex justify-between items-center py-4'>
-          {/* Logo */}
-          <Link href='/' className='text-2xl font-bold text-blue-600'>
+          {/* Logo with animation */}
+          <Link
+            href='/'
+            className='text-2xl font-bold text-blue-600 hover:text-blue-700 transition-all duration-300 hover:scale-105'
+          >
             BestITConsulting
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <div className='hidden md:flex space-x-6 items-center'>
+          {/* Desktop Navigation Links with improved styling */}
+          <div className='hidden md:flex space-x-8 items-center'>
             {navLinks.map(link => (
               <Link
                 key={link.href}
                 href={link.href}
-                className='text-gray-600 hover:text-blue-600 transition-colors'
+                className='text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium relative group'
               >
                 {link.label}
+                <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full'></span>
               </Link>
             ))}
           </div>
@@ -105,16 +108,19 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className='md:hidden py-4 border-t border-gray-200'>
+        {/* Mobile Menu with smooth animation */}
+        <div className={`md:hidden transition-all duration-300 ease-in-out ${
+          isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+        }`}>
+          <div className='py-4 border-t border-gray-200'>
             <div className='flex flex-col space-y-3'>
-              {navLinks.map(link => (
+              {navLinks.map((link, index) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className='text-gray-600 hover:text-blue-600 transition-colors py-2'
+                  className='text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 px-4 rounded-lg hover:bg-blue-50 transform hover:translate-x-2'
                   onClick={() => setIsMobileMenuOpen(false)}
+                  style={{ animationDelay: `${index * 50}ms` }}
                 >
                   {link.label}
                 </Link>
@@ -128,10 +134,10 @@ export default function Navbar() {
                     <button
                       key={lang.code}
                       onClick={() => handleLanguageChange(lang.code)}
-                      className={`text-sm py-2 px-3 rounded ${
+                      className={`text-sm py-2 px-3 rounded-lg transition-all duration-300 ${
                         language === lang.code
-                          ? 'bg-blue-500 text-white'
-                          : 'bg-gray-100 text-gray-700 hover:bg-blue-100'
+                          ? 'bg-blue-500 text-white shadow-md'
+                          : 'bg-gray-100 text-gray-700 hover:bg-blue-100 hover:shadow-sm'
                       }`}
                     >
                       {lang.name}
@@ -141,7 +147,7 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   )
