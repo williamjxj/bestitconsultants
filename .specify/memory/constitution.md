@@ -1,7 +1,7 @@
 <!-- Sync Impact Report:
-Version change: 0.0.0 → 1.0.0
-Modified principles: N/A (initial creation)
-Added sections: Web Development Standards, Quality Assurance, Performance Standards
+Version change: 1.0.0 → 1.1.0
+Modified principles: N/A (no changes to existing principles)
+Added sections: Business Strategy Standards, Content & SEO Standards, Global Network Integration
 Removed sections: N/A
 Templates requiring updates: ✅ plan-template.md, ✅ spec-template.md, ✅ tasks-template.md
 Follow-up TODOs: None
@@ -25,6 +25,12 @@ All pages MUST achieve Core Web Vitals: LCP < 2.5s, FID < 100ms, CLS < 0.1. Imag
 
 ### V. Accessibility & SEO Compliance
 All components MUST meet WCAG 2.1 AA standards. Semantic HTML required. ARIA labels mandatory for interactive elements. Meta tags, structured data, and sitemap generation MUST be implemented for all pages.
+
+### VI. Business-First Content Strategy
+All content MUST align with BestIT's core value proposition: "Canadian Quality, Global Talent." Content MUST emphasize AI-driven solutions, cost-effective outsourcing, and enterprise-grade consulting. Every page MUST include measurable outcomes and clear calls-to-action for consultation requests.
+
+### VII. Global Network Integration
+All team and service content MUST reflect the global network model: Canadian leadership with Asian talent. Content MUST showcase the collaboration between William Jiang (founder), Shamin Yang, Lewis Liu, and extended global experts. Partnership highlights with Aochuang Intelligence and Chengdu Zhanying Technology MUST be prominently featured.
 
 ## Web Development Standards
 
@@ -73,6 +79,55 @@ All components MUST meet WCAG 2.1 AA standards. Semantic HTML required. ARIA lab
 - CDN optimization for static assets
 - Bundle size monitoring and alerts
 
+## Business Strategy Standards
+
+### Core Value Proposition
+- **Primary Message**: "Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation"
+- **SEO Tagline**: "Global IT Outsourcing & AI Consulting – Canadian Quality, Global Talent"
+- **Differentiation**: Canadian leadership with global talent network for cost-effective, high-quality solutions
+
+### Service Categories (MANDATORY)
+All services MUST be categorized under these five areas:
+1. **AI & Machine Learning Solutions** - Custom AI/LLM applications, MLOps, ChatBI
+2. **Full-Stack Web & Mobile Development** - React, Node.js, Python, Java, databases
+3. **Enterprise Systems & Automation** - Microsoft stack, RPA, system integration
+4. **Specialized CAD/BIM/CAE Solutions** - Engineering software, AI for design
+5. **IT Outsourcing Models** - Dedicated teams, project-based, hybrid collaboration
+
+### Content Requirements
+- Every service page MUST include SEO-optimized taglines
+- Case studies MUST include measurable outcomes (e.g., "90% proposal acceptance rate")
+- Team profiles MUST highlight global network collaboration
+- Contact forms MUST emphasize "Get a Free Consultation" as primary CTA
+
+## Content & SEO Standards
+
+### SEO Keywords (MANDATORY)
+All content MUST target these primary keywords:
+- IT Outsourcing Canada
+- AI Consulting Services
+- Global Software Development
+- Full-Stack Development Outsourcing
+- AI-Powered Enterprise Solutions
+- CAD/BIM Software Consulting
+- RPA & Workflow Automation
+- Offshore Development Teams
+
+### Page Structure Requirements
+- **Home**: Hero statement, CTA, expertise highlights
+- **About Us**: Mission, global network, Canadian leadership story
+- **Services**: Five service categories with SEO taglines
+- **Case Studies**: Measurable results and client outcomes
+- **Team**: Core team + global network + strategic partners
+- **Contact**: Consultation form with clear CTAs
+
+### Content Quality Gates
+- All content MUST be written for business stakeholders, not developers
+- Every page MUST include measurable outcomes where applicable
+- Testimonials MUST be specific and results-oriented
+- Case studies MUST include before/after metrics
+- Team profiles MUST emphasize expertise and global collaboration
+
 ## Governance
 
 This constitution supersedes all other development practices. Amendments require:
@@ -83,4 +138,4 @@ This constitution supersedes all other development practices. Amendments require
 
 All pull requests MUST verify compliance with these principles. Complexity additions MUST be justified with business value. Use `.specify/templates/` for structured development guidance.
 
-**Version**: 1.0.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27
+**Version**: 1.1.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27
