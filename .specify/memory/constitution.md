@@ -1,7 +1,7 @@
 <!-- Sync Impact Report:
-Version change: 1.0.0 → 1.1.0
+Version change: 1.1.0 → 1.2.0
 Modified principles: N/A (no changes to existing principles)
-Added sections: Business Strategy Standards, Content & SEO Standards, Global Network Integration
+Added sections: Team Structure Standards, Homepage Layout Requirements, Enhanced Service Categories, Case Study Standards
 Removed sections: N/A
 Templates requiring updates: ✅ plan-template.md, ✅ spec-template.md, ✅ tasks-template.md
 Follow-up TODOs: None
@@ -128,6 +128,139 @@ All content MUST target these primary keywords:
 - Case studies MUST include before/after metrics
 - Team profiles MUST emphasize expertise and global collaboration
 
+## Team Structure Standards
+
+### Core Team Requirements (MANDATORY)
+All team pages MUST include these core members with detailed profiles:
+
+**William Jiang (Founder, Vancouver, Canada)**
+- **Title**: AI Consultant, Full Stack Engineer
+- **Experience**: 20+ years global experience in full-stack development, software architecture, AI-driven solutions
+- **Achievements**: Significant contributor to award-winning FedEx project
+- **Services**: Modernizes development platforms with AI-assisted tools, React.js, Node.js, Python, LangChain, Hugging Face
+- **Specialization**: Python-based, Kafka-driven microservices in cloud environments
+
+**Shamin Yang (Senior Software Engineer, Guangzhou, China)**
+- **Title**: Senior Software Engineer / Solution Architect
+- **Experience**: 20+ years in .NET development, MSCT and PMP certified
+- **Achievements**: HSBC HTC 2021 award winner, delivered advanced features independently
+- **Services**: .NET-based web/windows app development, RPA and automation scripting, database migration
+- **Specialization**: System integration (Biztalk, MSMQ, SSIS), CI/CD setup and DevOps
+
+**Lianghua (Lewis) Liu (Software Architect, Beijing, China)**
+- **Title**: Software Architect/Programmer
+- **Experience**: 26+ years in BIM/CAD/CAE, patent authorization holder
+- **Achievements**: Golden Idea Award, 4 books/10+ articles published, expert in Shenzhen Construction Standards Society
+- **Services**: CAD/BIM/CAE software development, AI+CAD integration, geometry modeling
+- **Specialization**: Parallel computing, parametric modeling, 3D printing/mold development
+
+### Extended Global Network (MANDATORY)
+All team pages MUST include these strategic partners:
+
+**James Chueng (Full-Stack Engineer, Hong Kong)**
+- **Services**: Full-stack development for web and AI projects, React, Next.js, Angular, Node.js
+- **Specialization**: NLP, LLM (LangChain), TensorFlow, JavaScript frameworks
+
+**Ming Chun Hu (Lead Software Developer, Chengdu, China)**
+- **Company**: Chengdu Zhanying Technology Co., Ltd.
+- **Services**: Custom software development, OA/ERP/MES/EKP systems, mobile app development
+- **Specialization**: High-end custom development for mobile (Android/iOS) and embedded systems
+
+**Wayne Li (AI Solutions Architect, Shenzhen, China)**
+- **Company**: Aochuang Intelligent Technology Co., Ltd.
+- **Services**: AI productivity engine, intelligent interaction solutions, customized AI solutions
+- **Specialization**: Government and enterprise AI solutions, model fine-tuning, knowledge base building
+
+## Homepage Layout Requirements
+
+### Hero Section (MANDATORY)
+- **Background**: Gradient from blue-600 to indigo-700
+- **Main Headline**: "Empowering Businesses with Elite IT Consulting & AI Innovation"
+- **Subtitle**: "Global IT Outsourcing & AI Consulting – Canadian Quality, Global Talent"
+- **CTA Button**: "Get a Free Consultation" (white background, blue text, rounded-2xl)
+- **Layout**: Centered text, max-width 2xl, responsive typography (text-4xl md:text-6xl)
+
+### Quick Highlights Section (MANDATORY)
+Three-column grid with these exact highlights:
+1. **"20+ Years Experience"** - Full-stack and AI expertise trusted by global enterprises
+2. **"Cost-Effective Outsourcing"** - Scale quickly with top-tier global engineering teams
+3. **"Enterprise-Grade AI"** - Cloud, automation, and AI-driven business transformation
+
+### Testimonials Section (MANDATORY)
+- **Background**: Gray-50 background
+- **Title**: "What Our Clients Say"
+- **Layout**: Three-column grid with these exact testimonials:
+  - Ms. Zhang, Textile Director: "AI-assisted design completely changed our process..."
+  - Ms. Wang, Hotel Procurement: "The team's responsiveness is impressive..."
+  - Mr. Chen, Fashion Magazine Editor: "AI brings fresh ideas every season..."
+
+### Footer Requirements (MANDATORY)
+- **Background**: Indigo-900
+- **Tagline**: "Trusted by enterprises worldwide for AI innovation and IT outsourcing"
+- **Navigation**: Privacy Policy, Sitemap, Contact links
+- **Copyright**: "© {current year} Best IT Consulting Inc. All rights reserved"
+
+## Enhanced Service Categories
+
+### AI & Machine Learning Solutions (MANDATORY)
+**SEO Tagline**: "Harness AI to automate workflows, unlock insights, and innovate faster."
+- Custom AI/LLM Applications (LangChain, Hugging Face, RAG)
+- Generative AI & Workflow Automation (ComfyUI, Stable Diffusion)
+- MLOps & Data Pipelines (Kubernetes, Docker, AWS)
+- ChatBI & Enterprise Assistants for data-driven insights
+
+### Full-Stack Web & Mobile Development (MANDATORY)
+**SEO Tagline**: "Modern, scalable, and user-friendly apps for web and mobile."
+- Frontend: React.js, Material-UI, Redux, Vue, Angular
+- Backend: Node.js, Python, Java, Microservices
+- Databases: PostgreSQL, MySQL, MongoDB, Redis
+- Mobile Apps: Native & cross-platform
+
+### Enterprise Systems & Automation (MANDATORY)
+**SEO Tagline**: "Enterprise-grade automation to streamline business operations."
+- Microsoft Stack: .NET, ASP.NET, Blazor, WCF
+- System Integration & ETL: BizTalk, MSMQ
+- Robotic Process Automation (RPA): UiPath, BluePrism, Workfusion
+
+### Specialized CAD/BIM/CAE Solutions (MANDATORY)
+**SEO Tagline**: "Next-gen CAD/BIM engineering powered by AI and HPC."
+- CAD/CAE Architecture (Parasolid, OCC, ACIS)
+- AI for Engineering (feature recognition, design retrieval)
+- High-Performance Algorithms (C++, OpenMP)
+
+### IT Outsourcing Models (MANDATORY)
+**SEO Tagline**: "Flexible IT outsourcing – scale teams quickly and reduce costs."
+- Dedicated Teams
+- Project-Based Outsourcing
+- Hybrid Collaboration
+
+## Case Study Standards
+
+### Required Case Studies (MANDATORY)
+All case studies MUST include these specific examples with measurable outcomes:
+
+**AI-Powered Transformation in Textile Design**
+- **Results**: Reduced design cycle from 12 weeks → 4–6 days
+- **Impact**: Boosted creativity by 10x, increased acceptance rate to 90%
+- **Technology**: AI-assisted design, creative style exploration
+
+**HSBC ETL Platform (Shamin Yang)**
+- **Results**: Automated ETL processes with .NET and RPA
+- **Impact**: Improved compliance and reduced manual workload
+- **Technology**: .NET, RPA automation, system integration
+
+**Advanced CAD/BIM Modeling (Lewis Liu)**
+- **Results**: Developed parallel computing algorithms for CAD
+- **Impact**: Improved modeling performance and precision
+- **Technology**: Parallel computing, geometry kernels, AI+CAD
+
+### Case Study Content Requirements
+- **Measurable Outcomes**: Every case study MUST include specific metrics
+- **Before/After Metrics**: Show clear improvement in efficiency, cost, or performance
+- **Technology Stack**: Specify exact technologies and tools used
+- **Client Results**: Include client testimonials with specific outcomes
+- **SEO Blurb**: "Real results: 90% proposal acceptance rate, 30% repeat client growth, and faster innovation cycles"
+
 ## Governance
 
 This constitution supersedes all other development practices. Amendments require:
@@ -138,4 +271,4 @@ This constitution supersedes all other development practices. Amendments require
 
 All pull requests MUST verify compliance with these principles. Complexity additions MUST be justified with business value. Use `.specify/templates/` for structured development guidance.
 
-**Version**: 1.1.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27
+**Version**: 1.2.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27
