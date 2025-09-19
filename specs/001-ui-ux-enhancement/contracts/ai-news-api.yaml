@@ -1,0 +1,191 @@
+openapi: 3.0.0
+info:
+  title: AI News API
+  description: API for managing AI industry news content with Supabase integration
+  version: 1.0.0
+servers:
+  - url: /api
+    description: Development server
+  - url: https://your-project.supabase.co
+    description: Supabase backend
+
+paths:
+  /ai-news:
+    get:
+      summary: Get AI news articles
+      description: Retrieve AI news articles with optional filtering
+      parameters:
+        - name: category
+          in: query
+          description: Filter by news category
+          required: false
+          schema:
+            $ref: '#/components/schemas/NewsCategory'
+        - name: trending
+          in: query
+          description: Filter trending articles only
+          required: false
+          schema:
+            type: boolean
+        - name: limit
+          in: query
+          description: Maximum number of articles to return
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 10
+        - name: offset
+          in: query
+          description: Number of articles to skip
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  articles:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AINewsArticle'
+                  total:
+                    type: integer
+                    description: Total number of articles
+                  hasMore:
+                    type: boolean
+                    description: Whether more articles are available
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /ai-news/{id}:
+    get:
+      summary: Get AI news article by ID
+      description: Retrieve a specific AI news article
+      parameters:
+        - name: id
+          in: path
+          description: Article ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AINewsArticle'
+        '404':
+          description: Article not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    AINewsArticle:
+      type: object
+      required:
+        - id
+        - title
+        - excerpt
+        - content
+        - date
+        - category
+        - tags
+        - trending
+        - readTime
+        - imageUrl
+        - isPublished
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the article
+        title:
+          type: string
+          description: Article headline
+          maxLength: 100
+        excerpt:
+          type: string
+          description: Article summary
+          maxLength: 300
+        content:
+          type: string
+          description: Full article content
+        date:
+          type: string
+          format: date-time
+          description: Publication date
+        category:
+          $ref: '#/components/schemas/NewsCategory'
+        tags:
+          type: array
+          items:
+            type: string
+          maxItems: 5
+          description: Article tags for filtering
+        trending:
+          type: boolean
+          description: Trending indicator
+        readTime:
+          type: string
+          description: Estimated reading time
+          pattern: '^\\d+\\s+min\\s+read$'
+        imageUrl:
+          type: string
+          format: uri
+          description: Article featured image URL
+        isPublished:
+          type: boolean
+          description: Publication status
+
+    NewsCategory:
+      type: string
+      enum:
+        - AI Models
+        - Biotech AI
+        - AI Safety
+        - Enterprise AI
+        - Research
+        - Autonomous Vehicles
+
+    Error:
+      type: object
+      required:
+        - message
+        - code
+      properties:
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+        details:
+          type: object
+          description: Additional error details
