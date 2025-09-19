@@ -16,9 +16,19 @@
     "check-all": "npm run type-check && npm run lint && npm run format:check && npm run markdown:lint",
     "db:setup": "node scripts/setup-database.js",
     "db:migrate": "node scripts/setup-database.js",
-    "db:seed": "node scripts/setup-database.js"
+    "db:seed": "node scripts/setup-database.js",
+    "fetch-news": "node scripts/fetch-ai-news.js",
+    "setup-cron": "bash scripts/setup-cron.sh"
   },
   "dependencies": {
+    "@radix-ui/react-avatar": "^1.1.10",
+    "@radix-ui/react-checkbox": "^1.3.3",
+    "@radix-ui/react-icons": "^1.3.2",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "@supabase/supabase-js": "^2.57.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.0.0",
@@ -28,7 +38,8 @@
     "react-dom": "^19.0.0",
     "resend": "^4.7.0",
     "tailwind-merge": "^3.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",

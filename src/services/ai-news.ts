@@ -33,10 +33,14 @@ export class AINewsService {
    * Get all published AI news articles
    */
   public async getArticles(
-    limit: number = 8,
-    offset: number = 0,
-    category?: NewsCategory
+    options: {
+      category?: NewsCategory
+      trending?: boolean
+      limit?: number
+      offset?: number
+    } = {}
   ): Promise<ArticlesResult> {
+    const { category, trending, limit = 8, offset = 0 } = options
     try {
       let query = supabase
         .from('ai_news_articles')
@@ -49,6 +53,10 @@ export class AINewsService {
         query = query.eq('category', category)
       }
 
+      if (trending) {
+        query = query.eq('trending', true)
+      }
+
       const { data, error, count } = await query
 
       if (error) {
@@ -58,14 +66,14 @@ export class AINewsService {
       return {
         articles: data || [],
         total: count || 0,
-        hasMore: (offset + limit) < (count || 0)
+        hasMore: offset + limit < (count || 0),
       }
     } catch (error) {
       console.error('Error fetching articles:', error)
       return {
         articles: [],
         total: 0,
-        hasMore: false
+        hasMore: false,
       }
     }
   }
@@ -89,13 +97,13 @@ export class AINewsService {
 
       return {
         trending: data || [],
-        total: count || 0
+        total: count || 0,
       }
     } catch (error) {
       console.error('Error fetching trending articles:', error)
       return {
         trending: [],
-        total: 0
+        total: 0,
       }
     }
   }
@@ -150,7 +158,9 @@ export class AINewsService {
         .from('ai_news_articles')
         .select('*', { count: 'exact' })
         .eq('is_published', true)
-        .or(`title.ilike.%${query}%,excerpt.ilike.%${query}%,content.ilike.%${query}%`)
+        .or(
+          `title.ilike.%${query}%,excerpt.ilike.%${query}%,content.ilike.%${query}%`
+        )
         .order('date', { ascending: false })
         .range(offset, offset + limit - 1)
 
@@ -161,14 +171,14 @@ export class AINewsService {
       return {
         articles: data || [],
         total: count || 0,
-        hasMore: (offset + limit) < (count || 0)
+        hasMore: offset + limit < (count || 0),
       }
     } catch (error) {
       console.error('Error searching articles:', error)
       return {
         articles: [],
         total: 0,
-        hasMore: false
+        hasMore: false,
       }
     }
   }
@@ -266,7 +276,7 @@ export class AINewsService {
         total: total || 0,
         published: published || 0,
         trending: trending || 0,
-        byCategory
+        byCategory,
       }
     } catch (error) {
       console.error('Error getting article stats:', error)
@@ -274,7 +284,7 @@ export class AINewsService {
         total: 0,
         published: 0,
         trending: 0,
-        byCategory: {}
+        byCategory: {},
       }
     }
   }
@@ -312,7 +322,7 @@ export class AINewsService {
         .from('ai_news_articles')
         .update({
           ...updates,
-          updated_at: new Date().toISOString()
+          updated_at: new Date().toISOString(),
         })
         .eq('id', id)
 
@@ -330,14 +340,16 @@ export class AINewsService {
   /**
    * Create a new article
    */
-  public async createArticle(article: Omit<AINewsArticle, 'id' | 'created_at' | 'updated_at'>): Promise<AINewsArticle | null> {
+  public async createArticle(
+    article: Omit<AINewsArticle, 'id' | 'created_at' | 'updated_at'>
+  ): Promise<AINewsArticle | null> {
     try {
       const { data, error } = await supabase
         .from('ai_news_articles')
         .insert({
           ...article,
           created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
+          updated_at: new Date().toISOString(),
         })
         .select()
         .single()

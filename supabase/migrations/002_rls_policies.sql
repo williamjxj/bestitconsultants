@@ -65,24 +65,5 @@ CREATE POLICY "Public can update user preferences" ON user_preferences
 CREATE POLICY "Public can delete user preferences" ON user_preferences
   FOR DELETE USING (true);
 
--- Create a function to check if user is authenticated (for future use)
-CREATE OR REPLACE FUNCTION auth.user_id()
-RETURNS TEXT AS $$
-BEGIN
-  RETURN COALESCE(
-    current_setting('request.jwt.claims', true)::json->>'sub',
-    current_setting('request.jwt.claims', true)::json->>'user_id'
-  );
-END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
-
--- Create a function to check if user is admin (for future use)
-CREATE OR REPLACE FUNCTION auth.is_admin()
-RETURNS BOOLEAN AS $$
-BEGIN
-  RETURN COALESCE(
-    (current_setting('request.jwt.claims', true)::json->>'role') = 'admin',
-    false
-  );
-END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+-- Note: Auth functions removed to avoid permission issues
+-- These can be added later when proper auth setup is configured
