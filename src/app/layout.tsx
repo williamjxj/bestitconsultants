@@ -1,12 +1,30 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Inter, Poppins, Roboto } from 'next/font/google'
 
 import Footer from '@/components/common/Footer'
 import Navbar from '@/components/common/Navbar'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 
-// Initialize Inter font with Latin subset
-const inter = Inter({ subsets: ['latin'] })
+// Initialize fonts with Latin subset
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-poppins',
+  display: 'swap',
+})
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+  variable: '--font-roboto',
+  display: 'swap',
+})
 
 // Metadata for the website (SEO purposes)
 export const metadata = {
@@ -24,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${inter.className} bg-gray-50 text-gray-800`}
+        className={`${inter.className} ${poppins.variable} ${roboto.variable} bg-gray-50 text-gray-800`}
         suppressHydrationWarning={true}
       >
         {/* LanguageProvider wraps the entire application to provide language context */}

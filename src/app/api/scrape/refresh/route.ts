@@ -16,13 +16,13 @@ export async function POST() {
       return NextResponse.json({
         message: result.message,
         status: result.status,
-        articlesUpdated: result.articlesUpdated
+        articlesUpdated: result.articlesUpdated,
       })
     } else {
       return NextResponse.json(
         {
           error: result.message,
-          status: result.status
+          status: result.status,
         },
         { status: 500 }
       )
@@ -32,7 +32,7 @@ export async function POST() {
     return NextResponse.json(
       {
         error: 'Content refresh failed',
-        status: 'failed'
+        status: 'failed',
       },
       { status: 500 }
     )
@@ -41,12 +41,12 @@ export async function POST() {
 
 export async function GET() {
   try {
-    const status = webScrapingService.getScrapingStatus()
+    const status = webScrapingService.getRefreshStatus()
 
     return NextResponse.json({
-      isScraping: status.isScraping,
-      lastScrapeTime: status.lastScrapeTime,
-      canScrape: status.canScrape
+      isRefreshing: status.isRefreshing,
+      lastRefreshTime: status.lastRefreshTime,
+      canRefresh: status.canRefresh,
     })
   } catch (error) {
     console.error('Error getting refresh status:', error)

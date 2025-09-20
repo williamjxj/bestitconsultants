@@ -147,7 +147,7 @@ All team pages MUST include these core members with detailed profiles:
 - **Services**: .NET-based web/windows app development, RPA and automation scripting, database migration
 - **Specialization**: System integration (Biztalk, MSMQ, SSIS), CI/CD setup and DevOps
 
-**Lianghua (Lewis) Liu (Software Architect, Beijing, China)**
+**Lewis Liu (Software Architect, Beijing, China)**
 - **Title**: Software Architect/Programmer
 - **Experience**: 26+ years in BIM/CAD/CAE, patent authorization holder
 - **Achievements**: Golden Idea Award, 4 books/10+ articles published, expert in Shenzhen Construction Standards Society

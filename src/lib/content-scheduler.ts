@@ -38,7 +38,7 @@ export class ContentScheduler {
       testimonialsRefreshInterval: 24, // 24 hours
       maintenanceInterval: 168, // 1 week
       maxRetries: 3,
-      retryDelay: 5 // 5 minutes
+      retryDelay: 5, // 5 minutes
     }
 
     this.status = {
@@ -48,7 +48,7 @@ export class ContentScheduler {
       totalRuns: 0,
       successfulRuns: 0,
       failedRuns: 0,
-      errors: []
+      errors: [],
     }
   }
 
@@ -73,21 +73,34 @@ export class ContentScheduler {
     this.status.isRunning = true
 
     // Schedule AI news refresh
-    const aiNewsInterval = setInterval(async () => {
-      await this.refreshAINews()
-    }, this.config.aiNewsRefreshInterval * 60 * 60 * 1000)
+    const aiNewsInterval = setInterval(
+      async () => {
+        await this.refreshAINews()
+      },
+      this.config.aiNewsRefreshInterval * 60 * 60 * 1000
+    )
 
     // Schedule testimonials refresh
-    const testimonialsInterval = setInterval(async () => {
-      await this.refreshTestimonials()
-    }, this.config.testimonialsRefreshInterval * 60 * 60 * 1000)
+    const testimonialsInterval = setInterval(
+      async () => {
+        await this.refreshTestimonials()
+      },
+      this.config.testimonialsRefreshInterval * 60 * 60 * 1000
+    )
 
     // Schedule maintenance tasks
-    const maintenanceInterval = setInterval(async () => {
-      await this.runMaintenanceTasks()
-    }, this.config.maintenanceInterval * 60 * 60 * 1000)
+    const maintenanceInterval = setInterval(
+      async () => {
+        await this.runMaintenanceTasks()
+      },
+      this.config.maintenanceInterval * 60 * 60 * 1000
+    )
 
-    this.intervals.push(aiNewsInterval, testimonialsInterval, maintenanceInterval)
+    this.intervals.push(
+      aiNewsInterval,
+      testimonialsInterval,
+      maintenanceInterval
+    )
 
     // Run initial refresh
     this.scheduleInitialRefresh()
@@ -139,7 +152,9 @@ export class ContentScheduler {
 
       if (result.success) {
         this.status.successfulRuns++
-        console.log(`AI news refresh completed: ${result.articlesUpdated} articles updated`)
+        console.log(
+          `AI news refresh completed: ${result.articlesUpdated} articles updated`
+        )
       } else {
         this.status.failedRuns++
         this.status.errors.push(`AI news refresh failed: ${result.message}`)
@@ -274,7 +289,9 @@ export class ContentScheduler {
     }
 
     const now = new Date()
-    const nextRun = new Date(now.getTime() + (this.config.aiNewsRefreshInterval * 60 * 60 * 1000))
+    const nextRun = new Date(
+      now.getTime() + this.config.aiNewsRefreshInterval * 60 * 60 * 1000
+    )
     return nextRun
   }
 
@@ -304,10 +321,10 @@ export class ContentScheduler {
     try {
       console.log('Testing scheduler functionality...')
 
-      // Test web scraping service
-      const scrapingTest = await webScrapingService.testScraping()
-      if (!scrapingTest) {
-        console.error('Web scraping test failed')
+      // Test database connectivity
+      const databaseTest = await webScrapingService.testDatabase()
+      if (!databaseTest) {
+        console.error('Database connectivity test failed')
         return false
       }
 

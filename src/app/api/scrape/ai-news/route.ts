@@ -1,69 +1,55 @@
 /**
- * API endpoint for initiating AI news scraping
+ * API endpoint for AI news database operations
  * POST /api/scrape/ai-news
  */
 
 import { NextRequest, NextResponse } from 'next/server'
 import { webScrapingService } from '@/services/web-scraping'
-import { validateScrapeRequest } from '@/lib/validation'
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
+    const { limit = 8 } = body
 
-    // Validate request body
-    const validationResult = validateScrapeRequest(body)
-    if (!validationResult.success) {
+    // Check if refresh is already in progress
+    const status = webScrapingService.getRefreshStatus()
+    if (status.isRefreshing) {
       return NextResponse.json(
         {
-          error: 'Invalid request parameters',
-          details: validationResult.errors
-        },
-        { status: 400 }
-      )
-    }
-
-    const { sources, count } = validationResult.data
-
-    // Check if scraping is already in progress
-    const status = webScrapingService.getScrapingStatus()
-    if (status.isScraping) {
-      return NextResponse.json(
-        {
-          error: 'Scraping is already in progress',
-          status: 'busy'
+          error: 'Database refresh is already in progress',
+          status: 'busy',
         },
         { status: 409 }
       )
     }
 
-    // Initiate scraping
-    const result = await webScrapingService.scrapeAINews(sources, count)
+    // Get articles from database
+    const result = await webScrapingService.getArticlesFromDatabase(limit)
 
     if (result.success) {
       return NextResponse.json({
         message: result.message,
         articlesCount: result.articlesCount,
-        taskId: `scrape-${Date.now()}`,
+        taskId: `db-refresh-${Date.now()}`,
         status: 'completed',
-        errors: result.errors
+        errors: result.errors,
       })
     } else {
       return NextResponse.json(
         {
           error: result.message,
           status: 'failed',
-          errors: result.errors
+          errors: result.errors,
         },
         { status: 500 }
       )
     }
   } catch (error) {
-    console.error('AI news scraping error:', error)
+    console.error('AI news database operation error:', error)
     return NextResponse.json(
       {
         error: 'Internal server error',
-        status: 'failed'
+        status: 'failed',
       },
       { status: 500 }
     )
@@ -72,17 +58,17 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
-    const status = webScrapingService.getScrapingStatus()
+    const status = webScrapingService.getRefreshStatus()
 
     return NextResponse.json({
-      isScraping: status.isScraping,
-      lastScrapeTime: status.lastScrapeTime,
-      canScrape: status.canScrape
+      isRefreshing: status.isRefreshing,
+      lastRefreshTime: status.lastRefreshTime,
+      canRefresh: status.canRefresh,
     })
   } catch (error) {
-    console.error('Error getting scraping status:', error)
+    console.error('Error getting refresh status:', error)
     return NextResponse.json(
-      { error: 'Failed to get scraping status' },
+      { error: 'Failed to get refresh status' },
       { status: 500 }
     )
   }

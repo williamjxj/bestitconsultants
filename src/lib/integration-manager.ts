@@ -50,7 +50,7 @@ export class IntegrationManager {
       scheduler: false,
       performance: false,
       cache: false,
-      lazyLoading: false
+      lazyLoading: false,
     }
   }
 
@@ -96,7 +96,10 @@ export class IntegrationManager {
   private async initializeSupabase(): Promise<void> {
     try {
       // Test Supabase connection
-      const { data, error } = await supabase.from('ai_news_articles').select('count').limit(1)
+      const { data, error } = await supabase
+        .from('ai_news_articles')
+        .select('count')
+        .limit(1)
 
       if (error) {
         throw new Error(`Supabase connection failed: ${error.message}`)
@@ -115,9 +118,9 @@ export class IntegrationManager {
    */
   private async initializeServices(): Promise<void> {
     try {
-      // Test web scraping service
-      const scrapingTest = await webScrapingService.testScraping()
-      this.status.webScraping = scrapingTest
+      // Test web scraping service (now database service)
+      const databaseTest = await webScrapingService.testDatabase()
+      this.status.webScraping = databaseTest
 
       // Test AI news service
       const articlesResult = await aiNewsService.getArticles(1)
@@ -159,7 +162,7 @@ export class IntegrationManager {
       cacheManager.setConfig({
         ttl: 5 * 60 * 1000, // 5 minutes
         maxSize: 100,
-        strategy: 'memory'
+        strategy: 'memory',
       })
       this.status.cache = true
       console.log('Cache system initialized')
@@ -232,9 +235,9 @@ export class IntegrationManager {
       services,
       performance: {
         score: performanceReport.score,
-        recommendations: performanceReport.recommendations
+        recommendations: performanceReport.recommendations,
       },
-      lastCheck: new Date()
+      lastCheck: new Date(),
     }
   }
 
@@ -249,9 +252,9 @@ export class IntegrationManager {
       const supabaseTest = this.status.supabase
       console.log('Supabase:', supabaseTest ? '✓' : '✗')
 
-      // Test web scraping
-      const scrapingTest = await webScrapingService.testScraping()
-      console.log('Web Scraping:', scrapingTest ? '✓' : '✗')
+      // Test database connectivity
+      const databaseTest = await webScrapingService.testDatabase()
+      console.log('Database:', databaseTest ? '✓' : '✗')
 
       // Test AI news
       const articlesTest = await aiNewsService.getArticles(1)
@@ -284,20 +287,22 @@ export class IntegrationManager {
 
       const allTests = [
         supabaseTest,
-        scrapingTest,
+        databaseTest,
         articlesTest.articles.length >= 0,
         testimonialsTest.length >= 0,
         navTest.length > 0,
         performanceTest,
         cacheTest,
         lazyTest,
-        schedulerTest
+        schedulerTest,
       ]
 
       const successCount = allTests.filter(Boolean).length
       const totalTests = allTests.length
 
-      console.log(`Integration tests completed: ${successCount}/${totalTests} passed`)
+      console.log(
+        `Integration tests completed: ${successCount}/${totalTests} passed`
+      )
       return successCount === totalTests
     } catch (error) {
       console.error('Integration tests failed:', error)
@@ -379,7 +384,7 @@ export class IntegrationManager {
       healthyServices,
       totalServices,
       uptime: Date.now() - (this.isInitialized ? Date.now() : 0),
-      lastCheck: new Date()
+      lastCheck: new Date(),
     }
   }
 }

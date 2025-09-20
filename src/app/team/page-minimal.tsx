@@ -1,18 +1,6 @@
 import React from 'react'
 
 const TeamPage = () => {
-  // Get avatar source for each team member - using actual photos
-  const getAvatarSrc = (memberId: string): string => {
-    const avatarMap: { [key: string]: string } = {
-      william: '/images/william-jiang.jpg',
-      shamin: '/images/shaming-yang.jpeg',
-      lewis: '/images/lewis-liu.jpg',
-      ming: '/images/mingchun-hu.jpg',
-      wayne: '/images/wayne-li.jpg',
-      james: '/images/james-cheung.jpeg',
-    }
-    return avatarMap[memberId] || '/images/william-jiang.jpg'
-  }
   const teamMembers = [
     {
       id: 'william',
@@ -25,6 +13,19 @@ const TeamPage = () => {
         'AI/ML Solutions',
         'Full-Stack Development',
         'Enterprise Architecture',
+      ],
+    },
+    {
+      id: 'shamin',
+      name: 'Shamin Yang',
+      role: 'Senior Software Engineer & Solution Architect',
+      location: 'Guangzhou, China',
+      bio: '20+ years Microsoft technology expert with extensive Fortune 500 experience. Led major projects at HSBC, IBM, HP, and EPAM.',
+      experience: '20+ Years',
+      specialties: [
+        '.NET Architecture',
+        'RPA Solutions',
+        'Enterprise Integration',
       ],
     },
     {
@@ -59,19 +60,6 @@ const TeamPage = () => {
       specialties: ['AI Solutions', 'Government Projects', 'Enterprise AI'],
     },
     {
-      id: 'shamin',
-      name: 'Shamin Yang',
-      role: 'Senior Software Engineer & Solution Architect',
-      location: 'Guangzhou, China',
-      bio: '20+ years Microsoft technology expert with extensive Fortune 500 experience. Led major projects at HSBC, IBM, HP, and EPAM.',
-      experience: '20+ Years',
-      specialties: [
-        '.NET Architecture',
-        'RPA Solutions',
-        'Enterprise Integration',
-      ],
-    },
-    {
       id: 'james',
       name: 'James Chueng',
       role: 'Full-Stack Software Engineer',
@@ -101,12 +89,11 @@ const TeamPage = () => {
               className='bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow'
             >
               <div className='text-center mb-4'>
-                <div className='w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden'>
-                  <img
-                    src={getAvatarSrc(member.id)}
-                    alt={`${member.name} avatar`}
-                    className='w-full h-full object-cover'
-                  />
+                <div className='w-20 h-20 bg-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold'>
+                  {member.name
+                    .split(' ')
+                    .map(n => n[0])
+                    .join('')}
                 </div>
                 <h3 className='text-xl font-bold mb-2'>{member.name}</h3>
                 <p className='text-gray-600 mb-1'>{member.role}</p>
