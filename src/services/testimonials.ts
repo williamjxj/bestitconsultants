@@ -63,7 +63,9 @@ export class TestimonialsService {
   /**
    * Create a new testimonial (not supported in static mode)
    */
-  public async createTestimonial(testimonial: Omit<Testimonial, 'id' | 'created_at' | 'updated_at'>): Promise<Testimonial | null> {
+  public async createTestimonial(
+    testimonial: Omit<Testimonial, 'id' | 'created_at' | 'updated_at'>
+  ): Promise<Testimonial | null> {
     console.warn('Creating testimonials not supported in static mode')
     return null
   }
@@ -101,11 +103,10 @@ export class TestimonialsService {
   /**
    * Update testimonial display order (not supported in static mode)
    */
-  public async updateDisplayOrder(
-    id: string,
-    order: number
-  ): Promise<boolean> {
-    console.warn('Updating testimonial display order not supported in static mode')
+  public async updateDisplayOrder(id: string, order: number): Promise<boolean> {
+    console.warn(
+      'Updating testimonial display order not supported in static mode'
+    )
     return false
   }
 
@@ -120,18 +121,18 @@ export class TestimonialsService {
     try {
       const testimonials = this.getStaticTestimonials()
       const visible = testimonials.filter(t => t.is_visible).length
-      
+
       return {
         total: testimonials.length,
         visible,
-        hidden: testimonials.length - visible
+        hidden: testimonials.length - visible,
       }
     } catch (error) {
       console.error('Error getting testimonial stats:', error)
       return {
         total: 0,
         visible: 0,
-        hidden: 0
+        hidden: 0,
       }
     }
   }
@@ -151,25 +152,27 @@ export class TestimonialsService {
     return [
       {
         id: 'static-1',
-        quote: 'AI-assisted design completely changed our process. We now explore more ideas in less time.',
+        quote:
+          'AI-assisted design completely changed our process. We now explore more ideas in less time.',
         author: 'Ms. Zhang',
         title: 'Textile Director',
         company: 'Shanghai Textile Co.',
         is_visible: true,
         display_order: 1,
         created_at: new Date(),
-        updated_at: new Date()
+        updated_at: new Date(),
       },
       {
         id: 'static-2',
-        quote: 'The team\'s responsiveness is impressive. They adapted designs to our needs instantly.',
+        quote:
+          "The team's responsiveness is impressive. They adapted designs to our needs instantly.",
         author: 'Ms. Wang',
         title: 'Hotel Procurement',
         company: 'Luxury Hotels Group',
         is_visible: true,
         display_order: 2,
         created_at: new Date(),
-        updated_at: new Date()
+        updated_at: new Date(),
       },
       {
         id: 'static-3',
@@ -180,30 +183,32 @@ export class TestimonialsService {
         is_visible: true,
         display_order: 3,
         created_at: new Date(),
-        updated_at: new Date()
+        updated_at: new Date(),
       },
       {
         id: 'static-4',
-        quote: 'The AI integration helped us reduce development time by 40% while improving quality.',
+        quote:
+          'The AI integration helped us reduce development time by 40% while improving quality.',
         author: 'Mr. Balaji',
         title: 'CTO',
         company: 'Tech Innovations Ltd.',
         is_visible: true,
         display_order: 4,
         created_at: new Date(),
-        updated_at: new Date()
+        updated_at: new Date(),
       },
       {
         id: 'static-5',
-        quote: 'BestIT\'s AI solutions transformed our business operations. Highly recommended!',
+        quote:
+          "BestIT's AI solutions transformed our business operations. Highly recommended!",
         author: 'Dr. Brennan',
         title: 'CEO',
         company: 'AI Solutions Inc.',
         is_visible: true,
         display_order: 5,
         created_at: new Date(),
-        updated_at: new Date()
-      }
+        updated_at: new Date(),
+      },
     ]
   }
 
@@ -214,25 +219,27 @@ export class TestimonialsService {
     return [
       {
         id: 'fallback-1',
-        quote: 'AI-assisted design completely changed our process. We now explore more ideas in less time.',
+        quote:
+          'AI-assisted design completely changed our process. We now explore more ideas in less time.',
         author: 'Ms. Zhang',
         title: 'Textile Director',
         company: 'Shanghai Textile Co.',
         is_visible: true,
         display_order: 1,
         created_at: new Date(),
-        updated_at: new Date()
+        updated_at: new Date(),
       },
       {
         id: 'fallback-2',
-        quote: 'The team\'s responsiveness is impressive. They adapted designs to our needs instantly.',
+        quote:
+          "The team's responsiveness is impressive. They adapted designs to our needs instantly.",
         author: 'Ms. Wang',
         title: 'Hotel Procurement',
         company: 'Luxury Hotels Group',
         is_visible: true,
         display_order: 2,
         created_at: new Date(),
-        updated_at: new Date()
+        updated_at: new Date(),
       },
       {
         id: 'fallback-3',
@@ -243,8 +250,8 @@ export class TestimonialsService {
         is_visible: true,
         display_order: 3,
         created_at: new Date(),
-        updated_at: new Date()
-      }
+        updated_at: new Date(),
+      },
     ]
   }
 }

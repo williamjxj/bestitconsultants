@@ -99,6 +99,15 @@ const websites: Website[] = [
     icon: Building2,
     status: 'active',
   },
+  {
+    name: 'Cursor Portfolio Dashboard',
+    url: 'https://cursor-portfolio-dashboard.vercel.app/',
+    description:
+      'AI-powered portfolio dashboard showcasing curated applications',
+    category: 'Development',
+    icon: Code,
+    status: 'active',
+  },
 ]
 
 const getCategoryIcon = (category: string) => {

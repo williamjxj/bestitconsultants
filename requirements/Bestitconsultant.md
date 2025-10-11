@@ -9,14 +9,6 @@
   technologies such as React.js, Node.js, Python, and AI/ML tools like LangChain and Hugging Face.
   He also specializes in building Python-based, Kafka-driven microservices in cloud environments.
 
-### **James Chueng (**Full-Stack Engineer, Hong Kong)
-
-- **Professional Highlights:** A full-stack software engineer based in Hong Kong with over 7 years
-  of freelancing experience. He is highly proficient in modern front-end and back-end frameworks.
-- **Services:** Offers collaboration on various software development projects, including web and
-  AI-related projects. His skills include React, Next.js, Angular, Node, and AI technologies such as
-  NLP, LLM, and LangChain.
-
 ### **Ming Chun Hu (**(Lead Software Developer/Consultant, Chengdu, China)
 
 - **Professional Highlights:** As the representative for Chengdu Zhanying Technology Co., Ltd., he
@@ -27,7 +19,16 @@
   mobile (Android/iOS) and embedded systems, as well as standard products like an OA system and an
   engineering cost management system.
 
-### **Wayne Li (**AI Solutions Architect, Shenzhen, China)
+### **Lewis Liu (**Architect/Consultant), Beijing, China)
+
+- **Professional Highlights:** A software architect and programmer with 26 years of experience. He
+  is a master of BIM/CAD data modeling and exchange, and has a patent authorization. He is also
+  experienced in integrating AI with CAD and has published multiple books and technical articles.
+- **Services:** Specializes in developing CAD/CAE software, including AI+CAD and 3D retrieval. His
+  expertise includes parallel algorithm design, using various programming languages (C/C++, C\#,
+  Python), and integrating third-party libraries.
+
+### **Wayne Li (**AI Solutions Architect, Beijing, China)
 
 - **Professional Highlights:** Representing Aochuang Intelligent Technology Co., Ltd., his focus is
   on providing secure, controllable, and efficient AI solutions for government and enterprise
@@ -38,15 +39,6 @@
   including fine-tuned model training and knowledge base accumulation to enhance the accuracy and
   efficiency of their AI models.
 
-### **Lewis Liu (**Architect/Consultant), Beijing, China)
-
-- **Professional Highlights:** A software architect and programmer with 26 years of experience. He
-  is a master of BIM/CAD data modeling and exchange, and has a patent authorization. He is also
-  experienced in integrating AI with CAD and has published multiple books and technical articles.
-- **Services:** Specializes in developing CAD/CAE software, including AI+CAD and 3D retrieval. His
-  expertise includes parallel algorithm design, using various programming languages (C/C++, C\#,
-  Python), and integrating third-party libraries.
-
 ### **Shamin Yang (**Senior Software Engineer / Solution Architect, Guangzhou, China)
 
 - **Professional Highlights:** A Senior Software Engineer/Solution Architect with over 20 years of
@@ -55,6 +47,14 @@
 - **Services:** Specializes in developing web and Windows applications. His expertise covers a wide
   range of technologies, including various databases, CI/CD pipelines, and RPA (Robotic Process
   Automation).
+
+### **James Chueng (**Full-Stack Engineer, Hong Kong)
+
+- **Professional Highlights:** A full-stack software engineer based in Hong Kong with over 7 years
+  of freelancing experience. He is highly proficient in modern front-end and back-end frameworks.
+- **Services:** Offers collaboration on various software development projects, including web and
+  AI-related projects. His skills include React, Next.js, Angular, Node, and AI technologies such as
+  NLP, LLM, and LangChain.
 
 # Partners' Professional Highlights and Services
 

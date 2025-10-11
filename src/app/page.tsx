@@ -6,7 +6,6 @@ import ContactSnippet from '@/components/home/ContactSnippet'
 import HeroSection from '@/components/home/HeroSection'
 import PortfolioPreview from '@/components/home/PortfolioPreview'
 import ServicesSummary from '@/components/home/ServicesSummary'
-import TestimonialsPreview from '@/components/home/TestimonialsPreview'
 
 // HomePage component with animations
 export default function HomePage() {
@@ -49,16 +48,6 @@ export default function HomePage() {
         viewport={{ once: true }}
       >
         <PortfolioPreview />
-      </motion.div>
-
-      {/* TestimonialsPreview section: Client feedback */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <TestimonialsPreview />
       </motion.div>
 
       {/* ContactSnippet section: Quick contact call to action */}

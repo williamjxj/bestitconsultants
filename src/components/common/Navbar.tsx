@@ -140,9 +140,16 @@ export default function Navbar() {
           {/* Logo with animation */}
           <Link
             href='/'
-            className='text-2xl font-bold text-blue-600 hover:text-blue-700 transition-all duration-300 hover:scale-105'
+            className='flex items-center space-x-3 transition-all duration-300 hover:scale-105'
           >
-            BestITConsulting
+            <img
+              src='/logo.png'
+              alt='BestITConsulting Logo'
+              className='h-12 w-auto'
+            />
+            <span className='text-xl font-bold text-gray-800 hover:text-blue-600 transition-colors duration-200'>
+              bestitconsultants
+            </span>
           </Link>
 
           {/* Desktop Navigation Links with improved styling */}

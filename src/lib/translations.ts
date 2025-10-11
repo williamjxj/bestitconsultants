@@ -8,7 +8,6 @@ export const translations = {
       portfolio: 'Portfolio',
       team: 'Our Team',
       ourWork: 'Our Work',
-      testimonials: 'Testimonials',
       contact: 'Contact Us',
     },
     hero: {
@@ -79,30 +78,6 @@ export const translations = {
       ],
       allProjects: 'View All Projects',
     },
-    testimonialsPreview: {
-      title: 'What Our Clients Say',
-      testimonials: [
-        {
-          id: 1,
-          name: 'Sarah L., CEO of TechSolutions Inc.',
-          quote:
-            '"BestITConsulting delivered beyond our expectations. Their team is skilled, professional, and truly understood our vision."',
-        },
-        {
-          id: 2,
-          name: 'John B., Project Manager at Innovate Corp.',
-          quote:
-            '"The quality of work and the communication throughout the project were outstanding. Highly recommend them!"',
-        },
-        {
-          id: 3,
-          name: 'Emily K., Founder of StartupX',
-          quote:
-            '"Working with BestITConsulting was a game-changer for us. They helped us scale our product efficiently and effectively."',
-        },
-      ],
-      moreTestimonials: 'Read More Testimonials',
-    },
     contactSnippet: {
       title: "Let's Build Excellence Together",
       description:
@@ -155,38 +130,86 @@ export const translations = {
         members: [
           {
             name: 'William Jiang',
-            role: 'Founder & CEO, Senior Full-Stack Engineer',
-            bio: '20+ years in full-stack development, software architecture, and AI-driven solutions. Former tech lead at Xperi, EPAM, WebMD, and BestBuy.',
-            image: '/team/william.jpg',
+            role: 'Founder & CEO',
+            bio: 'Senior Full-Stack Engineer with 20+ years in software architecture and AI-driven solutions. APEC 2002 award winner for FedEx project. Led major initiatives at Xperi (ML Data Pipelines), Credit Suisse (real-time stock integration), HSBC (banking services), WebMD (Big Data pipelines), and BestBuy Canada (e-commerce).',
+            image: '/images/william-jiang.jpg',
             specialties: [
-              'React.js & Node.js',
-              'AI/ML & MLOps',
-              'Cloud Architecture',
-              'Microservices',
+              'AI & Machine Learning (MLOps, CUDA, Kubeflow)',
+              'React.js, Node.js, Python, Java',
+              'Kubernetes, Docker, AWS, MLOps',
+              'Microservices, GraphQL, MongoDB',
+              'LangChain, LlamaIndex, Hugging Face',
+              'Kafka, ElasticSearch, Prometheus',
+            ],
+          },
+          {
+            name: 'Chengdu Zhanying Technology Co., Ltd.',
+            role: 'Strategic Development Partner',
+            bio: 'Professional software development company with teams in Chengdu and Hangzhou. Specializes in OA systems, engineering cost management, mobile development, and government solutions. Serves Fortune 500 clients, government agencies, and major engineering companies.',
+            image: '/images/james-cheung.jpeg',
+            specialties: [
+              'OA Systems (Task, Project, Asset Management)',
+              'Engineering Cost Management Systems',
+              'Mobile Development (Android/iOS, React Native)',
+              'Embedded Systems & Hardware Solutions',
+              'Enterprise ERP, MES, EKP Systems',
+              'Supply Chain Finance Platforms',
             ],
           },
           {
             name: 'Shamin Yang',
-            role: '.NET Specialist & Senior Developer',
-            bio: '20+ years .NET development with HSBC, PMP certified. Expert in enterprise systems, automation, and RPA solutions.',
-            image: '/team/shamin.jpg',
+            role: '.NET Architecture Specialist',
+            bio: '20+ years Microsoft technology expert with extensive Fortune 500 experience. Led major projects at HSBC (Transformers ETL Platform), IBM (Tiffany e-Commerce), HP (GM applications), and EPAM (Credit Suisse Alpha). Multiple certifications including Google Cloud Architect and DevOps Master.',
+            image: '/images/shaming-yang.jpeg',
             specialties: [
-              '.NET Core & Blazor',
-              'Enterprise Systems',
-              'RPA & Automation',
-              'DevOps & CI/CD',
+              'ASP.NET, .NET Core, Blazor, WPF, UWP',
+              'Azure, Google Cloud, AWS Integration',
+              'RPA: UiPath, BluePrism, WorkFusion',
+              'Database: SQL Server, Oracle, MongoDB',
+              'DevOps: Git, TeamCity, Octopus, PowerShell',
+              'System Integration: BizTalk, MSMQ, ETL',
             ],
           },
           {
-            name: 'Chengdu Partner Team',
-            role: 'Development Center',
-            bio: 'Specialized development team in China with 10+ years experience. Expert in mobile development, embedded systems, and enterprise solutions.',
-            image: '/team/chengdu.jpg',
+            name: 'Lewis Liu',
+            role: 'Senior Full-Stack Developer',
+            bio: 'Experienced full-stack developer with expertise in modern web technologies and cloud solutions. Specializes in building scalable applications and leading development teams.',
+            image: '/images/lewis-liu.jpg',
             specialties: [
-              'Mobile Development',
-              'Embedded Systems',
-              'OA/ERP Systems',
-              'Cost Management',
+              'React.js, Vue.js, Angular',
+              'Node.js, Express, FastAPI',
+              'AWS, Azure, Google Cloud',
+              'Docker, Kubernetes',
+              'PostgreSQL, MongoDB, Redis',
+              'GraphQL, REST APIs',
+            ],
+          },
+          {
+            name: 'Mingchun Hu',
+            role: 'Mobile Development Specialist',
+            bio: 'Mobile development expert with extensive experience in iOS and Android app development. Specializes in cross-platform solutions and native mobile applications.',
+            image: '/images/mingchun-hu.jpg',
+            specialties: [
+              'React Native, Flutter',
+              'iOS (Swift, Objective-C)',
+              'Android (Kotlin, Java)',
+              'Mobile UI/UX Design',
+              'App Store Optimization',
+              'Push Notifications, Analytics',
+            ],
+          },
+          {
+            name: 'Wayne Li',
+            role: 'DevOps & Cloud Engineer',
+            bio: 'DevOps and cloud infrastructure specialist with expertise in automation, monitoring, and scalable system architecture. Focuses on improving development workflows and system reliability.',
+            image: '/images/wayne-li.jpg',
+            specialties: [
+              'AWS, Azure, Google Cloud',
+              'Docker, Kubernetes, Terraform',
+              'CI/CD Pipelines (Jenkins, GitLab)',
+              'Monitoring (Prometheus, Grafana)',
+              'Infrastructure as Code',
+              'Security & Compliance',
             ],
           },
         ],
@@ -529,135 +552,6 @@ export const translations = {
         subtitle: "Let's create something amazing together",
         startProject: 'Start Your Project',
         viewMore: 'View More Projects',
-      },
-    },
-    testimonials: {
-      title: 'Client Testimonials',
-      subtitle: 'What our clients say about working with us',
-      list: [
-        {
-          name: 'Sarah Johnson',
-          position: 'CEO',
-          company: 'TechStart Inc.',
-          content:
-            'BestIT delivered exceptional results. Their team understood our vision perfectly and exceeded all expectations.',
-          rating: 5,
-          avatar: '/avatars/sarah.jpg',
-          project: {
-            type: 'Web Development',
-            technologies: ['React', 'Node.js', 'AWS'],
-          },
-        },
-        {
-          name: 'Michael Chen',
-          position: 'CTO',
-          company: 'InnovateCorp',
-          content:
-            'Outstanding technical expertise and project management. They delivered on time and within budget.',
-          rating: 5,
-          avatar: '/avatars/michael.jpg',
-          project: {
-            type: 'Mobile App',
-            technologies: ['React Native', 'Firebase'],
-          },
-        },
-        {
-          name: 'Emily Rodriguez',
-          position: 'Product Manager',
-          company: 'DataFlow Solutions',
-          content:
-            'The AI solution they built transformed our business operations. Highly professional team.',
-          rating: 5,
-          avatar: '/avatars/emily.jpg',
-          project: {
-            type: 'AI/ML',
-            technologies: ['Python', 'TensorFlow', 'Docker'],
-          },
-        },
-      ],
-      stats: {
-        title: 'Our Impact',
-        metrics: [
-          {
-            value: '150+',
-            label: 'Happy Clients',
-            description: 'Across various industries',
-          },
-          {
-            value: '98%',
-            label: 'Success Rate',
-            description: 'Projects delivered successfully',
-          },
-          {
-            value: '4.9/5',
-            label: 'Average Rating',
-            description: 'Client satisfaction score',
-          },
-          {
-            value: '24/7',
-            label: 'Support',
-            description: 'Available when you need us',
-          },
-        ],
-      },
-      awards: {
-        title: 'Awards & Recognition',
-        list: [
-          {
-            title: 'Best Development Team',
-            organization: 'Tech Excellence Awards',
-            year: '2023',
-            icon: '🏆',
-          },
-          {
-            title: 'Innovation in AI',
-            organization: 'AI Solutions Summit',
-            year: '2023',
-            icon: '🤖',
-          },
-          {
-            title: 'Client Choice Award',
-            organization: 'Business Review Platform',
-            year: '2022',
-            icon: '⭐',
-          },
-          {
-            title: 'Top Outsourcing Partner',
-            organization: 'Global Tech Review',
-            year: '2022',
-            icon: '🌟',
-          },
-        ],
-      },
-      clients: {
-        title: 'Trusted by Leading Companies',
-        logos: [
-          { name: 'TechCorp', logo: '/logos/techcorp.png' },
-          { name: 'InnovateLab', logo: '/logos/innovatelab.png' },
-          { name: 'DataSys', logo: '/logos/datasys.png' },
-          { name: 'CloudTech', logo: '/logos/cloudtech.png' },
-          { name: 'AIVentures', logo: '/logos/aiventures.png' },
-          { name: 'FinanceFlow', logo: '/logos/financeflow.png' },
-        ],
-      },
-      industries: {
-        title: 'Industries We Serve',
-        list: [
-          { name: 'Healthcare', icon: '🏥', projects: 25 },
-          { name: 'E-commerce', icon: '🛍️', projects: 35 },
-          { name: 'Finance', icon: '💰', projects: 20 },
-          { name: 'Education', icon: '🎓', projects: 15 },
-          { name: 'Manufacturing', icon: '🏭', projects: 18 },
-          { name: 'Real Estate', icon: '🏠', projects: 12 },
-          { name: 'Transportation', icon: '🚗', projects: 10 },
-          { name: 'Entertainment', icon: '🎬', projects: 8 },
-        ],
-      },
-      cta: {
-        title: 'Ready to Join Our Success Stories?',
-        subtitle: "Let's discuss how we can help achieve your goals",
-        getQuote: 'Get Free Quote',
-        caseStudies: 'View Case Studies',
       },
     },
     contact: {

@@ -3,30 +3,30 @@
  * GET /api/testimonials - Returns testimonials for footer display
  */
 
-import { NextRequest, NextResponse } from 'next/server';
-import { testimonialsService } from '@/services/testimonials';
+import { NextRequest, NextResponse } from 'next/server'
+import { testimonialsService } from '@/services/testimonials'
 
 export async function GET(request: NextRequest) {
   try {
     // Get visible testimonials
-    const testimonials = await testimonialsService.getTestimonials();
+    const testimonials = await testimonialsService.getTestimonials()
 
     // Get total count
-    const stats = await testimonialsService.getTestimonialStats();
-    const total = stats.total;
+    const stats = await testimonialsService.getTestimonialStats()
+    const total = stats.total
 
     return NextResponse.json({
       testimonials,
-      total
-    });
+      total,
+    })
   } catch (error) {
-    console.error('Error fetching testimonials:', error);
+    console.error('Error fetching testimonials:', error)
     return NextResponse.json(
       {
         error: 'Failed to fetch testimonials',
-        message: error instanceof Error ? error.message : 'Unknown error'
+        message: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 }
-    );
+    )
   }
 }

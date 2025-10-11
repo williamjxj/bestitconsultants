@@ -90,7 +90,7 @@ export class WebScrapingService {
         byCategory: {
           'AI Models': 2,
           'Enterprise AI': 1,
-          'Research': 1,
+          Research: 1,
           'AI Safety': 1,
         },
       }
