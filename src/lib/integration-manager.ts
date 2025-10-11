@@ -5,7 +5,6 @@
 
 import { supabase } from './supabase'
 import { webScrapingService } from '@/services/web-scraping'
-import { aiNewsService } from '@/services/ai-news'
 import { testimonialsService } from '@/services/testimonials'
 import { navigationService } from '@/services/navigation'
 import { contentScheduler } from './content-scheduler'
@@ -16,7 +15,6 @@ import { lazyLoader } from './lazy-loader'
 export interface IntegrationStatus {
   supabase: boolean
   webScraping: boolean
-  aiNews: boolean
   testimonials: boolean
   navigation: boolean
   scheduler: boolean
@@ -44,7 +42,6 @@ export class IntegrationManager {
     this.status = {
       supabase: false,
       webScraping: false,
-      aiNews: false,
       testimonials: false,
       navigation: false,
       scheduler: false,
@@ -122,9 +119,7 @@ export class IntegrationManager {
       const databaseTest = await webScrapingService.testDatabase()
       this.status.webScraping = databaseTest
 
-      // Test AI news service
-      const articlesResult = await aiNewsService.getArticles(1)
-      this.status.aiNews = true
+      // AI News service removed
 
       // Test testimonials service
       const testimonials = await testimonialsService.getTestimonials()
@@ -257,8 +252,7 @@ export class IntegrationManager {
       console.log('Database:', databaseTest ? '✓' : '✗')
 
       // Test AI news
-      const articlesTest = await aiNewsService.getArticles(1)
-      console.log('AI News:', articlesTest.articles.length >= 0 ? '✓' : '✗')
+      console.log('AI News: Removed')
 
       // Test testimonials
       const testimonialsTest = await testimonialsService.getTestimonials()

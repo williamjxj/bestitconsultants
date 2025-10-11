@@ -3,26 +3,25 @@
  * Handles real-time updates for AI news articles and testimonials
  */
 
-import { supabase, TABLES } from './supabase';
-import type { AINewsArticle } from '@/types/ai-news';
-import type { Testimonial } from '@/types/testimonial';
+import { supabase, TABLES } from './supabase'
+import type { Testimonial } from '@/types/testimonial'
 
 export interface RealtimeSubscription {
-  id: string;
-  unsubscribe: () => void;
+  id: string
+  unsubscribe: () => void
 }
 
 export class SupabaseRealtimeService {
-  private static instance: SupabaseRealtimeService;
-  private subscriptions: Map<string, RealtimeSubscription> = new Map();
+  private static instance: SupabaseRealtimeService
+  private subscriptions: Map<string, RealtimeSubscription> = new Map()
 
   private constructor() {}
 
   public static getInstance(): SupabaseRealtimeService {
     if (!SupabaseRealtimeService.instance) {
-      SupabaseRealtimeService.instance = new SupabaseRealtimeService();
+      SupabaseRealtimeService.instance = new SupabaseRealtimeService()
     }
-    return SupabaseRealtimeService.instance;
+    return SupabaseRealtimeService.instance
   }
 
   /**
@@ -33,7 +32,7 @@ export class SupabaseRealtimeService {
     onUpdate: (article: AINewsArticle) => void,
     onDelete: (articleId: string) => void
   ): RealtimeSubscription {
-    const subscriptionId = `ai_news_${Date.now()}`;
+    const subscriptionId = `ai_news_${Date.now()}`
 
     const subscription = supabase
       .channel(`${TABLES.AI_NEWS_ARTICLES}_changes`)
@@ -43,11 +42,11 @@ export class SupabaseRealtimeService {
           event: 'INSERT',
           schema: 'public',
           table: TABLES.AI_NEWS_ARTICLES,
-          filter: 'is_published=eq.true'
+          filter: 'is_published=eq.true',
         },
-        (payload) => {
-          console.log('New AI news article inserted:', payload.new);
-          onInsert(payload.new as AINewsArticle);
+        payload => {
+          console.log('New AI news article inserted:', payload.new)
+          onInsert(payload.new as AINewsArticle)
         }
       )
       .on(
@@ -56,11 +55,11 @@ export class SupabaseRealtimeService {
           event: 'UPDATE',
           schema: 'public',
           table: TABLES.AI_NEWS_ARTICLES,
-          filter: 'is_published=eq.true'
+          filter: 'is_published=eq.true',
         },
-        (payload) => {
-          console.log('AI news article updated:', payload.new);
-          onUpdate(payload.new as AINewsArticle);
+        payload => {
+          console.log('AI news article updated:', payload.new)
+          onUpdate(payload.new as AINewsArticle)
         }
       )
       .on(
@@ -68,25 +67,25 @@ export class SupabaseRealtimeService {
         {
           event: 'DELETE',
           schema: 'public',
-          table: TABLES.AI_NEWS_ARTICLES
+          table: TABLES.AI_NEWS_ARTICLES,
         },
-        (payload) => {
-          console.log('AI news article deleted:', payload.old);
-          onDelete(payload.old.id);
+        payload => {
+          console.log('AI news article deleted:', payload.old)
+          onDelete(payload.old.id)
         }
       )
-      .subscribe();
+      .subscribe()
 
     const realtimeSubscription: RealtimeSubscription = {
       id: subscriptionId,
       unsubscribe: () => {
-        subscription.unsubscribe();
-        this.subscriptions.delete(subscriptionId);
-      }
-    };
+        subscription.unsubscribe()
+        this.subscriptions.delete(subscriptionId)
+      },
+    }
 
-    this.subscriptions.set(subscriptionId, realtimeSubscription);
-    return realtimeSubscription;
+    this.subscriptions.set(subscriptionId, realtimeSubscription)
+    return realtimeSubscription
   }
 
   /**
@@ -97,7 +96,7 @@ export class SupabaseRealtimeService {
     onUpdate: (testimonial: Testimonial) => void,
     onDelete: (testimonialId: string) => void
   ): RealtimeSubscription {
-    const subscriptionId = `testimonials_${Date.now()}`;
+    const subscriptionId = `testimonials_${Date.now()}`
 
     const subscription = supabase
       .channel(`${TABLES.TESTIMONIALS}_changes`)
@@ -107,11 +106,11 @@ export class SupabaseRealtimeService {
           event: 'INSERT',
           schema: 'public',
           table: TABLES.TESTIMONIALS,
-          filter: 'is_visible=eq.true'
+          filter: 'is_visible=eq.true',
         },
-        (payload) => {
-          console.log('New testimonial inserted:', payload.new);
-          onInsert(payload.new as Testimonial);
+        payload => {
+          console.log('New testimonial inserted:', payload.new)
+          onInsert(payload.new as Testimonial)
         }
       )
       .on(
@@ -120,11 +119,11 @@ export class SupabaseRealtimeService {
           event: 'UPDATE',
           schema: 'public',
           table: TABLES.TESTIMONIALS,
-          filter: 'is_visible=eq.true'
+          filter: 'is_visible=eq.true',
         },
-        (payload) => {
-          console.log('Testimonial updated:', payload.new);
-          onUpdate(payload.new as Testimonial);
+        payload => {
+          console.log('Testimonial updated:', payload.new)
+          onUpdate(payload.new as Testimonial)
         }
       )
       .on(
@@ -132,25 +131,25 @@ export class SupabaseRealtimeService {
         {
           event: 'DELETE',
           schema: 'public',
-          table: TABLES.TESTIMONIALS
+          table: TABLES.TESTIMONIALS,
         },
-        (payload) => {
-          console.log('Testimonial deleted:', payload.old);
-          onDelete(payload.old.id);
+        payload => {
+          console.log('Testimonial deleted:', payload.old)
+          onDelete(payload.old.id)
         }
       )
-      .subscribe();
+      .subscribe()
 
     const realtimeSubscription: RealtimeSubscription = {
       id: subscriptionId,
       unsubscribe: () => {
-        subscription.unsubscribe();
-        this.subscriptions.delete(subscriptionId);
-      }
-    };
+        subscription.unsubscribe()
+        this.subscriptions.delete(subscriptionId)
+      },
+    }
 
-    this.subscriptions.set(subscriptionId, realtimeSubscription);
-    return realtimeSubscription;
+    this.subscriptions.set(subscriptionId, realtimeSubscription)
+    return realtimeSubscription
   }
 
   /**
@@ -159,7 +158,7 @@ export class SupabaseRealtimeService {
   public subscribeToTrendingArticles(
     onTrendingChange: (article: AINewsArticle) => void
   ): RealtimeSubscription {
-    const subscriptionId = `trending_${Date.now()}`;
+    const subscriptionId = `trending_${Date.now()}`
 
     const subscription = supabase
       .channel(`${TABLES.AI_NEWS_ARTICLES}_trending`)
@@ -169,25 +168,25 @@ export class SupabaseRealtimeService {
           event: 'UPDATE',
           schema: 'public',
           table: TABLES.AI_NEWS_ARTICLES,
-          filter: 'trending=eq.true'
+          filter: 'trending=eq.true',
         },
-        (payload) => {
-          console.log('Article trending status changed:', payload.new);
-          onTrendingChange(payload.new as AINewsArticle);
+        payload => {
+          console.log('Article trending status changed:', payload.new)
+          onTrendingChange(payload.new as AINewsArticle)
         }
       )
-      .subscribe();
+      .subscribe()
 
     const realtimeSubscription: RealtimeSubscription = {
       id: subscriptionId,
       unsubscribe: () => {
-        subscription.unsubscribe();
-        this.subscriptions.delete(subscriptionId);
-      }
-    };
+        subscription.unsubscribe()
+        this.subscriptions.delete(subscriptionId)
+      },
+    }
 
-    this.subscriptions.set(subscriptionId, realtimeSubscription);
-    return realtimeSubscription;
+    this.subscriptions.set(subscriptionId, realtimeSubscription)
+    return realtimeSubscription
   }
 
   /**
@@ -198,7 +197,7 @@ export class SupabaseRealtimeService {
     onInsert: (article: AINewsArticle) => void,
     onUpdate: (article: AINewsArticle) => void
   ): RealtimeSubscription {
-    const subscriptionId = `category_${category}_${Date.now()}`;
+    const subscriptionId = `category_${category}_${Date.now()}`
 
     const subscription = supabase
       .channel(`${TABLES.AI_NEWS_ARTICLES}_category_${category}`)
@@ -208,11 +207,11 @@ export class SupabaseRealtimeService {
           event: 'INSERT',
           schema: 'public',
           table: TABLES.AI_NEWS_ARTICLES,
-          filter: `category=eq.${category}`
+          filter: `category=eq.${category}`,
         },
-        (payload) => {
-          console.log(`New ${category} article inserted:`, payload.new);
-          onInsert(payload.new as AINewsArticle);
+        payload => {
+          console.log(`New ${category} article inserted:`, payload.new)
+          onInsert(payload.new as AINewsArticle)
         }
       )
       .on(
@@ -221,35 +220,35 @@ export class SupabaseRealtimeService {
           event: 'UPDATE',
           schema: 'public',
           table: TABLES.AI_NEWS_ARTICLES,
-          filter: `category=eq.${category}`
+          filter: `category=eq.${category}`,
         },
-        (payload) => {
-          console.log(`${category} article updated:`, payload.new);
-          onUpdate(payload.new as AINewsArticle);
+        payload => {
+          console.log(`${category} article updated:`, payload.new)
+          onUpdate(payload.new as AINewsArticle)
         }
       )
-      .subscribe();
+      .subscribe()
 
     const realtimeSubscription: RealtimeSubscription = {
       id: subscriptionId,
       unsubscribe: () => {
-        subscription.unsubscribe();
-        this.subscriptions.delete(subscriptionId);
-      }
-    };
+        subscription.unsubscribe()
+        this.subscriptions.delete(subscriptionId)
+      },
+    }
 
-    this.subscriptions.set(subscriptionId, realtimeSubscription);
-    return realtimeSubscription;
+    this.subscriptions.set(subscriptionId, realtimeSubscription)
+    return realtimeSubscription
   }
 
   /**
    * Unsubscribe from a specific subscription
    */
   public unsubscribe(subscriptionId: string): void {
-    const subscription = this.subscriptions.get(subscriptionId);
+    const subscription = this.subscriptions.get(subscriptionId)
     if (subscription) {
-      subscription.unsubscribe();
-      this.subscriptions.delete(subscriptionId);
+      subscription.unsubscribe()
+      this.subscriptions.delete(subscriptionId)
     }
   }
 
@@ -257,30 +256,30 @@ export class SupabaseRealtimeService {
    * Unsubscribe from all subscriptions
    */
   public unsubscribeAll(): void {
-    this.subscriptions.forEach((subscription) => {
-      subscription.unsubscribe();
-    });
-    this.subscriptions.clear();
+    this.subscriptions.forEach(subscription => {
+      subscription.unsubscribe()
+    })
+    this.subscriptions.clear()
   }
 
   /**
    * Get active subscriptions count
    */
   public getActiveSubscriptionsCount(): number {
-    return this.subscriptions.size;
+    return this.subscriptions.size
   }
 
   /**
    * Get subscription status
    */
   public getSubscriptionStatus(): {
-    active: number;
-    subscriptions: string[];
+    active: number
+    subscriptions: string[]
   } {
     return {
       active: this.subscriptions.size,
-      subscriptions: Array.from(this.subscriptions.keys())
-    };
+      subscriptions: Array.from(this.subscriptions.keys()),
+    }
   }
 
   /**
@@ -291,18 +290,18 @@ export class SupabaseRealtimeService {
       const { data, error } = await supabase
         .from(TABLES.AI_NEWS_ARTICLES)
         .select('id')
-        .limit(1);
+        .limit(1)
 
       if (error) {
-        console.error('Real-time connection test failed:', error);
-        return false;
+        console.error('Real-time connection test failed:', error)
+        return false
       }
 
-      console.log('Real-time connection test successful');
-      return true;
+      console.log('Real-time connection test successful')
+      return true
     } catch (error) {
-      console.error('Real-time connection test error:', error);
-      return false;
+      console.error('Real-time connection test error:', error)
+      return false
     }
   }
 
@@ -312,20 +311,20 @@ export class SupabaseRealtimeService {
   public setupMonitoring(): void {
     // Monitor connection status
     setInterval(() => {
-      const status = this.getSubscriptionStatus();
-      console.log('Real-time subscriptions status:', status);
-    }, 30000); // Check every 30 seconds
+      const status = this.getSubscriptionStatus()
+      console.log('Real-time subscriptions status:', status)
+    }, 30000) // Check every 30 seconds
 
     // Test connection periodically
     setInterval(async () => {
-      const isConnected = await this.testConnection();
+      const isConnected = await this.testConnection()
       if (!isConnected) {
-        console.warn('Real-time connection lost, attempting to reconnect...');
+        console.warn('Real-time connection lost, attempting to reconnect...')
         // In a real implementation, you would implement reconnection logic
       }
-    }, 60000); // Test every minute
+    }, 60000) // Test every minute
   }
 }
 
 // Export singleton instance
-export const supabaseRealtimeService = SupabaseRealtimeService.getInstance();
+export const supabaseRealtimeService = SupabaseRealtimeService.getInstance()

@@ -5,50 +5,56 @@
  * Initializes Supabase database with schema, RLS policies, and seed data
  */
 
-const { createClient } = require('@supabase/supabase-js');
-const fs = require('fs');
-const path = require('path');
+const { createClient } = require('@supabase/supabase-js')
+const fs = require('fs')
+const path = require('path')
 
 // Supabase configuration
-const supabaseUrl = 'https://rcrhosxqbhlserqaafsw.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjcmhvc3hxYmhsc2VycWFhZnN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1MzM3MTMsImV4cCI6MjA3MzEwOTcxM30.EhP40bCXiaw1AfoEFkzfjosBbtO-X77yH1zd2V3ZQl4';
+const supabaseUrl = 'https://rcrhosxqbhlserqaafsw.supabase.co'
+const supabaseAnonKey =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjcmhvc3hxYmhsc2VycWFhZnN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1MzM3MTMsImV4cCI6MjA3MzEwOTcxM30.EhP40bCXiaw1AfoEFkzfjosBbtO-X77yH1zd2V3ZQl4'
 
 // Note: You need to get the service role key from your Supabase dashboard
 // Go to: https://supabase.com/dashboard/project/rcrhosxqbhlserqaafsw/settings/api
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'your_service_role_key_here';
+const supabaseServiceKey =
+  process.env.SUPABASE_SERVICE_ROLE_KEY || 'your_service_role_key_here'
 
 if (supabaseServiceKey === 'your_service_role_key_here') {
-  console.error('❌ Missing SUPABASE_SERVICE_ROLE_KEY environment variable');
-  console.error('');
-  console.error('Please get your service role key from:');
-  console.error('https://supabase.com/dashboard/project/rcrhosxqbhlserqaafsw/settings/api');
-  console.error('');
-  console.error('Then set it as an environment variable:');
-  console.error('export SUPABASE_SERVICE_ROLE_KEY=your_actual_service_role_key');
-  console.error('');
-  process.exit(1);
+  console.error('❌ Missing SUPABASE_SERVICE_ROLE_KEY environment variable')
+  console.error('')
+  console.error('Please get your service role key from:')
+  console.error(
+    'https://supabase.com/dashboard/project/rcrhosxqbhlserqaafsw/settings/api'
+  )
+  console.error('')
+  console.error('Then set it as an environment variable:')
+  console.error('export SUPABASE_SERVICE_ROLE_KEY=your_actual_service_role_key')
+  console.error('')
+  process.exit(1)
 }
 
 // Create Supabase admin client
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
+const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
 async function executeSQL(sql) {
   try {
     // Split SQL into individual statements
-    const statements = sql.split(';').filter(stmt => stmt.trim());
+    const statements = sql.split(';').filter(stmt => stmt.trim())
 
     for (const statement of statements) {
       if (statement.trim()) {
-        const { data, error } = await supabase.rpc('exec_sql', { sql: statement.trim() });
+        const { data, error } = await supabase.rpc('exec_sql', {
+          sql: statement.trim(),
+        })
         if (error) {
-          console.warn(`⚠️  SQL warning: ${error.message}`);
+          console.warn(`⚠️  SQL warning: ${error.message}`)
         }
       }
     }
-    return true;
+    return true
   } catch (error) {
-    console.error(`❌ SQL execution failed: ${error.message}`);
-    return false;
+    console.error(`❌ SQL execution failed: ${error.message}`)
+    return false
   }
 }
 
@@ -57,17 +63,17 @@ async function testConnection() {
     const { data, error } = await supabase
       .from('information_schema.tables')
       .select('table_name')
-      .limit(1);
+      .limit(1)
 
     if (error) {
-      throw new Error(`Connection test failed: ${error.message}`);
+      throw new Error(`Connection test failed: ${error.message}`)
     }
 
-    console.log('✅ Supabase connection successful');
-    return true;
+    console.log('✅ Supabase connection successful')
+    return true
   } catch (error) {
-    console.error('❌ Supabase connection failed:', error.message);
-    return false;
+    console.error('❌ Supabase connection failed:', error.message)
+    return false
   }
 }
 
@@ -77,44 +83,48 @@ async function checkExistingTables() {
       .from('information_schema.tables')
       .select('table_name')
       .eq('table_schema', 'public')
-      .in('table_name', ['ai_news_articles', 'testimonials', 'user_preferences']);
+      .in('table_name', [
+        'ai_news_articles',
+        'testimonials',
+        'user_preferences',
+      ])
 
     if (error) {
-      throw new Error(`Failed to check existing tables: ${error.message}`);
+      throw new Error(`Failed to check existing tables: ${error.message}`)
     }
 
-    return data || [];
+    return data || []
   } catch (error) {
-    console.error('❌ Failed to check existing tables:', error.message);
-    return [];
+    console.error('❌ Failed to check existing tables:', error.message)
+    return []
   }
 }
 
 async function setupDatabase() {
-  console.log('🚀 Starting database setup...');
-  console.log('');
+  console.log('🚀 Starting database setup...')
+  console.log('')
 
   // Test connection
-  console.log('1. Testing Supabase connection...');
-  const connectionTest = await testConnection();
+  console.log('1. Testing Supabase connection...')
+  const connectionTest = await testConnection()
   if (!connectionTest) {
-    process.exit(1);
+    process.exit(1)
   }
-  console.log('');
+  console.log('')
 
   // Check existing tables
-  console.log('2. Checking existing tables...');
-  const existingTables = await checkExistingTables();
+  console.log('2. Checking existing tables...')
+  const existingTables = await checkExistingTables()
   if (existingTables.length > 0) {
-    console.log('⚠️  Tables already exist:');
-    existingTables.forEach(table => console.log(`   - ${table.table_name}`));
-    console.log('');
-    console.log('Continuing with setup...');
+    console.log('⚠️  Tables already exist:')
+    existingTables.forEach(table => console.log(`   - ${table.table_name}`))
+    console.log('')
+    console.log('Continuing with setup...')
   }
-  console.log('');
+  console.log('')
 
   // Create tables using direct SQL execution
-  console.log('3. Creating database tables...');
+  console.log('3. Creating database tables...')
 
   // Initial schema
   const initialSchemaSQL = `
@@ -178,19 +188,19 @@ async function setupDatabase() {
       created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
       updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
     );
-  `;
+  `
 
-  const schemaSuccess = await executeSQL(initialSchemaSQL);
+  const schemaSuccess = await executeSQL(initialSchemaSQL)
   if (!schemaSuccess) {
-    console.error('❌ Failed to create schema');
-    process.exit(1);
+    console.error('❌ Failed to create schema')
+    process.exit(1)
   }
 
-  console.log('✅ Database tables created successfully');
-  console.log('');
+  console.log('✅ Database tables created successfully')
+  console.log('')
 
   // Create indexes
-  console.log('4. Creating indexes...');
+  console.log('4. Creating indexes...')
   const indexesSQL = `
     CREATE INDEX IF NOT EXISTS idx_ai_news_category ON ai_news_articles(category);
     CREATE INDEX IF NOT EXISTS idx_ai_news_trending ON ai_news_articles(trending);
@@ -201,14 +211,14 @@ async function setupDatabase() {
     CREATE INDEX IF NOT EXISTS idx_testimonials_order ON testimonials(display_order);
     CREATE INDEX IF NOT EXISTS idx_testimonials_created_at ON testimonials(created_at DESC);
     CREATE INDEX IF NOT EXISTS idx_user_preferences_user_id ON user_preferences(user_id);
-  `;
+  `
 
-  await executeSQL(indexesSQL);
-  console.log('✅ Indexes created successfully');
-  console.log('');
+  await executeSQL(indexesSQL)
+  console.log('✅ Indexes created successfully')
+  console.log('')
 
   // Create triggers
-  console.log('5. Creating triggers...');
+  console.log('5. Creating triggers...')
   const triggersSQL = `
     CREATE OR REPLACE FUNCTION update_updated_at_column()
     RETURNS TRIGGER AS $$
@@ -232,14 +242,14 @@ async function setupDatabase() {
     CREATE TRIGGER update_user_preferences_updated_at
       BEFORE UPDATE ON user_preferences
       FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
-  `;
+  `
 
-  await executeSQL(triggersSQL);
-  console.log('✅ Triggers created successfully');
-  console.log('');
+  await executeSQL(triggersSQL)
+  console.log('✅ Triggers created successfully')
+  console.log('')
 
   // Enable RLS and create policies
-  console.log('6. Setting up Row Level Security...');
+  console.log('6. Setting up Row Level Security...')
   const rlsSQL = `
     ALTER TABLE ai_news_articles ENABLE ROW LEVEL SECURITY;
     ALTER TABLE testimonials ENABLE ROW LEVEL SECURITY;
@@ -303,14 +313,14 @@ async function setupDatabase() {
     DROP POLICY IF EXISTS "Public can delete user preferences" ON user_preferences;
     CREATE POLICY "Public can delete user preferences" ON user_preferences
       FOR DELETE USING (true);
-  `;
+  `
 
-  await executeSQL(rlsSQL);
-  console.log('✅ Row Level Security policies created successfully');
-  console.log('');
+  await executeSQL(rlsSQL)
+  console.log('✅ Row Level Security policies created successfully')
+  console.log('')
 
   // Insert seed data
-  console.log('7. Inserting seed data...');
+  console.log('7. Inserting seed data...')
   const seedDataSQL = `
     -- Insert initial testimonials
     INSERT INTO testimonials (quote, author, title, company, is_visible, display_order) VALUES
@@ -443,65 +453,65 @@ async function setupDatabase() {
     ('mobile', 'reduced', false, 'high'),
     ('desktop', 'enhanced', true, 'low')
     ON CONFLICT DO NOTHING;
-  `;
+  `
 
-  await executeSQL(seedDataSQL);
-  console.log('✅ Seed data inserted successfully');
-  console.log('');
+  await executeSQL(seedDataSQL)
+  console.log('✅ Seed data inserted successfully')
+  console.log('')
 
   // Verify setup
-  console.log('8. Verifying database setup...');
-  const finalTables = await checkExistingTables();
-  const expectedTables = ['ai_news_articles', 'testimonials', 'user_preferences'];
-  const missingTables = expectedTables.filter(table =>
-    !finalTables.some(t => t.table_name === table)
-  );
+  console.log('8. Verifying database setup...')
+  const finalTables = await checkExistingTables()
+  const expectedTables = [
+    'ai_news_articles',
+    'testimonials',
+    'user_preferences',
+  ]
+  const missingTables = expectedTables.filter(
+    table => !finalTables.some(t => t.table_name === table)
+  )
 
   if (missingTables.length > 0) {
-    console.error('❌ Missing tables after setup:', missingTables);
-    process.exit(1);
+    console.error('❌ Missing tables after setup:', missingTables)
+    process.exit(1)
   }
 
-  console.log('✅ All required tables created successfully');
+  console.log('✅ All required tables created successfully')
 
   // Check data counts
   try {
     const { count: articlesCount } = await supabase
       .from('ai_news_articles')
-      .select('*', { count: 'exact', head: true });
+      .select('*', { count: 'exact', head: true })
 
     const { count: testimonialsCount } = await supabase
       .from('testimonials')
-      .select('*', { count: 'exact', head: true });
+      .select('*', { count: 'exact', head: true })
 
     const { count: preferencesCount } = await supabase
       .from('user_preferences')
-      .select('*', { count: 'exact', head: true });
+      .select('*', { count: 'exact', head: true })
 
-    console.log('📊 Database statistics:');
-    console.log(`   - AI News Articles: ${articlesCount || 0}`);
-    console.log(`   - Testimonials: ${testimonialsCount || 0}`);
-    console.log(`   - User Preferences: ${preferencesCount || 0}`);
+    console.log('📊 Database statistics:')
+    console.log(`   - Testimonials: ${testimonialsCount || 0}`)
+    console.log(`   - User Preferences: ${preferencesCount || 0}`)
   } catch (error) {
-    console.warn('⚠️  Could not retrieve data counts:', error.message);
+    console.warn('⚠️  Could not retrieve data counts:', error.message)
   }
 
-  console.log('');
-  console.log('🎉 Database setup completed successfully!');
-  console.log('');
-  console.log('Next steps:');
-  console.log('1. Start your Next.js development server: npm run dev');
-  console.log('2. Test the API endpoints:');
-  console.log('   - GET /api/navigation');
-  console.log('   - GET /api/testimonials');
-  console.log('   - GET /api/ai-news');
-  console.log('3. Visit /ai-news to see the AI news page');
-  console.log('');
+  console.log('')
+  console.log('🎉 Database setup completed successfully!')
+  console.log('')
+  console.log('Next steps:')
+  console.log('1. Start your Next.js development server: npm run dev')
+  console.log('2. Test the API endpoints:')
+  console.log('   - GET /api/navigation')
+  console.log('   - GET /api/testimonials')
+  console.log('')
 }
 
 // Run the setup
 setupDatabase().catch(error => {
-  console.error('❌ Setup failed:', error.message);
-  process.exit(1);
-});
-
+  console.error('❌ Setup failed:', error.message)
+  process.exit(1)
+})

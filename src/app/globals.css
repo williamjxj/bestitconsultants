@@ -27,34 +27,7 @@
     @apply text-lg text-gray-600 mb-8 md:mb-12 max-w-2xl mx-auto text-center;
   }
 
-  /* AI News specific components */
-  .article-card {
-    @apply bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100;
-  }
-
-  .article-title {
-    @apply font-semibold text-gray-900 leading-tight;
-  }
-
-  .article-excerpt {
-    @apply text-gray-600 leading-relaxed;
-  }
-
-  .article-meta {
-    @apply text-sm text-gray-500;
-  }
-
-  .trending-badge {
-    @apply bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg;
-  }
-
-  .category-badge {
-    @apply bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-3 py-1 rounded-full text-xs font-medium;
-  }
-
-  .fresh-badge {
-    @apply bg-gradient-to-r from-green-500 to-emerald-500 text-white px-2 py-1 rounded-full text-xs font-medium shadow-sm;
-  }
+  /* Removed AI News specific components */
 }
 
 @layer utilities {

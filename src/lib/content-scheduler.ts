@@ -1,14 +1,12 @@
 /**
  * Content scheduler for automated content refresh
- * Handles scheduled scraping, content updates, and maintenance tasks
+ * Handles scheduled content updates and maintenance tasks
  */
 
 import { webScrapingService } from '@/services/web-scraping'
-import { aiNewsService } from '@/services/ai-news'
 import { testimonialsService } from '@/services/testimonials'
 
 export interface SchedulerConfig {
-  aiNewsRefreshInterval: number // hours
   testimonialsRefreshInterval: number // hours
   maintenanceInterval: number // hours
   maxRetries: number
@@ -34,7 +32,6 @@ export class ContentScheduler {
 
   private constructor() {
     this.config = {
-      aiNewsRefreshInterval: 6, // 6 hours
       testimonialsRefreshInterval: 24, // 24 hours
       maintenanceInterval: 168, // 1 week
       maxRetries: 3,
@@ -72,14 +69,6 @@ export class ContentScheduler {
     this.isRunning = true
     this.status.isRunning = true
 
-    // Schedule AI news refresh
-    const aiNewsInterval = setInterval(
-      async () => {
-        await this.refreshAINews()
-      },
-      this.config.aiNewsRefreshInterval * 60 * 60 * 1000
-    )
-
     // Schedule testimonials refresh
     const testimonialsInterval = setInterval(
       async () => {
@@ -96,11 +85,7 @@ export class ContentScheduler {
       this.config.maintenanceInterval * 60 * 60 * 1000
     )
 
-    this.intervals.push(
-      aiNewsInterval,
-      testimonialsInterval,
-      maintenanceInterval
-    )
+    this.intervals.push(testimonialsInterval, maintenanceInterval)
 
     // Run initial refresh
     this.scheduleInitialRefresh()
@@ -134,38 +119,8 @@ export class ContentScheduler {
   private scheduleInitialRefresh(): void {
     // Run initial refresh after 1 minute
     setTimeout(async () => {
-      await this.refreshAINews()
       await this.refreshTestimonials()
     }, 60000) // 1 minute
-  }
-
-  /**
-   * Refresh AI news content
-   */
-  private async refreshAINews(): Promise<void> {
-    try {
-      console.log('Starting AI news refresh...')
-      this.status.lastRun = new Date()
-      this.status.totalRuns++
-
-      const result = await webScrapingService.refreshContent()
-
-      if (result.success) {
-        this.status.successfulRuns++
-        console.log(
-          `AI news refresh completed: ${result.articlesUpdated} articles updated`
-        )
-      } else {
-        this.status.failedRuns++
-        this.status.errors.push(`AI news refresh failed: ${result.message}`)
-        console.error('AI news refresh failed:', result.message)
-      }
-    } catch (error) {
-      this.status.failedRuns++
-      const errorMessage = `AI news refresh error: ${error instanceof Error ? error.message : 'Unknown error'}`
-      this.status.errors.push(errorMessage)
-      console.error('AI news refresh error:', error)
-    }
   }
 
   /**
@@ -192,12 +147,6 @@ export class ContentScheduler {
     try {
       console.log('Running maintenance tasks...')
 
-      // Clean up old articles
-      await this.cleanupOldArticles()
-
-      // Update trending status
-      await this.updateTrendingStatus()
-
       // Optimize database
       await this.optimizeDatabase()
 
@@ -206,34 +155,6 @@ export class ContentScheduler {
       const errorMessage = `Maintenance error: ${error instanceof Error ? error.message : 'Unknown error'}`
       this.status.errors.push(errorMessage)
       console.error('Maintenance error:', error)
-    }
-  }
-
-  /**
-   * Clean up old articles
-   */
-  private async cleanupOldArticles(): Promise<void> {
-    try {
-      // Delete articles older than 30 days
-      const thirtyDaysAgo = new Date()
-      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
-
-      // This would be implemented with a database query
-      console.log('Cleaned up old articles')
-    } catch (error) {
-      console.error('Error cleaning up old articles:', error)
-    }
-  }
-
-  /**
-   * Update trending status
-   */
-  private async updateTrendingStatus(): Promise<void> {
-    try {
-      // Update trending status based on recent activity
-      console.log('Updated trending status')
-    } catch (error) {
-      console.error('Error updating trending status:', error)
     }
   }
 
@@ -276,7 +197,6 @@ export class ContentScheduler {
    */
   public async forceRefresh(): Promise<void> {
     console.log('Force refreshing content...')
-    await this.refreshAINews()
     await this.refreshTestimonials()
   }
 
@@ -290,7 +210,7 @@ export class ContentScheduler {
 
     const now = new Date()
     const nextRun = new Date(
-      now.getTime() + this.config.aiNewsRefreshInterval * 60 * 60 * 1000
+      now.getTime() + this.config.testimonialsRefreshInterval * 60 * 60 * 1000
     )
     return nextRun
   }
@@ -326,12 +246,6 @@ export class ContentScheduler {
       if (!databaseTest) {
         console.error('Database connectivity test failed')
         return false
-      }
-
-      // Test AI news service
-      const articlesResult = await aiNewsService.getArticles(1)
-      if (articlesResult.articles.length === 0) {
-        console.warn('No articles found in database')
       }
 
       // Test testimonials service

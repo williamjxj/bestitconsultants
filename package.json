@@ -17,8 +17,7 @@
     "db:setup": "node scripts/setup-database.js",
     "db:migrate": "node scripts/setup-database.js",
     "db:seed": "node scripts/setup-database.js",
-    "fetch-news": "node scripts/fetch-ai-news.js",
-    "setup-cron": "bash scripts/setup-cron.sh"
+    "setup-cron": "echo 'Cron setup removed with AI News functionality'"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.10",

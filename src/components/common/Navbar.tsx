@@ -28,7 +28,7 @@ export default function Navbar() {
         // Map service items to component format with translations
         const mappedItems = items.map(item => ({
           ...item,
-          label: getTranslatedLabel(item.id, translations)
+          label: getTranslatedLabel(item.id, translations),
         }))
 
         setNavItems(mappedItems)
@@ -50,26 +50,72 @@ export default function Navbar() {
   // Get translated label for navigation item
   const getTranslatedLabel = (id: string, translations: any): string => {
     const labelMap: Record<string, string> = {
-      'home': translations.navbar.home,
-      'about': translations.navbar.about,
-      'services': translations.navbar.services,
-      'portfolio': translations.navbar.portfolio,
-      'team': translations.navbar.team,
-      'ai-news': 'AI News',
-      'contact': translations.navbar.contact,
+      home: translations.navbar.home,
+      about: translations.navbar.about,
+      services: translations.navbar.services,
+      portfolio: translations.navbar.portfolio,
+      team: translations.navbar.team,
+      contact: translations.navbar.contact,
     }
     return labelMap[id] || id
   }
 
   // Fallback navigation items
   const getFallbackNavItems = (translations: any): NavigationItem[] => [
-    { id: 'home', label: translations.navbar.home, href: '/', category: 'main', order: 1, isActive: false, isVisible: true },
-    { id: 'about', label: translations.navbar.about, href: '/about', category: 'company', order: 2, isActive: false, isVisible: true },
-    { id: 'services', label: translations.navbar.services, href: '/services', category: 'services', order: 3, isActive: false, isVisible: true },
-    { id: 'portfolio', label: translations.navbar.portfolio, href: '/portfolio', category: 'work', order: 4, isActive: false, isVisible: true },
-    { id: 'team', label: translations.navbar.team, href: '/team', category: 'company', order: 5, isActive: false, isVisible: true },
-    { id: 'ai-news', label: 'AI News', href: '/ai-news', category: 'resources', order: 6, isActive: false, isVisible: true },
-    { id: 'contact', label: translations.navbar.contact, href: '/contact', category: 'main', order: 7, isActive: false, isVisible: true },
+    {
+      id: 'home',
+      label: translations.navbar.home,
+      href: '/',
+      category: 'main',
+      order: 1,
+      isActive: false,
+      isVisible: true,
+    },
+    {
+      id: 'about',
+      label: translations.navbar.about,
+      href: '/about',
+      category: 'company',
+      order: 2,
+      isActive: false,
+      isVisible: true,
+    },
+    {
+      id: 'services',
+      label: translations.navbar.services,
+      href: '/services',
+      category: 'services',
+      order: 3,
+      isActive: false,
+      isVisible: true,
+    },
+    {
+      id: 'portfolio',
+      label: translations.navbar.portfolio,
+      href: '/portfolio',
+      category: 'work',
+      order: 4,
+      isActive: false,
+      isVisible: true,
+    },
+    {
+      id: 'team',
+      label: translations.navbar.team,
+      href: '/team',
+      category: 'company',
+      order: 5,
+      isActive: false,
+      isVisible: true,
+    },
+    {
+      id: 'contact',
+      label: translations.navbar.contact,
+      href: '/contact',
+      category: 'main',
+      order: 6,
+      isActive: false,
+      isVisible: true,
+    },
   ]
 
   // Available languages for the switcher
@@ -104,7 +150,10 @@ export default function Navbar() {
             {isLoading ? (
               <div className='flex space-x-8'>
                 {[...Array(7)].map((_, i) => (
-                  <div key={i} className='h-6 w-16 bg-gray-200 rounded animate-pulse'></div>
+                  <div
+                    key={i}
+                    className='h-6 w-16 bg-gray-200 rounded animate-pulse'
+                  ></div>
                 ))}
               </div>
             ) : (
@@ -117,9 +166,11 @@ export default function Navbar() {
                   }`}
                 >
                   {link.label}
-                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${
-                    link.isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                  }`}></span>
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${
+                      link.isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  ></span>
                 </Link>
               ))
             )}
@@ -170,15 +221,22 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu with smooth animation */}
-        <div className={`md:hidden transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
-        }`}>
+        <div
+          className={`md:hidden transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen
+              ? 'max-h-96 opacity-100'
+              : 'max-h-0 opacity-0 overflow-hidden'
+          }`}
+        >
           <div className='py-4 border-t border-gray-200'>
             <div className='flex flex-col space-y-3'>
               {isLoading ? (
                 <div className='space-y-3'>
                   {[...Array(7)].map((_, i) => (
-                    <div key={i} className='h-8 w-24 bg-gray-200 rounded animate-pulse'></div>
+                    <div
+                      key={i}
+                      className='h-8 w-24 bg-gray-200 rounded animate-pulse'
+                    ></div>
                   ))}
                 </div>
               ) : (

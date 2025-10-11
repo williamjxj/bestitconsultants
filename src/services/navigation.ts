@@ -38,7 +38,7 @@ export class NavigationService {
         category: 'main',
         order: 1,
         isActive: false,
-        isVisible: true
+        isVisible: true,
       },
       {
         id: 'about',
@@ -47,7 +47,7 @@ export class NavigationService {
         category: 'company',
         order: 2,
         isActive: false,
-        isVisible: true
+        isVisible: true,
       },
       {
         id: 'services',
@@ -56,7 +56,7 @@ export class NavigationService {
         category: 'services',
         order: 3,
         isActive: false,
-        isVisible: true
+        isVisible: true,
       },
       {
         id: 'portfolio',
@@ -65,7 +65,7 @@ export class NavigationService {
         category: 'work',
         order: 4,
         isActive: false,
-        isVisible: true
+        isVisible: true,
       },
       {
         id: 'team',
@@ -74,26 +74,17 @@ export class NavigationService {
         category: 'company',
         order: 5,
         isActive: false,
-        isVisible: true
-      },
-      {
-        id: 'ai-news',
-        label: 'AI News',
-        href: '/ai-news',
-        category: 'resources',
-        order: 6,
-        isActive: false,
-        isVisible: true
+        isVisible: true,
       },
       {
         id: 'contact',
         label: 'Contact',
         href: '/contact',
         category: 'main',
-        order: 7,
+        order: 6,
         isActive: false,
-        isVisible: true
-      }
+        isVisible: true,
+      },
     ]
   }
 
@@ -108,8 +99,8 @@ export class NavigationService {
    * Get navigation items by category
    */
   public getNavigationItemsByCategory(category: string): NavigationItem[] {
-    return this.navigationItems.filter(item =>
-      item.category === category && item.isVisible
+    return this.navigationItems.filter(
+      item => item.category === category && item.isVisible
     )
   }
 
@@ -155,12 +146,14 @@ export class NavigationService {
   /**
    * Add a new navigation item
    */
-  public addNavigationItem(item: Omit<NavigationItem, 'id' | 'isActive'>): boolean {
+  public addNavigationItem(
+    item: Omit<NavigationItem, 'id' | 'isActive'>
+  ): boolean {
     try {
       const newItem: NavigationItem = {
         ...item,
         id: `nav-${Date.now()}`,
-        isActive: false
+        isActive: false,
       }
 
       this.navigationItems.push(newItem)
@@ -187,7 +180,7 @@ export class NavigationService {
 
       this.navigationItems[index] = {
         ...this.navigationItems[index],
-        ...updates
+        ...updates,
       }
 
       this.sortNavigationItems()
@@ -242,7 +235,7 @@ export class NavigationService {
         if (item) {
           reorderedItems.push({
             ...item,
-            order: index + 1
+            order: index + 1,
           })
         }
       })
@@ -292,7 +285,7 @@ export class NavigationService {
       total,
       visible,
       hidden,
-      byCategory
+      byCategory,
     }
   }
 
@@ -313,8 +306,8 @@ export class NavigationService {
     let currentPath = ''
     pathSegments.forEach(segment => {
       currentPath += `/${segment}`
-      const item = this.navigationItems.find(navItem =>
-        navItem.href === currentPath
+      const item = this.navigationItems.find(
+        navItem => navItem.href === currentPath
       )
       if (item) {
         breadcrumbs.push(item)

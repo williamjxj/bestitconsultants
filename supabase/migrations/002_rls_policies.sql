@@ -2,30 +2,8 @@
 -- Enables public read access while protecting sensitive operations
 
 -- Enable RLS on all tables
-ALTER TABLE ai_news_articles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE testimonials ENABLE ROW LEVEL SECURITY;
 ALTER TABLE user_preferences ENABLE ROW LEVEL SECURITY;
-
--- AI News Articles Policies
--- Allow public read access to published articles
-CREATE POLICY "Public can read published articles" ON ai_news_articles
-  FOR SELECT USING (is_published = true);
-
--- Allow public read access to all articles (for admin purposes)
-CREATE POLICY "Public can read all articles" ON ai_news_articles
-  FOR SELECT USING (true);
-
--- Allow public insert for new articles (from scraping)
-CREATE POLICY "Public can insert articles" ON ai_news_articles
-  FOR INSERT WITH CHECK (true);
-
--- Allow public update for existing articles
-CREATE POLICY "Public can update articles" ON ai_news_articles
-  FOR UPDATE USING (true);
-
--- Allow public delete for articles
-CREATE POLICY "Public can delete articles" ON ai_news_articles
-  FOR DELETE USING (true);
 
 -- Testimonials Policies
 -- Allow public read access to visible testimonials

@@ -4,7 +4,7 @@
  */
 
 import { supabase } from '@/lib/supabase'
-import type { AINewsArticle } from '@/types/ai-news'
+// AI News types removed
 
 export interface ScrapingResult {
   success: boolean
