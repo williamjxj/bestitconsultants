@@ -241,17 +241,17 @@ export class ContentScheduler {
     try {
       console.log('Testing scheduler functionality...')
 
-      // Test database connectivity
+      // Test static data connectivity
       const databaseTest = await webScrapingService.testDatabase()
       if (!databaseTest) {
-        console.error('Database connectivity test failed')
+        console.error('Static data connectivity test failed')
         return false
       }
 
       // Test testimonials service
       const testimonials = await testimonialsService.getTestimonials()
       if (testimonials.length === 0) {
-        console.warn('No testimonials found in database')
+        console.warn('No testimonials found in static data')
       }
 
       console.log('Scheduler test completed successfully')

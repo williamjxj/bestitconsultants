@@ -12,7 +12,8 @@ export async function GET(request: NextRequest) {
     const testimonials = await testimonialsService.getTestimonials();
 
     // Get total count
-    const total = await testimonialsService.getTestimonialsCount();
+    const stats = await testimonialsService.getTestimonialStats();
+    const total = stats.total;
 
     return NextResponse.json({
       testimonials,

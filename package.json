@@ -14,9 +14,9 @@
     "markdown:lint": "markdownlint '**/*.md' --ignore-path .markdownlintignore",
     "markdown:fix": "markdownlint '**/*.md' --ignore-path .markdownlintignore --fix",
     "check-all": "npm run type-check && npm run lint && npm run format:check && npm run markdown:lint",
-    "db:setup": "node scripts/setup-database.js",
-    "db:migrate": "node scripts/setup-database.js",
-    "db:seed": "node scripts/setup-database.js",
+    "db:setup": "echo 'Database setup removed - using static data'",
+    "db:migrate": "echo 'Database migration removed - using static data'",
+    "db:seed": "echo 'Database seeding removed - using static data'",
     "setup-cron": "echo 'Cron setup removed with AI News functionality'"
   },
   "dependencies": {
@@ -27,7 +27,6 @@
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tabs": "^1.1.13",
-    "@supabase/supabase-js": "^2.57.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.2",

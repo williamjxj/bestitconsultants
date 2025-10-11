@@ -3,7 +3,7 @@
  * Handles service orchestration, real-time updates, and system integration
  */
 
-import { supabase } from './supabase'
+// Supabase removed - using static data
 import { webScrapingService } from '@/services/web-scraping'
 import { testimonialsService } from '@/services/testimonials'
 import { navigationService } from '@/services/navigation'
@@ -13,7 +13,6 @@ import { cacheManager } from './cache-manager'
 import { lazyLoader } from './lazy-loader'
 
 export interface IntegrationStatus {
-  supabase: boolean
   webScraping: boolean
   testimonials: boolean
   navigation: boolean
@@ -40,7 +39,6 @@ export class IntegrationManager {
 
   private constructor() {
     this.status = {
-      supabase: false,
       webScraping: false,
       testimonials: false,
       navigation: false,
@@ -88,25 +86,14 @@ export class IntegrationManager {
   }
 
   /**
-   * Initialize Supabase connection
+   * Initialize static data (Supabase removed)
    */
   private async initializeSupabase(): Promise<void> {
     try {
-      // Test Supabase connection
-      const { data, error } = await supabase
-        .from('ai_news_articles')
-        .select('count')
-        .limit(1)
-
-      if (error) {
-        throw new Error(`Supabase connection failed: ${error.message}`)
-      }
-
-      this.status.supabase = true
-      console.log('Supabase connection established')
+      // Supabase removed - using static data
+      console.log('Using static data - no database connection needed')
     } catch (error) {
-      console.error('Supabase initialization failed:', error)
-      this.status.supabase = false
+      console.error('Static data initialization failed:', error)
     }
   }
 

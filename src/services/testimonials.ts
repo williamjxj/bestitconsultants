@@ -1,9 +1,8 @@
 /**
  * Testimonials service for managing client testimonials
- * Handles CRUD operations and real-time updates
+ * Static implementation without database dependency
  */
 
-import { supabase } from '@/lib/supabase'
 import type { Testimonial } from '@/types/testimonial'
 
 export interface TestimonialsResult {
@@ -28,20 +27,10 @@ export class TestimonialsService {
    */
   public async getTestimonials(): Promise<Testimonial[]> {
     try {
-      const { data, error } = await supabase
-        .from('testimonials')
-        .select('*')
-        .eq('is_visible', true)
-        .order('display_order', { ascending: true })
-
-      if (error) {
-        throw new Error(`Database error: ${error.message}`)
-      }
-
-      return data || []
+      // Return static testimonials
+      return this.getStaticTestimonials()
     } catch (error) {
       console.error('Error fetching testimonials:', error)
-      // Return fallback testimonials
       return this.getFallbackTestimonials()
     }
   }
@@ -51,16 +40,7 @@ export class TestimonialsService {
    */
   public async getAllTestimonials(): Promise<Testimonial[]> {
     try {
-      const { data, error } = await supabase
-        .from('testimonials')
-        .select('*')
-        .order('display_order', { ascending: true })
-
-      if (error) {
-        throw new Error(`Database error: ${error.message}`)
-      }
-
-      return data || []
+      return this.getStaticTestimonials()
     } catch (error) {
       console.error('Error fetching all testimonials:', error)
       return []
@@ -72,20 +52,8 @@ export class TestimonialsService {
    */
   public async getTestimonialById(id: string): Promise<Testimonial | null> {
     try {
-      const { data, error } = await supabase
-        .from('testimonials')
-        .select('*')
-        .eq('id', id)
-        .single()
-
-      if (error) {
-        if (error.code === 'PGRST116') {
-          return null // Testimonial not found
-        }
-        throw new Error(`Database error: ${error.message}`)
-      }
-
-      return data
+      const testimonials = this.getStaticTestimonials()
+      return testimonials.find(t => t.id === id) || null
     } catch (error) {
       console.error(`Error fetching testimonial ${id}:`, error)
       return null
@@ -93,131 +61,52 @@ export class TestimonialsService {
   }
 
   /**
-   * Create a new testimonial
+   * Create a new testimonial (not supported in static mode)
    */
   public async createTestimonial(testimonial: Omit<Testimonial, 'id' | 'created_at' | 'updated_at'>): Promise<Testimonial | null> {
-    try {
-      const { data, error } = await supabase
-        .from('testimonials')
-        .insert({
-          ...testimonial,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
-        })
-        .select()
-        .single()
-
-      if (error) {
-        throw new Error(`Database error: ${error.message}`)
-      }
-
-      return data
-    } catch (error) {
-      console.error('Error creating testimonial:', error)
-      return null
-    }
+    console.warn('Creating testimonials not supported in static mode')
+    return null
   }
 
   /**
-   * Update a testimonial
+   * Update a testimonial (not supported in static mode)
    */
   public async updateTestimonial(
     id: string,
     updates: Partial<Testimonial>
   ): Promise<boolean> {
-    try {
-      const { error } = await supabase
-        .from('testimonials')
-        .update({
-          ...updates,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', id)
-
-      if (error) {
-        throw new Error(`Database error: ${error.message}`)
-      }
-
-      return true
-    } catch (error) {
-      console.error(`Error updating testimonial ${id}:`, error)
-      return false
-    }
+    console.warn('Updating testimonials not supported in static mode')
+    return false
   }
 
   /**
-   * Delete a testimonial
+   * Delete a testimonial (not supported in static mode)
    */
   public async deleteTestimonial(id: string): Promise<boolean> {
-    try {
-      const { error } = await supabase
-        .from('testimonials')
-        .delete()
-        .eq('id', id)
-
-      if (error) {
-        throw new Error(`Database error: ${error.message}`)
-      }
-
-      return true
-    } catch (error) {
-      console.error(`Error deleting testimonial ${id}:`, error)
-      return false
-    }
+    console.warn('Deleting testimonials not supported in static mode')
+    return false
   }
 
   /**
-   * Update testimonial visibility
+   * Update testimonial visibility (not supported in static mode)
    */
   public async updateVisibility(
     id: string,
     isVisible: boolean
   ): Promise<boolean> {
-    try {
-      const { error } = await supabase
-        .from('testimonials')
-        .update({
-          is_visible: isVisible,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', id)
-
-      if (error) {
-        throw new Error(`Database error: ${error.message}`)
-      }
-
-      return true
-    } catch (error) {
-      console.error(`Error updating visibility for testimonial ${id}:`, error)
-      return false
-    }
+    console.warn('Updating testimonial visibility not supported in static mode')
+    return false
   }
 
   /**
-   * Update testimonial display order
+   * Update testimonial display order (not supported in static mode)
    */
   public async updateDisplayOrder(
     id: string,
     order: number
   ): Promise<boolean> {
-    try {
-      const { error } = await supabase
-        .from('testimonials')
-        .update({
-          display_order: order,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', id)
-
-      if (error) {
-        throw new Error(`Database error: ${error.message}`)
-      }
-
-      return true
-    } catch (error) {
-      console.error(`Error updating display order for testimonial ${id}:`, error)
-      return false
-    }
+    console.warn('Updating testimonial display order not supported in static mode')
+    return false
   }
 
   /**
@@ -229,21 +118,13 @@ export class TestimonialsService {
     hidden: number
   }> {
     try {
-      // Get total count
-      const { count: total } = await supabase
-        .from('testimonials')
-        .select('*', { count: 'exact', head: true })
-
-      // Get visible count
-      const { count: visible } = await supabase
-        .from('testimonials')
-        .select('*', { count: 'exact', head: true })
-        .eq('is_visible', true)
-
+      const testimonials = this.getStaticTestimonials()
+      const visible = testimonials.filter(t => t.is_visible).length
+      
       return {
-        total: total || 0,
-        visible: visible || 0,
-        hidden: (total || 0) - (visible || 0)
+        total: testimonials.length,
+        visible,
+        hidden: testimonials.length - visible
       }
     } catch (error) {
       console.error('Error getting testimonial stats:', error)
@@ -256,38 +137,78 @@ export class TestimonialsService {
   }
 
   /**
-   * Reorder testimonials
+   * Reorder testimonials (not supported in static mode)
    */
   public async reorderTestimonials(ids: string[]): Promise<boolean> {
-    try {
-      const updates = ids.map((id, index) => ({
-        id,
-        display_order: index + 1
-      }))
-
-      for (const update of updates) {
-        const { error } = await supabase
-          .from('testimonials')
-          .update({
-            display_order: update.display_order,
-            updated_at: new Date().toISOString()
-          })
-          .eq('id', update.id)
-
-        if (error) {
-          throw new Error(`Database error: ${error.message}`)
-        }
-      }
-
-      return true
-    } catch (error) {
-      console.error('Error reordering testimonials:', error)
-      return false
-    }
+    console.warn('Reordering testimonials not supported in static mode')
+    return false
   }
 
   /**
-   * Get fallback testimonials when database is unavailable
+   * Get static testimonials
+   */
+  private getStaticTestimonials(): Testimonial[] {
+    return [
+      {
+        id: 'static-1',
+        quote: 'AI-assisted design completely changed our process. We now explore more ideas in less time.',
+        author: 'Ms. Zhang',
+        title: 'Textile Director',
+        company: 'Shanghai Textile Co.',
+        is_visible: true,
+        display_order: 1,
+        created_at: new Date(),
+        updated_at: new Date()
+      },
+      {
+        id: 'static-2',
+        quote: 'The team\'s responsiveness is impressive. They adapted designs to our needs instantly.',
+        author: 'Ms. Wang',
+        title: 'Hotel Procurement',
+        company: 'Luxury Hotels Group',
+        is_visible: true,
+        display_order: 2,
+        created_at: new Date(),
+        updated_at: new Date()
+      },
+      {
+        id: 'static-3',
+        quote: 'AI brings fresh ideas every season, revitalizing our industry.',
+        author: 'Mr. Chen',
+        title: 'Fashion Magazine Editor',
+        company: 'Style Weekly',
+        is_visible: true,
+        display_order: 3,
+        created_at: new Date(),
+        updated_at: new Date()
+      },
+      {
+        id: 'static-4',
+        quote: 'The AI integration helped us reduce development time by 40% while improving quality.',
+        author: 'Mr. Balaji',
+        title: 'CTO',
+        company: 'Tech Innovations Ltd.',
+        is_visible: true,
+        display_order: 4,
+        created_at: new Date(),
+        updated_at: new Date()
+      },
+      {
+        id: 'static-5',
+        quote: 'BestIT\'s AI solutions transformed our business operations. Highly recommended!',
+        author: 'Dr. Brennan',
+        title: 'CEO',
+        company: 'AI Solutions Inc.',
+        is_visible: true,
+        display_order: 5,
+        created_at: new Date(),
+        updated_at: new Date()
+      }
+    ]
+  }
+
+  /**
+   * Get fallback testimonials when static data is unavailable
    */
   private getFallbackTestimonials(): Testimonial[] {
     return [

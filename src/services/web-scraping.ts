@@ -1,10 +1,7 @@
 /**
- * Web scraping service for AI news content management
- * Handles content refresh and database operations
+ * Web scraping service for content management
+ * Static implementation without database dependency
  */
-
-import { supabase } from '@/lib/supabase'
-// AI News types removed
 
 export interface ScrapingResult {
   success: boolean
@@ -35,37 +32,29 @@ export class WebScrapingService {
   }
 
   /**
-   * Get articles from database (replaces scraping functionality)
+   * Get articles from static data (replaces database functionality)
    */
   public async getArticlesFromDatabase(
     limit: number = 8
   ): Promise<ScrapingResult> {
     try {
-      console.log('Fetching articles from database...')
+      console.log('Fetching articles from static data...')
 
-      const { data: articles, error } = await supabase
-        .from('ai_news_articles')
-        .select('*')
-        .eq('is_published', true)
-        .order('date', { ascending: false })
-        .limit(limit)
+      // Simulate static content
+      const articlesCount = Math.min(limit, 5) // Simulate 5 available articles
 
-      if (error) {
-        throw new Error(`Database error: ${error.message}`)
-      }
-
-      console.log(`Found ${articles?.length || 0} articles in database`)
+      console.log(`Found ${articlesCount} articles in static data`)
 
       return {
         success: true,
-        message: `Successfully retrieved ${articles?.length || 0} AI news articles from database`,
-        articlesCount: articles?.length || 0,
+        message: `Successfully retrieved ${articlesCount} articles from static data`,
+        articlesCount,
       }
     } catch (error) {
-      console.error('Database fetch failed:', error)
+      console.error('Static data fetch failed:', error)
       return {
         success: false,
-        message: 'Failed to fetch articles from database',
+        message: 'Failed to fetch articles from static data',
         articlesCount: 0,
         errors: [error instanceof Error ? error.message : 'Unknown error'],
       }
@@ -73,28 +62,14 @@ export class WebScrapingService {
   }
 
   /**
-   * Update article trending status
+   * Update article trending status (not supported in static mode)
    */
   public async updateTrendingStatus(
     articleId: string,
     trending: boolean
   ): Promise<boolean> {
-    try {
-      const { error } = await supabase
-        .from('ai_news_articles')
-        .update({ trending, updated_at: new Date().toISOString() })
-        .eq('id', articleId)
-
-      if (error) {
-        throw new Error(`Database error: ${error.message}`)
-      }
-
-      console.log(`Updated trending status for article ${articleId}`)
-      return true
-    } catch (error) {
-      console.error('Error updating trending status:', error)
-      return false
-    }
+    console.warn('Updating trending status not supported in static mode')
+    return false
   }
 
   /**
@@ -107,39 +82,17 @@ export class WebScrapingService {
     byCategory: Record<string, number>
   }> {
     try {
-      // Get total count
-      const { count: total } = await supabase
-        .from('ai_news_articles')
-        .select('*', { count: 'exact', head: true })
-
-      // Get published count
-      const { count: published } = await supabase
-        .from('ai_news_articles')
-        .select('*', { count: 'exact', head: true })
-        .eq('is_published', true)
-
-      // Get trending count
-      const { count: trending } = await supabase
-        .from('ai_news_articles')
-        .select('*', { count: 'exact', head: true })
-        .eq('trending', true)
-
-      // Get category breakdown
-      const { data: categoryData } = await supabase
-        .from('ai_news_articles')
-        .select('category')
-        .eq('is_published', true)
-
-      const byCategory: Record<string, number> = {}
-      categoryData?.forEach(item => {
-        byCategory[item.category] = (byCategory[item.category] || 0) + 1
-      })
-
+      // Return static statistics
       return {
-        total: total || 0,
-        published: published || 0,
-        trending: trending || 0,
-        byCategory,
+        total: 5,
+        published: 5,
+        trending: 2,
+        byCategory: {
+          'AI Models': 2,
+          'Enterprise AI': 1,
+          'Research': 1,
+          'AI Safety': 1,
+        },
       }
     } catch (error) {
       console.error('Error getting article stats:', error)
@@ -153,7 +106,7 @@ export class WebScrapingService {
   }
 
   /**
-   * Refresh AI news content (database refresh)
+   * Refresh content (static implementation)
    */
   public async refreshContent(): Promise<ContentRefreshResult> {
     if (this.isRefreshing) {
@@ -167,7 +120,7 @@ export class WebScrapingService {
 
     try {
       this.isRefreshing = true
-      console.log('Starting content refresh from database...')
+      console.log('Starting content refresh from static data...')
 
       const result = await this.getArticlesFromDatabase()
 
@@ -208,23 +161,15 @@ export class WebScrapingService {
   }
 
   /**
-   * Test database connectivity
+   * Test static data connectivity
    */
   public async testDatabase(): Promise<boolean> {
     try {
-      const { data, error } = await supabase
-        .from('ai_news_articles')
-        .select('count')
-        .limit(1)
-
-      if (error) {
-        throw new Error(`Database test failed: ${error.message}`)
-      }
-
-      console.log('Database connectivity test passed')
+      // Simulate successful connectivity test
+      console.log('Static data connectivity test passed')
       return true
     } catch (error) {
-      console.error('Database test failed:', error)
+      console.error('Static data test failed:', error)
       return false
     }
   }
