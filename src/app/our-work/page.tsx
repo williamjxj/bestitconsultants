@@ -8,23 +8,13 @@ export default function OurWorkPage() {
 
   return (
     <div className='min-h-screen'>
-      {/* Hero Section */}
-      <section className='bg-gradient-to-r from-blue-600 to-purple-700 text-white py-24'>
-        <div className='container mx-auto px-4 text-center'>
-          <h1 className='text-5xl font-bold mb-6'>
-            {translations.ourWork?.title || 'Our Work'}
-          </h1>
-          <p className='text-xl max-w-3xl mx-auto leading-relaxed'>
-            {translations.ourWork?.subtitle ||
-              'Explore our portfolio of external projects and collaborations. These represent our diverse expertise and successful partnerships across various industries and technologies.'}
-          </p>
-        </div>
-      </section>
-
       {/* Introduction Section */}
       <section className='py-16 bg-gray-50'>
         <div className='container mx-auto px-4'>
           <div className='max-w-4xl mx-auto text-center'>
+            <h1 className='text-4xl font-bold mb-6 text-gray-900'>
+              {translations.ourWork?.title || 'Our Work'}
+            </h1>
             <h2 className='text-3xl font-bold mb-8 text-gray-800'>
               {translations.ourWork?.introTitle ||
                 'Featured Projects & Partnerships'}

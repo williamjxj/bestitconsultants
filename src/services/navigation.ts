@@ -4,6 +4,7 @@
  */
 
 import type { NavigationItem } from '@/types/navigation'
+import { NavigationCategory } from '@/types/navigation'
 
 export interface NavigationResult {
   items: NavigationItem[]
@@ -35,7 +36,7 @@ export class NavigationService {
         id: 'home',
         label: 'Home',
         href: '/',
-        category: 'main',
+        category: NavigationCategory.MAIN,
         order: 1,
         isActive: false,
         isVisible: true,
@@ -44,7 +45,7 @@ export class NavigationService {
         id: 'about',
         label: 'About',
         href: '/about',
-        category: 'company',
+        category: NavigationCategory.COMPANY,
         order: 2,
         isActive: false,
         isVisible: true,
@@ -53,7 +54,7 @@ export class NavigationService {
         id: 'services',
         label: 'Services',
         href: '/services',
-        category: 'services',
+        category: NavigationCategory.SERVICES,
         order: 3,
         isActive: false,
         isVisible: true,
@@ -62,7 +63,7 @@ export class NavigationService {
         id: 'portfolio',
         label: 'Portfolio',
         href: '/portfolio',
-        category: 'work',
+        category: NavigationCategory.WORK,
         order: 4,
         isActive: false,
         isVisible: true,
@@ -71,7 +72,7 @@ export class NavigationService {
         id: 'ourWork',
         label: 'Our Work',
         href: '/our-work',
-        category: 'work',
+        category: NavigationCategory.WORK,
         order: 5,
         isActive: false,
         isVisible: true,
@@ -80,7 +81,7 @@ export class NavigationService {
         id: 'team',
         label: 'Team',
         href: '/team',
-        category: 'company',
+        category: NavigationCategory.COMPANY,
         order: 6,
         isActive: false,
         isVisible: true,
@@ -89,7 +90,7 @@ export class NavigationService {
         id: 'contact',
         label: 'Contact',
         href: '/contact',
-        category: 'main',
+        category: NavigationCategory.MAIN,
         order: 7,
         isActive: false,
         isVisible: true,
@@ -129,12 +130,13 @@ export class NavigationService {
       item.isActive = false
     })
 
-    // Find matching item
+    // Find matching item with exact match for home, or exact match for other paths
     const activeItem = this.navigationItems.find(item => {
       if (item.href === '/') {
         return pathname === '/'
       }
-      return pathname.startsWith(item.href)
+      // For other paths, use exact match to avoid conflicts
+      return pathname === item.href
     })
 
     if (activeItem) {
@@ -340,7 +342,7 @@ export class NavigationService {
    */
   public getDesktopNavigationItems(): NavigationItem[] {
     return this.navigationItems
-      .filter(item => item.isVisible && item.category !== 'mobile-only')
+      .filter(item => item.isVisible)
       .sort((a, b) => a.order - b.order)
   }
 

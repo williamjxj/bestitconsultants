@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { navigationService } from '@/services/navigation'
 import type { NavigationItem } from '@/types/navigation'
+import { NavigationCategory } from '@/types/navigation'
 
 // Navbar component
 export default function Navbar() {
@@ -31,10 +32,17 @@ export default function Navbar() {
           label: getTranslatedLabel(item.id, translations),
         }))
 
-        setNavItems(mappedItems)
-
         // Update active item based on current path
         navigationService.updateActiveItem(pathname)
+
+        // Get updated items with active state
+        const updatedItems = navigationService.getNavigationItems()
+        const updatedMappedItems = updatedItems.map(item => ({
+          ...item,
+          label: getTranslatedLabel(item.id, translations),
+        }))
+
+        setNavItems(updatedMappedItems)
       } catch (error) {
         console.error('Error loading navigation items:', error)
         // Fallback to static navigation
@@ -54,6 +62,7 @@ export default function Navbar() {
       about: translations.navbar.about,
       services: translations.navbar.services,
       portfolio: translations.navbar.portfolio,
+      ourWork: translations.navbar.ourWork,
       team: translations.navbar.team,
       contact: translations.navbar.contact,
     }
@@ -66,7 +75,7 @@ export default function Navbar() {
       id: 'home',
       label: translations.navbar.home,
       href: '/',
-      category: 'main',
+      category: NavigationCategory.MAIN,
       order: 1,
       isActive: false,
       isVisible: true,
@@ -75,7 +84,7 @@ export default function Navbar() {
       id: 'about',
       label: translations.navbar.about,
       href: '/about',
-      category: 'company',
+      category: NavigationCategory.COMPANY,
       order: 2,
       isActive: false,
       isVisible: true,
@@ -84,7 +93,7 @@ export default function Navbar() {
       id: 'services',
       label: translations.navbar.services,
       href: '/services',
-      category: 'services',
+      category: NavigationCategory.SERVICES,
       order: 3,
       isActive: false,
       isVisible: true,
@@ -93,7 +102,7 @@ export default function Navbar() {
       id: 'portfolio',
       label: translations.navbar.portfolio,
       href: '/portfolio',
-      category: 'work',
+      category: NavigationCategory.WORK,
       order: 4,
       isActive: false,
       isVisible: true,
@@ -102,7 +111,7 @@ export default function Navbar() {
       id: 'team',
       label: translations.navbar.team,
       href: '/team',
-      category: 'company',
+      category: NavigationCategory.COMPANY,
       order: 5,
       isActive: false,
       isVisible: true,
@@ -111,7 +120,7 @@ export default function Navbar() {
       id: 'contact',
       label: translations.navbar.contact,
       href: '/contact',
-      category: 'main',
+      category: NavigationCategory.MAIN,
       order: 6,
       isActive: false,
       isVisible: true,
@@ -168,16 +177,16 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium relative group ${
-                    link.isActive ? 'text-blue-600' : ''
+                  className={`relative px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 group ${
+                    link.isActive
+                      ? 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg shadow-blue-500/25'
+                      : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:shadow-md'
                   }`}
                 >
                   {link.label}
-                  <span
-                    className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${
-                      link.isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                    }`}
-                  ></span>
+                  {!link.isActive && (
+                    <span className='absolute inset-0 rounded-lg bg-gradient-to-r from-blue-600/10 to-indigo-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></span>
+                  )}
                 </Link>
               ))
             )}
@@ -251,13 +260,18 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 px-4 rounded-lg hover:bg-blue-50 transform hover:translate-x-2 ${
-                      link.isActive ? 'text-blue-600 bg-blue-50' : ''
+                    className={`relative py-3 px-4 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:translate-x-2 ${
+                      link.isActive
+                        ? 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg shadow-blue-500/25'
+                        : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:shadow-md'
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
                     {link.label}
+                    {!link.isActive && (
+                      <span className='absolute inset-0 rounded-lg bg-gradient-to-r from-blue-600/10 to-indigo-600/10 opacity-0 hover:opacity-100 transition-opacity duration-300'></span>
+                    )}
                   </Link>
                 ))
               )}
