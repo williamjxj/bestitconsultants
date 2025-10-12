@@ -13,10 +13,10 @@ transformation services.
 - **Case Studies**: Detailed success stories with measurable outcomes
 - **Our Work Page**: External project showcase with bookmark-style presentation
 - **Enhanced Hero Section**: Professional messaging with quick highlights
-- **Multi-language Ready**: Internationalization support structure
 - **Performance Optimized**: Fast loading with modern web standards
 - **SEO Optimized**: Structured data, sitemap, and robots.txt
 - **Accessibility**: WCAG 2.1 AA compliant components
+- **Documentation**: Comprehensive technical documentation
 
 ## 🛠️ Tech Stack
 
@@ -59,6 +59,13 @@ src/
 ├── lib/                  # Utilities and translations
 ├── services/             # Data services
 └── types/                # TypeScript type definitions
+
+docs/                     # Project documentation
+├── README.md             # Documentation index
+├── api.md               # API documentation
+├── components.md        # Component reference
+├── deployment.md        # Deployment guide
+└── ...                  # Additional guides
 ```
 
 ## 🚀 Getting Started
@@ -167,6 +174,17 @@ The app builds to a standard Next.js production bundle compatible with:
 - AWS Amplify
 - DigitalOcean App Platform
 - Traditional hosting with Node.js support
+
+## 📚 Documentation
+
+Comprehensive documentation is available in the `docs/` directory:
+
+- **[Documentation Index](docs/README.md)** - Complete documentation index
+- **[API Reference](docs/api.md)** - All API endpoints
+- **[Component Guide](docs/components.md)** - UI components reference
+- **[Deployment Guide](docs/deployment.md)** - Production deployment
+- **[Contact Setup](docs/CONTACT_SETUP.md)** - Email integration
+- **[DNS Configuration](docs/HOSTINGER_VERCEL_DNS_CONFIG.md)** - Domain setup
 
 ## 🤝 Contributing
 
