@@ -4,11 +4,7 @@ module.exports = {
   reactStrictMode: true,
   images: {
     domains: [
-      'www.google.com',
-      'shot.screenshotapi.net',
-      'images.unsplash.com',
-      'api.screenshotmachine.com',
-      'htmlcsstoimage.com',
+      'images.unsplash.com', // Keep for any remaining Unsplash images
     ],
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],

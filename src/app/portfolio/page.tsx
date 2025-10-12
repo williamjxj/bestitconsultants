@@ -27,6 +27,8 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { OptimizedImage } from '@/components/ui/optimized-image'
+import { motion } from 'framer-motion'
 
 const portfolioItems = [
   {
@@ -35,6 +37,7 @@ const portfolioItems = [
       'Machine Learning Data Pipelines and Experiment Collection Manager for AI-related tasks. Developed using microservices architecture with React.js, Node.js, Python and Java. Optimized GPU/CPU performance in Kubernetes environments with Kubeflow, CUDA, and MLOps workflows.',
     icon: Brain,
     category: 'ai',
+    image: '/imgs/kling_20251012_1.png',
     tech: [
       'React.js',
       'Node.js',
@@ -59,6 +62,7 @@ const portfolioItems = [
       'Real-time stock integration system with existing datasets via various pipelines and microservices. Built with React/Node.js, WebSockets, MongoDB, and Python for high-frequency trading operations.',
     icon: CreditCard,
     category: 'fintech',
+    image: '/imgs/istockphoto-1212876953-612x612.jpg',
     tech: [
       'React',
       'Node.js',
@@ -81,6 +85,7 @@ const portfolioItems = [
       'Retail Business Banking onboarding services for small and medium customers. Built with React, Redux, Java Spring Boot microservices, Node.js + MongoDB, and mobile apps for SME banking.',
     icon: Landmark,
     category: 'fintech',
+    image: '/imgs/istockphoto-1358835459-612x612.webp',
     tech: [
       'React',
       'Redux',
@@ -103,6 +108,7 @@ const portfolioItems = [
       'Semi-ETL self-service platform supporting file extraction, data processing, and reporting. Features PDF processing, XML parsing, file management, and citizen-developer workflow creation with drag-and-drop interface.',
     icon: Database,
     category: 'enterprise',
+    image: '/imgs/istockphoto-1350198816-612x612.jpg',
     tech: [
       'WPF',
       'MongoDB',
@@ -125,6 +131,7 @@ const portfolioItems = [
       'Web-based advertisement delivery system using JavaScript, HTML5/CSS3, Google DFP, Node.js, and jQuery. Integrated with Google DFP, Adobe tools, and Media.net header-bidding to significantly improve revenue.',
     icon: Globe,
     category: 'web',
+    image: '/imgs/istockphoto-2227310361-612x612.webp',
     tech: [
       'JavaScript',
       'HTML5/CSS3',
@@ -147,6 +154,7 @@ const portfolioItems = [
       'E-commerce platform improvements including product gallery updates, multi-video features, 360 rotate, desktop/tablet/mobile optimization, warranties, and shopping cart enhancements.',
     icon: ShoppingCart,
     category: 'ecommerce',
+    image: '/imgs/istockphoto-1145868161-612x612.webp',
     tech: ['JavaScript', 'HTML5', 'CSS3', 'Responsive Design', 'E-commerce'],
     client: 'BestBuy Canada',
     year: '2007-2014',
@@ -162,6 +170,7 @@ const portfolioItems = [
       'FedEx GIVS (Global Inventory Visibility System) and EC-IV system. Includes Global Clearance System for Australia, South Korea, and China. Wireless application for mobile tracking awarded APEC 2002 accolade.',
     icon: Truck,
     category: 'enterprise',
+    image: '/imgs/istockphoto-2163952011-612x612.webp',
     tech: [
       'Java',
       'C/C++',
@@ -184,6 +193,7 @@ const portfolioItems = [
       'World Of Tiffany (WOT) CMS and frontend system, global site maintenance, Compass Case management system, and EOM order management. Served multiple international markets including US, CA, AU, BE, MX.',
     icon: Diamond,
     category: 'ecommerce',
+    image: '/imgs/istockphoto-492514758-612x612.webp',
     tech: [
       '.NET MVC',
       'WebAPI',
@@ -207,6 +217,7 @@ const portfolioItems = [
       'Gas energy integration systems for Gate & TAQA companies. Microsoft BizTalk integration solution for 20+ servers managing 100+ daily message types, improving processing from 2 hours to under 1 minute.',
     icon: Zap,
     category: 'enterprise',
+    image: '/imgs/kling_20251012_2.png',
     tech: ['BizTalk', 'Oracle', 'SQL Server', 'Web Services', 'JBoss', 'Linux'],
     client: 'Netherlands Government (via IBM)',
     year: '2011-2012',
@@ -222,6 +233,7 @@ const portfolioItems = [
       'GM ABM applications supporting Assets, Datamart, Global Lease management, and Product Order systems. PSP/TSP implementation with team leadership and professional development programs.',
     icon: Car,
     category: 'enterprise',
+    image: '/imgs/istockphoto-1358835459-612x612.webp',
     tech: ['VB.NET', 'ASP.NET', 'SQL Server', 'SSIS', 'DTS', 'Agent Jobs'],
     client: 'General Motors (via HP)',
     year: '2008-2011',
@@ -237,6 +249,7 @@ const portfolioItems = [
       'Desktop application for MateBook devices with localization for 54 languages and 100+ countries. Includes user guides, driver updates, PSI functionality, and MateTrans file sharing between devices.',
     icon: Laptop,
     category: 'desktop',
+    image: '/imgs/istockphoto-1212876953-612x612.jpg',
     tech: ['WPF', 'UWP', 'MVVM', 'Localization', 'COM', 'Multi-language'],
     client: 'Huawei (via iSoftstone)',
     year: '2016-2018',
@@ -252,6 +265,7 @@ const portfolioItems = [
       'Enterprise Knowledge Portal (EKP) system with resource navigation, expert networks, and aerospace industry data analytics. Provides intelligence, technical documentation, and global aerospace industry insights.',
     icon: Plane,
     category: 'enterprise',
+    image: '/imgs/istockphoto-1350198816-612x612.jpg',
     tech: [
       'EKP Systems',
       'Knowledge Management',
@@ -272,6 +286,7 @@ const portfolioItems = [
       'Risk management and electronic signature platform for supply chain financing. Features multi-level approval, contract management, loan processing, and real-time monitoring with mobile integration.',
     icon: Building2,
     category: 'fintech',
+    image: '/imgs/istockphoto-2227310361-612x612.webp',
     tech: [
       'Java',
       '.NET',
@@ -343,79 +358,97 @@ export default function PortfolioPage() {
         {/* Projects Grid */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16'>
           {filteredProjects.map((project, index) => (
-            <Card
+            <motion.div
               key={index}
-              className='group hover:shadow-xl transition-all duration-300 border-0 bg-white/50 backdrop-blur-sm overflow-hidden'
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
             >
-              <div className='aspect-video relative overflow-hidden bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center'>
-                <project.icon
-                  size={80}
-                  className='text-blue-600 group-hover:scale-105 transition-transform duration-300'
-                />
-                <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent' />
-                <div className='absolute bottom-4 left-4 text-white'>
-                  <Badge variant='secondary' className='mb-2'>
-                    {project.client}
-                  </Badge>
-                  <p className='text-sm font-medium'>{project.year}</p>
-                </div>
-              </div>
-
-              <CardHeader>
-                <div className='flex items-start justify-between'>
-                  <div>
-                    <CardTitle className='text-xl mb-2'>
-                      {project.title}
-                    </CardTitle>
-                    <CardDescription className='text-gray-600'>
-                      {project.description}
-                    </CardDescription>
+              <Card className='group hover:shadow-xl transition-all duration-300 border-0 bg-white/50 backdrop-blur-sm overflow-hidden'>
+                <div className='aspect-video relative overflow-hidden'>
+                  <OptimizedImage
+                    src={project.image || '/placeholder.svg'}
+                    alt={`${project.title} - ${project.client} project showcase`}
+                    width={400}
+                    height={225}
+                    className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+                    animation={{
+                      type: 'fade',
+                      duration: 0.6,
+                    }}
+                  />
+                  <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent' />
+                  <div className='absolute bottom-4 left-4 text-white'>
+                    <Badge variant='secondary' className='mb-2'>
+                      {project.client}
+                    </Badge>
+                    <p className='text-sm font-medium'>{project.year}</p>
                   </div>
-                  <Badge variant='secondary' className='ml-2'>
-                    {categories.find(cat => cat.id === project.category)?.label}
-                  </Badge>
-                </div>
-              </CardHeader>
-
-              <CardContent>
-                <div className='space-y-4'>
-                  <div className='flex flex-wrap gap-2'>
-                    {project.tech.map((tech, techIndex) => (
-                      <Badge
-                        key={techIndex}
-                        variant='outline'
-                        className='text-xs'
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
+                  <div className='absolute top-4 right-4'>
+                    <project.icon size={32} className='text-white/80' />
                   </div>
+                </div>
 
-                  {project.achievements && (
+                <CardHeader>
+                  <div className='flex items-start justify-between'>
                     <div>
-                      <h4 className='text-sm font-medium text-gray-700 mb-2'>
-                        Key Achievements:
-                      </h4>
-                      <ul className='text-sm space-y-1'>
-                        {project.achievements
-                          .slice(0, 3)
-                          .map((achievement, achievementIndex) => (
-                            <li
-                              key={achievementIndex}
-                              className='flex items-start'
-                            >
-                              <span className='text-green-500 mr-2 text-xs'>
-                                ✓
-                              </span>
-                              {achievement}
-                            </li>
-                          ))}
-                      </ul>
+                      <CardTitle className='text-xl mb-2'>
+                        {project.title}
+                      </CardTitle>
+                      <CardDescription className='text-gray-600'>
+                        {project.description}
+                      </CardDescription>
                     </div>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+                    <Badge variant='secondary' className='ml-2'>
+                      {
+                        categories.find(cat => cat.id === project.category)
+                          ?.label
+                      }
+                    </Badge>
+                  </div>
+                </CardHeader>
+
+                <CardContent>
+                  <div className='space-y-4'>
+                    <div className='flex flex-wrap gap-2'>
+                      {project.tech.map((tech, techIndex) => (
+                        <Badge
+                          key={techIndex}
+                          variant='outline'
+                          className='text-xs'
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    {project.achievements && (
+                      <div>
+                        <h4 className='text-sm font-medium text-gray-700 mb-2'>
+                          Key Achievements:
+                        </h4>
+                        <ul className='text-sm space-y-1'>
+                          {project.achievements
+                            .slice(0, 3)
+                            .map((achievement, achievementIndex) => (
+                              <li
+                                key={achievementIndex}
+                                className='flex items-start'
+                              >
+                                <span className='text-green-500 mr-2 text-xs'>
+                                  ✓
+                                </span>
+                                {achievement}
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
 

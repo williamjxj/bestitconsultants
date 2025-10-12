@@ -1,19 +1,39 @@
 import React from 'react'
 import { CaseStudy } from '@/types/case-study'
+import { OptimizedImage } from '@/components/ui/optimized-image'
+import { motion } from 'framer-motion'
 
 interface CaseStudyCardProps {
   caseStudy: CaseStudy
+  index?: number
 }
 
-export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ caseStudy }) => {
+export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({
+  caseStudy,
+  index = 0,
+}) => {
   return (
-    <div className='bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow'>
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className='bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group'
+    >
       {caseStudy.image && (
-        <img
-          src={caseStudy.image}
-          alt={caseStudy.title}
-          className='w-full h-48 object-cover'
-        />
+        <div className='relative h-64'>
+          <OptimizedImage
+            src={caseStudy.image}
+            alt={`${caseStudy.title} - ${caseStudy.client} case study`}
+            width={400}
+            height={256}
+            className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+            animation={{
+              type: 'slide',
+              duration: 0.6,
+            }}
+          />
+        </div>
       )}
 
       <div className='p-6'>
@@ -71,6 +91,6 @@ export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ caseStudy }) => {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }

@@ -1,0 +1,920 @@
+openapi: 3.0.3
+info:
+  title: Media API
+  description: API for managing images and videos in the website
+  version: 1.0.0
+  contact:
+    name: BestIT Consulting
+    email: contact@bestitconsulting.com
+
+servers:
+  - url: https://bestitconsulting.com/api
+    description: Production server
+  - url: http://localhost:3000/api
+    description: Development server
+
+paths:
+  /media/assets:
+    get:
+      summary: Get all media assets
+      description: Retrieve a list of all media assets with optional filtering
+      parameters:
+        - name: category
+          in: query
+          description: Filter by media category
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: Filter by media format
+          schema:
+            type: string
+            enum: [webp, avif, jpeg, png]
+        - name: priority
+          in: query
+          description: Filter by loading priority
+          schema:
+            type: string
+            enum: [high, medium, low]
+        - name: page
+          in: query
+          description: Page number for pagination
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          description: Number of items per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MediaAsset'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      summary: Create a new media asset
+      description: Upload and create a new media asset
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Media file to upload
+                alt:
+                  type: string
+                  description: Alternative text for accessibility
+                title:
+                  type: string
+                  description: Title for the media asset
+                description:
+                  type: string
+                  description: Detailed description
+                category:
+                  type: string
+                  description: Media category
+                priority:
+                  type: string
+                  enum: [high, medium, low]
+                  default: medium
+      responses:
+        '201':
+          description: Media asset created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/MediaAsset'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '413':
+          description: File too large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /media/assets/{id}:
+    get:
+      summary: Get a media asset by ID
+      description: Retrieve a specific media asset
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Media asset ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/MediaAsset'
+        '404':
+          description: Media asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      summary: Update a media asset
+      description: Update an existing media asset
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Media asset ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                alt:
+                  type: string
+                  description: Alternative text for accessibility
+                title:
+                  type: string
+                  description: Title for the media asset
+                description:
+                  type: string
+                  description: Detailed description
+                category:
+                  type: string
+                  description: Media category
+                priority:
+                  type: string
+                  enum: [high, medium, low]
+      responses:
+        '200':
+          description: Media asset updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/MediaAsset'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Media asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      summary: Delete a media asset
+      description: Delete a media asset and its associated files
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Media asset ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Media asset deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Media asset deleted successfully'
+        '404':
+          description: Media asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /media/galleries:
+    get:
+      summary: Get all media galleries
+      description: Retrieve a list of all media galleries
+      parameters:
+        - name: page
+          in: query
+          description: Page number for pagination
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          description: Number of items per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MediaGallery'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      summary: Create a new media gallery
+      description: Create a new media gallery with assets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: Gallery title
+                description:
+                  type: string
+                  description: Gallery description
+                assets:
+                  type: array
+                  items:
+                    type: string
+                  description: Array of media asset IDs
+                layout:
+                  type: string
+                  enum: [grid, carousel, masonry]
+                  default: grid
+                columns:
+                  type: integer
+                  minimum: 1
+                  maximum: 6
+                  default: 3
+                spacing:
+                  type: number
+                  minimum: 0
+                  default: 16
+      responses:
+        '201':
+          description: Media gallery created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/MediaGallery'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /media/galleries/{id}:
+    get:
+      summary: Get a media gallery by ID
+      description: Retrieve a specific media gallery with its assets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Media gallery ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/MediaGallery'
+        '404':
+          description: Media gallery not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /media/categories:
+    get:
+      summary: Get all media categories
+      description: Retrieve a list of all media categories
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MediaCategory'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /media/optimize:
+    post:
+      summary: Optimize media assets
+      description: Optimize images for different formats and sizes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                assetIds:
+                  type: array
+                  items:
+                    type: string
+                  description: Array of media asset IDs to optimize
+                formats:
+                  type: array
+                  items:
+                    type: string
+                    enum: [webp, avif, jpeg, png]
+                  description: Target formats for optimization
+                sizes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      width:
+                        type: integer
+                      height:
+                        type: integer
+                      name:
+                        type: string
+                  description: Target sizes for optimization
+      responses:
+        '200':
+          description: Media assets optimized successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MediaAsset'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    MediaAsset:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the media asset
+        src:
+          type: string
+          description: Source path to the media file
+        alt:
+          type: string
+          description: Alternative text for accessibility
+        title:
+          type: string
+          description: Title for tooltip and SEO
+        description:
+          type: string
+          description: Detailed description for screen readers
+        width:
+          type: integer
+          description: Original width in pixels
+        height:
+          type: integer
+          description: Original height in pixels
+        format:
+          type: string
+          enum: [webp, avif, jpeg, png]
+          description: Image format
+        size:
+          type: integer
+          description: File size in bytes
+        category:
+          type: string
+          description: Media category
+        priority:
+          type: string
+          enum: [high, medium, low]
+          description: Loading priority
+        loading:
+          type: string
+          enum: [eager, lazy]
+          description: Loading strategy
+        placeholder:
+          type: string
+          description: Base64 placeholder for lazy loading
+        seoMetadata:
+          $ref: '#/components/schemas/SEOImageMetadata'
+        accessibility:
+          $ref: '#/components/schemas/AccessibilityMetadata'
+        animation:
+          $ref: '#/components/schemas/AnimationConfig'
+        createdAt:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Last update timestamp
+
+    MediaGallery:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the gallery
+        title:
+          type: string
+          description: Gallery title
+        description:
+          type: string
+          description: Gallery description
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaAsset'
+          description: Array of media assets
+        layout:
+          type: string
+          enum: [grid, carousel, masonry]
+          description: Display layout
+        columns:
+          type: integer
+          minimum: 1
+          maximum: 6
+          description: Number of columns for grid layout
+        spacing:
+          type: number
+          minimum: 0
+          description: Spacing between items
+        animation:
+          $ref: '#/components/schemas/GalleryAnimationConfig'
+        pagination:
+          $ref: '#/components/schemas/PaginationConfig'
+        filtering:
+          $ref: '#/components/schemas/FilterConfig'
+        createdAt:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Last update timestamp
+
+    MediaCategory:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the category
+        name:
+          type: string
+          description: Category name
+        description:
+          type: string
+          description: Category description
+        icon:
+          type: string
+          description: Icon identifier for UI
+        color:
+          type: string
+          description: Theme color for the category
+        parentCategory:
+          type: string
+          description: Parent category for hierarchy
+        tags:
+          type: array
+          items:
+            type: string
+          description: Searchable tags
+        seoKeywords:
+          type: array
+          items:
+            type: string
+          description: SEO keywords for the category
+        createdAt:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Last update timestamp
+
+    SEOImageMetadata:
+      type: object
+      properties:
+        title:
+          type: string
+          description: SEO title
+        description:
+          type: string
+          description: Meta description
+        keywords:
+          type: array
+          items:
+            type: string
+          description: SEO keywords
+        structuredData:
+          type: object
+          description: JSON-LD structured data
+        socialMedia:
+          $ref: '#/components/schemas/SocialMediaMetadata'
+        canonicalUrl:
+          type: string
+          description: Canonical URL for the image
+
+    SocialMediaMetadata:
+      type: object
+      properties:
+        openGraph:
+          type: object
+          properties:
+            title:
+              type: string
+            description:
+              type: string
+            image:
+              type: string
+            url:
+              type: string
+        twitter:
+          type: object
+          properties:
+            card:
+              type: string
+            title:
+              type: string
+            description:
+              type: string
+            image:
+              type: string
+
+    AccessibilityMetadata:
+      type: object
+      properties:
+        altText:
+          type: string
+          description: Alternative text for screen readers
+        longDescription:
+          type: string
+          description: Detailed description for complex images
+        caption:
+          type: string
+          description: Image caption
+        ariaLabel:
+          type: string
+          description: ARIA label for interactive elements
+        ariaDescribedBy:
+          type: string
+          description: Reference to description element
+        role:
+          type: string
+          description: ARIA role for the element
+        tabIndex:
+          type: integer
+          description: Tab order for keyboard navigation
+        focusable:
+          type: boolean
+          description: Whether element can receive focus
+
+    AnimationConfig:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Whether animations are enabled
+        type:
+          type: string
+          enum: [fade, slide, scale, rotate]
+          description: Animation type
+        duration:
+          type: number
+          description: Animation duration in milliseconds
+        delay:
+          type: number
+          description: Animation delay in milliseconds
+        easing:
+          type: string
+          description: CSS easing function
+        stagger:
+          type: number
+          description: Stagger delay for multiple elements
+        hover:
+          $ref: '#/components/schemas/HoverAnimationConfig'
+        scroll:
+          $ref: '#/components/schemas/ScrollAnimationConfig'
+
+    GalleryAnimationConfig:
+      type: object
+      properties:
+        entrance:
+          $ref: '#/components/schemas/AnimationConfig'
+        exit:
+          $ref: '#/components/schemas/AnimationConfig'
+        hover:
+          $ref: '#/components/schemas/HoverAnimationConfig'
+        scroll:
+          $ref: '#/components/schemas/ScrollAnimationConfig'
+        stagger:
+          type: number
+          description: Stagger delay between items
+        direction:
+          type: string
+          enum: [up, down, left, right]
+          description: Animation direction
+
+    HoverAnimationConfig:
+      type: object
+      properties:
+        scale:
+          type: number
+          description: Scale factor on hover
+        translate:
+          type: object
+          properties:
+            x:
+              type: number
+            y:
+              type: number
+          description: Translation on hover
+        opacity:
+          type: number
+          description: Opacity change on hover
+        duration:
+          type: number
+          description: Hover animation duration
+        easing:
+          type: string
+          description: Hover animation easing
+
+    ScrollAnimationConfig:
+      type: object
+      properties:
+        trigger:
+          type: string
+          enum: [viewport, element]
+          description: Animation trigger
+        threshold:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Visibility threshold
+        rootMargin:
+          type: string
+          description: Root margin for intersection observer
+        once:
+          type: boolean
+          description: Whether animation runs only once
+        direction:
+          type: string
+          enum: [up, down, left, right]
+          description: Animation direction
+
+    PaginationConfig:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Whether pagination is enabled
+        itemsPerPage:
+          type: integer
+          description: Number of items per page
+        showPageNumbers:
+          type: boolean
+          description: Whether to show page numbers
+        showNavigation:
+          type: boolean
+          description: Whether to show prev/next buttons
+        infiniteScroll:
+          type: boolean
+          description: Whether to use infinite scroll
+
+    FilterConfig:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Whether filtering is enabled
+        categories:
+          type: array
+          items:
+            type: string
+          description: Available filter categories
+        tags:
+          type: array
+          items:
+            type: string
+          description: Available filter tags
+        dateRange:
+          type: object
+          properties:
+            start:
+              type: string
+              format: date
+            end:
+              type: string
+              format: date
+          description: Date range filter
+        sortBy:
+          type: string
+          enum: [date, name, size, relevance]
+          description: Sort option
+        sortOrder:
+          type: string
+          enum: [asc, desc]
+          description: Sort order
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        limit:
+          type: integer
+          description: Number of items per page
+        total:
+          type: integer
+          description: Total number of items
+        pages:
+          type: integer
+          description: Total number of pages
+        hasNext:
+          type: boolean
+          description: Whether there is a next page
+        hasPrev:
+          type: boolean
+          description: Whether there is a previous page
+
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+        details:
+          type: object
+          description: Additional error details

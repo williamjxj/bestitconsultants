@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from 'next/image'
+import { OptimizedImage } from '@/components/ui/optimized-image'
 
 interface TeamMemberAvatarProps {
   src: string
@@ -7,6 +7,7 @@ interface TeamMemberAvatarProps {
   width?: number
   height?: number
   className?: string
+  priority?: boolean
 }
 
 export const TeamMemberAvatar: React.FC<TeamMemberAvatarProps> = ({
@@ -15,17 +16,24 @@ export const TeamMemberAvatar: React.FC<TeamMemberAvatarProps> = ({
   width = 64,
   height = 64,
   className = 'rounded-full object-cover',
+  priority = false,
 }) => {
   return (
-    <Image
+    <OptimizedImage
       src={src}
       alt={alt}
       width={width}
       height={height}
+      priority={priority}
       className={className}
-      priority={false}
-      placeholder='blur'
-      blurDataURL='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k='
+      animation={{
+        type: 'scale',
+        duration: 0.6,
+      }}
+      hover={{
+        scale: 1.1,
+        duration: 0.3,
+      }}
     />
   )
 }

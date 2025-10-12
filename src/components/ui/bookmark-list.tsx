@@ -12,7 +12,6 @@ import {
   ShoppingBag,
 } from 'lucide-react'
 import Image from 'next/image'
-import { useState } from 'react'
 
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
@@ -144,46 +143,14 @@ const getCategoryColor = (category: string) => {
   }
 }
 
-const getFaviconUrl = (url: string) => {
-  try {
-    // Extract domain using regex to avoid URL constructor issues
-    const domain = url.replace(/^https?:\/\//, '').split('/')[0]
-    return `https://www.google.com/s2/favicons?domain=${domain}&sz=32`
-  } catch {
-    return null
-  }
-}
-
-// Screenshot API service for website thumbnails
-const getScreenshotUrl = (url: string) => {
-  try {
-    // Using a free screenshot API service
-    const encodedUrl = encodeURIComponent(url)
-    // Alternative services you can use:
-    // 1. Screenshot API (free tier): https://screenshotapi.net/
-    // 2. ScreenshotMachine: https://screenshotmachine.com/
-    // 3. Htmlcsstoimage: https://htmlcsstoimage.com/
-
-    // Using screenshotapi.net (free tier)
-    return `https://shot.screenshotapi.net/screenshot?token=YOUR_API_TOKEN&url=${encodedUrl}&width=400&height=300&output=image&file_type=png&wait_for_event=load`
-  } catch {
-    return null
-  }
-}
-
-// Fallback placeholder for screenshots
+// Fallback placeholder for screenshots using local images
 const getPlaceholderScreenshot = (category: string) => {
   const placeholders = {
-    Business:
-      'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop&crop=center',
-    'AI/ML':
-      'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop&crop=center',
-    Development:
-      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop&crop=center',
-    'E-commerce':
-      'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop&crop=center',
-    Education:
-      'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&h=300&fit=crop&crop=center',
+    Business: '/imgs/istockphoto-1358835459-612x612.webp',
+    'AI/ML': '/imgs/kling_20251012_1.png',
+    Development: '/imgs/istockphoto-1350198816-612x612.jpg',
+    'E-commerce': '/imgs/istockphoto-1145868161-612x612.webp',
+    Education: '/imgs/istockphoto-2227310361-612x612.webp',
   }
   return (
     placeholders[category as keyof typeof placeholders] ||
@@ -192,43 +159,12 @@ const getPlaceholderScreenshot = (category: string) => {
 }
 
 export default function BookmarkList() {
-  const [faviconErrors, setFaviconErrors] = useState<Set<string>>(new Set())
-  const [screenshotErrors, setScreenshotErrors] = useState<Set<string>>(
-    new Set()
-  )
-
   const handleItemClick = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer')
   }
 
-  const handleFaviconError = (name: string) => {
-    setFaviconErrors(prev => new Set(prev).add(name))
-  }
-
-  const handleScreenshotError = (name: string) => {
-    setScreenshotErrors(prev => new Set(prev).add(name))
-  }
-
   const renderIcon = (website: Website) => {
-    const faviconUrl = getFaviconUrl(website.url)
-    const shouldUseFavicon = faviconUrl && !faviconErrors.has(website.name)
-
-    if (shouldUseFavicon) {
-      return (
-        <div className='relative w-10 h-10 rounded-xl overflow-hidden bg-white shadow-md flex items-center justify-center border border-gray-200'>
-          <Image
-            src={faviconUrl || '/placeholder.svg'}
-            alt=''
-            width={32}
-            height={32}
-            className='w-8 h-8 object-cover'
-            onError={() => handleFaviconError(website.name)}
-          />
-        </div>
-      )
-    }
-
-    // Use meaningful icon if favicon fails or doesn't exist
+    // Always use the meaningful icon instead of trying to fetch external favicons
     const IconComponent = website.icon || Globe
     return (
       <div className='w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-md'>
@@ -238,20 +174,17 @@ export default function BookmarkList() {
   }
 
   const renderScreenshot = (website: Website) => {
-    const screenshotUrl = getScreenshotUrl(website.url)
+    // Always use local placeholder images instead of external screenshots
     const placeholderUrl = getPlaceholderScreenshot(website.category)
-    const shouldUseScreenshot =
-      screenshotUrl && !screenshotErrors.has(website.name)
 
     return (
       <div className='relative w-24 h-18 rounded-lg overflow-hidden bg-gray-100 border border-gray-200 shadow-sm flex-shrink-0'>
         <Image
-          src={shouldUseScreenshot ? screenshotUrl : placeholderUrl}
+          src={placeholderUrl}
           alt={`Screenshot of ${website.name}`}
           width={96}
           height={72}
           className='w-full h-full object-cover'
-          onError={() => handleScreenshotError(website.name)}
         />
         <div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent' />
       </div>

@@ -156,6 +156,247 @@ Retrieves all service categories with their details.
 }
 ```
 
+## Media API
+
+### GET /api/media/assets
+
+Retrieves all media assets with optimization and metadata.
+
+**Query Parameters**:
+
+- `category?: string` - Filter by media category
+- `format?: string` - Filter by image format (webp, avif, jpeg, png)
+- `priority?: boolean` - Filter by priority level
+- `page?: number` - Page number for pagination (default: 1)
+- `limit?: number` - Items per page (default: 20)
+
+**Response**:
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "hero-image-1",
+      "src": "/imgs/istockphoto-1212876953-612x612.jpg",
+      "alt": "Modern technology and innovation workspace with multiple monitors and collaborative environment",
+      "width": 1920,
+      "height": 1080,
+      "format": "webp",
+      "category": "hero",
+      "priority": true,
+      "loading": "eager",
+      "seoMetadata": {
+        "title": "Hero Image - Modern Technology Workspace",
+        "description": "Modern technology and innovation workspace with multiple monitors and collaborative environment",
+        "keywords": ["technology", "workspace", "innovation", "collaboration"],
+        "structuredData": {
+          "@type": "ImageObject",
+          "url": "/imgs/istockphoto-1212876953-612x612.jpg",
+          "caption": "Modern technology and innovation workspace with multiple monitors and collaborative environment",
+          "description": "Modern technology and innovation workspace with multiple monitors and collaborative environment"
+        }
+      },
+      "accessibility": {
+        "altText": "Modern technology and innovation workspace with multiple monitors and collaborative environment",
+        "ariaLabel": "Hero image showing modern technology workspace",
+        "role": "img"
+      },
+      "animation": {
+        "type": "fade",
+        "duration": 0.6,
+        "delay": 0
+      }
+    }
+  ],
+  "meta": {
+    "total": 15,
+    "page": 1,
+    "limit": 20
+  }
+}
+```
+
+### POST /api/media/assets
+
+Creates a new media asset with optimization and metadata.
+
+**Request Body**:
+
+```json
+{
+  "src": "/imgs/new-image.jpg",
+  "alt": "Description of the new image",
+  "width": 800,
+  "height": 600,
+  "category": "gallery",
+  "priority": false,
+  "seoMetadata": {
+    "title": "New Image",
+    "description": "Description of the new image",
+    "keywords": ["new", "image", "gallery"]
+  },
+  "accessibility": {
+    "altText": "Description of the new image",
+    "ariaLabel": "New image in gallery"
+  },
+  "animation": {
+    "type": "slide",
+    "duration": 0.6
+  }
+}
+```
+
+**Response**:
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "new-image-1",
+    "src": "/imgs/new-image.jpg",
+    "alt": "Description of the new image",
+    "width": 800,
+    "height": 600,
+    "format": "webp",
+    "category": "gallery",
+    "priority": false,
+    "loading": "lazy",
+    "seoMetadata": {
+      "title": "New Image",
+      "description": "Description of the new image",
+      "keywords": ["new", "image", "gallery"],
+      "structuredData": {
+        "@type": "ImageObject",
+        "url": "/imgs/new-image.jpg",
+        "caption": "Description of the new image",
+        "description": "Description of the new image"
+      }
+    },
+    "accessibility": {
+      "altText": "Description of the new image",
+      "ariaLabel": "New image in gallery",
+      "role": "img"
+    },
+    "animation": {
+      "type": "slide",
+      "duration": 0.6,
+      "delay": 0
+    }
+  }
+}
+```
+
+### GET /api/media/galleries
+
+Retrieves all image galleries with their configurations.
+
+**Response**:
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "portfolio-gallery",
+      "name": "Portfolio Gallery",
+      "description": "Collection of our latest projects and case studies",
+      "images": [
+        {
+          "id": "project-1",
+          "src": "/imgs/istockphoto-1350198816-612x612.jpg",
+          "alt": "AI-powered project showcase",
+          "width": 612,
+          "height": 612,
+          "format": "webp",
+          "category": "portfolio"
+        }
+      ],
+      "layout": "grid",
+      "columns": 3,
+      "gap": 16,
+      "animation": {
+        "type": "stagger",
+        "duration": 0.6,
+        "delay": 0.1
+      },
+      "pagination": {
+        "enabled": true,
+        "itemsPerPage": 12
+      },
+      "filter": {
+        "enabled": true,
+        "categories": ["portfolio", "case-studies", "team"]
+      }
+    }
+  ],
+  "meta": {
+    "total": 3
+  }
+}
+```
+
+### POST /api/media/optimize
+
+Optimizes images for different formats and sizes.
+
+**Request Body**:
+
+```json
+{
+  "src": "/imgs/original-image.jpg",
+  "formats": ["webp", "avif"],
+  "sizes": [640, 800, 1200],
+  "quality": 80,
+  "progressive": true
+}
+```
+
+**Response**:
+
+```json
+{
+  "success": true,
+  "data": {
+    "original": {
+      "src": "/imgs/original-image.jpg",
+      "size": 2048576,
+      "format": "jpeg"
+    },
+    "optimized": [
+      {
+        "src": "/imgs/original-image-640w.webp",
+        "size": 245760,
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "quality": 80
+      },
+      {
+        "src": "/imgs/original-image-800w.webp",
+        "size": 384000,
+        "format": "webp",
+        "width": 800,
+        "height": 600,
+        "quality": 80
+      },
+      {
+        "src": "/imgs/original-image-1200w.webp",
+        "size": 691200,
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "quality": 80
+      }
+    ],
+    "savings": {
+      "percentage": 62.5,
+      "bytes": 1280000
+    }
+  }
+}
+```
+
 ## Content API
 
 ### GET /api/content
