@@ -1,0 +1,356 @@
+openapi: 3.0.3
+info:
+  title: Services API
+  description: API for managing service categories and content
+  version: 1.0.0
+  contact:
+    name: BestIT Consulting
+    email: contact@bestitconsulting.com
+
+servers:
+  - url: https://api.bestitconsulting.com/v1
+    description: Production server
+  - url: https://staging-api.bestitconsulting.com/v1
+    description: Staging server
+
+paths:
+  /services:
+    get:
+      summary: Get all service categories
+      description: Retrieve all active service categories with SEO content
+      tags:
+        - Services
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ServiceCategory'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        example: 5
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /services/{id}:
+    get:
+      summary: Get service category by ID
+      description: Retrieve a specific service category with full details
+      tags:
+        - Services
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Service category ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/ServiceCategory'
+        '404':
+          description: Service category not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /content:
+    get:
+      summary: Get content sections
+      description: Retrieve all active content sections for pages
+      tags:
+        - Content
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: ['hero', 'highlight', 'testimonial', 'cta']
+          description: Filter by content type
+        - name: page
+          in: query
+          schema:
+            type: string
+          description: Filter by page identifier
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ContentSection'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /seo:
+    get:
+      summary: Get SEO metadata
+      description: Retrieve SEO metadata for all pages
+      tags:
+        - SEO
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: string
+          description: Page identifier
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SEOMetadata'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    ServiceCategory:
+      type: object
+      required:
+        - id
+        - name
+        - seoTagline
+        - description
+        - benefits
+        - technologies
+        - useCases
+        - order
+        - isActive
+      properties:
+        id:
+          type: string
+          example: 'ai-ml-solutions'
+        name:
+          type: string
+          example: 'AI & Machine Learning Solutions'
+        seoTagline:
+          type: string
+          example: 'Harness AI to automate workflows, unlock insights, and innovate faster.'
+        description:
+          type: string
+          example: 'Custom AI/LLM applications, MLOps, ChatBI, and enterprise AI solutions'
+        benefits:
+          type: array
+          items:
+            type: string
+          example:
+            [
+              'Automated workflows',
+              'Data-driven insights',
+              'Faster innovation',
+              'Cost reduction',
+            ]
+        technologies:
+          type: array
+          items:
+            type: string
+          example:
+            [
+              'LangChain',
+              'Hugging Face',
+              'RAG',
+              'TensorFlow',
+              'PyTorch',
+              'MLOps',
+            ]
+        useCases:
+          type: array
+          items:
+            type: string
+          example:
+            [
+              'ChatBI',
+              'Document processing',
+              'Predictive analytics',
+              'Automated decision making',
+            ]
+        pricing:
+          type: string
+          example: 'Contact for custom pricing'
+        icon:
+          type: string
+          format: uri
+          example: '/icons/ai-ml.svg'
+        order:
+          type: number
+          example: 1
+        isActive:
+          type: boolean
+          example: true
+
+    ContentSection:
+      type: object
+      required:
+        - id
+        - type
+        - title
+        - content
+        - order
+        - isActive
+      properties:
+        id:
+          type: string
+          example: 'hero-homepage'
+        type:
+          type: string
+          enum: ['hero', 'highlight', 'testimonial', 'cta']
+          example: 'hero'
+        title:
+          type: string
+          example: 'Empowering Businesses with Elite IT Consulting & AI Innovation'
+        subtitle:
+          type: string
+          example: 'Global IT Outsourcing & AI Consulting – Canadian Quality, Global Talent'
+        content:
+          type: string
+          example: 'Transform your business with our elite team of AI experts and full-stack developers'
+        ctaText:
+          type: string
+          example: 'Get a Free Consultation'
+        ctaLink:
+          type: string
+          example: '/contact'
+        background:
+          type: string
+          example: 'gradient-blue-indigo'
+        order:
+          type: number
+          example: 1
+        isActive:
+          type: boolean
+          example: true
+
+    SEOMetadata:
+      type: object
+      required:
+        - id
+        - page
+        - title
+        - description
+        - keywords
+      properties:
+        id:
+          type: string
+          example: 'homepage-seo'
+        page:
+          type: string
+          example: 'home'
+        title:
+          type: string
+          example: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting'
+        description:
+          type: string
+          example: 'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation. Canadian Quality, Global Talent.'
+        keywords:
+          type: array
+          items:
+            type: string
+          example:
+            [
+              'IT Outsourcing Canada',
+              'AI Consulting Services',
+              'Global Software Development',
+            ]
+        ogTitle:
+          type: string
+          example: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting'
+        ogDescription:
+          type: string
+          example: 'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation.'
+        ogImage:
+          type: string
+          format: uri
+          example: '/images/og-homepage.jpg'
+        canonicalUrl:
+          type: string
+          format: uri
+          example: 'https://bestitconsulting.com'
+        structuredData:
+          type: object
+          description: JSON-LD structured data
+
+    Error:
+      type: object
+      required:
+        - success
+        - message
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: 'Service category not found'
+        code:
+          type: string
+          example: 'SERVICE_CATEGORY_NOT_FOUND'
+        details:
+          type: object
+          description: Additional error details
+
+tags:
+  - name: Services
+    description: Service category management
+  - name: Content
+    description: Content section management
+  - name: SEO
+    description: SEO metadata management

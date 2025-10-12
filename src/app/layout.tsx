@@ -3,6 +3,7 @@ import { Inter, Poppins, Roboto } from 'next/font/google'
 
 import Footer from '@/components/common/Footer'
 import Navbar from '@/components/common/Navbar'
+import { StructuredData } from '@/components/seo/StructuredData'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 
 // Initialize fonts with Latin subset
@@ -28,9 +29,33 @@ const roboto = Roboto({
 
 // Metadata for the website (SEO purposes)
 export const metadata = {
-  title: 'BestITConsulting Ltd - Software Outsourcing Solutions',
+  title: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting',
   description:
-    'Expert full-stack software development and outsourcing services. JS, TS, Python, Java, .NET and more. Located in Vancouver, Canada with a branch in East Asia.',
+    'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation. Canadian Quality, Global Talent.',
+  keywords: [
+    'IT Outsourcing Canada',
+    'AI Consulting Services',
+    'Global Software Development',
+    'Elite IT Consulting',
+    'Fortune 500 Experience',
+  ],
+  openGraph: {
+    title: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting',
+    description:
+      'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation.',
+    images: ['/images/og-homepage.jpg'],
+    url: 'https://bestitconsulting.com',
+    siteName: 'BestIT Consulting',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting',
+    description:
+      'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation.',
+    images: ['/images/og-homepage.jpg'],
+  },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -76,6 +101,7 @@ export default function RootLayout({
               {children} {/* Page content will be rendered here */}
             </main>
             <Footer /> {/* Site footer */}
+            <StructuredData /> {/* SEO structured data */}
           </div>
         </LanguageProvider>
       </body>

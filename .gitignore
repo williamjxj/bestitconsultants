@@ -59,4 +59,25 @@ node_modules/
 
 # Task files
 # tasks.json
-# tasks/ 
+# tasks/
+
+# Performance and analysis files
+.next/analyze/
+.next/static/chunks/
+.next/static/css/
+.next/static/js/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Bundle analysis
+.next/analyze/
+
+# Documentation build
+docs/build/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/

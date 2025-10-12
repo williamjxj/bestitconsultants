@@ -37,25 +37,27 @@ export default function Footer() {
   const getFallbackTestimonials = (): Testimonial[] => [
     {
       id: 'fallback-1',
-      quote: 'AI-assisted design completely changed our process. We now explore more ideas in less time.',
+      quote:
+        'AI-assisted design completely changed our process. We now explore more ideas in less time.',
       author: 'Ms. Zhang',
       title: 'Textile Director',
       company: 'Shanghai Textile Co.',
       isVisible: true,
       order: 1,
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
     },
     {
       id: 'fallback-2',
-      quote: 'The team\'s responsiveness is impressive. They adapted designs to our needs instantly.',
+      quote:
+        "The team's responsiveness is impressive. They adapted designs to our needs instantly.",
       author: 'Ms. Wang',
       title: 'Hotel Procurement',
       company: 'Luxury Hotels Group',
       isVisible: true,
       order: 2,
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
     },
     {
       id: 'fallback-3',
@@ -66,8 +68,8 @@ export default function Footer() {
       isVisible: true,
       order: 3,
       createdAt: new Date(),
-      updatedAt: new Date()
-    }
+      updatedAt: new Date(),
+    },
   ]
 
   return (
@@ -81,7 +83,10 @@ export default function Footer() {
           {isLoading ? (
             <div className='grid md:grid-cols-3 gap-6 max-w-6xl mx-auto'>
               {[...Array(3)].map((_, i) => (
-                <div key={i} className='bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20'>
+                <div
+                  key={i}
+                  className='bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20'
+                >
                   <div className='h-4 bg-gray-300 rounded animate-pulse mb-4'></div>
                   <div className='h-4 bg-gray-300 rounded animate-pulse mb-4'></div>
                   <div className='h-4 bg-gray-300 rounded animate-pulse w-3/4'></div>
@@ -119,11 +124,27 @@ export default function Footer() {
               BestITConsulting
             </h3>
             <p className='text-gray-300 mb-4'>
-              Global IT Outsourcing & AI Consulting – Canadian Quality, Global Talent.
+              Elite Enterprise Architects. Startup Speed. Get Fortune 500
+              Software Expertise Without the Overhead.
             </p>
-            <p className='text-sm text-gray-400'>
-              Trusted by enterprises worldwide for AI innovation and IT outsourcing.
+            <p className='text-sm text-gray-400 mb-4'>
+              Trusted by enterprises worldwide for AI innovation and IT
+              outsourcing. 20+ years Fortune 500 experience with global talent.
             </p>
+            <div className='flex flex-wrap gap-2'>
+              <span className='bg-blue-600/20 text-blue-300 px-2 py-1 rounded text-xs'>
+                AI/ML Solutions
+              </span>
+              <span className='bg-blue-600/20 text-blue-300 px-2 py-1 rounded text-xs'>
+                Full-Stack Development
+              </span>
+              <span className='bg-blue-600/20 text-blue-300 px-2 py-1 rounded text-xs'>
+                Cloud Solutions
+              </span>
+              <span className='bg-blue-600/20 text-blue-300 px-2 py-1 rounded text-xs'>
+                Enterprise Systems
+              </span>
+            </div>
           </div>
 
           {/* Contact Information */}
@@ -159,17 +180,41 @@ export default function Footer() {
               Quick Links
             </h4>
             <div className='space-y-2'>
-              <a href='/about' className='block text-gray-300 hover:text-blue-400 transition-colors duration-300'>
+              <a
+                href='/about'
+                className='block text-gray-300 hover:text-blue-400 transition-colors duration-300'
+              >
                 About Us
               </a>
-              <a href='/services' className='block text-gray-300 hover:text-blue-400 transition-colors duration-300'>
+              <a
+                href='/services'
+                className='block text-gray-300 hover:text-blue-400 transition-colors duration-300'
+              >
                 Services
               </a>
-              <a href='/portfolio' className='block text-gray-300 hover:text-blue-400 transition-colors duration-300'>
-                Portfolio
+              <a
+                href='/our-work'
+                className='block text-gray-300 hover:text-blue-400 transition-colors duration-300'
+              >
+                Our Work
               </a>
-              <a href='/team' className='block text-gray-300 hover:text-blue-400 transition-colors duration-300'>
+              <a
+                href='/case-studies'
+                className='block text-gray-300 hover:text-blue-400 transition-colors duration-300'
+              >
+                Case Studies
+              </a>
+              <a
+                href='/team'
+                className='block text-gray-300 hover:text-blue-400 transition-colors duration-300'
+              >
                 Team
+              </a>
+              <a
+                href='/contact'
+                className='block text-gray-300 hover:text-blue-400 transition-colors duration-300'
+              >
+                Contact
               </a>
             </div>
           </div>
@@ -194,9 +239,7 @@ export default function Footer() {
         </div>
 
         <div className='border-t border-gray-700 mt-12 pt-8 text-center text-gray-300'>
-          <p>
-            © {currentYear} Best IT Consulting Inc. All rights reserved.
-          </p>
+          <p>© {currentYear} Best IT Consulting Inc. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -1,0 +1,293 @@
+openapi: 3.0.3
+info:
+  title: Team Profile API
+  description: API for managing team member profiles and prestige projects
+  version: 1.0.0
+  contact:
+    name: BestIT Consulting
+    email: contact@bestitconsulting.com
+
+servers:
+  - url: https://api.bestitconsulting.com/v1
+    description: Production server
+  - url: https://staging-api.bestitconsulting.com/v1
+    description: Staging server
+
+paths:
+  /team:
+    get:
+      summary: Get all team members
+      description: Retrieve all active team member profiles
+      tags:
+        - Team
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TeamMember'
+                  meta:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                        example: 6
+                      page:
+                        type: integer
+                        example: 1
+                      limit:
+                        type: integer
+                        example: 10
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /team/{id}:
+    get:
+      summary: Get team member by ID
+      description: Retrieve a specific team member profile
+      tags:
+        - Team
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Team member ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/TeamMember'
+        '404':
+          description: Team member not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /team/{id}/prestige-projects:
+    get:
+      summary: Get prestige projects for team member
+      description: Retrieve all prestige projects for a specific team member
+      tags:
+        - Team
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Team member ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PrestigeProject'
+        '404':
+          description: Team member not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    TeamMember:
+      type: object
+      required:
+        - id
+        - name
+        - title
+        - location
+        - experience
+        - avatar
+        - bio
+        - expertise
+        - achievements
+        - specializations
+      properties:
+        id:
+          type: string
+          example: 'william-jiang'
+        name:
+          type: string
+          example: 'William Jiang'
+        title:
+          type: string
+          example: 'AI Consultant, Full Stack Engineer'
+        location:
+          type: string
+          example: 'Vancouver, Canada'
+        experience:
+          type: number
+          example: 20
+        avatar:
+          type: string
+          format: uri
+          example: '/images/william-jiang.jpg'
+        bio:
+          type: string
+          example: 'AI Consultant and Full Stack Engineer with 20+ years of global experience in full-stack development, software architecture, and AI-driven solutions.'
+        expertise:
+          type: array
+          items:
+            type: string
+          example:
+            [
+              'AI/ML',
+              'React.js',
+              'Node.js',
+              'Python',
+              'LangChain',
+              'Hugging Face',
+            ]
+        achievements:
+          type: array
+          items:
+            type: string
+          example:
+            [
+              'Significant contributor to award-winning FedEx project',
+              '20+ years global experience',
+            ]
+        specializations:
+          type: array
+          items:
+            type: string
+          example:
+            [
+              'Python-based microservices',
+              'Kafka-driven cloud environments',
+              'AI-assisted development tools',
+            ]
+        certifications:
+          type: array
+          items:
+            type: string
+          example: ['AWS Solutions Architect', 'Microsoft Azure']
+        education:
+          type: string
+          example: "Master's in Computer Science"
+        languages:
+          type: array
+          items:
+            type: string
+          example: ['English', 'Mandarin', 'Cantonese']
+        availability:
+          type: string
+          example: 'Available for new projects'
+        prestigeProjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/PrestigeProject'
+
+    PrestigeProject:
+      type: object
+      required:
+        - id
+        - name
+        - type
+        - description
+        - outcome
+        - technologies
+        - year
+      properties:
+        id:
+          type: string
+          example: 'fedex-project'
+        name:
+          type: string
+          example: 'FedEx Award-Winning Project'
+        type:
+          type: string
+          enum: ['company', 'project', 'award']
+          example: 'project'
+        description:
+          type: string
+          example: 'Led development of award-winning logistics optimization system'
+        outcome:
+          type: string
+          example: 'Significant contributor to award-winning project'
+        technologies:
+          type: array
+          items:
+            type: string
+          example: ['Python', 'Kafka', 'Microservices', 'Cloud']
+        year:
+          type: number
+          example: 2020
+        logo:
+          type: string
+          format: uri
+          example: '/logos/fedex.png'
+        website:
+          type: string
+          format: uri
+          example: 'https://fedex.com'
+
+    Error:
+      type: object
+      required:
+        - success
+        - message
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: 'Team member not found'
+        code:
+          type: string
+          example: 'TEAM_MEMBER_NOT_FOUND'
+        details:
+          type: object
+          description: Additional error details
+
+tags:
+  - name: Team
+    description: Team member profile management

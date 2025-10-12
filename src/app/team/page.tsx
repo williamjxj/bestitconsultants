@@ -2,15 +2,17 @@
 
 import React from 'react'
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { EnhancedTeamProfile } from '@/components/team/EnhancedTeamProfile'
+import { TeamMember } from '@/types/team'
 
-const teamMembers = [
+const teamMembers: TeamMember[] = [
   {
+    id: 'william-jiang',
     name: 'William Jiang',
-    role: 'Founder & CEO',
+    title: 'Founder & CEO',
+    location: 'Vancouver, Canada',
+    experience: 20,
     avatar: '/images/william-jiang.jpg',
-    fallback: 'WJ',
     bio: 'Senior Full-Stack Engineer with 20+ years in software architecture and AI-driven solutions. APEC 2002 award winner for FedEx project. Led major initiatives at Xperi (ML Data Pipelines), Credit Suisse (real-time stock integration), HSBC (banking services), WebMD (Big Data pipelines), and BestBuy Canada (e-commerce).',
     expertise: [
       'AI & Machine Learning (MLOps, CUDA, Kubeflow)',
@@ -26,12 +28,43 @@ const teamMembers = [
       '20+ years Fortune 500 experience',
       'Global experience: US, Canada, China, Singapore',
     ],
+    specializations: [
+      'AI & Machine Learning (MLOps, CUDA, Kubeflow)',
+      'React.js, Node.js, Python, Java',
+      'Kubernetes, Docker, AWS, MLOps',
+      'Microservices, GraphQL, MongoDB',
+      'LangChain, LlamaIndex, Hugging Face',
+      'Kafka, ElasticSearch, Prometheus',
+    ],
+    prestigeProjects: [
+      {
+        id: 'fedex-project',
+        name: 'FedEx Award-Winning Project',
+        type: 'project',
+        description:
+          'Led development of award-winning logistics optimization system',
+        outcome: 'APEC 2002 accolade - FedEx Global Project',
+        technologies: ['Python', 'Kafka', 'Microservices', 'Cloud'],
+        year: 2002,
+      },
+      {
+        id: 'xperi-ml-pipelines',
+        name: 'Xperi ML Data Pipelines',
+        type: 'company',
+        description: 'Developed machine learning data pipelines for Xperi',
+        outcome: 'Significant contributor to ML infrastructure',
+        technologies: ['Python', 'MLOps', 'Kubernetes', 'AWS'],
+        year: 2020,
+      },
+    ],
   },
   {
+    id: 'mingchun-hu',
     name: 'Mingchun Hu',
-    role: 'Mobile Development Specialist',
+    title: 'Mobile Development Specialist',
+    location: 'Vancouver, Canada',
+    experience: 8,
     avatar: '/images/mingchun-hu.jpg',
-    fallback: 'MH',
     bio: 'Mobile development expert with extensive experience in iOS and Android app development. Specializes in cross-platform solutions and native mobile applications.',
     expertise: [
       'React Native, Flutter',
@@ -47,12 +80,23 @@ const teamMembers = [
       '1M+ total app downloads',
       'Mobile development certifications',
     ],
+    specializations: [
+      'React Native, Flutter',
+      'iOS (Swift, Objective-C)',
+      'Android (Kotlin, Java)',
+      'Mobile UI/UX Design',
+      'App Store Optimization',
+      'Push Notifications, Analytics',
+    ],
+    prestigeProjects: [],
   },
   {
+    id: 'lewis-liu',
     name: 'Lewis Liu',
-    role: 'Senior Full-Stack Developer',
+    title: 'Senior Full-Stack Developer',
+    location: 'Vancouver, Canada',
+    experience: 12,
     avatar: '/images/lewis-liu.jpg',
-    fallback: 'LL',
     bio: 'Experienced full-stack developer with expertise in modern web technologies and cloud solutions. Specializes in building scalable applications and leading development teams.',
     expertise: [
       'React.js, Vue.js, Angular',
@@ -68,12 +112,23 @@ const teamMembers = [
       'Certified AWS Solutions Architect',
       'Open source contributor',
     ],
+    specializations: [
+      'React.js, Vue.js, Angular',
+      'Node.js, Express, FastAPI',
+      'AWS, Azure, Google Cloud',
+      'Docker, Kubernetes',
+      'PostgreSQL, MongoDB, Redis',
+      'GraphQL, REST APIs',
+    ],
+    prestigeProjects: [],
   },
   {
+    id: 'shamin-yang',
     name: 'Shamin Yang',
-    role: '.NET Architecture Specialist',
+    title: '.NET Architecture Specialist',
+    location: 'Vancouver, Canada',
+    experience: 20,
     avatar: '/images/shaming-yang.jpeg',
-    fallback: 'SY',
     bio: '20+ years Microsoft technology expert with extensive Fortune 500 experience. Led major projects at HSBC (Transformers ETL Platform), IBM (Tiffany e-Commerce), HP (GM applications), and EPAM (Credit Suisse Alpha). Multiple certifications including Google Cloud Architect and DevOps Master.',
     expertise: [
       'ASP.NET, .NET Core, Blazor, WPF, UWP',
@@ -83,27 +138,49 @@ const teamMembers = [
       'DevOps: Git, TeamCity, Octopus, PowerShell',
       'System Integration: BizTalk, MSMQ, ETL',
     ],
-    certifications: [
+    achievements: [
       'Google Cloud Architect & Professional Developer (2024)',
       'HSBC Enterprise Engineering Programme (2024)',
       'DevOps Master Certified (2020)',
       'PMP Certified (2011)',
       'RPA Platform Certified: UiPath, BluePrism (2018)',
     ],
-    majorProjects: [
-      'HSBC Transformers ETL Platform (2020-Present)',
-      'Credit Suisse Alpha Trading System (EPAM)',
-      'Tiffany Global e-Commerce Platform (IBM)',
-      'Netherlands Government Energy Systems (IBM)',
-      'GM Asset Management Systems (HP)',
-      'Huawei MateBook Assistant (iSoftstone)',
+    specializations: [
+      'ASP.NET, .NET Core, Blazor, WPF, UWP',
+      'Azure, Google Cloud, AWS Integration',
+      'RPA: UiPath, BluePrism, WorkFusion',
+      'Database: SQL Server, Oracle, MongoDB',
+      'DevOps: Git, TeamCity, Octopus, PowerShell',
+      'System Integration: BizTalk, MSMQ, ETL',
+    ],
+    prestigeProjects: [
+      {
+        id: 'hsbc-transformers',
+        name: 'HSBC Transformers ETL Platform',
+        type: 'company',
+        description: 'Led development of enterprise ETL platform for HSBC',
+        outcome: 'Significant contributor to enterprise data transformation',
+        technologies: ['.NET', 'SQL Server', 'Azure', 'ETL'],
+        year: 2020,
+      },
+      {
+        id: 'credit-suisse-alpha',
+        name: 'Credit Suisse Alpha Trading System',
+        type: 'company',
+        description: 'Developed trading system for Credit Suisse',
+        outcome: 'Key contributor to trading platform',
+        technologies: ['.NET', 'C#', 'SQL Server', 'Financial APIs'],
+        year: 2018,
+      },
     ],
   },
   {
+    id: 'wayne-li',
     name: 'Wayne Li',
-    role: 'DevOps & Cloud Engineer',
+    title: 'DevOps & Cloud Engineer',
+    location: 'Vancouver, Canada',
+    experience: 10,
     avatar: '/images/wayne-li.jpg',
-    fallback: 'WL',
     bio: 'DevOps and cloud infrastructure specialist with expertise in automation, monitoring, and scalable system architecture. Focuses on improving development workflows and system reliability.',
     expertise: [
       'AWS, Azure, Google Cloud',
@@ -119,12 +196,23 @@ const teamMembers = [
       'Certified Kubernetes Administrator',
       'Cost optimization savings of $100K+',
     ],
+    specializations: [
+      'AWS, Azure, Google Cloud',
+      'Docker, Kubernetes, Terraform',
+      'CI/CD Pipelines (Jenkins, GitLab)',
+      'Monitoring (Prometheus, Grafana)',
+      'Infrastructure as Code',
+      'Security & Compliance',
+    ],
+    prestigeProjects: [],
   },
   {
+    id: 'james-cheung',
     name: 'James Cheung',
-    role: 'Strategic Development Partner',
+    title: 'Strategic Development Partner',
+    location: 'Chengdu, China',
+    experience: 15,
     avatar: '/images/james-cheung.jpeg',
-    fallback: 'CZ',
     bio: 'Professional software development company with teams in Chengdu and Hangzhou. Specializes in OA systems, engineering cost management, mobile development, and government solutions. Serves Fortune 500 clients, government agencies, and major engineering companies.',
     expertise: [
       'OA Systems (Task, Project, Asset Management)',
@@ -134,22 +222,22 @@ const teamMembers = [
       'Enterprise ERP, MES, EKP Systems',
       'Supply Chain Finance Platforms',
     ],
-    teamComposition: [
-      'Web Developers: 5',
-      'Java Developers: 7',
-      '.NET Developers: 2',
-      'Mobile Developers: 4 (Android: 2, iOS: 2)',
-      'UI Designers: 1',
-      'Product & Sales: 2',
-      'Support Team: 2',
-    ],
-    notableClients: [
+    achievements: [
       'Government Agencies & Military Units',
       'Beijing Science Press',
       'Chongqing University of Technology',
       'Multiple Engineering Companies',
       'Aerospace Industry Partners',
     ],
+    specializations: [
+      'OA Systems (Task, Project, Asset Management)',
+      'Engineering Cost Management Systems',
+      'Mobile Development (Android/iOS, React Native)',
+      'Embedded Systems & Hardware Solutions',
+      'Enterprise ERP, MES, EKP Systems',
+      'Supply Chain Finance Platforms',
+    ],
+    prestigeProjects: [],
   },
 ]
 
@@ -161,127 +249,9 @@ const TeamPage = () => {
         Meet the seasoned professionals with Fortune 500 experience who drive
         our success.
       </p>
-      <div className='grid grid-cols-1 lg:grid-cols-1 gap-8 max-w-6xl mx-auto'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto'>
         {teamMembers.map(member => (
-          <Card key={member.name} className='p-6'>
-            <CardHeader className='text-center'>
-              <Avatar className='w-32 h-32 mx-auto mb-4'>
-                <AvatarImage src={member.avatar} />
-                <AvatarFallback className='text-2xl'>
-                  {member.fallback}
-                </AvatarFallback>
-              </Avatar>
-              <CardTitle className='text-2xl'>{member.name}</CardTitle>
-              <p className='text-muted-foreground text-lg'>{member.role}</p>
-            </CardHeader>
-            <CardContent className='space-y-6'>
-              <p className='text-center text-lg leading-relaxed'>
-                {member.bio}
-              </p>
-
-              <div className='text-center'>
-                <h4 className='font-semibold mb-3 text-lg'>
-                  Technical Expertise
-                </h4>
-                <div className='flex flex-wrap justify-center gap-2 mb-4'>
-                  {member.expertise.map(skill => (
-                    <span
-                      key={skill}
-                      className='bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full'
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {member.achievements && (
-                <div className='text-center'>
-                  <h4 className='font-semibold mb-3 text-lg'>
-                    Key Achievements
-                  </h4>
-                  <div className='flex flex-wrap justify-center gap-2 mb-4'>
-                    {member.achievements.map(achievement => (
-                      <span
-                        key={achievement}
-                        className='bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full'
-                      >
-                        {achievement}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {member.teamComposition && (
-                <div className='text-center'>
-                  <h4 className='font-semibold mb-3 text-lg'>
-                    Team Composition
-                  </h4>
-                  <div className='flex flex-wrap justify-center gap-2 mb-4'>
-                    {member.teamComposition.map(role => (
-                      <span
-                        key={role}
-                        className='bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full'
-                      >
-                        {role}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {member.certifications && (
-                <div className='text-center'>
-                  <h4 className='font-semibold mb-3 text-lg'>Certifications</h4>
-                  <div className='flex flex-wrap justify-center gap-2 mb-4'>
-                    {member.certifications.map(cert => (
-                      <span
-                        key={cert}
-                        className='bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full'
-                      >
-                        {cert}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {member.majorProjects && (
-                <div className='text-center'>
-                  <h4 className='font-semibold mb-3 text-lg'>Major Projects</h4>
-                  <div className='flex flex-wrap justify-center gap-2 mb-4'>
-                    {member.majorProjects.map(project => (
-                      <span
-                        key={project}
-                        className='bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full'
-                      >
-                        {project}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {member.notableClients && (
-                <div className='text-center'>
-                  <h4 className='font-semibold mb-3 text-lg'>
-                    Notable Clients
-                  </h4>
-                  <div className='flex flex-wrap justify-center gap-2'>
-                    {member.notableClients.map(client => (
-                      <span
-                        key={client}
-                        className='bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full'
-                      >
-                        {client}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </CardContent>
-          </Card>
+          <EnhancedTeamProfile key={member.id} member={member} />
         ))}
       </div>
     </div>

@@ -1,70 +1,69 @@
-/**
- * Input validation utilities using Zod
- */
-
-// Temporary mock implementation until dependencies are installed
-let z: any;
-
-try {
-  z = require('zod').z;
-} catch (error) {
-  console.warn('Zod not available, using mock implementation');
-  // Mock implementation
-  z = {
-    object: (schema: any) => ({
-      safeParse: (data: any) => ({ success: true, data })
-    }),
-    array: (item: any) => item,
-    string: () => ({
-      url: () => ({ optional: () => {} })
-    }),
-    number: () => ({
-      int: () => ({
-        min: () => ({
-          max: () => ({
-            optional: () => ({
-              default: () => {}
-            })
-          })
-        })
-      })
-    })
-  };
+export function validateTeamMember(data: any): boolean {
+  return (
+    data &&
+    typeof data.id === 'string' &&
+    typeof data.name === 'string' &&
+    typeof data.title === 'string' &&
+    typeof data.location === 'string' &&
+    typeof data.experience === 'number' &&
+    typeof data.avatar === 'string' &&
+    typeof data.bio === 'string' &&
+    Array.isArray(data.expertise) &&
+    Array.isArray(data.achievements) &&
+    Array.isArray(data.specializations) &&
+    Array.isArray(data.prestigeProjects)
+  )
 }
 
-// Scrape request validation
-export const scrapeRequestSchema = z.object({
-  sources: z.array(z.string().url()).optional(),
-  count: z.number().int().min(1).max(20).optional().default(8)
-})
-
-// Generic validation function
-export function validate<T>(schema: any, data: any): {
-  success: boolean
-  data?: T
-  errors?: string[]
-} {
-  try {
-    const result = schema.safeParse(data)
-    if (result.success) {
-      return {
-        success: true,
-        data: result.data
-      }
-    } else {
-      return {
-        success: false,
-        errors: result.error.errors.map((e: any) => `${e.path.join('.')}: ${e.message}`)
-      }
-    }
-  } catch (error) {
-    return {
-      success: false,
-      errors: [error instanceof Error ? error.message : 'Validation error']
-    }
-  }
+export function validateCaseStudy(data: any): boolean {
+  return (
+    data &&
+    typeof data.id === 'string' &&
+    typeof data.title === 'string' &&
+    typeof data.challenge === 'string' &&
+    typeof data.solution === 'string' &&
+    typeof data.result === 'string' &&
+    Array.isArray(data.metrics) &&
+    Array.isArray(data.technologies) &&
+    typeof data.client === 'string' &&
+    typeof data.category === 'string'
+  )
 }
 
-export function validateScrapeRequest(data: any) {
-  return validate(scrapeRequestSchema, data)
+export function validateServiceCategory(data: any): boolean {
+  return (
+    data &&
+    typeof data.id === 'string' &&
+    typeof data.name === 'string' &&
+    typeof data.seoTagline === 'string' &&
+    typeof data.description === 'string' &&
+    Array.isArray(data.benefits) &&
+    Array.isArray(data.technologies) &&
+    Array.isArray(data.useCases) &&
+    typeof data.order === 'number' &&
+    typeof data.isActive === 'boolean'
+  )
+}
+
+export function validateContentSection(data: any): boolean {
+  return (
+    data &&
+    typeof data.id === 'string' &&
+    typeof data.type === 'string' &&
+    typeof data.title === 'string' &&
+    typeof data.content === 'string' &&
+    typeof data.order === 'number' &&
+    typeof data.isActive === 'boolean'
+  )
+}
+
+export function validateSEOMetadata(data: any): boolean {
+  return (
+    data &&
+    typeof data.id === 'string' &&
+    typeof data.page === 'string' &&
+    typeof data.title === 'string' &&
+    typeof data.description === 'string' &&
+    Array.isArray(data.keywords)
+  )
 }

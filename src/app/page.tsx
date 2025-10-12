@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion'
 import AboutSummary from '@/components/home/AboutSummary'
 import ContactSnippet from '@/components/home/ContactSnippet'
-import HeroSection from '@/components/home/HeroSection'
+import { EnhancedHeroSection } from '@/components/home/EnhancedHeroSection'
+import { QuickHighlights } from '@/components/home/QuickHighlights'
 import PortfolioPreview from '@/components/home/PortfolioPreview'
 import ServicesSummary from '@/components/home/ServicesSummary'
 
@@ -17,7 +18,17 @@ export default function HomePage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <HeroSection />
+        <EnhancedHeroSection />
+      </motion.div>
+
+      {/* Quick highlights section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <QuickHighlights />
       </motion.div>
 
       {/* AboutSummary section: Brief overview of the company */}
