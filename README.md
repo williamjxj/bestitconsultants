@@ -38,7 +38,9 @@ src/
 │   │   ├── case-studies/  # Case studies API
 │   │   ├── services/      # Services API
 │   │   ├── content/       # Content API
-│   │   └── seo/           # SEO metadata API
+│   │   ├── seo/           # SEO metadata API
+│   │   ├── images/        # Image proxy API
+│   │   └── contact/       # Contact form API
 │   ├── case-studies/      # Case studies page
 │   ├── contact/           # Contact page
 │   ├── our-work/          # Our work showcase
@@ -56,7 +58,7 @@ src/
 │   └── ui/               # Base UI components
 ├── contexts/             # React contexts
 ├── data/                 # Static data fixtures
-├── lib/                  # Utilities and translations
+├── lib/                  # Utilities, translations, and core services
 ├── services/             # Data services
 └── types/                # TypeScript type definitions
 
@@ -197,6 +199,18 @@ Comprehensive documentation is available in the `docs/` directory:
 ## 📄 License
 
 This project is proprietary software owned by BestIT Consulting Ltd.
+
+## 🧹 Recent Cleanup
+
+The codebase has been cleaned up to remove unused code and fix issues:
+
+- **Fixed malformed R2 URLs**: Corrected concatenated Cloudflare R2 URLs throughout the codebase
+- **Removed unused scripts**: Cleaned up one-time migration scripts from `/scripts` directory
+- **Removed unused tests**: Eliminated test files that were not configured to run
+- **Removed unused services**: Deleted unused service files like `media-service.ts`
+- **Removed unused lib files**: Cleaned up complex system files that were planned but not
+  implemented
+- **Updated documentation**: Refreshed README and specs to reflect current state
 
 ## 📞 Support
 

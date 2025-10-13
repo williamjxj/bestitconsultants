@@ -5,8 +5,8 @@
 ## Overview
 
 This quickstart guide demonstrates how to implement multiple images and videos throughout the
-website, replacing placeholders with meaningful content from the `R2 bucket static-assets` folder, and adding
-animations and hover effects using Framer Motion and Tailwind CSS.
+website, replacing placeholders with meaningful content from the `R2 bucket static-assets` folder,
+and adding animations and hover effects using Framer Motion and Tailwind CSS.
 
 ## Prerequisites
 
@@ -243,7 +243,7 @@ export function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <OptimizedImage
-        src="https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg"
+        src="https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg"
         alt="Modern technology and innovation workspace with multiple monitors and collaborative environment"
         width={1920}
         height={1080}
@@ -304,7 +304,7 @@ export function AboutSummary() {
             viewport={{ once: true }}
           >
             <OptimizedImage
-              src="https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp"
+              src="https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp"
               alt="Professional team collaboration in modern office environment with diverse team members working together"
               width={612}
               height={612}
@@ -560,19 +560,24 @@ export function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) {
 // src/services/image-mapping.ts
 export const imageMapping = {
   // Homepage images
-  hero: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg',
-  about: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp',
-  services: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1350198816-612x612.jpg',
-  portfolio: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-2163952011-612x612.webp',
+  hero: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg',
+  about: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp',
+  services:
+    'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1350198816-612x612.jpg',
+  portfolio:
+    'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-2163952011-612x612.webp',
 
   // Team images
-  teamCollaboration: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1145868161-612x612.webp',
-  technology: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-2227310361-612x612.webp',
+  teamCollaboration:
+    'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1145868161-612x612.webp',
+  technology:
+    'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-2227310361-612x612.webp',
 
   // Case studies images
-  projectScreenshots: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-492514758-612x612.webp',
-  innovation: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/kling_20251012_1.png',
-  creativity: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/kling_20251012_2.png',
+  projectScreenshots:
+    'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-492514758-612x612.webp',
+  innovation: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/kling_20251012_1.png',
+  creativity: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/kling_20251012_2.png',
 
   // Team member photos
   teamMembers: {

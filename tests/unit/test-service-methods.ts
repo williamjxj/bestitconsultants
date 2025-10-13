@@ -52,7 +52,7 @@ describe('Service Methods Unit Tests', () => {
 
         jest.spyOn(r2Client, 'getObject').mockResolvedValue(mockResponse);
 
-        const result = await imageService.getImage('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
+        const result = await imageService.getImage('https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
 
         expect(result).toEqual(mockResponse);
         expect(r2Client.getObject).toHaveBeenCalledWith('R2 bucket image');
@@ -73,10 +73,10 @@ describe('Service Methods Unit Tests', () => {
 
         jest.spyOn(cacheService, 'getImage').mockResolvedValue(mockCacheResponse);
 
-        const result = await imageService.getImage('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
+        const result = await imageService.getImage('https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
 
         expect(result).toEqual(mockCacheResponse);
-        expect(cacheService.getImage).toHaveBeenCalledWith('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
+        expect(cacheService.getImage).toHaveBeenCalledWith('https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
       });
 
       it('should fallback to local when both R2 and cache fail', async () => {
@@ -95,7 +95,7 @@ describe('Service Methods Unit Tests', () => {
 
         // This would require mocking fs operations
         // For now, we'll test the error handling
-        await expect(imageService.getImage('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg')).rejects.toThrow();
+        await expect(imageService.getImage('https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg')).rejects.toThrow();
       });
     });
 
@@ -103,13 +103,13 @@ describe('Service Methods Unit Tests', () => {
       it('should upload image to R2 successfully', async () => {
         const mockUploadResult = {
           success: true,
-          r2Url: 'https://bucket.r2.cloudflarestorage.comhttps://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg'
+          r2Url: 'https://bucket.r2.cloudflarestorage.comhttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg'
         };
 
         jest.spyOn(r2Client, 'putObject').mockResolvedValue(mockUploadResult);
 
         const result = await imageService.uploadImage(
-          'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+          'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
           Buffer.from('test-data'),
           'image/jpeg'
         );
@@ -129,7 +129,7 @@ describe('Service Methods Unit Tests', () => {
         });
 
         const result = await imageService.uploadImage(
-          'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+          'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
           Buffer.from('test-data'),
           'image/jpeg'
         );
@@ -145,7 +145,7 @@ describe('Service Methods Unit Tests', () => {
         jest.spyOn(cacheService, 'hasImage').mockReturnValue(true);
         // Mock local file check
 
-        const result = await imageService.imageExists('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
+        const result = await imageService.imageExists('https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
 
         expect(result.r2).toBe(true);
         expect(result.cache).toBe(true);
@@ -174,7 +174,7 @@ describe('Service Methods Unit Tests', () => {
     describe('getImage', () => {
       it('should return cached image when available', async () => {
         const mockCacheEntry = {
-          key: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+          key: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
           data: Buffer.from('cached-data'),
           contentType: 'image/jpeg',
           lastModified: new Date(),
@@ -185,21 +185,21 @@ describe('Service Methods Unit Tests', () => {
 
         jest.spyOn(cacheService.cache, 'get').mockReturnValue(mockCacheEntry);
 
-        const result = await cacheService.getImage('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
+        const result = await cacheService.getImage('https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
 
         expect(result).toEqual({
           body: Buffer.from('cached-data'),
           contentType: 'image/jpeg',
           contentLength: 1000,
           lastModified: mockCacheEntry.lastModified,
-          etag: '"https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg"'
+          etag: '"https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg"'
         });
       });
 
       it('should return null when cache miss', async () => {
         jest.spyOn(cacheService.cache, 'get').mockReturnValue(null);
 
-        const result = await cacheService.getImage('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
+        const result = await cacheService.getImage('https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
 
         expect(result).toBeNull());
       });
@@ -217,10 +217,10 @@ describe('Service Methods Unit Tests', () => {
 
         jest.spyOn(cacheService.cache, 'set').mockImplementation(() => {});
 
-        await cacheService.storeImage('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg', mockResponse);
+        await cacheService.storeImage('https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg', mockResponse);
 
         expect(cacheService.cache.set).toHaveBeenCalledWith(
-          'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+          'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
           expect.any(Object)
         );
       });
@@ -264,7 +264,7 @@ describe('Service Methods Unit Tests', () => {
       it('should put object to R2', async () => {
         const mockResult = {
           success: true,
-          r2Url: 'https://bucket.r2.cloudflarestorage.comhttps://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg'
+          r2Url: 'https://bucket.r2.cloudflarestorage.comhttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg'
         };
 
         jest.spyOn(r2Client, 'putObject').mockResolvedValue(mockResult);
@@ -318,9 +318,9 @@ describe('Service Methods Unit Tests', () => {
       it('should migrate single image', async () => {
         jest.spyOn(migrationService, 'migrateSingleImage').mockResolvedValue(undefined);
 
-        await migrationService.migrateSingleImage('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
+        await migrationService.migrateSingleImage('https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
 
-        expect(migrationService.migrateSingleImage).toHaveBeenCalledWith('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
+        expect(migrationService.migrateSingleImage).toHaveBeenCalledWith('https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
       });
     });
 
@@ -347,19 +347,19 @@ describe('Service Methods Unit Tests', () => {
     it('should handle R2 service errors gracefully', async () => {
       jest.spyOn(r2Client, 'getObject').mockRejectedValue(new Error('R2 service unavailable'));
 
-      await expect(imageService.getImage('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg')).rejects.toThrow();
+      await expect(imageService.getImage('https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg')).rejects.toThrow();
     });
 
     it('should handle cache errors gracefully', async () => {
       jest.spyOn(cacheService, 'getImage').mockRejectedValue(new Error('Cache error'));
 
-      await expect(cacheService.getImage('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg')).rejects.toThrow();
+      await expect(cacheService.getImage('https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg')).rejects.toThrow();
     });
 
     it('should handle migration errors gracefully', async () => {
       jest.spyOn(migrationService, 'migrateSingleImage').mockRejectedValue(new Error('Migration failed'));
 
-      await expect(migrationService.migrateSingleImage('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg')).rejects.toThrow();
+      await expect(migrationService.migrateSingleImage('https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg')).rejects.toThrow();
     });
   });
 
@@ -376,7 +376,7 @@ describe('Service Methods Unit Tests', () => {
       jest.spyOn(r2Client, 'getObject').mockResolvedValue(mockResponse);
 
       const promises = Array.from({ length: 10 }, () =>
-        imageService.getImage('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg')
+        imageService.getImage('https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg')
       );
 
       const results = await Promise.all(promises);
@@ -399,7 +399,7 @@ describe('Service Methods Unit Tests', () => {
       jest.spyOn(r2Client, 'getObject').mockResolvedValue(mockResponse);
       jest.spyOn(cacheService, 'storeImage').mockResolvedValue(undefined);
 
-      await imageService.getImage('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
+      await imageService.getImage('https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg');
 
       expect(cacheService.storeImage).toHaveBeenCalled();
     });

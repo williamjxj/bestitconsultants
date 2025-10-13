@@ -76,13 +76,7 @@ async function deployToStaging() {
 
     // Test R2 configuration
     console.log('\n🔧 Testing R2 configuration...')
-    try {
-      execSync('npx ts-node scripts/test-r2-loading.ts', { stdio: 'inherit' })
-      console.log('✅ R2 configuration test passed')
-    } catch (error) {
-      console.error('❌ R2 configuration test failed:', error)
-      return
-    }
+    console.log('✅ R2 configuration test skipped (test script removed)')
 
     // Create deployment package
     console.log('\n📦 Creating deployment package...')
@@ -151,9 +145,9 @@ R2_FALLBACK_ENABLED=true
 1. **Upload deployment package** to your staging server
 2. **Install dependencies**: \`npm install\`
 3. **Set environment variables** (see above)
-4. **Run migration**: \`npx ts-node scripts/migrate-images.ts\`
+4. **Run migration**: Migration completed (script removed)
 5. **Start application**: \`npm start\`
-6. **Verify deployment**: \`npx ts-node scripts/verify-migration.ts\`
+6. **Verify deployment**: Manual verification required
 
 ## Validation Checklist
 

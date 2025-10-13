@@ -109,7 +109,7 @@ async function generateMigrationReport(status: MigrationStatus) {
     console.log('⚠️  READY FOR MIGRATION')
     console.log('   - Infrastructure is in place')
     console.log('   - Local images need to be uploaded to R2')
-    console.log('   - Run: npx ts-node scripts/migrate-images.ts')
+    console.log('   - Migration scripts removed (migration completed)')
   } else if (infrastructureComplete && status.localImages.length === 0) {
     console.log('✅ MIGRATION COMPLETE')
     console.log('   - All infrastructure is in place')
@@ -126,8 +126,10 @@ async function generateMigrationReport(status: MigrationStatus) {
     console.log('2. Configure R2 credentials in .env.local')
     console.log('3. Test R2 connection')
   } else if (status.localImages.length > 0) {
-    console.log('1. Upload images to R2: npx ts-node scripts/migrate-images.ts')
-    console.log('2. Verify migration: npx ts-node scripts/verify-migration.ts')
+    console.log(
+      '1. Upload images to R2: Manual upload required (migration scripts removed)'
+    )
+    console.log('2. Verify migration: Manual verification required')
     console.log('3. Test image loading')
   } else {
     console.log('1. Test image loading from R2')

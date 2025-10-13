@@ -13,7 +13,8 @@ import {
 } from '@jest/globals'
 
 describe('R2 Fallback Behavior Integration Tests', () => {
-  const testImagePath = 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg'
+  const testImagePath =
+    'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg'
   const testImageData = Buffer.from('fake-image-data')
 
   beforeAll(async () => {
@@ -184,8 +185,10 @@ describe('R2 Fallback Behavior Integration Tests', () => {
     })
 
     it('should validate local file existence', async () => {
-      const existingPath = '/publichttps://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/existing.jpg'
-      const nonExistentPath = '/publichttps://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/non-existent.jpg'
+      const existingPath =
+        'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/existing.jpg'
+      const nonExistentPath =
+        'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/non-existent.jpg'
 
       // This test will fail until file existence checking is implemented
       expect(() => {
@@ -195,7 +198,8 @@ describe('R2 Fallback Behavior Integration Tests', () => {
 
     it('should handle local file read errors', async () => {
       // Simulate file read error
-      const errorPath = '/publichttps://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/corrupted.jpg'
+      const errorPath =
+        'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/corrupted.jpg'
 
       // This test will fail until file error handling is implemented
       expect(() => {

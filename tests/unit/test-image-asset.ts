@@ -12,7 +12,7 @@ describe('ImageAsset Model Validation', () => {
       const imageAsset: ImageAsset = {
         id: 'test-id-123',
         filename: 'test-image.jpg',
-        path: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg',
+        path: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg',
         format: 'jpg' as ImageFormat,
         size: 1024000,
         width: 1920,
@@ -20,9 +20,9 @@ describe('ImageAsset Model Validation', () => {
         altText: 'Test image description',
         r2Key: 'R2 bucket image',
         r2Url:
-          'https://bucket.r2.cloudflarestorage.comhttps://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg',
+          'https://bucket.r2.cloudflarestorage.comhttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg',
         localPath:
-          '/publichttps://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg',
+          'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg',
         isMigrated: false,
         lastAccessed: new Date(),
         createdAt: new Date(),
@@ -32,7 +32,7 @@ describe('ImageAsset Model Validation', () => {
       expect(imageAsset.id).toBe('test-id-123')
       expect(imageAsset.filename).toBe('test-image.jpg')
       expect(imageAsset.path).toBe(
-        'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg'
+        'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg'
       )
       expect(imageAsset.format).toBe('jpg')
       expect(imageAsset.size).toBe(1024000)
@@ -63,7 +63,7 @@ describe('ImageAsset Model Validation', () => {
           r2Key: `imgs/${filename}`,
           r2Url: 'https://test.com',
           localPath:
-            '/publichttps://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+            'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
           isMigrated: false,
           lastAccessed: new Date(),
           createdAt: new Date(),
@@ -80,7 +80,7 @@ describe('ImageAsset Model Validation', () => {
       const imageAsset: ImageAsset = {
         id: 'test',
         filename: 'test.jpg',
-        path: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+        path: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
         format: 'jpg',
         size: 1000,
         width: 100,
@@ -89,7 +89,7 @@ describe('ImageAsset Model Validation', () => {
         r2Key: 'R2 bucket image',
         r2Url: 'https://test.com',
         localPath:
-          '/publichttps://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+          'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
         isMigrated: false,
         lastAccessed: new Date(),
         createdAt: new Date(),
@@ -106,7 +106,7 @@ describe('ImageAsset Model Validation', () => {
         const imageAsset: ImageAsset = {
           id: 'test',
           filename: 'test.jpg',
-          path: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+          path: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
           format: 'jpg',
           size,
           width: 100,
@@ -115,7 +115,7 @@ describe('ImageAsset Model Validation', () => {
           r2Key: 'R2 bucket image',
           r2Url: 'https://test.com',
           localPath:
-            '/publichttps://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+            'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
           isMigrated: false,
           lastAccessed: new Date(),
           createdAt: new Date(),
@@ -131,7 +131,7 @@ describe('ImageAsset Model Validation', () => {
       const imageAsset: ImageAsset = {
         id: 'test',
         filename: 'test.jpg',
-        path: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+        path: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
         format: 'jpg',
         size: 1000,
         width: 1920,
@@ -140,7 +140,7 @@ describe('ImageAsset Model Validation', () => {
         r2Key: 'R2 bucket image',
         r2Url: 'https://test.com',
         localPath:
-          '/publichttps://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+          'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
         isMigrated: false,
         lastAccessed: new Date(),
         createdAt: new Date(),
@@ -157,7 +157,7 @@ describe('ImageAsset Model Validation', () => {
       const imageAsset: ImageAsset = {
         id: 'test',
         filename: 'test-image.jpg',
-        path: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg',
+        path: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg',
         format: 'jpg',
         size: 1000,
         width: 100,
@@ -166,7 +166,7 @@ describe('ImageAsset Model Validation', () => {
         r2Key: 'R2 bucket image',
         r2Url: 'https://test.com',
         localPath:
-          '/publichttps://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+          'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
         isMigrated: false,
         lastAccessed: new Date(),
         createdAt: new Date(),
@@ -184,7 +184,7 @@ describe('ImageAsset Model Validation', () => {
       const imageAsset: ImageAsset = {
         id: 'test',
         filename: 'test.jpg',
-        path: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+        path: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
         format: 'jpg',
         size: 1000,
         width: 100,
@@ -193,7 +193,7 @@ describe('ImageAsset Model Validation', () => {
         r2Key: 'R2 bucket image',
         r2Url: 'https://test.com',
         localPath:
-          '/publichttps://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+          'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
         isMigrated: false,
         lastAccessed: new Date(),
         createdAt: new Date(),
@@ -209,7 +209,7 @@ describe('ImageAsset Model Validation', () => {
       const imageAsset: ImageAsset = {
         id: 'test',
         filename: 'test.jpg',
-        path: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+        path: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
         format: 'jpg',
         size: 1000,
         width: 100,
@@ -218,7 +218,7 @@ describe('ImageAsset Model Validation', () => {
         r2Key: 'R2 bucket image',
         r2Url: 'https://test.com',
         localPath:
-          '/publichttps://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
+          'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg',
         isMigrated: true,
         lastAccessed: new Date(),
         createdAt: new Date(),

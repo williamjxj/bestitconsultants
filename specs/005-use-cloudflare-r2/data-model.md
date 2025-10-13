@@ -14,7 +14,7 @@ Represents a media file stored in cloud storage with metadata and access informa
 - `id: string` - Unique identifier for the image asset
 - `filename: string` - Original filename (e.g., "istockphoto-1212876953-612x612.jpg")
 - `path: string` - URL path used by application (e.g.,
-  "https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg")
+  "https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg")
 - `format: ImageFormat` - Image format (JPG, PNG, WEBP)
 - `size: number` - File size in bytes
 - `width: number` - Image width in pixels
