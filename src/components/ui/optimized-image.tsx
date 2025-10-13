@@ -1,93 +1,205 @@
 /**
- * OptimizedImage component for displaying images with Next.js optimization and Framer Motion animations
- * Provides accessibility, performance, and animation features
+ * OptimizedImage component
+ * Next.js Image component optimized for R2 integration
  */
 
-'use client'
-
 import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { cn } from '@/lib/utils'
-import { OptimizedImageProps } from '@/types/media'
+import { useState, useEffect } from 'react'
+
+interface OptimizedImageProps {
+  src: string
+  alt: string
+  width?: number
+  height?: number
+  priority?: boolean
+  quality?: number
+  placeholder?: 'blur' | 'empty'
+  blurDataURL?: string
+  className?: string
+  style?: React.CSSProperties
+  sizes?: string
+  fill?: boolean
+  onLoad?: () => void
+  onError?: () => void
+}
 
 export function OptimizedImage({
   src,
   alt,
-  title,
-  description,
   width,
   height,
   priority = false,
+  quality = 75,
+  placeholder = 'empty',
+  blurDataURL,
   className,
-  animation,
-  hover,
+  style,
+  sizes,
+  fill = false,
+  onLoad,
+  onError,
+  ...props
 }: OptimizedImageProps) {
-  // Animation variants based on type
-  const getAnimationVariants = () => {
-    const baseVariants = {
-      hidden: {
-        opacity: 0,
-        scale: animation?.type === 'scale' ? 0.8 : 1,
-        y: animation?.type === 'slide' ? 20 : 0,
-        x: animation?.type === 'slide' ? 20 : 0,
-        rotate: animation?.type === 'rotate' ? -5 : 0,
-      },
-      visible: {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        x: 0,
-        rotate: 0,
-        transition: {
-          duration: animation?.duration || 0.6,
-          delay: animation?.delay || 0,
-          ease: 'easeOut',
-        },
-      },
-    }
+  const [imageSrc, setImageSrc] = useState(src)
+  const [isLoading, setIsLoading] = useState(true)
+  const [hasError, setHasError] = useState(false)
 
-    if (hover) {
-      baseVariants.hover = {
-        scale: hover.scale || 1.05,
-        opacity: hover.opacity || 1,
-        transition: {
-          duration: hover.duration || 0.3,
-        },
-      }
-    }
+  useEffect(() => {
+    // Reset state when src changes
+    setIsLoading(true)
+    setHasError(false)
+    setImageSrc(src)
+  }, [src])
 
-    return baseVariants
+  const handleLoad = () => {
+    setIsLoading(false)
+    onLoad?.()
   }
 
-  const imageVariants = getAnimationVariants()
+  const handleError = () => {
+    setIsLoading(false)
+    setHasError(true)
+    onError?.()
+  }
+
+  // Generate optimized src based on environment
+  const getOptimizedSrc = (originalSrc: string): string => {
+    // In production, use R2 URLs
+    if (process.env.NODE_ENV === 'production') {
+      // If src already contains R2 domain, use as-is
+      if (originalSrc.includes('r2.cloudflarestorage.com')) {
+        return originalSrc
+      }
+
+      // For local paths, they will be rewritten by middleware to proxy API
+      return originalSrc
+    }
+
+    // In development, use local files
+    return originalSrc
+  }
+
+  const optimizedSrc = getOptimizedSrc(imageSrc)
+
+  // Fallback image for errors
+  const fallbackSrc = '/placeholder.svg'
 
   return (
-    <motion.div
-      variants={imageVariants}
-      initial='hidden'
-      whileInView='visible'
-      whileHover={hover ? 'hover' : undefined}
-      viewport={{ once: true, margin: '-100px' }}
-      className={cn('relative overflow-hidden rounded-lg', className)}
-    >
+    <div className={`relative ${className}`} style={style}>
+      {isLoading && (
+        <div className='absolute inset-0 bg-gray-200 animate-pulse rounded' />
+      )}
+
       <Image
-        src={src}
+        src={hasError ? fallbackSrc : optimizedSrc}
         alt={alt}
-        title={title}
-        width={width}
-        height={height}
+        width={fill ? undefined : width}
+        height={fill ? undefined : height}
+        fill={fill}
         priority={priority}
-        loading={priority ? 'eager' : 'lazy'}
-        className='w-full h-full object-cover transition-transform duration-300'
-        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-        role='img'
-        aria-label={alt}
+        quality={quality}
+        placeholder={placeholder}
+        blurDataURL={blurDataURL}
+        sizes={sizes}
+        onLoad={handleLoad}
+        onError={handleError}
+        className={`transition-opacity duration-300 ${
+          isLoading ? 'opacity-0' : 'opacity-100'
+        } ${hasError ? 'opacity-50' : ''}`}
+        {...props}
       />
-      {description && (
-        <div className='absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center'>
-          <p className='text-white text-sm p-4 text-center'>{description}</p>
+
+      {hasError && (
+        <div className='absolute inset-0 flex items-center justify-center bg-gray-100 text-gray-500 text-sm'>
+          Image unavailable
         </div>
       )}
-    </motion.div>
+    </div>
   )
 }
+
+/**
+ * Hero image component with specific optimizations
+ */
+export function HeroImage({
+  src,
+  alt,
+  className,
+  ...props
+}: Omit<OptimizedImageProps, 'priority' | 'quality' | 'placeholder'>) {
+  return (
+    <OptimizedImage
+      src={src}
+      alt={alt}
+      priority={true}
+      quality={85}
+      placeholder='blur'
+      className={className}
+      {...props}
+    />
+  )
+}
+
+/**
+ * Portfolio image component with grid optimizations
+ */
+export function PortfolioImage({
+  src,
+  alt,
+  className,
+  ...props
+}: Omit<OptimizedImageProps, 'sizes' | 'quality'>) {
+  return (
+    <OptimizedImage
+      src={src}
+      alt={alt}
+      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+      quality={80}
+      className={className}
+      {...props}
+    />
+  )
+}
+
+/**
+ * Thumbnail image component for small images
+ */
+export function ThumbnailImage({
+  src,
+  alt,
+  className,
+  ...props
+}: Omit<OptimizedImageProps, 'quality' | 'sizes'>) {
+  return (
+    <OptimizedImage
+      src={src}
+      alt={alt}
+      quality={60}
+      sizes='(max-width: 768px) 50vw, 25vw'
+      className={className}
+      {...props}
+    />
+  )
+}
+
+/**
+ * Lazy loaded image component
+ */
+export function LazyImage({
+  src,
+  alt,
+  className,
+  ...props
+}: Omit<OptimizedImageProps, 'priority'>) {
+  return (
+    <OptimizedImage
+      src={src}
+      alt={alt}
+      priority={false}
+      className={className}
+      {...props}
+    />
+  )
+}
+
+export default OptimizedImage

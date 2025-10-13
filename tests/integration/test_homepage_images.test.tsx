@@ -41,7 +41,7 @@ describe('Homepage Images Integration', () => {
       expect(heroImage).toBeInTheDocument()
       expect(heroImage).toHaveAttribute(
         'src',
-        '/imgs/istockphoto-1212876953-612x612.jpg'
+        'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg'
       )
     })
 
@@ -96,7 +96,7 @@ describe('Homepage Images Integration', () => {
       expect(aboutImage).toBeInTheDocument()
       expect(aboutImage).toHaveAttribute(
         'src',
-        '/imgs/istockphoto-1358835459-612x612.webp'
+        'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp'
       )
     })
 
@@ -149,7 +149,7 @@ describe('Homepage Images Integration', () => {
       )
       expect(heroImage).toHaveAttribute(
         'src',
-        '/imgs/istockphoto-1212876953-612x612.jpg'
+        'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg'
       )
     })
 
@@ -161,7 +161,7 @@ describe('Homepage Images Integration', () => {
       )
       expect(aboutImage).toHaveAttribute(
         'src',
-        '/imgs/istockphoto-1358835459-612x612.webp'
+        'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp'
       )
     })
 

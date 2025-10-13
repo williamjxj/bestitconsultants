@@ -52,15 +52,15 @@ describe('WCAG 2.1 AA Compliance Tests', () => {
     it('should have descriptive alt text for all images', () => {
       const images = [
         {
-          src: '/imgs/istockphoto-1212876953-612x612.jpg',
+          src: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg',
           alt: 'Modern technology and innovation workspace with multiple monitors and collaborative environment',
         },
         {
-          src: '/imgs/istockphoto-1358835459-612x612.webp',
+          src: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp',
           alt: 'Professional team collaboration in modern office environment with diverse team members working together',
         },
         {
-          src: '/imgs/istockphoto-1350198816-612x612.jpg',
+          src: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1350198816-612x612.jpg',
           alt: 'Advanced technology solutions and digital transformation services',
         },
       ]
@@ -80,12 +80,12 @@ describe('WCAG 2.1 AA Compliance Tests', () => {
     it('should have empty alt text for decorative images', () => {
       const decorativeImages = [
         {
-          src: '/imgs/istockphoto-1145868161-612x612.webp',
+          src: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1145868161-612x612.webp',
           alt: '', // Decorative image
           role: 'presentation',
         },
         {
-          src: '/imgs/istockphoto-2227310361-612x612.webp',
+          src: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-2227310361-612x612.webp',
           alt: '', // Decorative image
           role: 'presentation',
         },
@@ -158,7 +158,7 @@ describe('WCAG 2.1 AA Compliance Tests', () => {
 
     it('should have proper ARIA labels for interactive images', () => {
       const interactiveImage = document.createElement('img')
-      interactiveImage.src = '/imgs/istockphoto-1212876953-612x612.jpg'
+      interactiveImage.src = 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg'
       interactiveImage.alt = 'Click to view full-size image'
       interactiveImage.setAttribute('role', 'button')
       interactiveImage.setAttribute('aria-label', 'View full-size hero image')
@@ -304,7 +304,7 @@ describe('WCAG 2.1 AA Compliance Tests', () => {
 
     it('should provide image context information', () => {
       const image = document.createElement('img')
-      image.src = '/imgs/istockphoto-1212876953-612x612.jpg'
+      image.src = 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg'
       image.alt = 'Modern technology workspace'
       image.setAttribute('aria-describedby', 'image-context')
 
@@ -455,7 +455,7 @@ describe('WCAG 2.1 AA Compliance Tests', () => {
   describe('Responsive Design Accessibility', () => {
     it('should maintain accessibility at different screen sizes', () => {
       const responsiveImage = document.createElement('img')
-      responsiveImage.src = '/imgs/istockphoto-1212876953-612x612.jpg'
+      responsiveImage.src = 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg'
       responsiveImage.alt = 'Responsive hero image'
       responsiveImage.sizes =
         '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'

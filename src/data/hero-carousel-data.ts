@@ -7,7 +7,7 @@ export const heroCarouselItems: HeroCarouselItem[] = [
     subtitle: 'Fortune 500 Experience',
     description:
       'Led by industry veterans with 60+ years combined experience, we deliver AI/ML solutions, enterprise systems, and cloud platforms for global clients including Xperi, HSBC, and Credit Suisse.',
-    image: '/imgs/istockphoto-1212876953-612x612.jpg',
+    image: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg',
     ctaText: 'Start Your Project',
     ctaLink: '/contact',
   },
@@ -17,7 +17,7 @@ export const heroCarouselItems: HeroCarouselItem[] = [
     subtitle: 'Cutting-Edge Technology',
     description:
       'Transform your business with advanced AI/ML solutions. From data pipelines to real-time processing, we build intelligent systems that drive innovation and competitive advantage.',
-    image: '/imgs/kling_20251012_1.png',
+    image: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/kling_20251012_1.png',
     // Uncomment the line below when you have a video file
     // video: '/videos/ai-technology-demo.mp4',
     ctaText: 'Explore AI Solutions',
@@ -29,7 +29,7 @@ export const heroCarouselItems: HeroCarouselItem[] = [
     subtitle: 'Worldwide Impact',
     description:
       'Serving clients across US, Canada, China, Singapore, and Europe. Our proven track record includes award-winning projects for FedEx, Tiffany & Co, and government agencies.',
-    image: '/imgs/istockphoto-1358835459-612x612.webp',
+    image: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp',
     ctaText: 'View Our Portfolio',
     ctaLink: '/portfolio',
   },

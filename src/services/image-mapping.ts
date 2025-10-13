@@ -1,25 +1,35 @@
 /**
  * Image mapping service for managing image assets across the website
- * Maps context-specific image paths to actual image files
+ * Maps context-specific image paths to R2 bucket URLs
  */
 
+// R2 bucket configuration - Always use R2 URLs
+const R2_BASE_URL =
+  process.env.R2_PUBLIC_URL ||
+  'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev'
+
+// Helper function to get image URL (always use R2 URLs)
+function getImageUrl(imageName: string): string {
+  return `${R2_BASE_URL}/${imageName}`
+}
+
 export const imageMapping = {
-  // Homepage images
-  hero: '/imgs/istockphoto-1212876953-612x612.jpg',
-  about: '/imgs/istockphoto-1358835459-612x612.webp',
-  services: '/imgs/istockphoto-1350198816-612x612.jpg',
-  portfolio: '/imgs/istockphoto-2163952011-612x612.webp',
+  // Homepage images - using R2 URLs directly
+  hero: getImageUrl('istockphoto-1212876953-612x612.jpg'),
+  about: getImageUrl('istockphoto-1358835459-612x612.webp'),
+  services: getImageUrl('istockphoto-1350198816-612x612.jpg'),
+  portfolio: getImageUrl('istockphoto-2163952011-612x612.webp'),
 
-  // Team images
-  teamCollaboration: '/imgs/istockphoto-1145868161-612x612.webp',
-  technology: '/imgs/istockphoto-2227310361-612x612.webp',
+  // Team images - using R2 URLs directly
+  teamCollaboration: getImageUrl('istockphoto-1145868161-612x612.webp'),
+  technology: getImageUrl('istockphoto-2227310361-612x612.webp'),
 
-  // Case studies images
-  projectScreenshots: '/imgs/istockphoto-492514758-612x612.webp',
-  innovation: '/imgs/kling_20251012_1.png',
-  creativity: '/imgs/kling_20251012_2.png',
+  // Case studies images - using R2 URLs directly
+  projectScreenshots: getImageUrl('istockphoto-492514758-612x612.webp'),
+  innovation: getImageUrl('kling_20251012_1.png'),
+  creativity: getImageUrl('kling_20251012_2.png'),
 
-  // Team member photos
+  // Team member photos (still using local images for now)
   teamMembers: {
     william: '/images/william-jiang.jpg',
     shamin: '/images/shaming-yang.jpeg',

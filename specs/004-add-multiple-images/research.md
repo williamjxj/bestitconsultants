@@ -31,7 +31,7 @@
 ```typescript
 // Next.js Image component automatically selects best format
 <Image
-  src="/imgs/stock-image.webp"
+  src="https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/stock-image.webp"
   alt="Professional team collaboration"
   width={612}
   height={612}
@@ -92,7 +92,7 @@ const imageVariants = {
 ```typescript
 // Accessible image component
 <Image
-  src="/imgs/team-collaboration.webp"
+  src="https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/team-collaboration.webp"
   alt="Diverse team of software engineers collaborating on a project,
        showing modern office environment with multiple monitors and
        whiteboards displaying technical diagrams"
@@ -123,7 +123,7 @@ const imageVariants = {
 // SEO-optimized image with structured data
 const imageMetadata = {
   '@type': 'ImageObject',
-  url: '/imgs/team-collaboration.webp',
+  url: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/team-collaboration.webp',
   caption: 'Professional software development team',
   description: 'BestIT Consulting team collaborating on enterprise solutions',
   keywords: ['software development', 'team collaboration', 'IT consulting'],
@@ -162,7 +162,7 @@ const imageMetadata = {
 
 ## Available Images Analysis
 
-### Stock Images in `/public/imgs/`:
+### Stock Images in `/publicR2 bucket `:
 
 1. `istockphoto-1145868161-612x612.webp` - Business meeting/collaboration
 2. `istockphoto-1212876953-612x612.jpg` - Technology/innovation

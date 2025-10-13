@@ -143,14 +143,36 @@ const getCategoryColor = (category: string) => {
   }
 }
 
-// Fallback placeholder for screenshots using local images
+// R2 bucket configuration - Use R2 URLs when configured, fallback to local for development
+const R2_BASE_URL =
+  process.env.R2_PUBLIC_URL ||
+  'https://pub-1234567890abcdef.r2.cloudflarestorage.com'
+const R2_ENABLED = process.env.R2_ENABLED === 'true'
+const IS_PRODUCTION = process.env.NODE_ENV === 'production'
+
+// Helper function to get image URL (R2 in production, local in development)
+function getImageUrl(imagePath: string): string {
+  // In production with R2 enabled, use R2 URLs
+  if (
+    IS_PRODUCTION &&
+    R2_ENABLED &&
+    R2_BASE_URL &&
+    !R2_BASE_URL.includes('1234567890abcdef')
+  ) {
+    return `${R2_BASE_URL}${imagePath}`
+  }
+  // In development or when R2 not configured, use local paths
+  return imagePath
+}
+
+// Fallback placeholder for screenshots using R2 images in production, local in development
 const getPlaceholderScreenshot = (category: string) => {
   const placeholders = {
-    Business: '/imgs/istockphoto-1358835459-612x612.webp',
-    'AI/ML': '/imgs/kling_20251012_1.png',
-    Development: '/imgs/istockphoto-1350198816-612x612.jpg',
-    'E-commerce': '/imgs/istockphoto-1145868161-612x612.webp',
-    Education: '/imgs/istockphoto-2227310361-612x612.webp',
+    Business: getImageUrl('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp'),
+    'AI/ML': getImageUrl('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/kling_20251012_1.png'),
+    Development: getImageUrl('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1350198816-612x612.jpg'),
+    'E-commerce': getImageUrl('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1145868161-612x612.webp'),
+    Education: getImageUrl('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-2227310361-612x612.webp'),
   }
   return (
     placeholders[category as keyof typeof placeholders] ||

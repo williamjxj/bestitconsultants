@@ -53,7 +53,7 @@ describe('Core Web Vitals Performance Tests', () => {
 
       // Simulate hero image loading
       const heroImage = document.createElement('img')
-      heroImage.src = '/imgs/istockphoto-1212876953-612x612.jpg'
+      heroImage.src = 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg'
       heroImage.alt = 'Hero image'
       heroImage.className = 'hero-image'
       heroImage.width = 1920
@@ -76,7 +76,7 @@ describe('Core Web Vitals Performance Tests', () => {
       // Simulate background image loading
       const backgroundDiv = document.createElement('div')
       backgroundDiv.style.backgroundImage =
-        'url(/imgs/istockphoto-1358835459-612x612.webp)'
+        'url(https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp)'
       backgroundDiv.className = 'hero-background'
 
       // Simulate background image load
@@ -92,7 +92,7 @@ describe('Core Web Vitals Performance Tests', () => {
 
     it('should prioritize above-fold images', () => {
       const heroImage = document.createElement('img')
-      heroImage.src = '/imgs/istockphoto-1212876953-612x612.jpg'
+      heroImage.src = 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg'
       heroImage.loading = 'eager'
       heroImage.fetchPriority = 'high'
 
@@ -145,7 +145,7 @@ describe('Core Web Vitals Performance Tests', () => {
       container.style.height = '300px'
 
       const image = document.createElement('img')
-      image.src = '/imgs/istockphoto-1350198816-612x612.jpg'
+      image.src = 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1350198816-612x612.jpg'
       image.width = 400
       image.height = 300
       image.style.width = '400px'
@@ -175,7 +175,7 @@ describe('Core Web Vitals Performance Tests', () => {
       container.style.height = 'auto'
 
       const image = document.createElement('img')
-      image.src = '/imgs/istockphoto-2163952011-612x612.webp'
+      image.src = 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-2163952011-612x612.webp'
       image.sizes = '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
       image.style.width = '100%'
       image.style.height = 'auto'
@@ -208,7 +208,7 @@ describe('Core Web Vitals Performance Tests', () => {
 
       if (webpSupported) {
         const image = document.createElement('img')
-        image.src = '/imgs/istockphoto-1358835459-612x612.webp'
+        image.src = 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp'
 
         expect(image.src).toContain('.webp')
       }
@@ -222,7 +222,7 @@ describe('Core Web Vitals Performance Tests', () => {
 
       if (avifSupported) {
         const image = document.createElement('img')
-        image.src = '/imgs/istockphoto-1358835459-612x612.avif'
+        image.src = 'R2 bucket istockphoto-1358835459-612x612.avif'
 
         expect(image.src).toContain('.avif')
       }
@@ -238,7 +238,7 @@ describe('Core Web Vitals Performance Tests', () => {
 
       if (!webpSupported && !avifSupported) {
         const image = document.createElement('img')
-        image.src = '/imgs/istockphoto-1358835459-612x612.jpg'
+        image.src = 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.jpg'
 
         expect(image.src).toContain('.jpg')
       }
@@ -250,11 +250,11 @@ describe('Core Web Vitals Performance Tests', () => {
       Object.defineProperty(window, 'innerHeight', { value: 667 })
 
       const mobileImage = document.createElement('img')
-      mobileImage.src = '/imgs/istockphoto-1212876953-612x612.jpg'
+      mobileImage.src = 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg'
       mobileImage.sizes =
         '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
       mobileImage.srcset =
-        '/imgs/istockphoto-1212876953-612x612-640w.jpg 640w, /imgs/istockphoto-1212876953-612x612-800w.jpg 800w'
+        'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612-640w.jpg 640w, https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612-800w.jpg 800w'
 
       expect(mobileImage.sizes).toContain('(max-width: 768px) 100vw')
       expect(mobileImage.srcset).toContain('640w')
@@ -264,11 +264,11 @@ describe('Core Web Vitals Performance Tests', () => {
       Object.defineProperty(window, 'innerHeight', { value: 1080 })
 
       const desktopImage = document.createElement('img')
-      desktopImage.src = '/imgs/istockphoto-1212876953-612x612.jpg'
+      desktopImage.src = 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg'
       desktopImage.sizes =
         '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
       desktopImage.srcset =
-        '/imgs/istockphoto-1212876953-612x612-640w.jpg 640w, /imgs/istockphoto-1212876953-612x612-800w.jpg 800w'
+        'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612-640w.jpg 640w, https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612-800w.jpg 800w'
 
       expect(desktopImage.sizes).toContain('33vw')
       expect(desktopImage.srcset).toContain('800w')
@@ -328,7 +328,7 @@ describe('Core Web Vitals Performance Tests', () => {
       // Load multiple images
       for (let i = 0; i < 10; i++) {
         const image = document.createElement('img')
-        image.src = `/imgs/istockphoto-1212876953-612x612.jpg?${i}`
+        image.src = `https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg?${i}`
         image.onload = () => {
           // Clean up
           image.remove()
@@ -371,7 +371,7 @@ describe('Core Web Vitals Performance Tests', () => {
       const preloadLink = document.createElement('link')
       preloadLink.rel = 'preload'
       preloadLink.as = 'image'
-      preloadLink.href = '/imgs/istockphoto-1212876953-612x612.jpg'
+      preloadLink.href = 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg'
 
       expect(preloadLink.rel).toBe('preload')
       expect(preloadLink.as).toBe('image')
@@ -395,7 +395,7 @@ describe('Core Web Vitals Performance Tests', () => {
 
     it('should implement progressive loading', () => {
       const image = document.createElement('img')
-      image.src = '/imgs/istockphoto-1212876953-612x612.jpg'
+      image.src = 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg'
       image.loading = 'eager'
       image.decoding = 'async'
 
