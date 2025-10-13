@@ -10,6 +10,18 @@ import { navigationService } from '@/services/navigation'
 import type { NavigationItem } from '@/types/navigation'
 import { NavigationCategory } from '@/types/navigation'
 
+interface Translations {
+  navbar: {
+    home: string
+    about: string
+    services: string
+    portfolio: string
+    ourWork: string
+    team: string
+    contact: string
+  }
+}
+
 // Navbar component
 export default function Navbar() {
   const { language, changeLanguage, translations } = useLanguage()
@@ -56,7 +68,10 @@ export default function Navbar() {
   }, [pathname, translations])
 
   // Get translated label for navigation item
-  const getTranslatedLabel = (id: string, translations: any): string => {
+  const getTranslatedLabel = (
+    id: string,
+    translations: Translations
+  ): string => {
     const labelMap: Record<string, string> = {
       home: translations.navbar.home,
       about: translations.navbar.about,
@@ -70,7 +85,9 @@ export default function Navbar() {
   }
 
   // Fallback navigation items
-  const getFallbackNavItems = (translations: any): NavigationItem[] => [
+  const getFallbackNavItems = (
+    translations: Translations
+  ): NavigationItem[] => [
     {
       id: 'home',
       label: translations.navbar.home,

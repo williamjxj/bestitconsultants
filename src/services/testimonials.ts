@@ -103,7 +103,10 @@ export class TestimonialsService {
   /**
    * Update testimonial display order (not supported in static mode)
    */
-  public async updateDisplayOrder(_id: string, _order: number): Promise<boolean> {
+  public async updateDisplayOrder(
+    _id: string,
+    _order: number
+  ): Promise<boolean> {
     console.warn(
       'Updating testimonial display order not supported in static mode'
     )

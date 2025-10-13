@@ -25,7 +25,10 @@ export class PerformanceMonitor {
     new PerformanceObserver(entryList => {
       const entries = entryList.getEntries()
       entries.forEach(entry => {
-        const fidEntry = entry as any // Type assertion for FID-specific properties
+        const fidEntry = entry as {
+          processingStart?: number
+          startTime?: number
+        } // Type assertion for FID-specific properties
         if (fidEntry.processingStart && fidEntry.startTime) {
           this.metrics.set('FID', fidEntry.processingStart - fidEntry.startTime)
         }
@@ -37,7 +40,7 @@ export class PerformanceMonitor {
     new PerformanceObserver(entryList => {
       const entries = entryList.getEntries()
       entries.forEach(entry => {
-        const clsEntry = entry as any // Type assertion for CLS-specific properties
+        const clsEntry = entry as { hadRecentInput?: boolean; value?: number } // Type assertion for CLS-specific properties
         if (!clsEntry.hadRecentInput) {
           clsValue += clsEntry.value || 0
           this.metrics.set('CLS', clsValue)
@@ -84,8 +87,8 @@ export class PerformanceMonitor {
     const metrics = this.getMetrics()
     const coreWebVitals = this.checkCoreWebVitals()
 
-    console.log('Performance Metrics:', metrics)
-    console.log('Core Web Vitals:', coreWebVitals)
+    console.warn('Performance Metrics:', metrics)
+    console.warn('Core Web Vitals:', coreWebVitals)
   }
 }
 
@@ -115,7 +118,7 @@ export const monitorBundleSize = (): void => {
     entries.forEach(entry => {
       if (entry.entryType === 'navigation') {
         const navEntry = entry as PerformanceNavigationTiming
-        console.log('Bundle size metrics:', {
+        console.warn('Bundle size metrics:', {
           domContentLoaded:
             navEntry.domContentLoadedEventEnd -
             navEntry.domContentLoadedEventStart,

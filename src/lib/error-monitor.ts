@@ -30,7 +30,7 @@ export class ErrorMonitor {
   private healthHistory: Array<{
     timestamp: Date
     health: ServiceHealth
-    metrics: any
+    metrics: Record<string, unknown>
   }> = []
   private isMonitoring: boolean = false
   private monitoringInterval?: NodeJS.Timeout
@@ -55,7 +55,7 @@ export class ErrorMonitor {
     }
 
     this.isMonitoring = true
-    console.log('🔍 Starting R2 service monitoring...')
+    console.warn('🔍 Starting R2 service monitoring...')
 
     this.monitoringInterval = setInterval(async () => {
       try {
@@ -75,7 +75,7 @@ export class ErrorMonitor {
       this.monitoringInterval = undefined
     }
     this.isMonitoring = false
-    console.log('🛑 Stopped R2 service monitoring')
+    console.warn('🛑 Stopped R2 service monitoring')
   }
 
   /**
@@ -213,7 +213,9 @@ export class ErrorMonitor {
   /**
    * Send webhook alert
    */
-  private async sendWebhookAlert(alertMessage: any): Promise<void> {
+  private async sendWebhookAlert(
+    alertMessage: Record<string, unknown>
+  ): Promise<void> {
     if (!this.config.webhookUrl) return
 
     try {
@@ -236,9 +238,11 @@ export class ErrorMonitor {
   /**
    * Send email alert
    */
-  private async sendEmailAlert(alertMessage: any): Promise<void> {
+  private async sendEmailAlert(
+    alertMessage: Record<string, unknown>
+  ): Promise<void> {
     // This would integrate with an email service
-    console.log('📧 Email alert would be sent:', alertMessage)
+    console.warn('📧 Email alert would be sent:', alertMessage)
   }
 
   /**
@@ -247,7 +251,7 @@ export class ErrorMonitor {
   getHealthHistory(limit: number = 50): Array<{
     timestamp: Date
     health: ServiceHealth
-    metrics: any
+    metrics: Record<string, unknown>
   }> {
     return this.healthHistory.slice(-limit)
   }
@@ -281,7 +285,7 @@ export class ErrorMonitor {
     const averageResponseTime =
       recentHealth.length > 0
         ? recentHealth.reduce(
-            (sum, h) => sum + (h.metrics.r2ResponseTime || 0),
+            (sum, h) => sum + (Number(h.metrics.r2ResponseTime) || 0),
             0
           ) / recentHealth.length
         : 0
@@ -357,9 +361,9 @@ export async function startMonitoringIfEnabled(): Promise<void> {
 
     if (monitor.getStatus().config.enabled) {
       monitor.startMonitoring()
-      console.log('✅ R2 service monitoring started')
+      console.warn('✅ R2 service monitoring started')
     } else {
-      console.log('ℹ️  R2 service monitoring disabled')
+      console.warn('ℹ️  R2 service monitoring disabled')
     }
   } catch (error) {
     console.error('❌ Failed to start R2 service monitoring:', error)

@@ -9,7 +9,7 @@ import { webScrapingService } from '@/services/web-scraping'
 
 export async function POST() {
   try {
-    console.log('Initiating content refresh...')
+    console.warn('Initiating content refresh...')
 
     const result = await webScrapingService.refreshContent()
 

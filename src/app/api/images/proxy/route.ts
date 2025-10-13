@@ -106,8 +106,8 @@ export async function GET(request: NextRequest) {
     }
 
     // Log performance metrics
-        const _responseTime = Date.now() - startTime
-    console.log(`Image served: ${imagePath} in ${_responseTime}ms`)
+    const _responseTime = Date.now() - startTime
+    console.warn(`Image served: ${imagePath} in ${_responseTime}ms`)
 
     return new NextResponse(imageData.data, {
       status: 200,
@@ -116,8 +116,8 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error(`Image proxy error for ${request.url}:`, error)
 
-        const _responseTime = Date.now() - startTime
-        console.log(`Image error in ${_responseTime}ms`)
+    const _responseTime = Date.now() - startTime
+    console.warn(`Image error in ${_responseTime}ms`)
 
     // Return appropriate error response
     if (error instanceof Error && error.message.includes('not found')) {

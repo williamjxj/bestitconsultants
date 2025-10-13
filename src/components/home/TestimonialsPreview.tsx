@@ -13,16 +13,18 @@ export default function TestimonialsPreview() {
         </h2>
 
         <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12'>
-          {translations.testimonials.testimonialsPreview.testimonials.map(testimonial => (
-            <div key={testimonial.id} className='card card-hover'>
-              <blockquote className='text-gray-600 mb-4 italic'>
-                {testimonial.quote}
-              </blockquote>
-              <cite className='text-gray-800 font-semibold not-italic'>
-                {testimonial.name}
-              </cite>
-            </div>
-          ))}
+          {translations.testimonials.testimonialsPreview.testimonials.map(
+            testimonial => (
+              <div key={testimonial.id} className='card card-hover'>
+                <blockquote className='text-gray-600 mb-4 italic'>
+                  {testimonial.quote}
+                </blockquote>
+                <cite className='text-gray-800 font-semibold not-italic'>
+                  {testimonial.name}
+                </cite>
+              </div>
+            )
+          )}
         </div>
 
         <div className='text-center'>

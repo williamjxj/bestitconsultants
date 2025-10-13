@@ -18,6 +18,9 @@ export const LazySection: React.FC<LazySectionProps> = ({
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const currentRef = sectionRef.current
+    if (!currentRef) return
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -31,14 +34,10 @@ export const LazySection: React.FC<LazySectionProps> = ({
       }
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
+    observer.observe(currentRef)
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
-      }
+      observer.unobserve(currentRef)
     }
   }, [threshold, rootMargin])
 

@@ -1,7 +1,9 @@
+'use client'
+
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import React from 'react'
 
-import { OptimizedImage } from '@/components/ui/optimized-image'
 import { CaseStudy } from '@/types/case-study'
 
 interface CaseStudyCardProps {
@@ -23,16 +25,12 @@ export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({
     >
       {caseStudy.image && (
         <div className='relative h-64'>
-          <OptimizedImage
+          <Image
             src={caseStudy.image}
             alt={`${caseStudy.title} - ${caseStudy.client} case study`}
             width={400}
             height={256}
             className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
-            animation={{
-              type: 'slide',
-              duration: 0.6,
-            }}
           />
         </div>
       )}

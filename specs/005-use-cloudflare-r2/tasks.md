@@ -17,7 +17,7 @@
    → Setup: project init, dependencies, linting
    → Tests: contract tests, integration tests
    → Core: models, services, CLI commands
-   → Integration: DB, middleware, logging
+   → Integration: middleware, logging
    → Polish: unit tests, performance, docs
 4. Apply task rules:
    → Different files = mark [P] for parallel
@@ -96,7 +96,7 @@
 - [ ] T033 Remove local image files after successful migration
 
 **Status**: Infrastructure complete, but **CRITICAL ISSUE**: Referenced images don't exist in
-`/publicR2 bucket ` directory, causing 404 errors.
+`/publicR2 bucket` directory, causing 404 errors.
 
 ## Phase 3.6: Polish
 

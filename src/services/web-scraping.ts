@@ -38,12 +38,12 @@ export class WebScrapingService {
     limit: number = 8
   ): Promise<ScrapingResult> {
     try {
-      console.log('Fetching articles from static data...')
+      console.warn('Fetching articles from static data...')
 
       // Simulate static content
       const articlesCount = Math.min(limit, 5) // Simulate 5 available articles
 
-      console.log(`Found ${articlesCount} articles in static data`)
+      console.warn(`Found ${articlesCount} articles in static data`)
 
       return {
         success: true,
@@ -110,7 +110,7 @@ export class WebScrapingService {
 
     try {
       this.isRefreshing = true
-      console.log('Starting content refresh from static data...')
+      console.warn('Starting content refresh from static data...')
 
       const result = await this.getArticlesFromDatabase()
 
@@ -156,7 +156,7 @@ export class WebScrapingService {
   public async testDatabase(): Promise<boolean> {
     try {
       // Simulate successful connectivity test
-      console.log('Static data connectivity test passed')
+      console.warn('Static data connectivity test passed')
       return true
     } catch (error) {
       console.error('Static data test failed:', error)

@@ -10,7 +10,6 @@ import path from 'path'
 import { ImageCacheManager, ImageCacheModel } from '../types/image-cache'
 import { ImageServiceOptions, R2Response } from '../types/r2'
 
-
 import { R2ClientService } from './r2-client'
 
 export class ImageService {
@@ -310,8 +309,8 @@ export class ImageService {
    * Get service metrics
    */
   getMetrics(): {
-    cache: any
-    r2: any
+    cache: Record<string, unknown>
+    r2: Record<string, unknown>
     options: ImageServiceOptions
   } {
     return {

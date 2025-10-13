@@ -16,10 +16,57 @@ export interface ValidationResult {
   errors: ValidationError[]
 }
 
+// Validation input interfaces
+interface MediaAssetData {
+  src: string
+  alt: string
+  width?: number
+  height?: number
+  format?: string
+  quality?: number
+  layout?: string
+  priority?: string
+  loading?: string
+}
+
+interface MediaGalleryData {
+  title: string
+  description?: string
+  assets: unknown[]
+  layout?: string
+  category?: string
+  columns?: number
+  spacing?: number
+}
+
+interface OptimizeRequestData {
+  assetIds: string[]
+  sizes: Array<{
+    width: number
+    height: number
+    quality?: number
+  }>
+  format?: string
+  formats?: string[]
+}
+
+interface PaginationParams {
+  page?: number
+  limit?: number
+}
+
+interface QueryParams {
+  category?: string
+  search?: string
+  sort?: string
+  format?: string
+  priority?: string
+}
+
 /**
  * Validate media asset data
  */
-export function validateMediaAsset(data: any): ValidationResult {
+export function validateMediaAsset(data: MediaAssetData): ValidationResult {
   const errors: ValidationError[] = []
 
   // Required fields
@@ -89,7 +136,7 @@ export function validateMediaAsset(data: any): ValidationResult {
 /**
  * Validate media gallery data
  */
-export function validateMediaGallery(data: any): ValidationResult {
+export function validateMediaGallery(data: MediaGalleryData): ValidationResult {
   const errors: ValidationError[] = []
 
   // Required fields
@@ -154,7 +201,9 @@ export function validateMediaGallery(data: any): ValidationResult {
 /**
  * Validate optimization request
  */
-export function validateOptimizeRequest(data: any): ValidationResult {
+export function validateOptimizeRequest(
+  data: OptimizeRequestData
+): ValidationResult {
   const errors: ValidationError[] = []
 
   // Required fields
@@ -206,7 +255,7 @@ export function validateOptimizeRequest(data: any): ValidationResult {
       })
     } else {
       const invalidSizes = data.sizes.filter(
-        (size: any) =>
+        (size: { width: number; height: number; quality?: number }) =>
           !size.width ||
           !size.height ||
           typeof size.width !== 'number' ||
@@ -233,7 +282,9 @@ export function validateOptimizeRequest(data: any): ValidationResult {
 /**
  * Validate pagination parameters
  */
-export function validatePaginationParams(params: any): ValidationResult {
+export function validatePaginationParams(
+  params: PaginationParams
+): ValidationResult {
   const errors: ValidationError[] = []
 
   if (params.page && (typeof params.page !== 'number' || params.page < 1)) {
@@ -305,7 +356,7 @@ export function validateFileUpload(file: File): ValidationResult {
 /**
  * Validate query parameters
  */
-export function validateQueryParams(params: any): ValidationResult {
+export function validateQueryParams(params: QueryParams): ValidationResult {
   const errors: ValidationError[] = []
 
   // Validate category

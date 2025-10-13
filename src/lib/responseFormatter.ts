@@ -1,4 +1,7 @@
-export function formatSuccessResponse<T>(data: T, meta?: Record<string, any>) {
+export function formatSuccessResponse<T>(
+  data: T,
+  meta?: Record<string, unknown>
+) {
   return {
     success: true,
     data,
@@ -9,7 +12,7 @@ export function formatSuccessResponse<T>(data: T, meta?: Record<string, any>) {
 export function formatErrorResponse(
   message: string,
   code: string,
-  details?: Record<string, any>
+  details?: Record<string, unknown>
 ) {
   return {
     success: false,

@@ -184,7 +184,10 @@ export class ImageAssetModel implements ImageAsset {
   /**
    * Create a new ImageAsset from file system data
    */
-  static fromFileSystem(filePath: string, stats: any): ImageAssetModel {
+  static fromFileSystem(
+    filePath: string,
+    stats: { size: number; mtime: Date }
+  ): ImageAssetModel {
     const filename = filePath.split('/').pop() || ''
     const path = filePath.replace('/public', '')
     const format =
@@ -206,7 +209,10 @@ export class ImageAssetModel implements ImageAsset {
   /**
    * Create a new ImageAsset from R2 data
    */
-  static fromR2(r2Data: any, publicUrl: string): ImageAssetModel {
+  static fromR2(
+    r2Data: { Key: string; Size: number; LastModified: Date },
+    publicUrl: string
+  ): ImageAssetModel {
     const filename = r2Data.Key.split('/').pop() || ''
     const path = `/${r2Data.Key}`
     const format =

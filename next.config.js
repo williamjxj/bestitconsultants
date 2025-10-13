@@ -3,10 +3,13 @@ const path = require('path')
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: [
-      'images.unsplash.com', // Keep for any remaining Unsplash images
-    ],
     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
       {
         protocol: 'https',
         hostname: '*.r2.cloudflarestorage.com',

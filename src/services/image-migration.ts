@@ -38,7 +38,7 @@ export class ImageMigrationService {
       status.total = imageFiles.length
       status.pending = imageFiles.length
 
-      console.log(`Starting migration of ${imageFiles.length} images...`)
+      console.warn(`Starting migration of ${imageFiles.length} images...`)
 
       // Migrate each image
       for (const imageFile of imageFiles) {
@@ -46,7 +46,7 @@ export class ImageMigrationService {
           await this.migrateSingleImage(imageFile)
           status.migrated++
           status.pending--
-          console.log(`Migrated: ${imageFile}`)
+          console.warn(`Migrated: ${imageFile}`)
         } catch (error) {
           status.failed++
           status.pending--
@@ -56,7 +56,7 @@ export class ImageMigrationService {
         }
       }
 
-      console.log(
+      console.warn(
         `Migration completed: ${status.migrated} migrated, ${status.failed} failed`
       )
       return status
@@ -97,7 +97,7 @@ export class ImageMigrationService {
       // Mark as migrated
       imageAsset.markAsMigrated(uploadResult.r2Url!, imageAsset.r2Key)
 
-      console.log(`Successfully migrated ${imagePath} to R2`)
+      console.warn(`Successfully migrated ${imagePath} to R2`)
     } catch (error) {
       throw new Error(
         `Failed to migrate ${imagePath}: ${error instanceof Error ? error.message : 'Unknown error'}`
@@ -204,7 +204,7 @@ export class ImageMigrationService {
 
           if (exists.r2) {
             // Note: R2 deletion would require additional R2 client methods
-            console.log(`Would remove from R2: ${imagePath}`)
+            console.warn(`Would remove from R2: ${imagePath}`)
           }
         } catch (error) {
           errors.push(

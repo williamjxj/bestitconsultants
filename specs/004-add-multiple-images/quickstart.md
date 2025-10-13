@@ -15,7 +15,7 @@ and adding animations and hover effects using Framer Motion and Tailwind CSS.
 - Framer Motion for animations
 - Tailwind CSS for styling
 - shadcn/ui components
-- Images available in `publicR2 bucket ` folder
+- Images available in `publicR2 bucket` folder
 
 ## Implementation Steps
 

@@ -162,7 +162,7 @@ const imageMetadata = {
 
 ## Available Images Analysis
 
-### Stock Images in `/publicR2 bucket `:
+### Stock Images in `/publicR2 bucket`:
 
 1. `istockphoto-1145868161-612x612.webp` - Business meeting/collaboration
 2. `istockphoto-1212876953-612x612.jpg` - Technology/innovation

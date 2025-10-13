@@ -63,7 +63,7 @@ export class ImageLogger {
 
     // Log to console in development
     if (process.env.NODE_ENV === 'development') {
-      console.log(
+      console.warn(
         `🖼️  Image request: ${log.path} (${log.tier}, ${log.responseTime}ms, ${log.statusCode})`
       )
     }
@@ -239,8 +239,8 @@ export class ImageLogger {
   getLogSummary(): {
     totalLogs: number
     timeRange: { start: Date; end: Date }
-    performance: any
-    errors: any
+    performance: Record<string, unknown>
+    errors: Record<string, unknown>
   } {
     const totalLogs = this.logs.length
     const timeRange =

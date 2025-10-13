@@ -1,6 +1,5 @@
 'use client'
 
-
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import React, { useState, useEffect } from 'react'
