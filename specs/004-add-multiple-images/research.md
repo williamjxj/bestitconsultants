@@ -31,7 +31,7 @@
 ```typescript
 // Next.js Image component automatically selects best format
 <Image
-  src="https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/stock-image.webp"
+  src="https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/stock-image.webp"
   alt="Professional team collaboration"
   width={612}
   height={612}
@@ -92,7 +92,7 @@ const imageVariants = {
 ```typescript
 // Accessible image component
 <Image
-  src="https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/team-collaboration.webp"
+  src="https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/team-collaboration.webp"
   alt="Diverse team of software engineers collaborating on a project,
        showing modern office environment with multiple monitors and
        whiteboards displaying technical diagrams"
@@ -123,7 +123,7 @@ const imageVariants = {
 // SEO-optimized image with structured data
 const imageMetadata = {
   '@type': 'ImageObject',
-  url: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/team-collaboration.webp',
+  url: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/team-collaboration.webp',
   caption: 'Professional software development team',
   description: 'BestIT Consulting team collaborating on enterprise solutions',
   keywords: ['software development', 'team collaboration', 'IT consulting'],

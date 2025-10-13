@@ -182,7 +182,7 @@ For issues with R2 integration:
 - Check R2 bucket permissions
 - Verify network connectivity
 - Review application logs
-- Test with curl: \`curl -I https://your-domain.comhttps://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg\`
+- Test with curl: \`curl -I https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg\`
 `
 
     const instructionsPath = path.join(deploymentDir, 'DEPLOYMENT.md')

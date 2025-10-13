@@ -20,7 +20,7 @@ describe('ImageAsset Model Validation', () => {
         altText: 'Test image description',
         r2Key: 'R2 bucket image',
         r2Url:
-          'https://bucket.r2.cloudflarestorage.comhttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg',
+          'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg',
         localPath:
           'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg',
         isMigrated: false,

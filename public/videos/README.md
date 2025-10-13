@@ -30,7 +30,7 @@ Example:
   title: 'AI & Machine Learning Excellence',
   subtitle: 'Cutting-Edge Technology',
   description: 'Transform your business with advanced AI/ML solutions...',
-  image: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/kling_20251012_1.png',
+  image: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/kling_20251012_1.png',
   video: '/videos/ai-technology-demo.mp4', // Add your video here
   ctaText: 'Explore AI Solutions',
   ctaLink: '/services',

@@ -14,7 +14,7 @@ import {
 
 describe('R2 Fallback Behavior Integration Tests', () => {
   const testImagePath =
-    'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg'
+    'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test-image.jpg'
   const testImageData = Buffer.from('fake-image-data')
 
   beforeAll(async () => {
@@ -158,11 +158,11 @@ describe('R2 Fallback Behavior Integration Tests', () => {
     it('should evict expired cache entries', async () => {
       const expiredEntries = [
         {
-          key: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/expired1.jpg',
+          key: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/expired1.jpg',
           expiresAt: new Date(Date.now() - 3600000),
         },
         {
-          key: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/expired2.jpg',
+          key: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/expired2.jpg',
           expiresAt: new Date(Date.now() - 7200000),
         },
       ]

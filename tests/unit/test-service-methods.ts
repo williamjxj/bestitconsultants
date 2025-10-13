@@ -103,7 +103,7 @@ describe('Service Methods Unit Tests', () => {
       it('should upload image to R2 successfully', async () => {
         const mockUploadResult = {
           success: true,
-          r2Url: 'https://bucket.r2.cloudflarestorage.comhttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg'
+          r2Url: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg'
         };
 
         jest.spyOn(r2Client, 'putObject').mockResolvedValue(mockUploadResult);
@@ -264,7 +264,7 @@ describe('Service Methods Unit Tests', () => {
       it('should put object to R2', async () => {
         const mockResult = {
           success: true,
-          r2Url: 'https://bucket.r2.cloudflarestorage.comhttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg'
+          r2Url: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/test.jpg'
         };
 
         jest.spyOn(r2Client, 'putObject').mockResolvedValue(mockResult);

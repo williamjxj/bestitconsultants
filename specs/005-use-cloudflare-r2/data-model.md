@@ -102,7 +102,7 @@ In-memory cache for frequently accessed images to improve performance.
 ### Image Request Flow
 
 ```
-1. Request: GET https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/filename.jpg
+1. Request: GET https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/filename.jpg
 2. Check: ImageAsset.isMigrated
 3. If migrated: Serve from R2Configuration.publicUrl
 4. If not migrated: Serve from local fallback
