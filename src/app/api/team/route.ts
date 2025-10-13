@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 import { TeamService } from '@/services/teamService'
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     const result = await TeamService.getAllTeamMembers()
 

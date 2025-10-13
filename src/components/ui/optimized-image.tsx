@@ -3,6 +3,8 @@
  * Next.js Image component optimized for R2 integration
  */
 
+'use client'
+
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 

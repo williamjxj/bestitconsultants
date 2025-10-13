@@ -64,7 +64,7 @@ export class TestimonialsService {
    * Create a new testimonial (not supported in static mode)
    */
   public async createTestimonial(
-    testimonial: Omit<Testimonial, 'id' | 'createdAt' | 'updatedAt'>
+    _testimonial: Omit<Testimonial, 'id' | 'createdAt' | 'updatedAt'>
   ): Promise<Testimonial | null> {
     console.warn('Creating testimonials not supported in static mode')
     return null
@@ -74,8 +74,8 @@ export class TestimonialsService {
    * Update a testimonial (not supported in static mode)
    */
   public async updateTestimonial(
-    id: string,
-    updates: Partial<Testimonial>
+    _id: string,
+    _updates: Partial<Testimonial>
   ): Promise<boolean> {
     console.warn('Updating testimonials not supported in static mode')
     return false
@@ -84,7 +84,7 @@ export class TestimonialsService {
   /**
    * Delete a testimonial (not supported in static mode)
    */
-  public async deleteTestimonial(id: string): Promise<boolean> {
+  public async deleteTestimonial(_id: string): Promise<boolean> {
     console.warn('Deleting testimonials not supported in static mode')
     return false
   }
@@ -93,8 +93,8 @@ export class TestimonialsService {
    * Update testimonial visibility (not supported in static mode)
    */
   public async updateVisibility(
-    id: string,
-    isVisible: boolean
+    _id: string,
+    _isVisible: boolean
   ): Promise<boolean> {
     console.warn('Updating testimonial visibility not supported in static mode')
     return false
@@ -103,7 +103,7 @@ export class TestimonialsService {
   /**
    * Update testimonial display order (not supported in static mode)
    */
-  public async updateDisplayOrder(id: string, order: number): Promise<boolean> {
+  public async updateDisplayOrder(_id: string, _order: number): Promise<boolean> {
     console.warn(
       'Updating testimonial display order not supported in static mode'
     )
@@ -140,7 +140,7 @@ export class TestimonialsService {
   /**
    * Reorder testimonials (not supported in static mode)
    */
-  public async reorderTestimonials(ids: string[]): Promise<boolean> {
+  public async reorderTestimonials(_ids: string[]): Promise<boolean> {
     console.warn('Reordering testimonials not supported in static mode')
     return false
   }

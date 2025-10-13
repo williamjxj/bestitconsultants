@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 import { navigationService } from '@/services/navigation'
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     // Get navigation items
     const items = await navigationService.getNavigationItems()

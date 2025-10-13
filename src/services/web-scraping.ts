@@ -65,8 +65,8 @@ export class WebScrapingService {
    * Update article trending status (not supported in static mode)
    */
   public async updateTrendingStatus(
-    articleId: string,
-    trending: boolean
+    _articleId: string,
+    _trending: boolean
   ): Promise<boolean> {
     console.warn('Updating trending status not supported in static mode')
     return false
@@ -81,27 +81,17 @@ export class WebScrapingService {
     trending: number
     byCategory: Record<string, number>
   }> {
-    try {
-      // Return static statistics
-      return {
-        total: 5,
-        published: 5,
-        trending: 2,
-        byCategory: {
-          'AI Models': 2,
-          'Enterprise AI': 1,
-          Research: 1,
-          'AI Safety': 1,
-        },
-      }
-    } catch (error) {
-      console.error('Error getting article stats:', error)
-      return {
-        total: 0,
-        published: 0,
-        trending: 0,
-        byCategory: {},
-      }
+    // Return static statistics
+    return {
+      total: 5,
+      published: 5,
+      trending: 2,
+      byCategory: {
+        'AI Models': 2,
+        'Enterprise AI': 1,
+        Research: 1,
+        'AI Safety': 1,
+      },
     }
   }
 

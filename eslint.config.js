@@ -61,6 +61,20 @@ module.exports = [
         HTMLDivElement: 'readonly',
         HTMLParagraphElement: 'readonly',
         HTMLHeadingElement: 'readonly',
+        URL: 'readonly',
+        URLSearchParams: 'readonly',
+        Headers: 'readonly',
+        FormData: 'readonly',
+        File: 'readonly',
+        Image: 'readonly',
+        IntersectionObserver: 'readonly',
+        HTMLImageElement: 'readonly',
+        PerformanceObserver: 'readonly',
+        PerformanceNavigationTiming: 'readonly',
+        NodeJS: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        setTimeout: 'readonly',
       },
     },
     plugins: {
@@ -98,7 +112,10 @@ module.exports = [
       'no-unused-vars': 'off', // Turn off base rule as it can report incorrect errors
       '@typescript-eslint/no-unused-vars': [
         'error',
-        { argsIgnorePattern: '^_' },
+        { 
+          argsIgnorePattern: '^_',
+          caughtErrors: 'none'
+        },
       ],
 
       // Import rules

@@ -742,20 +742,23 @@ export const translations = {
         testimonials: [
           {
             id: '1',
-            quote: 'BestITConsulting delivered exceptional results for our e-commerce platform.',
-            name: 'Sarah Johnson'
+            quote:
+              'BestITConsulting delivered exceptional results for our e-commerce platform.',
+            name: 'Sarah Johnson',
           },
           {
-            id: '2', 
-            quote: 'The AI/ML solutions transformed our data analytics capabilities.',
-            name: 'Michael Chen'
+            id: '2',
+            quote:
+              'The AI/ML solutions transformed our data analytics capabilities.',
+            name: 'Michael Chen',
           },
           {
             id: '3',
-            quote: 'Working with BestITConsulting was a game-changer for our mobile app.',
-            name: 'Emily Rodriguez'
-          }
-        ]
+            quote:
+              'Working with BestITConsulting was a game-changer for our mobile app.',
+            name: 'Emily Rodriguez',
+          },
+        ],
       },
       testimonials: {
         title: 'Client Testimonials',
@@ -766,21 +769,57 @@ export const translations = {
         title: 'Performance Metrics',
         subtitle: 'Key performance indicators',
         metrics: [
-          { value: '150+', label: 'Projects Completed', description: 'Successfully delivered' },
-          { value: '98%', label: 'Client Satisfaction', description: 'Average rating' },
-          { value: '50+', label: 'Team Members', description: 'Expert developers' },
-          { value: '15+', label: 'Years Experience', description: 'Industry expertise' }
-        ]
+          {
+            value: '150+',
+            label: 'Projects Completed',
+            description: 'Successfully delivered',
+          },
+          {
+            value: '98%',
+            label: 'Client Satisfaction',
+            description: 'Average rating',
+          },
+          {
+            value: '50+',
+            label: 'Team Members',
+            description: 'Expert developers',
+          },
+          {
+            value: '15+',
+            label: 'Years Experience',
+            description: 'Industry expertise',
+          },
+        ],
       },
       awards: {
         title: 'Awards & Recognition',
         subtitle: 'Industry recognition and achievements',
         list: [
-          { icon: '🏆', title: 'Best IT Consulting', organization: 'Tech Excellence Awards', year: '2023' },
-          { icon: '⭐', title: 'Top Rated Agency', organization: 'Industry Leaders', year: '2023' },
-          { icon: '🎯', title: 'Innovation Award', organization: 'Innovation Summit', year: '2022' },
-          { icon: '💎', title: 'Excellence in Service', organization: 'Service Quality Institute', year: '2022' }
-        ]
+          {
+            icon: '🏆',
+            title: 'Best IT Consulting',
+            organization: 'Tech Excellence Awards',
+            year: '2023',
+          },
+          {
+            icon: '⭐',
+            title: 'Top Rated Agency',
+            organization: 'Industry Leaders',
+            year: '2023',
+          },
+          {
+            icon: '🎯',
+            title: 'Innovation Award',
+            organization: 'Innovation Summit',
+            year: '2022',
+          },
+          {
+            icon: '💎',
+            title: 'Excellence in Service',
+            organization: 'Service Quality Institute',
+            year: '2022',
+          },
+        ],
       },
       clients: {
         title: 'Client Portfolio',
@@ -791,8 +830,8 @@ export const translations = {
           { name: 'MobileFirst' },
           { name: 'CloudSys' },
           { name: 'AI Ventures' },
-          { name: 'FinTech Pro' }
-        ]
+          { name: 'FinTech Pro' },
+        ],
       },
       industries: {
         title: 'Industries Served',
@@ -805,8 +844,8 @@ export const translations = {
           { icon: '🏭', name: 'Manufacturing', projects: 12 },
           { icon: '🚗', name: 'Automotive', projects: 8 },
           { icon: '🏨', name: 'Hospitality', projects: 10 },
-          { icon: '📱', name: 'Technology', projects: 40 }
-        ]
+          { icon: '📱', name: 'Technology', projects: 40 },
+        ],
       },
       cta: {
         title: 'Ready to Work With Us?',
@@ -829,7 +868,8 @@ export const translations = {
       },
       list: [
         {
-          content: 'BestITConsulting delivered exceptional results for our e-commerce platform. Their team\'s expertise in React and Node.js helped us achieve 40% faster load times and a 25% increase in conversion rates.',
+          content:
+            "BestITConsulting delivered exceptional results for our e-commerce platform. Their team's expertise in React and Node.js helped us achieve 40% faster load times and a 25% increase in conversion rates.",
           name: 'Sarah Johnson',
           position: 'CTO',
           company: 'TechCorp Solutions',
@@ -841,12 +881,13 @@ export const translations = {
             metrics: [
               { label: 'Load Time Improvement', value: '40%' },
               { label: 'Conversion Rate', value: '25%' },
-              { label: 'User Satisfaction', value: '95%' }
-            ]
-          }
+              { label: 'User Satisfaction', value: '95%' },
+            ],
+          },
         },
         {
-          content: 'The AI/ML solutions provided by BestITConsulting transformed our data analytics capabilities. Their machine learning models improved our prediction accuracy by 60% and reduced processing time by 50%.',
+          content:
+            'The AI/ML solutions provided by BestITConsulting transformed our data analytics capabilities. Their machine learning models improved our prediction accuracy by 60% and reduced processing time by 50%.',
           name: 'Michael Chen',
           position: 'Data Science Director',
           company: 'DataFlow Inc',
@@ -858,12 +899,13 @@ export const translations = {
             metrics: [
               { label: 'Prediction Accuracy', value: '60%' },
               { label: 'Processing Time', value: '50%' },
-              { label: 'Model Performance', value: '98%' }
-            ]
-          }
+              { label: 'Model Performance', value: '98%' },
+            ],
+          },
         },
         {
-          content: 'Working with BestITConsulting was a game-changer for our mobile app development. They delivered a cross-platform solution that reduced our development time by 35% while maintaining excellent performance.',
+          content:
+            'Working with BestITConsulting was a game-changer for our mobile app development. They delivered a cross-platform solution that reduced our development time by 35% while maintaining excellent performance.',
           name: 'Emily Rodriguez',
           position: 'Product Manager',
           company: 'MobileFirst',
@@ -875,10 +917,10 @@ export const translations = {
             metrics: [
               { label: 'Development Time', value: '35%' },
               { label: 'App Performance', value: '99%' },
-              { label: 'User Retention', value: '85%' }
-            ]
-          }
-        }
+              { label: 'User Retention', value: '85%' },
+            ],
+          },
+        },
       ],
     },
   },

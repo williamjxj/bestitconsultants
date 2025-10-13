@@ -245,7 +245,7 @@ export interface MediaService {
 
   getAsset(id: string): Promise<ApiResponse<MediaAsset>>
 
-  createAsset(data: FormData): Promise<ApiResponse<MediaAsset>>
+  createAsset(data: Record<string, unknown>): Promise<ApiResponse<MediaAsset>>
 
   updateAsset(
     id: string,
