@@ -10,7 +10,7 @@ import { MediaAsset, MediaAssetsResponse, ApiResponse } from '@/types/media'
 const mockAssets: MediaAsset[] = [
   {
     id: '1',
-    src: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg',
+    src: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg',
     alt: 'Modern technology and innovation workspace with multiple monitors and collaborative environment',
     title: 'Technology Innovation Workspace',
     description:
@@ -27,7 +27,7 @@ const mockAssets: MediaAsset[] = [
   },
   {
     id: '2',
-    src: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp',
+    src: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp',
     alt: 'Professional team collaboration in modern office environment with diverse team members working together',
     title: 'Team Collaboration',
     description:
@@ -44,7 +44,7 @@ const mockAssets: MediaAsset[] = [
   },
   {
     id: '3',
-    src: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1350198816-612x612.jpg',
+    src: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1350198816-612x612.jpg',
     alt: 'Professional workspace with modern technology and clean design',
     title: 'Professional Workspace',
     description:
@@ -61,7 +61,7 @@ const mockAssets: MediaAsset[] = [
   },
   {
     id: '4',
-    src: 'https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-2163952011-612x612.webp',
+    src: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-2163952011-612x612.webp',
     alt: 'Modern office environment with collaborative workspace and technology',
     title: 'Modern Office Environment',
     description:

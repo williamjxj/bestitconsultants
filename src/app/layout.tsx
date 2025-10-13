@@ -29,6 +29,9 @@ const roboto = Roboto({
 
 // Metadata for the website (SEO purposes)
 export const metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || 'https://bestitconsulting.com'
+  ),
   title: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting',
   description:
     'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation. Canadian Quality, Global Talent.',

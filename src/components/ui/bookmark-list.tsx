@@ -168,11 +168,16 @@ function getImageUrl(imagePath: string): string {
 // Fallback placeholder for screenshots using R2 images in production, local in development
 const getPlaceholderScreenshot = (category: string) => {
   const placeholders = {
-    Business: getImageUrl('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp'),
-    'AI/ML': getImageUrl('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/kling_20251012_1.png'),
-    Development: getImageUrl('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1350198816-612x612.jpg'),
-    'E-commerce': getImageUrl('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1145868161-612x612.webp'),
-    Education: getImageUrl('https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-2227310361-612x612.webp'),
+    Business:
+      'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp',
+    'AI/ML':
+      'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/kling_20251012_1.png',
+    Development:
+      'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1350198816-612x612.jpg',
+    'E-commerce':
+      'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1145868161-612x612.webp',
+    Education:
+      'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-2227310361-612x612.webp',
   }
   return (
     placeholders[category as keyof typeof placeholders] ||

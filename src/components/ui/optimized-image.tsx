@@ -64,19 +64,21 @@ export function OptimizedImage({
 
   // Generate optimized src based on environment
   const getOptimizedSrc = (originalSrc: string): string => {
-    // In production, use R2 URLs
-    if (process.env.NODE_ENV === 'production') {
-      // If src already contains R2 domain, use as-is
-      if (originalSrc.includes('r2.cloudflarestorage.com')) {
-        return originalSrc
-      }
-
-      // For local paths, they will be rewritten by middleware to proxy API
+    // If src is already a full URL (R2 or external), use as-is
+    if (
+      originalSrc.startsWith('http://') ||
+      originalSrc.startsWith('https://')
+    ) {
       return originalSrc
     }
 
-    // In development, use local files
-    return originalSrc
+    // For local paths, use the proxy API in both development and production
+    if (originalSrc.startsWith('/')) {
+      return `/api/images/proxy${originalSrc}`
+    }
+
+    // For relative paths, assume they're local and use proxy
+    return `/api/images/proxy/${originalSrc}`
   }
 
   const optimizedSrc = getOptimizedSrc(imageSrc)

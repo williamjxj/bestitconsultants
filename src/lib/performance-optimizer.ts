@@ -180,7 +180,7 @@ export class PerformanceOptimizer {
       resourceHints: [
         '<link rel="dns-prefetch" href="//r2.cloudflarestorage.com">',
         '<link rel="preconnect" href="//r2.cloudflarestorage.com" crossorigin>',
-        '<link rel="preload" as="image" href="https://ad9e2df833f783172de48d7948ed2acd.r2.cloudflarestorage.com/static-assetshttps://pub-280494fad9014906948b6a6a70b3466f.r2.dev/hero.jpg" fetchpriority="high">',
+        '<link rel="preload" as="image" href="https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/hero.jpg" fetchpriority="high">',
       ],
     }
   }
