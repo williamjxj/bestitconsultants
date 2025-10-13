@@ -3,7 +3,7 @@
  * Provides validation functions for API requests and data
  */
 
-import { MediaFormat, MediaPriority, MediaLayout } from '@/types/media'
+import { MediaFormat, MediaLayout } from '@/types/media'
 
 export interface ValidationError {
   field: string

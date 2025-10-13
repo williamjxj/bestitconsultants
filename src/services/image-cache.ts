@@ -3,7 +3,7 @@
  * Service for managing image caching with performance optimization
  */
 
-import { ImageAssetModel } from '../types/image-asset'
+// import { ImageAssetModel } from '../types/image-asset' // Unused import
 import { ImageCacheManager, ImageCacheModel } from '../types/image-cache'
 import { R2Response } from '../types/r2'
 

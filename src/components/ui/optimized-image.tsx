@@ -52,10 +52,10 @@ export function OptimizedImage({
   fill = false,
   onLoad,
   onError,
-  animation,
-  hover,
-  title,
-  description,
+  animation: _animation,
+  hover: _hover,
+  title: _title,
+  description: _description,
   ...props
 }: OptimizedImageProps) {
   const [imageSrc, setImageSrc] = useState(src)

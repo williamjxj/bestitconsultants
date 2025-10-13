@@ -151,7 +151,9 @@ const R2_ENABLED = process.env.R2_ENABLED === 'true'
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
 // Helper function to get image URL (R2 in production, local in development)
-function getImageUrl(imagePath: string): string {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function _getImageUrl(_imagePath: string): string {
+  // This function is currently unused but kept for future R2 integration
   // In production with R2 enabled, use R2 URLs
   if (
     IS_PRODUCTION &&
@@ -159,10 +161,10 @@ function getImageUrl(imagePath: string): string {
     R2_BASE_URL &&
     !R2_BASE_URL.includes('1234567890abcdef')
   ) {
-    return `${R2_BASE_URL}${imagePath}`
+    return `${R2_BASE_URL}${_imagePath}`
   }
   // In development or when R2 not configured, use local paths
-  return imagePath
+  return _imagePath
 }
 
 // Fallback placeholder for screenshots using R2 images in production, local in development

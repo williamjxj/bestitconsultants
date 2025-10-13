@@ -106,8 +106,8 @@ export async function GET(request: NextRequest) {
     }
 
     // Log performance metrics
-    const responseTime = Date.now() - startTime
-    console.log(`Image served: ${imagePath} in ${responseTime}ms`)
+        const _responseTime = Date.now() - startTime
+    console.log(`Image served: ${imagePath} in ${_responseTime}ms`)
 
     return new NextResponse(imageData.data, {
       status: 200,
@@ -116,7 +116,8 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error(`Image proxy error for ${request.url}:`, error)
 
-    const responseTime = Date.now() - startTime
+        const _responseTime = Date.now() - startTime
+        console.log(`Image error in ${_responseTime}ms`)
 
     // Return appropriate error response
     if (error instanceof Error && error.message.includes('not found')) {
@@ -199,7 +200,7 @@ function isAllowedOrigin(origin: string): boolean {
 /**
  * Get service health status
  */
-export async function OPTIONS(request: NextRequest) {
+export async function OPTIONS(_request: NextRequest) {
   try {
     const service = await getImageService()
     const health = await service.getHealthStatus()

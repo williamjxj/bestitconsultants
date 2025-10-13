@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 
-import { OptimizeRequest, OptimizeResponse, ApiResponse } from '@/types/media'
+import { OptimizeRequest, OptimizeResponse } from '@/types/media'
 
 // POST /api/media/optimize
 export async function POST(request: NextRequest) {

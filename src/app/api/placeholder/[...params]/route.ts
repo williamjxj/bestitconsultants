@@ -8,7 +8,7 @@ export async function GET(
   const [width, height] = routeParams
   const url = new URL(request.url)
   const theme = url.searchParams.get('theme') || 'ai'
-  const seed = url.searchParams.get('seed') || Math.floor(Math.random() * 1000)
+  // const _seed = url.searchParams.get('seed') || Math.floor(Math.random() * 1000) // Unused variable
 
   // Default dimensions
   const w = parseInt(width) || 400

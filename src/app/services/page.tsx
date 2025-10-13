@@ -9,11 +9,11 @@ import {
   Cloud,
   Smartphone,
   Database,
-  Sparkles,
-  Zap,
-  Shield,
-  Rocket,
-  Target,
+  // Sparkles,
+  // Zap,
+  // Shield,
+  // Rocket,
+  // Target,
 } from 'lucide-react'
 import React from 'react'
 

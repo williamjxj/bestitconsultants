@@ -6,7 +6,7 @@
 import { promises as fs } from 'fs'
 import path from 'path'
 
-import { ImageAssetModel } from '../types/image-asset'
+// import { ImageAssetModel } from '../types/image-asset' // Unused import
 import { ImageCacheManager, ImageCacheModel } from '../types/image-cache'
 import { ImageServiceOptions, R2Response } from '../types/r2'
 

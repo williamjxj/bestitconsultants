@@ -80,7 +80,7 @@ export class R2ClientService {
         CacheControl: 'public, max-age=31536000, immutable',
       })
 
-      const response = await this.client.send(command)
+      await this.client.send(command)
 
       return {
         success: true,

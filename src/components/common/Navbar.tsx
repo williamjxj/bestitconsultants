@@ -24,13 +24,13 @@ export default function Navbar() {
     const loadNavigationItems = async () => {
       try {
         setIsLoading(true)
-        const items = await navigationService.getNavigationItems()
+        await navigationService.getNavigationItems()
 
         // Map service items to component format with translations
-        const mappedItems = items.map(item => ({
-          ...item,
-          label: getTranslatedLabel(item.id, translations),
-        }))
+        // const _mappedItems = items.map(item => ({
+        //   ...item,
+        //   label: getTranslatedLabel(item.id, translations),
+        // }))
 
         // Update active item based on current path
         navigationService.updateActiveItem(pathname)
