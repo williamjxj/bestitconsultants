@@ -21,6 +21,18 @@ interface OptimizedImageProps {
   fill?: boolean
   onLoad?: () => void
   onError?: () => void
+  // Additional props for compatibility
+  animation?: {
+    type?: string
+    duration?: number
+    delay?: number
+  }
+  hover?: {
+    scale?: number
+    duration?: number
+  }
+  title?: string
+  description?: string
 }
 
 export function OptimizedImage({
@@ -38,6 +50,10 @@ export function OptimizedImage({
   fill = false,
   onLoad,
   onError,
+  animation,
+  hover,
+  title,
+  description,
   ...props
 }: OptimizedImageProps) {
   const [imageSrc, setImageSrc] = useState(src)

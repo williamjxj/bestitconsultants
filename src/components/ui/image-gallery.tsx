@@ -6,7 +6,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
+
 import { OptimizedImage } from './optimized-image'
+
 import { cn } from '@/lib/utils'
 import { ImageGalleryProps } from '@/types/media'
 

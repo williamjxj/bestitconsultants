@@ -30,12 +30,21 @@ export interface PrestigeProject {
 
 export interface TeamMemberResponse {
   success: boolean
-  data: TeamMember | TeamMember[]
+  data?: TeamMember | TeamMember[]
+  message?: string
+  code?: string
   meta?: {
     total: number
     page: number
     limit: number
   }
+}
+
+export interface PrestigeProjectResponse {
+  success: boolean
+  data?: PrestigeProject | PrestigeProject[]
+  message?: string
+  code?: string
 }
 
 export interface TeamMemberError {

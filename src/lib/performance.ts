@@ -25,7 +25,10 @@ export class PerformanceMonitor {
     new PerformanceObserver(entryList => {
       const entries = entryList.getEntries()
       entries.forEach(entry => {
-        this.metrics.set('FID', entry.processingStart - entry.startTime)
+        const fidEntry = entry as any // Type assertion for FID-specific properties
+        if (fidEntry.processingStart && fidEntry.startTime) {
+          this.metrics.set('FID', fidEntry.processingStart - fidEntry.startTime)
+        }
       })
     }).observe({ entryTypes: ['first-input'] })
 
@@ -34,8 +37,9 @@ export class PerformanceMonitor {
     new PerformanceObserver(entryList => {
       const entries = entryList.getEntries()
       entries.forEach(entry => {
-        if (!entry.hadRecentInput) {
-          clsValue += entry.value
+        const clsEntry = entry as any // Type assertion for CLS-specific properties
+        if (!clsEntry.hadRecentInput) {
+          clsValue += clsEntry.value || 0
           this.metrics.set('CLS', clsValue)
         }
       })

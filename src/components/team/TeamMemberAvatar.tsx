@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { OptimizedImage } from '@/components/ui/optimized-image'
 
 interface TeamMemberAvatarProps {

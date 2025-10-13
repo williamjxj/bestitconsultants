@@ -4,6 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+
 import { MediaAsset, MediaAssetsResponse, ApiResponse } from '@/types/media'
 
 // Mock data for development

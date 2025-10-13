@@ -24,7 +24,12 @@ paths:
                   items:
                     type: string
                   description: List of AI news sources to scrape
-                  example: ["https://openai.com/blog", "https://anthropic.com/news", "https://deepmind.com/blog"]
+                  example:
+                    [
+                      'https://openai.com/blog',
+                      'https://anthropic.com/news',
+                      'https://deepmind.com/blog',
+                    ]
                 maxArticles:
                   type: integer
                   minimum: 5
@@ -86,7 +91,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: "AI news content refreshed successfully"
+                    example: 'AI news content refreshed successfully'
                   articlesUpdated:
                     type: integer
                     description: Number of articles updated

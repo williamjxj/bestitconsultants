@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import {
   CheckCircle,
   Brain,
@@ -15,7 +16,6 @@ import {
   Target,
 } from 'lucide-react'
 import React from 'react'
-import { motion } from 'framer-motion'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'

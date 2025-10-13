@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+
 import { ContentService } from '@/services/contentService'
 
 export async function GET(request: NextRequest) {

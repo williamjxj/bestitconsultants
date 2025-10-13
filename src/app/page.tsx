@@ -1,11 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
+
 import AboutSummary from '@/components/home/AboutSummary'
 import ContactSnippet from '@/components/home/ContactSnippet'
 import HeroSection from '@/components/home/HeroSection'
-import { QuickHighlights } from '@/components/home/QuickHighlights'
 import PortfolioPreview from '@/components/home/PortfolioPreview'
+import { QuickHighlights } from '@/components/home/QuickHighlights'
 import ServicesSummary from '@/components/home/ServicesSummary'
 
 // HomePage component with animations

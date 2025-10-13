@@ -1,8 +1,9 @@
 'use client'
 
-import { useLanguage } from '@/contexts/LanguageContext'
-import { OptimizedImage } from '@/components/ui/optimized-image'
 import { motion } from 'framer-motion'
+
+import { OptimizedImage } from '@/components/ui/optimized-image'
+import { useLanguage } from '@/contexts/LanguageContext'
 import { getImageForContext } from '@/services/image-mapping'
 
 export default function AboutSummary() {

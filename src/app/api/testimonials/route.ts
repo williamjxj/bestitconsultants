@@ -4,6 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+
 import { testimonialsService } from '@/services/testimonials'
 
 export async function GET(request: NextRequest) {

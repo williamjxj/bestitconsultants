@@ -14,7 +14,9 @@ export interface ServiceCategory {
 
 export interface ServiceCategoryResponse {
   success: boolean
-  data: ServiceCategory | ServiceCategory[]
+  data?: ServiceCategory | ServiceCategory[]
+  message?: string
+  code?: string
   meta?: {
     total: number
   }

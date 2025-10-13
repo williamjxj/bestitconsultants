@@ -33,6 +33,7 @@ export class CacheHeaderManager {
       sMaxAge: 86400,
       staleWhileRevalidate: 604800, // 1 week
       public: true,
+      immutable: false,
     },
 
     // Critical images (hero, above-fold)
@@ -41,6 +42,7 @@ export class CacheHeaderManager {
       sMaxAge: 604800,
       staleWhileRevalidate: 2592000, // 1 month
       public: true,
+      immutable: false,
     },
 
     // Development/testing
@@ -48,6 +50,7 @@ export class CacheHeaderManager {
       maxAge: 0,
       noCache: true,
       noStore: true,
+      immutable: false,
     },
 
     // Error responses
@@ -55,6 +58,7 @@ export class CacheHeaderManager {
       maxAge: 300, // 5 minutes
       noCache: true,
       mustRevalidate: true,
+      immutable: false,
     },
   }
 

@@ -13,7 +13,9 @@ export interface ContentSection {
 
 export interface ContentSectionResponse {
   success: boolean
-  data: ContentSection | ContentSection[]
+  data?: ContentSection | ContentSection[]
+  message?: string
+  code?: string
 }
 
 export interface ContentSectionError {

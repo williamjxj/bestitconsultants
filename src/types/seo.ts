@@ -13,7 +13,9 @@ export interface SEOMetadata {
 
 export interface SEOMetadataResponse {
   success: boolean
-  data: SEOMetadata | SEOMetadata[]
+  data?: SEOMetadata | SEOMetadata[]
+  message?: string
+  code?: string
 }
 
 export interface SEOMetadataError {

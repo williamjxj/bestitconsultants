@@ -8,21 +8,21 @@ export enum NavigationCategory {
   COMPANY = 'company',
   SERVICES = 'services',
   WORK = 'work',
-  RESOURCES = 'resources'
+  RESOURCES = 'resources',
 }
 
 export interface NavigationItem {
-  id: string;
-  label: string;
-  href: string;
-  category: NavigationCategory;
-  order: number;
-  isActive: boolean;
-  isVisible: boolean;
+  id: string
+  label: string
+  href: string
+  category: NavigationCategory
+  order: number
+  isActive: boolean
+  isVisible: boolean
 }
 
 export interface NavigationState {
-  items: NavigationItem[];
-  currentPath: string;
-  isMobileMenuOpen: boolean;
+  items: NavigationItem[]
+  currentPath: string
+  isMobileMenuOpen: boolean
 }

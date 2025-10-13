@@ -347,6 +347,37 @@ export class NavigationService {
   }
 
   /**
+   * Get navigation categories
+   */
+  public getNavigationCategories(): string[] {
+    return Object.values(NavigationCategory)
+  }
+
+  /**
+   * Validate navigation structure
+   */
+  public validateNavigation(): boolean {
+    try {
+      // Check if navigation items exist
+      if (!this.navigationItems || this.navigationItems.length === 0) {
+        return false
+      }
+
+      // Check if all items have required properties
+      for (const item of this.navigationItems) {
+        if (!item.id || !item.label || !item.href) {
+          return false
+        }
+      }
+
+      return true
+    } catch (error) {
+      console.error('Navigation validation error:', error)
+      return false
+    }
+  }
+
+  /**
    * Reset navigation to default state
    */
   public resetToDefault(): void {

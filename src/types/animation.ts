@@ -6,26 +6,26 @@
 export enum MotionPreference {
   REDUCED = 'reduced',
   NORMAL = 'normal',
-  ENHANCED = 'enhanced'
+  ENHANCED = 'enhanced',
 }
 
 export enum PerformanceMode {
   LOW = 'low',
   MEDIUM = 'medium',
-  HIGH = 'high'
+  HIGH = 'high',
 }
 
 export interface AnimationState {
-  motionPreference: MotionPreference;
-  animationEnabled: boolean;
-  performanceMode: PerformanceMode;
-  reducedMotion: boolean;
-  staggerDelay: number;
+  motionPreference: MotionPreference
+  animationEnabled: boolean
+  performanceMode: PerformanceMode
+  reducedMotion: boolean
+  staggerDelay: number
 }
 
 export interface AnimationConfig {
-  duration: number;
-  ease: string;
-  stagger: number;
-  respectReducedMotion: boolean;
+  duration: number
+  ease: string
+  stagger: number
+  respectReducedMotion: boolean
 }

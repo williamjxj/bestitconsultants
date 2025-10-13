@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+
 import { useLanguage } from '@/contexts/LanguageContext'
 import { testimonialsService } from '@/services/testimonials'
 import type { Testimonial } from '@/types/testimonial'

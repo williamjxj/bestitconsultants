@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import {
   Brain,
   Building2,
@@ -26,9 +27,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { OptimizedImage } from '@/components/ui/optimized-image'
-import { motion } from 'framer-motion'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 const portfolioItems = [
   {

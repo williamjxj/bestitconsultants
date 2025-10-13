@@ -4,6 +4,7 @@
  */
 
 import { NextResponse } from 'next/server'
+
 import { webScrapingService } from '@/services/web-scraping'
 
 export async function POST() {

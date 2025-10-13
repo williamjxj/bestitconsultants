@@ -10,8 +10,9 @@ import {
   HeadObjectCommand,
   ListObjectsV2Command,
 } from '@aws-sdk/client-s3'
-import { R2ConfigurationModel } from '../types/r2-config'
+
 import { R2Response, ImageUploadResult } from '../types/r2'
+import { R2ConfigurationModel } from '../types/r2-config'
 
 export class R2ClientService {
   private client: S3Client
@@ -85,8 +86,7 @@ export class R2ClientService {
         success: true,
         r2Url: this.config.getObjectUrl(objectKey),
         metadata: {
-          etag: response.ETag,
-          lastModified: new Date(),
+          updatedAt: new Date(),
         },
       }
     } catch (error) {

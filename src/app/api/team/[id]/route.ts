@@ -1,17 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
+
 import { TeamService } from '@/services/teamService'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params
+    const { id } = await params
     const result = await TeamService.getTeamMemberById(id)
 
     if (!result.success) {
-      const status = result.code === 'TEAM_MEMBER_NOT_FOUND' ? 404 : 500
-      return NextResponse.json(result, { status })
+      return NextResponse.json(result, { status: 404 })
     }
 
     return NextResponse.json(result)

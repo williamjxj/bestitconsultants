@@ -4,19 +4,20 @@
  */
 
 export interface Testimonial {
-  id: string;
-  quote: string;
-  author: string;
-  title: string;
-  company: string;
-  isVisible: boolean;
-  order: number;
-  createdAt?: Date;
-  updatedAt?: Date;
+  id: string
+  quote: string
+  author: string
+  title: string
+  company: string
+  isVisible: boolean
+  order?: number
+  displayOrder?: number
+  createdAt?: Date
+  updatedAt?: Date
 }
 
 export interface TestimonialState {
-  testimonials: Testimonial[];
-  isLoading: boolean;
-  error: string | null;
+  testimonials: Testimonial[]
+  isLoading: boolean
+  error: string | null
 }

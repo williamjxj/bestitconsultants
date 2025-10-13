@@ -2,8 +2,8 @@
 
 import { Globe, Menu, X } from 'lucide-react'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import { useState, useEffect } from 'react'
 
 import { useLanguage } from '@/contexts/LanguageContext'
 import { navigationService } from '@/services/navigation'

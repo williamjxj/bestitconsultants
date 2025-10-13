@@ -4,6 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+
 import { OptimizeRequest, OptimizeResponse, ApiResponse } from '@/types/media'
 
 // POST /api/media/optimize

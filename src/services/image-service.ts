@@ -3,12 +3,15 @@
  * Multi-tier fallback strategy: R2 → Cache → Local
  */
 
-import { R2ClientService } from './r2-client'
-import { ImageCacheManager } from '../types/image-cache'
-import { ImageAssetModel } from '../types/image-asset'
-import { ImageServiceOptions, R2Response } from '../types/r2'
 import { promises as fs } from 'fs'
 import path from 'path'
+
+import { ImageAssetModel } from '../types/image-asset'
+import { ImageCacheManager, ImageCacheModel } from '../types/image-cache'
+import { ImageServiceOptions, R2Response } from '../types/r2'
+
+
+import { R2ClientService } from './r2-client'
 
 export class ImageService {
   private r2Client: R2ClientService
@@ -142,7 +145,7 @@ export class ImageService {
     if (!this.options.useCache) return
 
     try {
-      const cacheEntry = ImageCacheManager.fromImageData(
+      const cacheEntry = ImageCacheModel.fromImageData(
         imagePath,
         response.body,
         response.contentType,
@@ -173,7 +176,7 @@ export class ImageService {
 
       if (result.success) {
         // Cache the uploaded image
-        const cacheEntry = ImageCacheManager.fromImageData(
+        const cacheEntry = ImageCacheModel.fromImageData(
           imagePath,
           data,
           contentType,
@@ -243,11 +246,16 @@ export class ImageService {
     local: 'healthy' | 'degraded' | 'unhealthy'
     overall: 'healthy' | 'degraded' | 'unhealthy'
   }> {
-    const health = {
-      r2: 'unhealthy' as const,
-      cache: 'healthy' as const,
-      local: 'healthy' as const,
-      overall: 'unhealthy' as const,
+    const health: {
+      r2: 'healthy' | 'degraded' | 'unhealthy'
+      cache: 'healthy' | 'degraded' | 'unhealthy'
+      local: 'healthy' | 'degraded' | 'unhealthy'
+      overall: 'healthy' | 'degraded' | 'unhealthy'
+    } = {
+      r2: 'unhealthy',
+      cache: 'healthy',
+      local: 'healthy',
+      overall: 'unhealthy',
     }
 
     // Check R2 health
@@ -278,13 +286,18 @@ export class ImageService {
     }
 
     // Determine overall health
-    if (
+    const hasHealthy =
       health.r2 === 'healthy' ||
       health.cache === 'healthy' ||
       health.local === 'healthy'
-    ) {
+    const hasDegraded =
+      health.r2 === 'degraded' ||
+      health.cache === 'degraded' ||
+      (health.local as 'healthy' | 'degraded' | 'unhealthy') === 'degraded'
+
+    if (hasHealthy) {
       health.overall = 'healthy'
-    } else if (health.cache === 'degraded' || health.local === 'degraded') {
+    } else if (hasDegraded) {
       health.overall = 'degraded'
     } else {
       health.overall = 'unhealthy'

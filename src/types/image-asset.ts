@@ -60,7 +60,7 @@ export class ImageAssetModel implements ImageAsset {
       )
     }
 
-    // Validate path starts with R2 bucket 
+    // Validate path starts with R2 bucket
     if (!this.path.startsWith('R2 bucket ')) {
       errors.push('Path must start with R2 bucket ')
     }

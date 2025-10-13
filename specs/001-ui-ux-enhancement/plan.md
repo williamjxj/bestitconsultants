@@ -1,9 +1,11 @@
 # Implementation Plan: Enhanced UI/UX with Simplified Navigation and AI News Integration
 
-**Branch**: `001-ui-ux-enhancement` | **Date**: 2025-01-27 | **Spec**: `/specs/001-ui-ux-enhancement/spec.md`
-**Input**: Feature specification from `/specs/001-ui-ux-enhancement/spec.md`
+**Branch**: `001-ui-ux-enhancement` | **Date**: 2025-01-27 | **Spec**:
+`/specs/001-ui-ux-enhancement/spec.md` **Input**: Feature specification from
+`/specs/001-ui-ux-enhancement/spec.md`
 
 ## Execution Flow (/plan command scope)
+
 ```
 1. Load feature spec from Input path
    → If not found: ERROR "No feature spec at {path}"
@@ -26,57 +28,72 @@
 ```
 
 **IMPORTANT**: The /plan command STOPS at step 7. Phases 2-4 are executed by other commands:
+
 - Phase 2: /tasks command creates tasks.md
 - Phase 3-4: Implementation execution (manual or via tools)
 
 ## Summary
-Enhanced UI/UX implementation for BestIT Consulting website featuring simplified navigation with logical categorization, smooth Framer Motion animations, testimonials moved to footer with glass-morphism design, and new AI News page with real-time content scraping using Firecrawl MCP, Supabase database storage, and dynamic content management.
+
+Enhanced UI/UX implementation for BestIT Consulting website featuring simplified navigation with
+logical categorization, smooth Framer Motion animations, testimonials moved to footer with
+glass-morphism design, and new AI News page with real-time content scraping using Firecrawl MCP,
+Supabase database storage, and dynamic content management.
 
 ## Technical Context
-**Language/Version**: TypeScript 5.0+, React 19, Next.js 15.2.4
-**Primary Dependencies**: Framer Motion 11.0.0, Tailwind CSS 3.4.17, shadcn/ui components, Lucide React icons, Firecrawl MCP, Supabase MCP
-**Storage**: Supabase PostgreSQL database for AI news content, testimonials, and user preferences
-**Testing**: Jest, React Testing Library, Playwright for E2E, Supabase testing utilities
-**Target Platform**: Web browsers (Chrome, Firefox, Safari, Edge) with mobile-first responsive design
-**Project Type**: Web application (Next.js frontend + Supabase backend)
-**Performance Goals**: Core Web Vitals compliance (LCP < 2.5s, FID < 100ms, CLS < 0.1), 60fps animations, <2s news content loading
-**Constraints**: <250KB JavaScript bundles, mobile-first responsive design, WCAG 2.1 AA accessibility, real-time data synchronization
-**Scale/Scope**: Single website with 7 main pages, 3 navigation categories, 1 AI news page with dynamic content (5-8 articles), Supabase database integration
+
+**Language/Version**: TypeScript 5.0+, React 19, Next.js 15.2.4 **Primary Dependencies**: Framer
+Motion 11.0.0, Tailwind CSS 3.4.17, shadcn/ui components, Lucide React icons, Firecrawl MCP,
+Supabase MCP **Storage**: Supabase PostgreSQL database for AI news content, testimonials, and user
+preferences **Testing**: Jest, React Testing Library, Playwright for E2E, Supabase testing utilities
+**Target Platform**: Web browsers (Chrome, Firefox, Safari, Edge) with mobile-first responsive
+design **Project Type**: Web application (Next.js frontend + Supabase backend) **Performance
+Goals**: Core Web Vitals compliance (LCP < 2.5s, FID < 100ms, CLS < 0.1), 60fps animations, <2s news
+content loading **Constraints**: <250KB JavaScript bundles, mobile-first responsive design, WCAG 2.1
+AA accessibility, real-time data synchronization **Scale/Scope**: Single website with 7 main pages,
+3 navigation categories, 1 AI news page with dynamic content (5-8 articles), Supabase database
+integration
 
 ## Constitution Check
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+
+_GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
 ### Component-First Architecture Compliance
+
 - ✅ Navigation component follows established hierarchy (common/)
 - ✅ AI News page uses reusable components (home/, ui/)
 - ✅ Testimonials component maintains reusability in footer
 - ✅ Animation components are self-contained and testable
 
 ### TypeScript-First Development Compliance
+
 - ✅ All new components use TypeScript with strict typing
 - ✅ Animation state interfaces defined for Framer Motion
 - ✅ Navigation item types defined for menu structure
 - ✅ AI News article interfaces defined for content
 
 ### Test-Driven Development Compliance
+
 - ✅ Component tests for navigation, testimonials, AI news
 - ✅ Integration tests for page transitions and animations
 - ✅ E2E tests for user scenarios and acceptance criteria
 - ✅ Performance tests for Core Web Vitals compliance
 
 ### Performance-First Web Standards Compliance
+
 - ✅ Framer Motion animations maintain 60fps performance
 - ✅ Code splitting implemented for AI News page
 - ✅ Image optimization with Next.js Image component
 - ✅ Bundle size monitoring for animation libraries
 
 ### Accessibility & SEO Compliance
+
 - ✅ Motion preferences respected for accessibility
 - ✅ Semantic HTML structure maintained
 - ✅ ARIA labels for interactive elements
 - ✅ SEO optimization for AI News page content
 
 ### Business-First Content Strategy Compliance
+
 - ✅ AI News page aligns with AI consulting value proposition
 - ✅ Testimonials emphasize measurable outcomes
 - ✅ Navigation supports business goals and user journeys
@@ -84,6 +101,7 @@ Enhanced UI/UX implementation for BestIT Consulting website featuring simplified
 ## Project Structure
 
 ### Documentation (this feature)
+
 ```
 specs/001-ui-ux-enhancement/
 ├── plan.md              # This file (/plan command output)
@@ -95,6 +113,7 @@ specs/001-ui-ux-enhancement/
 ```
 
 ### Source Code (repository root)
+
 ```
 # Web application structure (Next.js frontend)
 src/
@@ -119,13 +138,16 @@ tests/
 **Structure Decision**: Web application (Next.js frontend) - Option 2 structure
 
 ## Phase 0: Outline & Research
+
 1. **Extract unknowns from Technical Context** above:
+
    - Animation performance optimization techniques
    - Framer Motion best practices for web applications
    - shadcn/ui component integration patterns
    - Mobile-first responsive animation strategies
 
 2. **Generate and dispatch research agents**:
+
    ```
    For each unknown in Technical Context:
      Task: "Research Framer Motion performance optimization for Next.js applications"
@@ -137,32 +159,38 @@ tests/
 3. **Consolidate findings** in `research.md` using format:
    - Decision: Framer Motion with performance optimizations
    - Rationale: Industry standard for React animations with excellent Next.js integration
-   - Alternatives considered: CSS animations (limited control), other animation libraries (less React integration)
+   - Alternatives considered: CSS animations (limited control), other animation libraries (less
+     React integration)
 
 **Output**: research.md with all NEEDS CLARIFICATION resolved
 
 ## Phase 1: Design & Contracts
-*Prerequisites: research.md complete*
+
+_Prerequisites: research.md complete_
 
 1. **Extract entities from feature spec** → `data-model.md`:
+
    - NavigationItem: category, label, href, order
    - Testimonial: quote, author, title, company
    - AINewsArticle: title, excerpt, date, category, trending, tags
    - AnimationState: motionPreference, animationEnabled, performanceMode
 
 2. **Generate API contracts** from functional requirements:
+
    - Navigation API: GET /api/navigation (menu structure)
    - Testimonials API: GET /api/testimonials (footer content)
    - AI News API: GET /api/ai-news (news articles with filtering)
    - Animation API: GET /api/animation-preferences (user settings)
 
 3. **Generate contract tests** from contracts:
+
    - Navigation contract tests
    - Testimonials contract tests
    - AI News contract tests
    - Animation preference tests
 
 4. **Extract test scenarios** from user stories:
+
    - Navigation user journey tests
    - Animation performance tests
    - AI News filtering tests
@@ -173,12 +201,14 @@ tests/
    - Update recent changes (navigation, animations, AI news)
    - Keep under 150 lines for token efficiency
 
-**Output**: data-model.md, /contracts/*, failing tests, quickstart.md, agent-specific file
+**Output**: data-model.md, /contracts/\*, failing tests, quickstart.md, agent-specific file
 
 ## Phase 2: Task Planning Approach
-*This section describes what the /tasks command will do - DO NOT execute during /plan*
+
+_This section describes what the /tasks command will do - DO NOT execute during /plan_
 
 **Task Generation Strategy**:
+
 - Load `.specify/templates/tasks-template.md` as base
 - Generate tasks from Phase 1 design docs (contracts, data model, quickstart)
 - Each contract → contract test task [P]
@@ -187,6 +217,7 @@ tests/
 - Implementation tasks to make tests pass
 
 **Ordering Strategy**:
+
 - TDD order: Tests before implementation
 - Dependency order: Models before services before UI
 - Mark [P] for parallel execution (independent files)
@@ -196,24 +227,28 @@ tests/
 **IMPORTANT**: This phase is executed by the /tasks command, NOT by /plan
 
 ## Phase 3+: Future Implementation
-*These phases are beyond the scope of the /plan command*
 
-**Phase 3**: Task execution (/tasks command creates tasks.md)
-**Phase 4**: Implementation (execute tasks.md following constitutional principles)
-**Phase 5**: Validation (run tests, execute quickstart.md, performance validation)
+_These phases are beyond the scope of the /plan command_
+
+**Phase 3**: Task execution (/tasks command creates tasks.md) **Phase 4**: Implementation (execute
+tasks.md following constitutional principles) **Phase 5**: Validation (run tests, execute
+quickstart.md, performance validation)
 
 ## Complexity Tracking
-*Fill ONLY if Constitution Check has violations that must be justified*
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| Framer Motion library | Smooth animations required for modern UX | CSS animations insufficient for complex page transitions |
-| shadcn/ui components | Consistent design system and accessibility | Custom components would require extensive testing and maintenance |
+_Fill ONLY if Constitution Check has violations that must be justified_
+
+| Violation             | Why Needed                                 | Simpler Alternative Rejected Because                              |
+| --------------------- | ------------------------------------------ | ----------------------------------------------------------------- |
+| Framer Motion library | Smooth animations required for modern UX   | CSS animations insufficient for complex page transitions          |
+| shadcn/ui components  | Consistent design system and accessibility | Custom components would require extensive testing and maintenance |
 
 ## Progress Tracking
-*This checklist is updated during execution flow*
+
+_This checklist is updated during execution flow_
 
 **Phase Status**:
+
 - [x] Phase 0: Research complete (/plan command)
 - [x] Phase 1: Design complete (/plan command)
 - [x] Phase 2: Task planning complete (/plan command - describe approach only)
@@ -222,10 +257,12 @@ tests/
 - [ ] Phase 5: Validation passed
 
 **Gate Status**:
+
 - [x] Initial Constitution Check: PASS
 - [x] Post-Design Constitution Check: PASS
 - [x] All NEEDS CLARIFICATION resolved
 - [x] Complexity deviations documented
 
 ---
-*Based on Constitution v1.3.0 - See `/memory/constitution.md`*
+
+_Based on Constitution v1.3.0 - See `/memory/constitution.md`_

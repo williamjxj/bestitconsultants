@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { CaseStudyCard } from '@/components/case-studies/CaseStudyCard'
 import { CaseStudy } from '@/types/case-study'
 

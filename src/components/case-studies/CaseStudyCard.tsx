@@ -1,7 +1,8 @@
-import React from 'react'
-import { CaseStudy } from '@/types/case-study'
-import { OptimizedImage } from '@/components/ui/optimized-image'
 import { motion } from 'framer-motion'
+import React from 'react'
+
+import { OptimizedImage } from '@/components/ui/optimized-image'
+import { CaseStudy } from '@/types/case-study'
 
 interface CaseStudyCardProps {
   caseStudy: CaseStudy

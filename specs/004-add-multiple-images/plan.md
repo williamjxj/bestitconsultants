@@ -33,20 +33,20 @@ specification from `/specs/004-add-multiple-images/spec.md`
 
 ## Summary
 
-Replace image placeholders throughout the website with meaningful images from the `R2 bucket static-assets`
-folder, add animations and hover effects using Framer Motion and Tailwind CSS, and enhance the
-visual experience with cool interactive elements while maintaining performance and accessibility
-standards.
+Replace image placeholders throughout the website with meaningful images from the
+`R2 bucket static-assets` folder, add animations and hover effects using Framer Motion and Tailwind
+CSS, and enhance the visual experience with cool interactive elements while maintaining performance
+and accessibility standards.
 
 ## Technical Context
 
 **Language/Version**: TypeScript 5.0+, React 19, Next.js 15 **Primary Dependencies**: Framer Motion,
-Next.js Image, Tailwind CSS, shadcn/ui **Storage**: Static files in publicR2 bucket  and public/images/
-folders **Testing**: Jest, React Testing Library, Playwright for E2E **Target Platform**: Web
-browsers (desktop, tablet, mobile) **Project Type**: Web application (frontend + backend)
-**Performance Goals**: LCP < 2.5s, FID < 100ms, CLS < 0.1, 60fps animations **Constraints**: WCAG
-2.1 AA compliance, Core Web Vitals, mobile-first responsive design **Scale/Scope**: 9 new images,
-multiple page sections, enhanced user experience
+Next.js Image, Tailwind CSS, shadcn/ui **Storage**: Static files in publicR2 bucket and
+public/images/ folders **Testing**: Jest, React Testing Library, Playwright for E2E **Target
+Platform**: Web browsers (desktop, tablet, mobile) **Project Type**: Web application (frontend +
+backend) **Performance Goals**: LCP < 2.5s, FID < 100ms, CLS < 0.1, 60fps animations
+**Constraints**: WCAG 2.1 AA compliance, Core Web Vitals, mobile-first responsive design
+**Scale/Scope**: 9 new images, multiple page sections, enhanced user experience
 
 ## Constitution Check
 

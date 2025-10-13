@@ -1,7 +1,7 @@
 # Research: Cloudflare R2 Migration for Static Images
 
-**Feature**: Use Cloudflare R2 Static Buckets to Replace @R2 bucket static-assets Folder **Date**: 2025-01-27
-**Status**: Complete
+**Feature**: Use Cloudflare R2 Static Buckets to Replace @R2 bucket static-assets Folder **Date**:
+2025-01-27 **Status**: Complete
 
 ## Research Objectives
 

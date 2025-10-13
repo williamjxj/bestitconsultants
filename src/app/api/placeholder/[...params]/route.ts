@@ -2,9 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { params: string[] } }
+  { params }: { params: Promise<{ params: string[] }> }
 ) {
-  const [width, height] = params.params
+  const { params: routeParams } = await params
+  const [width, height] = routeParams
   const url = new URL(request.url)
   const theme = url.searchParams.get('theme') || 'ai'
   const seed = url.searchParams.get('seed') || Math.floor(Math.random() * 1000)

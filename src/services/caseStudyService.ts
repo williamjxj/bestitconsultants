@@ -1,4 +1,8 @@
-import { CaseStudy, CaseStudyResponse } from '@/types/case-study'
+import {
+  CaseStudy,
+  CaseStudyResponse,
+  CaseStudyMetricsResponse,
+} from '@/types/case-study'
 
 export class CaseStudyService {
   private static caseStudies: CaseStudy[] = []
@@ -50,7 +54,7 @@ export class CaseStudyService {
 
   static async getCaseStudyMetrics(
     caseStudyId: string
-  ): Promise<CaseStudyResponse> {
+  ): Promise<CaseStudyMetricsResponse> {
     try {
       const caseStudy = this.caseStudies.find(c => c.id === caseStudyId)
 

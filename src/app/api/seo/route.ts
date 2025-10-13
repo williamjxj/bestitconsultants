@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+
 import { SEOService } from '@/services/seoService'
 
 export async function GET(request: NextRequest) {

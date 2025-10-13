@@ -5,9 +5,11 @@
 
 import { promises as fs } from 'fs'
 import path from 'path'
-import { ImageService } from './image-service'
+
 import { ImageAssetModel } from '../types/image-asset'
 import { MigrationStatus } from '../types/r2'
+
+import { ImageService } from './image-service'
 
 export class ImageMigrationService {
   private imageService: ImageService

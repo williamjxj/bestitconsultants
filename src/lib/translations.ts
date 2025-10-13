@@ -731,6 +731,156 @@ export const translations = {
       email: 'jxjwilliam@gmail.com',
       phone: '+1 (236) 992-3846',
     },
+    testimonials: {
+      title: 'Client Testimonials',
+      subtitle: 'What our clients say about our services',
+      testimonialsPreview: {
+        title: 'Client Success Stories',
+        subtitle: 'Hear from our satisfied clients',
+        viewAll: 'View All Testimonials',
+        moreTestimonials: 'View All Testimonials',
+        testimonials: [
+          {
+            id: '1',
+            quote: 'BestITConsulting delivered exceptional results for our e-commerce platform.',
+            name: 'Sarah Johnson'
+          },
+          {
+            id: '2', 
+            quote: 'The AI/ML solutions transformed our data analytics capabilities.',
+            name: 'Michael Chen'
+          },
+          {
+            id: '3',
+            quote: 'Working with BestITConsulting was a game-changer for our mobile app.',
+            name: 'Emily Rodriguez'
+          }
+        ]
+      },
+      testimonials: {
+        title: 'Client Testimonials',
+        subtitle: 'What our clients say about our services',
+        viewAll: 'View All Testimonials',
+      },
+      stats: {
+        title: 'Performance Metrics',
+        subtitle: 'Key performance indicators',
+        metrics: [
+          { value: '150+', label: 'Projects Completed', description: 'Successfully delivered' },
+          { value: '98%', label: 'Client Satisfaction', description: 'Average rating' },
+          { value: '50+', label: 'Team Members', description: 'Expert developers' },
+          { value: '15+', label: 'Years Experience', description: 'Industry expertise' }
+        ]
+      },
+      awards: {
+        title: 'Awards & Recognition',
+        subtitle: 'Industry recognition and achievements',
+        list: [
+          { icon: '🏆', title: 'Best IT Consulting', organization: 'Tech Excellence Awards', year: '2023' },
+          { icon: '⭐', title: 'Top Rated Agency', organization: 'Industry Leaders', year: '2023' },
+          { icon: '🎯', title: 'Innovation Award', organization: 'Innovation Summit', year: '2022' },
+          { icon: '💎', title: 'Excellence in Service', organization: 'Service Quality Institute', year: '2022' }
+        ]
+      },
+      clients: {
+        title: 'Client Portfolio',
+        subtitle: 'Our valued clients and partners',
+        logos: [
+          { name: 'TechCorp' },
+          { name: 'DataFlow' },
+          { name: 'MobileFirst' },
+          { name: 'CloudSys' },
+          { name: 'AI Ventures' },
+          { name: 'FinTech Pro' }
+        ]
+      },
+      industries: {
+        title: 'Industries Served',
+        subtitle: 'Diverse industry expertise',
+        list: [
+          { icon: '🏦', name: 'Finance & Banking', projects: 25 },
+          { icon: '🏥', name: 'Healthcare', projects: 18 },
+          { icon: '🛒', name: 'E-Commerce', projects: 32 },
+          { icon: '🎓', name: 'Education', projects: 15 },
+          { icon: '🏭', name: 'Manufacturing', projects: 12 },
+          { icon: '🚗', name: 'Automotive', projects: 8 },
+          { icon: '🏨', name: 'Hospitality', projects: 10 },
+          { icon: '📱', name: 'Technology', projects: 40 }
+        ]
+      },
+      cta: {
+        title: 'Ready to Work With Us?',
+        subtitle: 'Join our satisfied clients',
+        button: 'Get Started',
+        getQuote: 'Get a Quote',
+        caseStudies: 'View Case Studies',
+      },
+      tech: {
+        title: 'Technologies We Use',
+        subtitle: 'Modern tech stack for optimal results',
+      },
+      metrics: {
+        title: 'Performance Metrics',
+        subtitle: 'Key performance indicators',
+      },
+      logos: {
+        title: 'Client Logos',
+        subtitle: 'Our valued clients and partners',
+      },
+      list: [
+        {
+          content: 'BestITConsulting delivered exceptional results for our e-commerce platform. Their team\'s expertise in React and Node.js helped us achieve 40% faster load times and a 25% increase in conversion rates.',
+          name: 'Sarah Johnson',
+          position: 'CTO',
+          company: 'TechCorp Solutions',
+          avatar: '/images/testimonial-1.jpg',
+          rating: 5,
+          project: {
+            type: 'E-Commerce Platform',
+            technologies: ['React', 'Node.js', 'PostgreSQL', 'AWS'],
+            metrics: [
+              { label: 'Load Time Improvement', value: '40%' },
+              { label: 'Conversion Rate', value: '25%' },
+              { label: 'User Satisfaction', value: '95%' }
+            ]
+          }
+        },
+        {
+          content: 'The AI/ML solutions provided by BestITConsulting transformed our data analytics capabilities. Their machine learning models improved our prediction accuracy by 60% and reduced processing time by 50%.',
+          name: 'Michael Chen',
+          position: 'Data Science Director',
+          company: 'DataFlow Inc',
+          avatar: '/images/testimonial-2.jpg',
+          rating: 5,
+          project: {
+            type: 'AI/ML Solution',
+            technologies: ['Python', 'TensorFlow', 'Docker', 'Kubernetes'],
+            metrics: [
+              { label: 'Prediction Accuracy', value: '60%' },
+              { label: 'Processing Time', value: '50%' },
+              { label: 'Model Performance', value: '98%' }
+            ]
+          }
+        },
+        {
+          content: 'Working with BestITConsulting was a game-changer for our mobile app development. They delivered a cross-platform solution that reduced our development time by 35% while maintaining excellent performance.',
+          name: 'Emily Rodriguez',
+          position: 'Product Manager',
+          company: 'MobileFirst',
+          avatar: '/images/testimonial-3.jpg',
+          rating: 5,
+          project: {
+            type: 'Mobile App Development',
+            technologies: ['React Native', 'TypeScript', 'Firebase', 'Stripe'],
+            metrics: [
+              { label: 'Development Time', value: '35%' },
+              { label: 'App Performance', value: '99%' },
+              { label: 'User Retention', value: '85%' }
+            ]
+          }
+        }
+      ],
+    },
   },
   // For now, we'll use the English translations for other languages
   // In a real implementation, you would translate all content

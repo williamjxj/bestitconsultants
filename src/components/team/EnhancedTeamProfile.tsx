@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { TeamMember } from '@/types/team'
 
 interface EnhancedTeamProfileProps {

@@ -46,9 +46,15 @@ export const imageMapping = {
  * @returns The image path or placeholder if not found
  */
 export function getImageForContext(context: string): string {
-  return (
-    imageMapping[context as keyof typeof imageMapping] || '/placeholder.svg'
-  )
+  const mapping = imageMapping[context as keyof typeof imageMapping]
+
+  // If it's a string, return it directly
+  if (typeof mapping === 'string') {
+    return mapping
+  }
+
+  // If it's an object (like teamMembers), return placeholder
+  return '/placeholder.svg'
 }
 
 /**

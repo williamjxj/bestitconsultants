@@ -1,7 +1,8 @@
-import React from 'react'
-import { ServiceCategory } from '@/types/service'
-import { OptimizedImage } from '@/components/ui/optimized-image'
 import { motion } from 'framer-motion'
+import React from 'react'
+
+import { OptimizedImage } from '@/components/ui/optimized-image'
+import { ServiceCategory } from '@/types/service'
 
 interface ServiceCategoryCardProps {
   service: ServiceCategory

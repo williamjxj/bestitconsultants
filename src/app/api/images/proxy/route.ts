@@ -3,10 +3,12 @@
  * Handles image requests with multi-tier fallback (R2 → Cache → Local)
  */
 
-import { NextRequest, NextResponse } from 'next/server'
 import { promises as fs } from 'fs'
 import path from 'path'
+
 import { lookup } from 'mime-types'
+import { NextRequest, NextResponse } from 'next/server'
+
 import { ImageService } from '@/services/image-service'
 
 // Initialize image service

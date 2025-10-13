@@ -25,12 +25,21 @@ export interface CaseStudyMetric {
 
 export interface CaseStudyResponse {
   success: boolean
-  data: CaseStudy | CaseStudy[]
+  data?: CaseStudy | CaseStudy[]
+  message?: string
+  code?: string
   meta?: {
     total: number
     page: number
     limit: number
   }
+}
+
+export interface CaseStudyMetricsResponse {
+  success: boolean
+  data?: CaseStudyMetric | CaseStudyMetric[]
+  message?: string
+  code?: string
 }
 
 export interface CaseStudyError {

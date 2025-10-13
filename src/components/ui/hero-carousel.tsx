@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import React, { useState, useEffect } from 'react'
 
 import { OptimizedImage } from './optimized-image'
 

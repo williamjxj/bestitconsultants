@@ -3,9 +3,11 @@
 ## Entities
 
 ### NavigationItem
+
 Represents a menu item in the navigation system with categorization and ordering.
 
 **Fields**:
+
 - `id: string` - Unique identifier for the navigation item
 - `label: string` - Display text for the navigation item
 - `href: string` - URL path for the navigation item
@@ -15,19 +17,23 @@ Represents a menu item in the navigation system with categorization and ordering
 - `isVisible: boolean` - Show/hide in navigation
 
 **Validation Rules**:
+
 - `label` must be non-empty string
 - `href` must be valid URL path
 - `order` must be positive integer
 - Maximum 7 items total in navigation
 
 **State Transitions**:
+
 - `isActive` changes based on current route
 - `isVisible` can be toggled for responsive design
 
 ### Testimonial
+
 Represents client feedback displayed in the footer section.
 
 **Fields**:
+
 - `id: string` - Unique identifier for the testimonial
 - `quote: string` - Client testimonial text
 - `author: string` - Client name
@@ -37,6 +43,7 @@ Represents client feedback displayed in the footer section.
 - `order: number` - Display order in testimonials section
 
 **Validation Rules**:
+
 - `quote` must be non-empty string (max 200 characters)
 - `author` must be non-empty string
 - `title` must be non-empty string
@@ -44,13 +51,17 @@ Represents client feedback displayed in the footer section.
 - `order` must be positive integer
 
 **State Transitions**:
+
 - `isVisible` can be toggled for content management
 - `order` can be updated for reordering
 
 ### AINewsArticle
-Represents AI industry news content with categorization and trending status, stored in Supabase database.
+
+Represents AI industry news content with categorization and trending status, stored in Supabase
+database.
 
 **Fields**:
+
 - `id: string` - Unique identifier for the article (UUID)
 - `title: string` - Article headline
 - `excerpt: string` - Article summary
@@ -68,6 +79,7 @@ Represents AI industry news content with categorization and trending status, sto
 - `scrapedAt: Date` - When content was scraped from source
 
 **Validation Rules**:
+
 - `title` must be non-empty string (max 100 characters)
 - `excerpt` must be non-empty string (max 300 characters)
 - `date` must be valid Date object
@@ -77,15 +89,18 @@ Represents AI industry news content with categorization and trending status, sto
 - `createdAt`, `updatedAt`, `scrapedAt` must be valid Date objects
 
 **State Transitions**:
+
 - `trending` can be updated based on engagement metrics
 - `isPublished` controls article visibility
 - `tags` can be updated for better categorization
 - `updatedAt` automatically updated on any field change
 
 ### AnimationState
+
 Represents user animation preferences and system animation settings.
 
 **Fields**:
+
 - `motionPreference: MotionPreference` - User's motion preference setting
 - `animationEnabled: boolean` - System animation toggle
 - `performanceMode: PerformanceMode` - Performance optimization level
@@ -93,12 +108,14 @@ Represents user animation preferences and system animation settings.
 - `staggerDelay: number` - Animation stagger delay in milliseconds
 
 **Validation Rules**:
+
 - `motionPreference` must be valid enum value
 - `animationEnabled` must be boolean
 - `performanceMode` must be valid enum value
 - `staggerDelay` must be positive number (max 200ms)
 
 **State Transitions**:
+
 - `motionPreference` changes based on user system settings
 - `animationEnabled` can be toggled by user
 - `performanceMode` adjusts based on device capabilities
@@ -106,17 +123,19 @@ Represents user animation preferences and system animation settings.
 ## Enums
 
 ### NavigationCategory
+
 ```typescript
 enum NavigationCategory {
   MAIN = 'main',
   COMPANY = 'company',
   SERVICES = 'services',
   WORK = 'work',
-  RESOURCES = 'resources'
+  RESOURCES = 'resources',
 }
 ```
 
 ### NewsCategory
+
 ```typescript
 enum NewsCategory {
   AI_MODELS = 'AI Models',
@@ -124,39 +143,44 @@ enum NewsCategory {
   AI_SAFETY = 'AI Safety',
   ENTERPRISE_AI = 'Enterprise AI',
   RESEARCH = 'Research',
-  AUTONOMOUS_VEHICLES = 'Autonomous Vehicles'
+  AUTONOMOUS_VEHICLES = 'Autonomous Vehicles',
 }
 ```
 
 ### MotionPreference
+
 ```typescript
 enum MotionPreference {
   REDUCED = 'reduced',
   NORMAL = 'normal',
-  ENHANCED = 'enhanced'
+  ENHANCED = 'enhanced',
 }
 ```
 
 ### PerformanceMode
+
 ```typescript
 enum PerformanceMode {
   LOW = 'low',
   MEDIUM = 'medium',
-  HIGH = 'high'
+  HIGH = 'high',
 }
 ```
 
 ## Relationships
 
 ### NavigationItem ↔ NavigationCategory
+
 - **One-to-Many**: Each category can have multiple navigation items
 - **Constraint**: Maximum 7 items total across all categories
 
 ### AINewsArticle ↔ NewsCategory
+
 - **One-to-Many**: Each category can have multiple articles
 - **Constraint**: Articles must belong to exactly one category
 
 ### AINewsArticle ↔ Tags
+
 - **Many-to-Many**: Articles can have multiple tags, tags can belong to multiple articles
 - **Constraint**: Maximum 5 tags per article
 
@@ -165,6 +189,7 @@ enum PerformanceMode {
 ### Database Tables
 
 #### ai_news_articles
+
 ```sql
 CREATE TABLE ai_news_articles (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -192,6 +217,7 @@ CREATE INDEX idx_ai_news_date ON ai_news_articles(date DESC);
 ```
 
 #### testimonials
+
 ```sql
 CREATE TABLE testimonials (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -211,6 +237,7 @@ CREATE INDEX idx_testimonials_order ON testimonials(display_order);
 ```
 
 #### user_preferences
+
 ```sql
 CREATE TABLE user_preferences (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -227,6 +254,7 @@ CREATE INDEX idx_user_prefs_user_id ON user_preferences(user_id);
 ```
 
 ### Row Level Security (RLS)
+
 ```sql
 -- Enable RLS on all tables
 ALTER TABLE ai_news_articles ENABLE ROW LEVEL SECURITY;
@@ -248,12 +276,14 @@ CREATE POLICY "Users can manage their own preferences" ON user_preferences
 ## Data Validation Rules
 
 ### Global Constraints
+
 - All string fields must be non-empty
 - All numeric fields must be positive
 - All date fields must be valid Date objects
 - All boolean fields must be explicit (no undefined)
 
 ### Business Rules
+
 - Navigation must have exactly 7 items
 - Testimonials must have at least 3 items for display
 - AI News articles must have valid publication dates
@@ -262,10 +292,10 @@ CREATE POLICY "Users can manage their own preferences" ON user_preferences
 - Content refresh every 6 hours maximum
 
 ### Performance Constraints
+
 - Navigation items must load within 100ms
 - Testimonials must render within 200ms
 - AI News articles must load within 500ms
 - Animations must maintain 60fps performance
 - Database queries must complete within 200ms
 - Real-time subscriptions must update within 1 second
-

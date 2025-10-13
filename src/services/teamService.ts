@@ -1,4 +1,8 @@
-import { TeamMember, TeamMemberResponse } from '@/types/team'
+import {
+  TeamMember,
+  TeamMemberResponse,
+  PrestigeProjectResponse,
+} from '@/types/team'
 
 export class TeamService {
   private static teamMembers: TeamMember[] = []
@@ -50,7 +54,7 @@ export class TeamService {
 
   static async getPrestigeProjects(
     memberId: string
-  ): Promise<TeamMemberResponse> {
+  ): Promise<PrestigeProjectResponse> {
     try {
       const member = this.teamMembers.find(m => m.id === memberId)
 

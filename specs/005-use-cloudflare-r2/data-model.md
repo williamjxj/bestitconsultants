@@ -157,13 +157,6 @@ const MIN_DIMENSIONS = 1
 const MAX_DIMENSIONS = 8192
 ```
 
-### URL Path Validation
-
-```typescript
-const IMAGE_PATH_PATTERN = /^R2 bucket [a-zA-Z0-9._-]+\.(jpg|jpeg|png|webp)$/
-const R2_KEY_PATTERN = /^imgs\/[a-zA-Z0-9._-]+\.(jpg|jpeg|png|webp)$/
-```
-
 ### Cache Validation
 
 ```typescript
