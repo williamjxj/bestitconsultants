@@ -1,7 +1,7 @@
 <!-- Sync Impact Report:
-Version change: 1.2.0 → 1.3.0
-Modified principles: N/A (no changes to existing principles)
-Added sections: UI/UX Standards, Animation Requirements, Navigation Standards, AI News Integration
+Version change: 1.3.0 → 1.4.0
+Modified principles: Enhanced Team Structure Standards, Updated Technology Stack Requirements
+Added sections: Enhanced API Standards, Performance Monitoring, Code Quality Gates
 Removed sections: N/A
 Templates requiring updates: ✅ plan-template.md, ✅ spec-template.md, ✅ tasks-template.md
 Follow-up TODOs: None
@@ -65,6 +65,9 @@ Zhanying Technology MUST be prominently featured.
 - **UI Components**: Radix UI primitives with custom styling
 - **Email Service**: Resend for contact form integration
 - **Deployment**: Vercel-optimized build configuration
+- **Animation**: Framer Motion for all interactive animations
+- **Image Optimization**: Next.js Image component with Cloudflare R2 integration
+- **Performance**: Core Web Vitals monitoring and optimization
 
 ### Code Quality Gates
 
@@ -73,6 +76,9 @@ Zhanying Technology MUST be prominently featured.
 - TypeScript strict mode enabled
 - Markdown linting for documentation
 - All quality checks must pass before merge
+- Bundle size monitoring with alerts for >250KB
+- Performance budgets enforced for Core Web Vitals
+- Accessibility testing with automated WCAG 2.1 AA compliance
 
 ## Quality Assurance
 
@@ -108,6 +114,35 @@ Zhanying Technology MUST be prominently featured.
 - Lazy loading for below-the-fold content
 - CDN optimization for static assets
 - Bundle size monitoring and alerts
+
+## Enhanced API Standards
+
+### API Endpoint Requirements (MANDATORY)
+
+All API endpoints MUST follow these standards:
+
+- **Response Format**: Consistent JSON structure with status, data, and error fields
+- **Error Handling**: Standardized error codes and messages
+- **Rate Limiting**: Implement appropriate rate limiting for public endpoints
+- **Caching**: Strategic caching for performance optimization
+- **Documentation**: OpenAPI/Swagger documentation for all endpoints
+
+### Required API Endpoints
+
+- **Team API**: `/api/team` and `/api/team/[id]` for team member data
+- **Services API**: `/api/services` for service category information
+- **Case Studies API**: `/api/case-studies` for project showcases
+- **Contact API**: `/api/contact` for form submissions
+- **SEO API**: `/api/seo` for metadata generation
+- **Media API**: `/api/media/*` for image and asset management
+- **Navigation API**: `/api/navigation` for site structure
+
+### Performance Monitoring (MANDATORY)
+
+- **Real User Monitoring**: Track Core Web Vitals in production
+- **Error Tracking**: Monitor and alert on API failures
+- **Performance Budgets**: Enforce limits on bundle size and load times
+- **Analytics Integration**: Track user interactions and conversion metrics
 
 ## Business Strategy Standards
 
@@ -174,7 +209,7 @@ All content MUST target these primary keywords:
 
 All team pages MUST include these core members with detailed profiles:
 
-**William Jiang (Founder, Vancouver, Canada)**
+#### William Jiang (Founder, Vancouver, Canada)
 
 - **Title**: AI Consultant, Full Stack Engineer
 - **Experience**: 20+ years global experience in full-stack development, software architecture,
@@ -184,7 +219,7 @@ All team pages MUST include these core members with detailed profiles:
   LangChain, Hugging Face
 - **Specialization**: Python-based, Kafka-driven microservices in cloud environments
 
-**Shamin Yang (Senior Software Engineer, Guangzhou, China)**
+#### Shamin Yang (Senior Software Engineer, Guangzhou, China)
 
 - **Title**: Senior Software Engineer / Solution Architect
 - **Experience**: 20+ years in .NET development, MSCT and PMP certified
@@ -193,7 +228,7 @@ All team pages MUST include these core members with detailed profiles:
   migration
 - **Specialization**: System integration (Biztalk, MSMQ, SSIS), CI/CD setup and DevOps
 
-**Lewis Liu (Software Architect, Beijing, China)**
+#### Lewis Liu (Software Architect, Beijing, China)
 
 - **Title**: Software Architect/Programmer
 - **Experience**: 26+ years in BIM/CAD/CAE, patent authorization holder
@@ -206,18 +241,18 @@ All team pages MUST include these core members with detailed profiles:
 
 All team pages MUST include these strategic partners:
 
-**James Chueng (Full-Stack Engineer, Hong Kong)**
+#### James Chueng (Full-Stack Engineer, Hong Kong)
 
 - **Services**: Full-stack development for web and AI projects, React, Next.js, Angular, Node.js
 - **Specialization**: NLP, LLM (LangChain), TensorFlow, JavaScript frameworks
 
-**Ming Chun Hu (Lead Software Developer, Chengdu, China)**
+#### Ming Chun Hu (Lead Software Developer, Chengdu, China)
 
 - **Company**: Chengdu Zhanying Technology Co., Ltd.
 - **Services**: Custom software development, OA/ERP/MES/EKP systems, mobile app development
 - **Specialization**: High-end custom development for mobile (Android/iOS) and embedded systems
 
-**Wayne Li (AI Solutions Architect, Shenzhen, China)**
+#### Wayne Li (AI Solutions Architect, Shenzhen, China)
 
 - **Company**: Aochuang Intelligent Technology Co., Ltd.
 - **Services**: AI productivity engine, intelligent interaction solutions, customized AI solutions
@@ -308,19 +343,19 @@ Three-column grid with these exact highlights:
 
 All case studies MUST include these specific examples with measurable outcomes:
 
-**AI-Powered Transformation in Textile Design**
+#### AI-Powered Transformation in Textile Design
 
 - **Results**: Reduced design cycle from 12 weeks → 4–6 days
 - **Impact**: Boosted creativity by 10x, increased acceptance rate to 90%
 - **Technology**: AI-assisted design, creative style exploration
 
-**HSBC ETL Platform (Shamin Yang)**
+#### HSBC ETL Platform (Shamin Yang)
 
 - **Results**: Automated ETL processes with .NET and RPA
 - **Impact**: Improved compliance and reduced manual workload
 - **Technology**: .NET, RPA automation, system integration
 
-**Advanced CAD/BIM Modeling (Lewis Liu)**
+#### Advanced CAD/BIM Modeling (Lewis Liu)
 
 - **Results**: Developed parallel computing algorithms for CAD
 - **Impact**: Improved modeling performance and precision
@@ -418,4 +453,4 @@ This constitution supersedes all other development practices. Amendments require
 All pull requests MUST verify compliance with these principles. Complexity additions MUST be
 justified with business value. Use `.specify/templates/` for structured development guidance.
 
-**Version**: 1.3.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27
+**Version**: 1.4.0 | **Ratified**: 2025-01-27 | **Last Amended**: 2025-01-27
