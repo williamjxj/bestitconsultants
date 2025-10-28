@@ -1,5 +1,13 @@
 'use client'
 
+import {
+  Facebook,
+  Twitter,
+  Linkedin,
+  Github,
+  Youtube,
+  Instagram,
+} from 'lucide-react'
 import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
@@ -23,14 +31,6 @@ import {
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { useLanguage } from '@/contexts/LanguageContext'
-import {
-  Facebook,
-  Twitter,
-  Linkedin,
-  Github,
-  Youtube,
-  Instagram,
-} from 'lucide-react'
 
 export default function ContactPage() {
   const { translations } = useLanguage()
