@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { SimpleAccordion } from '@/components/ui/simple-accordion'
 import { TeamMember } from '@/types/team'
 
 interface EnhancedTeamProfileProps {
@@ -9,7 +10,7 @@ interface EnhancedTeamProfileProps {
 export const EnhancedTeamProfile: React.FC<EnhancedTeamProfileProps> = ({
   member,
 }) => {
-  const renderBio = (bio: string) => {
+  const renderBoldText = (text: string, keyPrefix: string) => {
     // Split on **bold** markers and render highlighted spans for matched groups
     // This preserves plain text while replacing **text** with a styled <span>
     const parts = [] as React.ReactNode[]
@@ -17,17 +18,17 @@ export const EnhancedTeamProfile: React.FC<EnhancedTeamProfileProps> = ({
     let lastIndex = 0
     let match: RegExpExecArray | null
 
-    while ((match = regex.exec(bio)) !== null) {
+    while ((match = regex.exec(text)) !== null) {
       const index = match.index
       // push text before the match
       if (index > lastIndex) {
-        parts.push(bio.slice(lastIndex, index))
+        parts.push(text.slice(lastIndex, index))
       }
       // push highlighted span for the captured group
       parts.push(
         <span
-          key={`${member.id}-hl-${index}`}
-          className='bg-yellow-100 text-yellow-900 px-1 rounded'
+          key={`${member.id}-${keyPrefix}-${index}`}
+          className='bg-gradient-to-r from-blue-100 to-purple-100 text-blue-900 font-semibold px-2 py-1 rounded-md border border-blue-200 shadow-sm'
         >
           {match[1]}
         </span>
@@ -36,14 +37,15 @@ export const EnhancedTeamProfile: React.FC<EnhancedTeamProfileProps> = ({
     }
 
     // push remaining text
-    if (lastIndex < bio.length) {
-      parts.push(bio.slice(lastIndex))
+    if (lastIndex < text.length) {
+      parts.push(text.slice(lastIndex))
     }
 
     return parts
   }
   return (
     <div className='bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow'>
+      {/* Header Section - Fixed Height */}
       <div className='flex items-center space-x-4 mb-4'>
         {member.avatar && member.avatar.trim() !== '' ? (
           <img
@@ -69,7 +71,7 @@ export const EnhancedTeamProfile: React.FC<EnhancedTeamProfileProps> = ({
         </div>
       </div>
 
-      <p className='text-gray-700 mb-4'>{renderBio(member.bio)}</p>
+      <p className='text-gray-700 mb-4'>{renderBoldText(member.bio, 'bio')}</p>
 
       <div className='space-y-3'>
         <div>
@@ -89,17 +91,17 @@ export const EnhancedTeamProfile: React.FC<EnhancedTeamProfileProps> = ({
         <div>
           <h4 className='font-semibold text-gray-900 mb-2'>Key Achievements</h4>
           <ul className='list-disc list-inside text-sm text-gray-700'>
-            {member.achievements.map(achievement => (
-              <li key={achievement}>{achievement}</li>
+            {member.achievements.map((achievement, index) => (
+              <li key={achievement}>
+                {renderBoldText(achievement, `achievement-${index}`)}
+              </li>
             ))}
           </ul>
         </div>
 
+        {/* Prestige Projects - Accordionable */}
         {member.prestigeProjects.length > 0 && (
-          <div>
-            <h4 className='font-semibold text-gray-900 mb-2'>
-              Prestige Projects
-            </h4>
+          <SimpleAccordion title='Prestige Projects'>
             <div className='space-y-2'>
               {member.prestigeProjects.map(project => (
                 <div key={project.id} className='bg-gray-50 p-3 rounded'>
@@ -118,14 +120,22 @@ export const EnhancedTeamProfile: React.FC<EnhancedTeamProfileProps> = ({
                       ({project.year})
                     </span>
                   </div>
-                  <p className='text-sm text-gray-700'>{project.description}</p>
+                  <p className='text-sm text-gray-700'>
+                    {renderBoldText(
+                      project.description,
+                      `project-${project.id}-desc`
+                    )}
+                  </p>
                   <p className='text-sm text-green-600 font-medium'>
-                    {project.outcome}
+                    {renderBoldText(
+                      project.outcome,
+                      `project-${project.id}-outcome`
+                    )}
                   </p>
                 </div>
               ))}
             </div>
-          </div>
+          </SimpleAccordion>
         )}
       </div>
     </div>

@@ -135,7 +135,7 @@ const teamMembers: TeamMember[] = [
     location: 'Beijing, China',
     experience: 26,
     avatar: '/images/lewis-liu.jpg',
-    bio: 'Software Architect and Programmer with 26 years of experience, specializing in **BIM/CAD technology**, geometric modeling (Parasolid/ACIS/OCC), parallel algorithm design (OpenMP), and AutoCAD/Revit development. Possesses strong mathematical capability and expertise in C/C++, C#, STL, Python, and third-party library integration. Holds 1 patent authorization for Associated Parametric Modeling (APM).',
+    bio: 'Software Architect and Programmer with 26 years of experience, specializing in **BIM/CAD technology**, geometric modeling (Parasolid/ACIS/OCC), parallel algorithm design (OpenMP), and AutoCAD/Revit development. Possesses strong mathematical capability and expertise in C/C++, C#, STL, Python, and third-party library integration. Holds 1 patent authorization for **Associated Parametric Modeling (APM)**.',
     expertise: [
       'BIM/CAD Data modeling and exchange, SDK technology (Autodesk ObjectARX-like)',
       'Mathematical capability, parallel algorithm design, OpenMP, design patterns, SDK interface design',
@@ -146,7 +146,7 @@ const teamMembers: TeamMember[] = [
     achievements: [
       "Authored 4 books and over 10 technical articles, including 'AutoCAD2000 ARX Development Technology'",
       "Published 'Hybrid intelligence utilization for construction site layout' in Automation in Construction (SCI and EI searches conducted)",
-      'Successfully developed **Associated Parametric Modeling (APM) technology**, applied in 3D digitization in the Chinese engineering market (similar to Autodesk Revit technology)',
+      'Successfully developed Associated Parametric Modeling (APM) technology, applied in 3D digitization in the Chinese engineering market (similar to Autodesk Revit technology)',
       "Received 1 patent authorization for 'A technology to capture design intents automatically while users modeling as usual'",
       'Received the Golden Idea Award at the Quality Conference',
       'Won multiple awards in the Beijing College Student Mathematics Competition',
@@ -192,7 +192,7 @@ const teamMembers: TeamMember[] = [
     location: 'Guangzhou, China',
     experience: 20,
     avatar: '/images/shaming-yang.jpeg',
-    bio: 'More than 20 years of **.NET development experience** across various Microsoft tech domains including Web, Windows, CI/CD, and System Integration. Has a strong background in **RPA** and **Auto Testing**, holding multiple industry certifications, and experience in finance (HSBC, Credit-Suisse) and large corporate projects (Huawei, IBM, GM).',
+    bio: 'More than 20 years of .NET development experience across various Microsoft tech domains including Web, Windows, CI/CD, and System Integration. Has a strong background in RPA and Auto Testing, holding multiple industry certifications, and experience in finance (HSBC, Credit-Suisse) and large corporate projects (Huawei, IBM, GM).',
     expertise: [
       'Web Application: ASP.NET, .NetCore, Blazor, MVC, WebApi, WCF, Siverlight, EntityFramework & Linq, Html, CSS, Javascript, Jquery, Angular, Typescript, Bootstrap, Java & JSP',
       'Windows Application: WPF, UWP, Winform, MaterialDesign',
@@ -204,12 +204,12 @@ const teamMembers: TeamMember[] = [
       'Auto Testing: NUnit, MSTest, Spec Flow, Jmeter, Jasmine, Karma, TestBed',
     ],
     achievements: [
-      'Delivered several advanced challenge features independently in **Transformers ETL Platform** at HSBC, including PDF Input Node, Map Data Process Node, and XML Input Node',
+      'Delivered several advanced challenge features independently in Transformers ETL Platform at HSBC, including PDF Input Node, Map Data Process Node, and XML Input Node',
       "Delivered Approval and Release Process for Citizen users' flow, synchronized with JIRA",
-      'Developed **Envoy Web-Automation Tool** (Won top 10 Award in HSBC HTC 2021)',
-      'Achieved **Delivery Star** in Huawei Tablet PDU department with an **excellent** performance level in Q2 of 2016',
-      'Significantly improved the request processing performance for the Gate & TAQA integration systems from **2 hours to less than 1 minute**',
-      'Team received **2 formal praise letters** from GM customers while leading the ABM Sustain team at HP',
+      'Developed Envoy Web-Automation Tool (Won top 10 Award in HSBC HTC 2021)',
+      'Achieved Delivery Star in Huawei Tablet PDU department with an excellent performance level in Q2 of 2016',
+      'Significantly improved the request processing performance for the Gate & TAQA integration systems from 2 hours to less than 1 minute',
+      'Team received 2 formal praise letters from GM customers while leading the ABM Sustain team at HP',
       'Got "Star Of Efficiency" of PSP/TSP implementation awards in Q1 of 2011 at HP',
     ],
     specializations: [
@@ -296,14 +296,24 @@ const teamMembers: TeamMember[] = [
     location: 'Shanghai, China',
     experience: 25,
     avatar: '/images/wayne-li.jpg',
-    bio: 'Technical Director and LLM expert with **25 years of experience**, focusing on implementing secure and controllable **AI solutions for enterprises**. Strong AI engineering capability, rapidly building applications on platforms like **OpenAI** and **ComfyUI**. Experienced in global firms like Oracle and Accenture.',
+    bio: 'Technical Director and LLM expert with 25 years of experience, specializing in AI solutions for government and enterprise clients. Achieves technology equity by lowering the AI usage threshold for organizations. Expert in AI+ innovation design in the textile and light industry, solving client problems like long design cycles and high manual dependency. Company service covers 10+ industries with 100+ successful cases. Strong AI engineering capability, rapidly building applications on platforms like OpenAI and ComfyUI. Experienced in global firms like Oracle and Accenture.',
     expertise: [
+      'AI Solutions for Government & Enterprise',
+      'AI Design Platforms (Creative Style Exploration, Turing Work, Smart Pattern Search)',
+      'AI Engineering (Model Training, Knowledge Base, Retrieval-Augmented Generation (RAG))',
+      'Microservices & Low-Code Platform Architecture',
       'AI Engineering: OPENAI, ComfyUI, GPU-driven content automation',
       'Large Language Models (LLMs)',
       'Enterprise AI Application Implementation',
     ],
     achievements: [
-      'Successfully realized a **GPU-driven content automation generation platform**',
+      'Specializes in AI solutions for government and enterprise clients',
+      'Achieves technology equity by lowering the AI usage threshold for organizations',
+      'Expertise in AI+ innovation design in the textile and light industry, solving client problems like long design cycles and high manual dependency',
+      'Company service covers 10+ industries with 100+ successful cases',
+      'Reduced deployment time by 80%',
+      'Achieved 99.9% system uptime',
+      'Successfully realized a GPU-driven content automation generation platform',
     ],
     specializations: [
       'AI Application Landing Solutions',
@@ -312,7 +322,24 @@ const teamMembers: TeamMember[] = [
     ],
     education:
       'School of Software, Tsinghua University (Tsinghua Software School)',
-    prestigeProjects: [],
+    prestigeProjects: [
+      {
+        id: 'ai-innovation-design-platforms',
+        name: 'AI+ Innovation Design Platforms for Light/Textile Industry',
+        type: 'project',
+        description:
+          'Developed a suite of AI platforms (Creative Style Exploration, Turing Work, Smart Pattern Search) for the textile industry to accelerate product iteration.',
+        outcome:
+          'Replaced physical sampling with digital mock-ups, cut sampling costs, broke production bottlenecks, and increased the probability of best-sellers.',
+        technologies: [
+          'AI Design Platforms',
+          'Creative Style Exploration',
+          'Turing Work',
+          'Smart Pattern Search',
+        ],
+        year: 2025,
+      },
+    ],
   },
   {
     id: 'james-chueng',
@@ -321,11 +348,11 @@ const teamMembers: TeamMember[] = [
     location: 'Hong Kong',
     experience: 7,
     avatar: '/images/james-cheung.jpeg',
-    bio: 'A full stack software engineer with **7+ years** working on freelancing platforms like Freelancer and Upwork. Contributed to lots of software development ranging from small web and **AI projects** to enterprise applications. Seeking long-term collaboration with senior European developers due to perceived location bias.',
+    bio: 'A full stack software engineer with 7+ years working on freelancing platforms like Freelancer and Upwork. Contributed to lots of software development ranging from small web and AI projects to enterprise applications. Seeking long-term collaboration with senior European developers due to perceived location bias.',
     expertise: [
-      'Frontend: **React**, Next.js, Angular, Vue3, other JavaScript frameworks',
-      'Backend: Node, **ROR**, Laravel',
-      'AI/LLMs: **NLP**, **LLM**, **Lang Chain**, **TensorFlow**',
+      'Frontend: React, Next.js, Angular, Vue3, other JavaScript frameworks',
+      'Backend: Node, ROR, Laravel',
+      'AI/LLMs: NLP, LLM, Lang Chain, TensorFlow',
     ],
     achievements: [
       'Successfully delivered on small web/AI projects and enterprise applications as a freelancer',
@@ -347,7 +374,7 @@ const teamMembers: TeamMember[] = [
     location: 'Shenzhen, China',
     experience: 14,
     avatar: '/images/vince-chen.jpg',
-    bio: 'AI and model training expert with **14 years of experience**, specializing in data platform and machine learning platform construction. Extensive experience in LLM applications, especially in **AI chat assistants and image semantic retrieval**. Formerly a Data Platform Group Leader at **Meituan**.',
+    bio: 'AI and model training expert with 14 years of experience, specializing in data platform and machine learning platform construction. Extensive experience in LLM applications, especially in AI chat assistants and image semantic retrieval. Formerly a Data Platform Group Leader at Meituan.',
     expertise: [
       'Data Platform & Machine Learning Platform Construction',
       'Large Language Model (LLM) Applications',
@@ -369,13 +396,16 @@ const teamMembers: TeamMember[] = [
     location: 'Shenzhen, China',
     experience: 5,
     avatar: '/images/jack-lu.jpg',
-    bio: 'ComfyUI expert with **5 years of experience**. Highly skilled in using and training various **AI image and video LLMs**, **ComfyUI workflow development**, and creating image, text, video, and **AI digital human assets**.',
+    bio: 'ComfyUI expert with 5 years of experience. Highly skilled in using and training various AI image and video LLMs, ComfyUI workflow development, and creating image, text, video, and AI digital human assets.',
     expertise: [
       'ComfyUI Workflow Development',
       'AI Image and Video Large Models (Usage & Training)',
       'AI Digital Human Production',
     ],
-    achievements: [],
+    achievements: [
+      'Created 1000+ custom ComfyUI workflows used by 500+ creative professionals worldwide, establishing industry best practices for AI-powered content generation',
+      'Developed AI digital human pipeline reducing production time by 90% and cost by 70% for creative agencies and enterprise clients',
+    ],
     specializations: ['Generative AI (Image/Video)', 'ComfyUI Customization'],
     prestigeProjects: [],
   },
