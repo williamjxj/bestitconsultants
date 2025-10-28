@@ -6,11 +6,11 @@ export const StructuredData: React.FC = () => {
     '@type': 'Organization',
     name: 'BestIT Consulting',
     description: 'Elite IT consulting and AI solutions',
-    url: 'https://bestitconsulting.com',
-    logo: 'https://bestitconsulting.com/logo.png',
+    url: 'https://bestitconsultants.ca',
+    logo: 'https://bestitconsultants.ca/logo.png',
     sameAs: [
-      'https://linkedin.com/company/bestitconsulting',
-      'https://twitter.com/bestitconsulting',
+      'https://linkedin.com/company/bestitconsultants',
+      'https://twitter.com/bestitconsultants',
     ],
   }
 

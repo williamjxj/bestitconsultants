@@ -30,7 +30,7 @@ const roboto = Roboto({
 // Metadata for the website (SEO purposes)
 export const metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_BASE_URL || 'https://bestitconsulting.com'
+    process.env.NEXT_PUBLIC_BASE_URL || 'https://bestitconsultants.ca'
   ),
   title: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting',
   description:
@@ -47,7 +47,7 @@ export const metadata = {
     description:
       'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation.',
     images: ['/images/og-homepage.jpg'],
-    url: 'https://bestitconsulting.com',
+    url: 'https://bestitconsultants.ca',
     siteName: 'BestIT Consulting',
     locale: 'en_US',
     type: 'website',

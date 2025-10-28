@@ -78,13 +78,13 @@ export async function POST(request: NextRequest) {
 
       <hr style="margin: 30px 0;">
       <p style="color: #666; font-size: 12px;">
-        This message was sent through the BestITConsulting contact form.
+        This message was sent through the BestITConsultants contact form.
       </p>
     `
 
     // Email template for the auto-reply to the customer
     const customerEmailHtml = `
-      <h2>Thank you for contacting BestITConsulting!</h2>
+      <h2>Thank you for contacting BestITConsultants!</h2>
 
       <p>Dear ${name},</p>
 
@@ -117,7 +117,7 @@ export async function POST(request: NextRequest) {
       <p>Best regards,<br>
       William Jiang<br>
       Founder & CEO<br>
-      BestITConsulting Ltd</p>
+      BestITConsultants Ltd</p>
 
       <hr style="margin: 30px 0;">
       <p style="color: #666; font-size: 12px;">
@@ -127,7 +127,7 @@ export async function POST(request: NextRequest) {
 
     // Send email to business owner using Resend's default domain
     const businessEmailResult = await resend.emails.send({
-      from: 'BestITConsulting <onboarding@resend.dev>', // Using Resend's default verified domain
+      from: 'BestITConsultants <onboarding@resend.dev>', // Using Resend's default verified domain
       to: [businessEmailAddress],
       subject: `New Contact Form Submission from ${name}`,
       html: businessEmailHtml,
@@ -136,9 +136,9 @@ export async function POST(request: NextRequest) {
 
     // Send auto-reply to customer using Resend's default domain
     const customerEmailResult = await resend.emails.send({
-      from: 'BestITConsulting <onboarding@resend.dev>', // Using Resend's default verified domain
+      from: 'BestITConsultants <onboarding@resend.dev>', // Using Resend's default verified domain
       to: [email],
-      subject: 'Thank you for contacting BestITConsulting',
+      subject: 'Thank you for contacting BestITConsultants',
       html: customerEmailHtml,
       replyTo: businessEmailAddress, // Allow replies to go to business email
     })

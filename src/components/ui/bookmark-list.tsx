@@ -76,7 +76,7 @@ const websites: Website[] = [
   },
   {
     name: 'Best IT Consulting',
-    url: 'https://bestitconsulting.vercel.app/',
+    url: 'https://bestitconsultants.ca/',
     description: 'IT consulting and services platform',
     category: 'Business',
     icon: Building2,
@@ -84,7 +84,7 @@ const websites: Website[] = [
   },
   {
     name: 'Best IT Consultants',
-    url: 'https://bestitconsultants.vercel.app/',
+    url: 'https://bestitconsultants.ca/',
     description: 'Professional IT consulting services',
     category: 'Business',
     icon: Building2,

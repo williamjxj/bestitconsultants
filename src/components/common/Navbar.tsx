@@ -170,7 +170,7 @@ export default function Navbar() {
           >
             <img
               src='/logo.png'
-              alt='BestITConsulting Logo'
+              alt='BestITConsultants Logo'
               className='h-12 w-auto'
             />
             <span className='text-xl font-bold text-gray-800 hover:text-blue-600 transition-colors duration-200'>

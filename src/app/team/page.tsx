@@ -9,7 +9,7 @@ const teamMembers: TeamMember[] = [
   {
     id: 'william-jiang',
     name: 'William Jiang',
-    title: 'Founder & CEO',
+    title: 'Founder & Full Stack Engineer, AI Consultant',
     location: 'Vancouver, Canada',
     experience: 20,
     avatar: '/images/william-jiang.jpg',
@@ -18,7 +18,7 @@ const teamMembers: TeamMember[] = [
       'Frontend: Nextjs, Reactjs, Tailwindcss, Shadcn, Gatsby',
       'Backend: Node.js, Express.js, Python, GraphQL, Java, C',
       'AI/LLMs: OpenAI, Anthropic Claude, LangChain, LlamaIndex, Hugging Face, Ollama, RAG, Colab',
-      'AI: Agentic, Generative Design, Speckit, cursor ai, claude code, ',
+      'AI: Agentic AI, Generative Design, Speckit, cursor ai, claude code, ',
       'DevOps/Cloud: Kubernetes, Docker, AWS, CI/CD, MLOps',
       'Data: PostgreSQL, MongoDB, Apache, Kafka, ElasticSearch, Prometheus, Data Pipelines',
       'Archtecture: Software/System Design, Project software implementation, Microservices',

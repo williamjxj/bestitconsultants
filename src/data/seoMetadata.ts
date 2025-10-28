@@ -18,14 +18,14 @@ export const seoMetadataData: SEOMetadata[] = [
     ogDescription:
       'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation.',
     ogImage: '/images/og-homepage.jpg',
-    canonicalUrl: 'https://bestitconsulting.com',
+    canonicalUrl: 'https://bestitconsultants.ca',
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: 'BestIT Consulting',
       description: 'Elite IT consulting and AI solutions',
-      url: 'https://bestitconsulting.com',
-      logo: 'https://bestitconsulting.com/logo.png',
+      url: 'https://bestitconsultants.ca',
+      logo: 'https://bestitconsultants.ca/logo.png',
     },
   },
   {
@@ -45,7 +45,7 @@ export const seoMetadataData: SEOMetadata[] = [
     ogDescription:
       'Meet our elite team of Fortune 500 experienced professionals.',
     ogImage: '/images/og-team.jpg',
-    canonicalUrl: 'https://bestitconsulting.com/team',
+    canonicalUrl: 'https://bestitconsultants.ca/team',
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'AboutPage',
@@ -71,7 +71,7 @@ export const seoMetadataData: SEOMetadata[] = [
     ogDescription:
       "Discover how we've helped businesses achieve measurable results.",
     ogImage: '/images/og-case-studies.jpg',
-    canonicalUrl: 'https://bestitconsulting.com/case-studies',
+    canonicalUrl: 'https://bestitconsultants.ca/case-studies',
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',

@@ -19,7 +19,7 @@ export const translations = {
     aboutSummary: {
       title: 'Who We Are',
       content:
-        'BestITConsulting Ltd is a premier software outsourcing company founded by experienced professionals with 20+ years in the industry. We specialize in full-stack development, AI/ML solutions, and enterprise systems. Headquartered in Vancouver, Canada, with strategic partnerships in Asia, we bridge global talent with your project needs.',
+        'BestITConsultants Ltd is a premier software outsourcing company founded by experienced professionals with 20+ years in the industry. We specialize in full-stack development, AI/ML solutions, and enterprise systems. Headquartered in Vancouver, Canada, with strategic partnerships in Asia, we bridge global talent with your project needs.',
       learnMore: 'Learn More About Us',
     },
     servicesSummary: {
@@ -626,7 +626,7 @@ export const translations = {
           },
           { icon: '📞', label: 'Phone', value: '+1 (236) 992-3846' },
           { icon: '📧', label: 'Email', value: 'jxjwilliam@gmail.com' },
-          { icon: '🌐', label: 'Website', value: 'www.bestitconsulting.com' },
+          { icon: '🌐', label: 'Website', value: 'www.bestitconsultants.ca' },
         ],
       },
       hours: {
@@ -644,22 +644,22 @@ export const translations = {
           {
             platform: 'LinkedIn',
             icon: '💼',
-            url: 'https://linkedin.com/company/bestitconsulting',
+            url: 'https://linkedin.com/company/bestitconsultants',
           },
           {
             platform: 'Twitter',
             icon: '🐦',
-            url: 'https://twitter.com/bestitconsulting',
+            url: 'https://twitter.com/bestitconsultants',
           },
           {
             platform: 'GitHub',
             icon: '👨‍💻',
-            url: 'https://github.com/bestitconsulting',
+            url: 'https://github.com/bestitconsultants',
           },
           {
             platform: 'Facebook',
             icon: '📘',
-            url: 'https://facebook.com/bestitconsulting',
+            url: 'https://facebook.com/bestitconsultants',
           },
         ],
       },
@@ -723,7 +723,7 @@ export const translations = {
       ctaButton: 'Get Started Today',
     },
     footer: {
-      copy: '© {year} BestITConsulting Ltd. All rights reserved.',
+      copy: '© {year} BestITConsultants Ltd. All rights reserved.',
       followUs: 'Follow us:',
       contactInfo: 'Contact Information',
       vancouver: 'Vancouver HQ: 9727 152B Street, Surrey, BC V3R 0G5, Canada',
@@ -743,7 +743,7 @@ export const translations = {
           {
             id: '1',
             quote:
-              'BestITConsulting delivered exceptional results for our e-commerce platform.',
+              'BestITConsultants delivered exceptional results for our e-commerce platform.',
             name: 'Sarah Johnson',
           },
           {
@@ -755,7 +755,7 @@ export const translations = {
           {
             id: '3',
             quote:
-              'Working with BestITConsulting was a game-changer for our mobile app.',
+              'Working with BestITConsultants was a game-changer for our mobile app.',
             name: 'Emily Rodriguez',
           },
         ],
@@ -869,7 +869,7 @@ export const translations = {
       list: [
         {
           content:
-            "BestITConsulting delivered exceptional results for our e-commerce platform. Their team's expertise in React and Node.js helped us achieve 40% faster load times and a 25% increase in conversion rates.",
+            "BestITConsultants delivered exceptional results for our e-commerce platform. Their team's expertise in React and Node.js helped us achieve 40% faster load times and a 25% increase in conversion rates.",
           name: 'Sarah Johnson',
           position: 'CTO',
           company: 'TechCorp Solutions',
@@ -887,7 +887,7 @@ export const translations = {
         },
         {
           content:
-            'The AI/ML solutions provided by BestITConsulting transformed our data analytics capabilities. Their machine learning models improved our prediction accuracy by 60% and reduced processing time by 50%.',
+            'The AI/ML solutions provided by BestITConsultants transformed our data analytics capabilities. Their machine learning models improved our prediction accuracy by 60% and reduced processing time by 50%.',
           name: 'Michael Chen',
           position: 'Data Science Director',
           company: 'DataFlow Inc',
@@ -905,7 +905,7 @@ export const translations = {
         },
         {
           content:
-            'Working with BestITConsulting was a game-changer for our mobile app development. They delivered a cross-platform solution that reduced our development time by 35% while maintaining excellent performance.',
+            'Working with BestITConsultants was a game-changer for our mobile app development. They delivered a cross-platform solution that reduced our development time by 35% while maintaining excellent performance.',
           name: 'Emily Rodriguez',
           position: 'Product Manager',
           company: 'MobileFirst',

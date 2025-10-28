@@ -190,8 +190,8 @@ function isValidImagePath(imagePath: string): boolean {
 function isAllowedOrigin(origin: string): boolean {
   const allowedOrigins = [
     'http://localhost:3000',
-    'https://bestitconsultants.com',
-    'https://www.bestitconsultants.com',
+    'https://bestitconsultants.ca',
+    'https://www.bestitconsultants.ca',
   ]
 
   return allowedOrigins.includes(origin)

@@ -11,7 +11,7 @@ export default function AboutPage() {
   // Detailed content for the about page based on real team information
   const aboutContent = {
     en: {
-      title: 'About BestITConsulting Ltd',
+      title: 'About BestITConsultants Ltd',
       intro:
         'We are a premier software outsourcing company founded by industry veterans with over 60 years of combined experience. Led by CEO William Jiang, our international team has delivered successful projects for Fortune 500 companies including Xperi, Credit Suisse, HSBC, WebMD, and BestBuy Canada.',
       mission: {
@@ -46,7 +46,7 @@ export default function AboutPage() {
       },
     },
     fr: {
-      title: 'À Propos de BestITConsulting Ltd',
+      title: 'À Propos de BestITConsultants Ltd',
       intro:
         "Nous sommes une entreprise d'externalisation de logiciels dynamique et avant-gardiste, dédiée à aider les entreprises à atteindre leurs objectifs technologiques. Avec une base solide en innovation et un engagement envers l'excellence, nous fournissons des solutions de pointe adaptées à vos besoins uniques.",
       mission: {
@@ -79,11 +79,11 @@ export default function AboutPage() {
       },
       achievements: {
         title: 'Réalisations Éprouvées',
-        text: "Au fil des ans, BestITConsulting Ltd a livré avec succès une multitude de projets dans divers secteurs, notamment le commerce électronique, la santé, la finance, la logistique et l'éducation. Notre portefeuille illustre notre capacité à relever des défis complexes et à fournir des logiciels robustes, évolutifs et conviviaux. Nous sommes fiers de nos taux élevés de fidélisation client et de nos retours positifs, reflétant notre dévouement à la qualité et aux résultats.",
+        text: "Au fil des ans, BestITConsultants Ltd a livré avec succès une multitude de projets dans divers secteurs, notamment le commerce électronique, la santé, la finance, la logistique et l'éducation. Notre portefeuille illustre notre capacité à relever des défis complexes et à fournir des logiciels robustes, évolutifs et conviviaux. Nous sommes fiers de nos taux élevés de fidélisation client et de nos retours positifs, reflétant notre dévouement à la qualité et aux résultats.",
       },
     },
     es: {
-      title: 'Acerca de BestITConsulting Ltd',
+      title: 'Acerca de BestITConsultants Ltd',
       intro:
         'Somos una empresa de outsourcing de software dinámica y con visión de futuro, dedicada a ayudar a las empresas a alcanzar sus objetivos tecnológicos. Con una sólida base en innovación y un compromiso con la excelencia, ofrecemos soluciones de vanguardia adaptadas a sus necesidades únicas.',
       mission: {
@@ -116,11 +116,11 @@ export default function AboutPage() {
       },
       achievements: {
         title: 'Logros Demostrados',
-        text: 'A lo largo de los años, BestITConsulting Ltd ha entregado con éxito una multitud de proyectos en diversas industrias, incluyendo comercio electrónico, salud, finanzas, logística y educación. Nuestro portafolio demuestra nuestra capacidad para abordar desafíos complejos y entregar software robusto, escalable y fácil de usar. Nos enorgullecemos de las altas tasas de retención de clientes y los comentarios positivos, lo que refleja nuestra dedicación a la calidad y los resultados.',
+        text: 'A lo largo de los años, BestITConsultants Ltd ha entregado con éxito una multitud de proyectos en diversas industrias, incluyendo comercio electrónico, salud, finanzas, logística y educación. Nuestro portafolio demuestra nuestra capacidad para abordar desafíos complejos y entregar software robusto, escalable y fácil de usar. Nos enorgullecemos de las altas tasas de retención de clientes y los comentarios positivos, lo que refleja nuestra dedicación a la calidad y los resultados.',
       },
     },
     cn: {
-      title: '关于 BestITConsulting Ltd',
+      title: '关于 BestITConsultants Ltd',
       intro:
         '我们是一家充满活力、具有前瞻性的软件外包公司，致力于帮助企业实现其技术目标。凭借坚实的创新基础和对卓越的承诺，我们提供根据您的独特需求量身定制的尖端解决方案。',
       mission: {
@@ -153,7 +153,7 @@ export default function AboutPage() {
       },
       achievements: {
         title: '已证实的成就',
-        text: '多年来，BestITConsulting Ltd 已成功交付了众多跨行业的项目，包括电子商务、医疗保健、金融、物流和教育。我们的项目案例展示了我们应对复杂挑战并交付强大、可扩展且用户友好的软件的能力。我们为高客户保留率和积极反馈感到自豪，这反映了我们对质量和成果的执着追求。',
+        text: '多年来，BestITConsultants Ltd 已成功交付了众多跨行业的项目，包括电子商务、医疗保健、金融、物流和教育。我们的项目案例展示了我们应对复杂挑战并交付强大、可扩展且用户友好的软件的能力。我们为高客户保留率和积极反馈感到自豪，这反映了我们对质量和成果的执着追求。',
       },
     },
   }
