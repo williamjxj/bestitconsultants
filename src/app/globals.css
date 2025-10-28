@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import hero animations */
+@import '../styles/hero-animations.css';
+
 /* Custom font variables */
 :root {
   --font-inter: 'Inter', system-ui, -apple-system, sans-serif;

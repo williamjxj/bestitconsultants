@@ -27,6 +27,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { PortfolioHero } from '@/components/ui/hero-variants'
 import { OptimizedImage } from '@/components/ui/optimized-image'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
@@ -336,196 +337,201 @@ export default function PortfolioPage() {
       : portfolioItems.filter(project => project.category === selectedCategory)
 
   return (
-    <div className='min-h-screen py-20'>
-      <div className='container mx-auto px-4'>
-        {/* Header */}
-        <div className='text-center mb-16'>
-          <h1 className='text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6'>
-            Our Portfolio
-          </h1>
-          <p className='text-xl text-gray-600 max-w-3xl mx-auto'>
-            Discover our proven track record with Fortune 500 companies and
-            innovative solutions across industries.
-          </p>
-        </div>
+    <div>
+      <PortfolioHero
+        title='Our Portfolio'
+        subtitle='Success Stories from Fortune 500 Clients'
+        description='Explore our portfolio of successful projects for global clients including Xperi, HSBC, Credit Suisse, and more. See how we have helped businesses transform with cutting-edge technology.'
+        ctaText='View Case Studies'
+        ctaLink='/case-studies'
+        secondaryCtaText='Start Your Project'
+        secondaryCtaLink='/contact'
+        badge='Fortune 500 Proven Results'
+      />
+      <div className='min-h-screen py-20'>
+        <div className='container mx-auto px-4'>
+          {/* Filter Tabs */}
+          <Tabs
+            value={selectedCategory}
+            onValueChange={setSelectedCategory}
+            className='mb-12'
+          >
+            <TabsList className='grid w-full grid-cols-7 lg:w-fit lg:mx-auto'>
+              {categories.map(category => (
+                <TabsTrigger
+                  key={category.id}
+                  value={category.id}
+                  className='px-4 text-xs lg:text-sm'
+                >
+                  {category.label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
 
-        {/* Filter Tabs */}
-        <Tabs
-          value={selectedCategory}
-          onValueChange={setSelectedCategory}
-          className='mb-12'
-        >
-          <TabsList className='grid w-full grid-cols-7 lg:w-fit lg:mx-auto'>
-            {categories.map(category => (
-              <TabsTrigger
-                key={category.id}
-                value={category.id}
-                className='px-4 text-xs lg:text-sm'
+          {/* Projects Grid */}
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16'>
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
               >
-                {category.label}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
-
-        {/* Projects Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16'>
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className='group hover:shadow-xl transition-all duration-300 border-0 bg-white/50 backdrop-blur-sm overflow-hidden'>
-                <div className='aspect-video relative overflow-hidden'>
-                  <OptimizedImage
-                    src={project.image || '/placeholder.svg'}
-                    alt={`${project.title} - ${project.client} project showcase`}
-                    width={400}
-                    height={225}
-                    className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
-                  />
-                  <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent' />
-                  <div className='absolute bottom-4 left-4 text-white'>
-                    <Badge variant='secondary' className='mb-2'>
-                      {project.client}
-                    </Badge>
-                    <p className='text-sm font-medium'>{project.year}</p>
-                  </div>
-                  <div className='absolute top-4 right-4'>
-                    <project.icon size={32} className='text-white/80' />
-                  </div>
-                </div>
-
-                <CardHeader>
-                  <div className='flex items-start justify-between'>
-                    <div>
-                      <CardTitle className='text-xl mb-2'>
-                        {project.title}
-                      </CardTitle>
-                      <CardDescription className='text-gray-600'>
-                        {project.description}
-                      </CardDescription>
+                <Card className='group hover:shadow-xl transition-all duration-300 border-0 bg-white/50 backdrop-blur-sm overflow-hidden'>
+                  <div className='aspect-video relative overflow-hidden'>
+                    <OptimizedImage
+                      src={project.image || '/placeholder.svg'}
+                      alt={`${project.title} - ${project.client} project showcase`}
+                      width={400}
+                      height={225}
+                      className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+                    />
+                    <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent' />
+                    <div className='absolute bottom-4 left-4 text-white'>
+                      <Badge variant='secondary' className='mb-2'>
+                        {project.client}
+                      </Badge>
+                      <p className='text-sm font-medium'>{project.year}</p>
                     </div>
-                    <Badge variant='secondary' className='ml-2'>
-                      {
-                        categories.find(cat => cat.id === project.category)
-                          ?.label
-                      }
-                    </Badge>
-                  </div>
-                </CardHeader>
-
-                <CardContent>
-                  <div className='space-y-4'>
-                    <div className='flex flex-wrap gap-2'>
-                      {project.tech.map((tech, techIndex) => (
-                        <Badge
-                          key={techIndex}
-                          variant='outline'
-                          className='text-xs'
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
+                    <div className='absolute top-4 right-4'>
+                      <project.icon size={32} className='text-white/80' />
                     </div>
+                  </div>
 
-                    {project.achievements && (
+                  <CardHeader>
+                    <div className='flex items-start justify-between'>
                       <div>
-                        <h4 className='text-sm font-medium text-gray-700 mb-2'>
-                          Key Achievements:
-                        </h4>
-                        <ul className='text-sm space-y-1'>
-                          {project.achievements
-                            .slice(0, 3)
-                            .map((achievement, achievementIndex) => (
-                              <li
-                                key={achievementIndex}
-                                className='flex items-start'
-                              >
-                                <span className='text-green-500 mr-2 text-xs'>
-                                  ✓
-                                </span>
-                                {achievement}
-                              </li>
-                            ))}
-                        </ul>
+                        <CardTitle className='text-xl mb-2'>
+                          {project.title}
+                        </CardTitle>
+                        <CardDescription className='text-gray-600'>
+                          {project.description}
+                        </CardDescription>
                       </div>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+                      <Badge variant='secondary' className='ml-2'>
+                        {
+                          categories.find(cat => cat.id === project.category)
+                            ?.label
+                        }
+                      </Badge>
+                    </div>
+                  </CardHeader>
 
-        {/* Success Stories Section */}
-        <div className='bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl p-8 md:p-12 mb-16'>
-          <h2 className='text-3xl font-bold text-center mb-12'>
-            Our Track Record
-          </h2>
-          <div className='grid grid-cols-1 md:grid-cols-4 gap-8'>
-            <div className='text-center'>
-              <div className='text-4xl font-bold text-blue-600 mb-2'>60+</div>
-              <div className='text-lg font-medium mb-2'>
-                Years Combined Experience
+                  <CardContent>
+                    <div className='space-y-4'>
+                      <div className='flex flex-wrap gap-2'>
+                        {project.tech.map((tech, techIndex) => (
+                          <Badge
+                            key={techIndex}
+                            variant='outline'
+                            className='text-xs'
+                          >
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      {project.achievements && (
+                        <div>
+                          <h4 className='text-sm font-medium text-gray-700 mb-2'>
+                            Key Achievements:
+                          </h4>
+                          <ul className='text-sm space-y-1'>
+                            {project.achievements
+                              .slice(0, 3)
+                              .map((achievement, achievementIndex) => (
+                                <li
+                                  key={achievementIndex}
+                                  className='flex items-start'
+                                >
+                                  <span className='text-green-500 mr-2 text-xs'>
+                                    ✓
+                                  </span>
+                                  {achievement}
+                                </li>
+                              ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Success Stories Section */}
+          <div className='bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl p-8 md:p-12 mb-16'>
+            <h2 className='text-3xl font-bold text-center mb-12'>
+              Our Track Record
+            </h2>
+            <div className='grid grid-cols-1 md:grid-cols-4 gap-8'>
+              <div className='text-center'>
+                <div className='text-4xl font-bold text-blue-600 mb-2'>60+</div>
+                <div className='text-lg font-medium mb-2'>
+                  Years Combined Experience
+                </div>
+                <div className='text-gray-600 text-sm'>
+                  Across all team members
+                </div>
               </div>
-              <div className='text-gray-600 text-sm'>
-                Across all team members
+              <div className='text-center'>
+                <div className='text-4xl font-bold text-blue-600 mb-2'>
+                  Fortune 500
+                </div>
+                <div className='text-lg font-medium mb-2'>
+                  Enterprise Clients
+                </div>
+                <div className='text-gray-600 text-sm'>
+                  Including Xperi, HSBC, Credit Suisse
+                </div>
               </div>
-            </div>
-            <div className='text-center'>
-              <div className='text-4xl font-bold text-blue-600 mb-2'>
-                Fortune 500
+              <div className='text-center'>
+                <div className='text-4xl font-bold text-blue-600 mb-2'>12+</div>
+                <div className='text-lg font-medium mb-2'>
+                  Major Projects Delivered
+                </div>
+                <div className='text-gray-600 text-sm'>
+                  Across multiple industries
+                </div>
               </div>
-              <div className='text-lg font-medium mb-2'>Enterprise Clients</div>
-              <div className='text-gray-600 text-sm'>
-                Including Xperi, HSBC, Credit Suisse
-              </div>
-            </div>
-            <div className='text-center'>
-              <div className='text-4xl font-bold text-blue-600 mb-2'>12+</div>
-              <div className='text-lg font-medium mb-2'>
-                Major Projects Delivered
-              </div>
-              <div className='text-gray-600 text-sm'>
-                Across multiple industries
-              </div>
-            </div>
-            <div className='text-center'>
-              <div className='text-4xl font-bold text-blue-600 mb-2'>
-                Global
-              </div>
-              <div className='text-lg font-medium mb-2'>Reach & Experience</div>
-              <div className='text-gray-600 text-sm'>
-                US, Canada, China, Singapore, Europe
+              <div className='text-center'>
+                <div className='text-4xl font-bold text-blue-600 mb-2'>
+                  Global
+                </div>
+                <div className='text-lg font-medium mb-2'>
+                  Reach & Experience
+                </div>
+                <div className='text-gray-600 text-sm'>
+                  US, Canada, China, Singapore, Europe
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* CTA Section */}
-        <div className='text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white'>
-          <h2 className='text-3xl font-bold mb-4'>
-            Ready to Start Your Next Project?
-          </h2>
-          <p className='text-xl mb-8 opacity-90'>
-            Let's discuss how our proven expertise can help drive your business
-            forward.
-          </p>
-          <div className='space-x-4'>
-            <Button size='lg' variant='secondary'>
-              Start Your Project
-            </Button>
-            <Button
-              size='lg'
-              variant='outline'
-              className='text-white border-white hover:bg-white hover:text-blue-600'
-            >
-              View All Projects
-            </Button>
+          {/* CTA Section */}
+          <div className='text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white'>
+            <h2 className='text-3xl font-bold mb-4'>
+              Ready to Start Your Next Project?
+            </h2>
+            <p className='text-xl mb-8 opacity-90'>
+              Let's discuss how our proven expertise can help drive your
+              business forward.
+            </p>
+            <div className='space-x-4'>
+              <Button size='lg' variant='secondary'>
+                Start Your Project
+              </Button>
+              <Button
+                size='lg'
+                variant='outline'
+                className='text-white border-white hover:bg-white hover:text-blue-600'
+              >
+                View All Projects
+              </Button>
+            </div>
           </div>
         </div>
       </div>

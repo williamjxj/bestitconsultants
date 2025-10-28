@@ -3,6 +3,7 @@
 import React from 'react'
 
 import { EnhancedTeamProfile } from '@/components/team/EnhancedTeamProfile'
+import { TeamHero } from '@/components/ui/hero-variants'
 import { TeamMember } from '@/types/team'
 
 const teamMembers: TeamMember[] = [
@@ -413,16 +414,26 @@ const teamMembers: TeamMember[] = [
 
 const TeamPage = () => {
   return (
-    <div className='container mx-auto py-12'>
-      <h1 className='text-4xl font-bold text-center mb-8'>Our Expert Team</h1>
-      <p className='text-center text-lg text-muted-foreground mb-12'>
-        Meet the seasoned professionals with Fortune 500 experience who drive
-        our success.
-      </p>
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto'>
-        {teamMembers.map(member => (
-          <EnhancedTeamProfile key={member.id} member={member} />
-        ))}
+    <div>
+      {/* Hero Section */}
+      <TeamHero
+        title='Our Expert Team'
+        subtitle='Meet the seasoned professionals with Fortune 500 experience who drive our success'
+        description='Our leadership team brings decades of real-world experience from top-tier companies. From AI/ML experts to enterprise architects, we combine North American innovation with Asian efficiency.'
+        ctaText='View Our Services'
+        ctaLink='/services'
+        secondaryCtaText='Contact Us'
+        secondaryCtaLink='/contact'
+        badge='60+ Years Combined Experience'
+      />
+
+      {/* Team Members */}
+      <div className='container mx-auto py-12'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto'>
+          {teamMembers.map(member => (
+            <EnhancedTeamProfile key={member.id} member={member} />
+          ))}
+        </div>
       </div>
     </div>
   )
