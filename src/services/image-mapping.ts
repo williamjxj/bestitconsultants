@@ -32,11 +32,12 @@ export const imageMapping = {
   // Team member photos (still using local images for now)
   teamMembers: {
     william: '/images/william-jiang.jpg',
-    shamin: '/images/shaming-yang.jpeg',
-    lewis: '/images/lewis-liu.jpg',
-    james: '/images/james-cheung.jpeg',
+    vicky: '/images/vicky-zheng.jpg',
     mingchun: '/images/mingchun-hu.jpg',
+    lewis: '/images/lewis-liu.jpg',
     wayne: '/images/wayne-li.jpg',
+    shamin: '/images/shaming-yang.jpeg',
+    james: '/images/james-cheung.jpeg',
   },
 } as const
 

@@ -703,7 +703,7 @@ export const translations = {
       },
       location: {
         title: 'Our Location',
-        address: '9727 152B Street, Surrey, BC V3R 0G5, Canada',
+        address: '10355 152 Street, Surrey, BC V3R 7C3, Canada',
         description: 'Located in Surrey, BC - Greater Vancouver Area',
       },
     },

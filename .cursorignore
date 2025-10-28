@@ -1,0 +1,55 @@
+# Build outputs and generated files
+.next/
+out/
+dist/
+coverage/
+
+# Dependency folders
+node_modules/
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+.env.test
+
+# Editor/IDE folders
+.vscode/
+.idea/
+.husky/
+.biome/
+*.code-workspace
+
+# Static assets and uploads
+public/uploads/
+public/static/
+public/.cache/
+
+# Tailwind and config cache
+tailwind.config.js
+tailwind.config.ts
+postcss.config.js
+postcss.config.ts
+
+# Supabase service role and local testing assets
+supabase/.temp/
+supabase/.env
+supabase/migrations/
+
+# Other artifacts
+.DS_Store
+*.log
+
+# Optional docs and test outputs
+docs/
+documentation/
+*.md
+
+# Shadcn generated component cache (update paths as needed)
+components.json
+components_backup/
+
