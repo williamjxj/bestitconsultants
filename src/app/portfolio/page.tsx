@@ -337,7 +337,7 @@ export default function PortfolioPage() {
       : portfolioItems.filter(project => project.category === selectedCategory)
 
   return (
-    <div>
+    <div className='-mt-8'>
       <PortfolioHero
         title='Our Portfolio'
         subtitle='Success Stories from Fortune 500 Clients'

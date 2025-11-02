@@ -414,7 +414,7 @@ const teamMembers: TeamMember[] = [
 
 const TeamPage = () => {
   return (
-    <div>
+    <div className='-mt-8'>
       {/* Hero Section */}
       <TeamHero
         title='Our Expert Team'

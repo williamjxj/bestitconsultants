@@ -163,7 +163,7 @@ export default function AboutPage() {
     aboutContent[language as keyof typeof aboutContent] || aboutContent.en
 
   return (
-    <div>
+    <div className='-mt-8'>
       {/* Hero Section */}
       <AboutHero
         title={currentContent.title}

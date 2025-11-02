@@ -81,3 +81,9 @@ docs/build/
 *.tmp
 *.temp
 .cache/
+
+# Local env files
+.cursor/
+.specify/
+.vscode/
+.github/

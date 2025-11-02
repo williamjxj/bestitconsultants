@@ -131,7 +131,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div>
+    <div className='-mt-8'>
       {/* Hero Section */}
       <ContactHero
         title={translations.contact.title}

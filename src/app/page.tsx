@@ -12,7 +12,7 @@ import { HomepageHero } from '@/components/ui/hero-variants'
 // HomePage component with animations
 export default function HomePage() {
   return (
-    <div className='space-y-16 md:space-y-24'>
+    <div className='space-y-16 md:space-y-24 -mt-8'>
       {/* Hero section: Main introductory content */}
       <HomepageHero
         title='Elite Enterprise Architects. Startup Speed.'

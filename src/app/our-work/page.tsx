@@ -8,7 +8,7 @@ export default function OurWorkPage() {
   const { translations } = useLanguage()
 
   return (
-    <div>
+    <div className='-mt-8'>
       <OurWorkHero
         title={translations.ourWork?.title || 'Our Work'}
         subtitle={

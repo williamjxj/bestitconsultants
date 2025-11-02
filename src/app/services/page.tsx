@@ -126,7 +126,7 @@ const ServicesPage = () => {
   const { translations } = useLanguage()
 
   return (
-    <div>
+    <div className='-mt-8'>
       {/* Hero Section */}
       <ServicesHero
         title={translations.services.title}

@@ -58,7 +58,7 @@ const sizeClasses = {
   md: 'min-h-[500px] py-20',
   lg: 'min-h-[600px] py-24',
   xl: 'min-h-[700px] py-32',
-  full: 'min-h-screen py-32',
+  full: 'h-[calc(100vh-5rem)] py-32',
 }
 
 const textAlignClasses = {
