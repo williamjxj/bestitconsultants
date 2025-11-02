@@ -15,7 +15,9 @@
     "markdown:fix": "markdownlint '**/*.md' --ignore-path .markdownlintignore --fix",
     "check-all": "npm run type-check && npm run lint && npm run format:check && npm run markdown:lint",
     "analyze": "ANALYZE=true npm run build",
-    "test": "echo 'No tests configured'"
+    "test": "echo 'No tests configured'",
+    "capture-screenshot": "npx tsx scripts/capture-screenshot.ts",
+    "capture-screenshots": "npx tsx scripts/capture-screenshot.ts --all"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.908.0",
