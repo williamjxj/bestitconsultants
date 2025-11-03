@@ -90,7 +90,17 @@ export function OptimizedImage({
       return originalSrc
     }
 
-    // For local paths, use the proxy API in both development and production
+    // Public folder paths (offices, images, logos, etc.) are served directly by Next.js
+    // These don't need the proxy API
+    const publicFolderPaths = ['/offices/', '/images/', '/logos/', '/videos/']
+    if (
+      originalSrc.startsWith('/') &&
+      publicFolderPaths.some(path => originalSrc.startsWith(path))
+    ) {
+      return originalSrc
+    }
+
+    // For other local paths, use the proxy API in both development and production
     if (originalSrc.startsWith('/')) {
       return `/api/images/proxy${originalSrc}`
     }

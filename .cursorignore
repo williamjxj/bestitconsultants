@@ -3,6 +3,7 @@
 out/
 dist/
 coverage/
+build/
 
 # Dependency folders
 node_modules/
@@ -10,12 +11,6 @@ pnpm-lock.yaml
 yarn.lock
 package-lock.json
 
-# Environment variables
-.env
-.env.local
-.env.production
-.env.development
-.env.test
 
 # Editor/IDE folders
 .vscode/
@@ -28,6 +23,8 @@ package-lock.json
 public/uploads/
 public/static/
 public/.cache/
+public/screenshots/
+
 
 # Tailwind and config cache
 tailwind.config.js
@@ -44,12 +41,11 @@ supabase/migrations/
 .DS_Store
 *.log
 
-# Optional docs and test outputs
-docs/
-documentation/
-*.md
-
-# Shadcn generated component cache (update paths as needed)
-components.json
-components_backup/
-
+# Large binary files
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.ico
+*.pdf
+*.zip

@@ -3,6 +3,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
+import { AnimatedTitle } from '@/components/ui/animated-title'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -81,34 +82,6 @@ const backgroundClasses = {
   solid: 'bg-slate-900',
 }
 
-const animationVariants = {
-  fade: {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    transition: { duration: 0.8, ease: 'easeOut' },
-  },
-  slide: {
-    initial: { opacity: 0, y: 50 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: 'easeOut' },
-  },
-  scale: {
-    initial: { opacity: 0, scale: 0.8 },
-    animate: { opacity: 1, scale: 1 },
-    transition: { duration: 0.8, ease: 'easeOut' },
-  },
-  typewriter: {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    transition: { duration: 1.2, ease: 'easeOut' },
-  },
-  stagger: {
-    initial: { opacity: 0, y: 30 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: 'easeOut' },
-  },
-}
-
 export function HeroSection({
   title,
   subtitle,
@@ -124,7 +97,7 @@ export function HeroSection({
   backgroundVideo,
   overlay = true,
   overlayOpacity = 0.6,
-  animation = 'slide',
+  animation: _animation = 'slide',
   animationDelay = 0,
   animationDuration: _animationDuration = 0.8,
   size = 'lg',
@@ -138,7 +111,6 @@ export function HeroSection({
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
-  const baseAnimation = animationVariants[animation]
   const delay = animationDelay
 
   const renderBackground = () => {
@@ -217,20 +189,13 @@ export function HeroSection({
 
         {/* Title */}
         {title && (
-          <motion.h1
-            ref={ref}
-            initial={baseAnimation.initial}
-            animate={isInView ? baseAnimation.animate : baseAnimation.initial}
-            transition={{ ...baseAnimation.transition, delay: delay + 0.2 }}
-            className={cn(
-              'text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6',
-              'bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent',
-              'drop-shadow-2xl',
-              titleClassName
-            )}
-          >
-            {title}
-          </motion.h1>
+          <div ref={ref}>
+            <AnimatedTitle
+              title={title}
+              className={titleClassName}
+              textAlign={textAlign}
+            />
+          </div>
         )}
 
         {/* Subtitle */}

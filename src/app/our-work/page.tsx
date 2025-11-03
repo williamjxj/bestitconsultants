@@ -74,7 +74,7 @@ export default function OurWorkPage() {
                 </h2>
                 <p className='text-xl text-gray-600 max-w-3xl mx-auto'>
                   {translations.ourWork?.projectsDescription ||
-                    'Discover our external collaborations and featured projects. Click on any project to explore it directly.'}
+                    'Discover our external collaborations and featured projects. Among our proven, demonstrated apps, here are some demo showcases you can explore directly.'}
                 </p>
               </div>
 

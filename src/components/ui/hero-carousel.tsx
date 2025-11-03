@@ -2,8 +2,10 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import React, { useState, useEffect } from 'react'
 
+import { AnimatedTitle } from './animated-title'
 import { OptimizedImage } from './optimized-image'
 
 export interface HeroCarouselItem {
@@ -28,11 +30,12 @@ interface HeroCarouselProps {
 export const HeroCarousel: React.FC<HeroCarouselProps> = ({
   items,
   autoPlay = true,
-  autoPlayInterval = 5000,
+  autoPlayInterval = 8000,
   showIndicators = true,
   showNavigation = true,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const router = useRouter()
 
   // Auto-play functionality
   useEffect(() => {
@@ -59,10 +62,14 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
     setCurrentIndex(prevIndex => (prevIndex + 1) % items.length)
   }
 
+  const handleCtaClick = () => {
+    router.push(items[currentIndex].ctaLink)
+  }
+
   const currentItem = items[currentIndex]
 
   return (
-    <div className='relative w-full h-screen overflow-hidden'>
+    <div className='relative w-full h-full overflow-hidden'>
       {/* Carousel Items */}
       <AnimatePresence mode='wait'>
         <motion.div
@@ -113,14 +120,11 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
             className='absolute inset-0 flex items-center justify-center z-10'
           >
             <div className='text-center text-white max-w-4xl mx-auto px-4'>
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
+              <AnimatedTitle
+                title={currentItem.title}
                 className='text-4xl md:text-6xl font-bold mb-4'
-              >
-                {currentItem.title}
-              </motion.h1>
+                textAlign='center'
+              />
 
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
@@ -147,7 +151,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className='bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 transition-colors duration-300'
-                onClick={() => window.open(currentItem.ctaLink, '_blank')}
+                onClick={handleCtaClick}
               >
                 {currentItem.ctaText}
               </motion.button>

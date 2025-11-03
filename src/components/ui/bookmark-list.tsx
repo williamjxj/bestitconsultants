@@ -1,7 +1,6 @@
 'use client'
 
 import {
-  ExternalLink,
   Building2,
   Globe,
   BarChart3,
@@ -10,6 +9,7 @@ import {
   Heart,
   Baby,
   ShoppingBag,
+  Github,
 } from 'lucide-react'
 import Image from 'next/image'
 
@@ -23,6 +23,7 @@ interface Website {
   category: string
   icon: React.ComponentType<{ className?: string }>
   status: string
+  githubUrl?: string
 }
 
 const websites: Website[] = [
@@ -35,7 +36,7 @@ const websites: Website[] = [
     status: 'active',
   },
   {
-    name: 'NextJS Supabase',
+    name: 'Images Synthesis & Online Subscription',
     url: 'https://nextjs-supabase-kappa-nine.vercel.app',
     description: 'Full-stack web application with authentication',
     category: 'Development',
@@ -43,7 +44,7 @@ const websites: Website[] = [
     status: 'active',
   },
   {
-    name: 'Manus AI Shop',
+    name: 'AI Images Cart & Purchase',
     url: 'https://manus-ai-shop.vercel.app',
     description: 'AI-powered e-commerce platform',
     category: 'E-commerce',
@@ -59,7 +60,7 @@ const websites: Website[] = [
     status: 'active',
   },
   {
-    name: 'NextJS MCP Template',
+    name: 'Cart & Online Payment',
     url: 'https://nextjs-mcp-template.vercel.app/',
     description: 'Model Context Protocol template application',
     category: 'Development',
@@ -99,7 +100,7 @@ const websites: Website[] = [
     status: 'active',
   },
   {
-    name: 'Cursor Portfolio Dashboard',
+    name: 'Admin Portfolio Dashboard',
     url: 'https://cursor-portfolio-dashboard.vercel.app/',
     description:
       'AI-powered portfolio dashboard showcasing curated applications',
@@ -189,17 +190,8 @@ const getPlaceholderScreenshot = (category: string) => {
 
 export default function BookmarkList() {
   const handleItemClick = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer')
-  }
-
-  const renderIcon = (website: Website) => {
-    // Always use the meaningful icon instead of trying to fetch external favicons
-    const IconComponent = website.icon || Globe
-    return (
-      <div className='w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-md'>
-        <IconComponent className='h-6 w-6 text-white' />
-      </div>
-    )
+    // Navigate in same window to avoid losing focus
+    window.location.href = url
   }
 
   const renderScreenshot = (website: Website) => {
@@ -207,13 +199,12 @@ export default function BookmarkList() {
     const placeholderUrl = getPlaceholderScreenshot(website.category)
 
     return (
-      <div className='relative w-24 h-18 rounded-lg overflow-hidden bg-gray-100 border border-gray-200 shadow-sm flex-shrink-0'>
+      <div className='relative w-full h-48 rounded-t-lg overflow-hidden bg-gray-100 border-b border-gray-200'>
         <Image
           src={placeholderUrl}
           alt={`Screenshot of ${website.name}`}
-          width={96}
-          height={72}
-          className='w-full h-full object-cover'
+          fill
+          className='object-cover'
         />
         <div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent' />
       </div>
@@ -221,11 +212,11 @@ export default function BookmarkList() {
   }
 
   return (
-    <div className='w-full space-y-6'>
+    <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
       {websites.map(website => (
         <Card
           key={website.name}
-          className='group cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 hover:border-blue-300 hover:-translate-y-1 border border-gray-200 bg-white hover:bg-blue-50/30 shadow-sm'
+          className='group cursor-pointer transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20 hover:border-blue-400 hover:-translate-y-2 border border-gray-200 bg-white overflow-hidden flex flex-col'
           role='button'
           tabIndex={0}
           title={website.description}
@@ -238,56 +229,106 @@ export default function BookmarkList() {
             }
           }}
         >
-          <CardContent className='p-6'>
-            <div className='flex items-center gap-6'>
-              {/* Screenshot Thumbnail */}
-              <div className='flex-shrink-0'>{renderScreenshot(website)}</div>
+          {/* Screenshot Thumbnail */}
+          {renderScreenshot(website)}
 
-              {/* Enhanced Icon */}
-              <div className='flex-shrink-0'>{renderIcon(website)}</div>
+          {/* Content */}
+          <CardContent className='p-6 flex-1 flex flex-col'>
+            {/* Category Badge */}
+            <div className='mb-3'>
+              {website.category && (
+                <Badge
+                  variant='outline'
+                  className={`text-xs px-3 py-1 border font-semibold transition-all duration-200 ${getCategoryColor(website.category)}`}
+                >
+                  <span className='mr-1.5'>
+                    {getCategoryIcon(website.category)}
+                  </span>
+                  {website.category}
+                </Badge>
+              )}
+              {website.status === 'beta' && (
+                <Badge
+                  variant='outline'
+                  className='ml-2 text-xs px-2 py-1 bg-orange-50 text-orange-700 border-orange-300'
+                >
+                  BETA
+                </Badge>
+              )}
+            </div>
 
-              {/* Content */}
-              <div className='flex-1 min-w-0'>
-                <div className='flex items-center justify-between gap-4'>
-                  <div className='flex-1 min-w-0'>
-                    <h3 className='font-bold text-xl text-gray-900 truncate group-hover:text-blue-700 transition-colors duration-200 tracking-tight mb-2'>
-                      {website.name}
-                    </h3>
-                    <p className='text-sm text-blue-600 truncate font-medium mb-3 group-hover:text-blue-700'>
-                      {website.url
-                        .replace('https://', '')
-                        .replace('http://', '')}
-                    </p>
-                    <p className='text-base text-gray-700 leading-relaxed line-clamp-2 group-hover:text-gray-800'>
-                      {website.description}
-                    </p>
-                  </div>
+            {/* Title */}
+            <h3 className='font-bold text-xl text-gray-900 group-hover:text-blue-700 transition-colors duration-200 tracking-tight mb-2'>
+              {website.name}
+            </h3>
 
-                  <div className='flex items-center gap-4 flex-shrink-0'>
-                    {website.category && (
-                      <Badge
-                        variant='outline'
-                        className={`text-sm px-4 py-2 border-2 font-semibold transition-all duration-200 ${getCategoryColor(website.category)}`}
-                      >
-                        <span className='mr-2 text-base'>
-                          {getCategoryIcon(website.category)}
-                        </span>
-                        {website.category}
-                      </Badge>
-                    )}
+            {/* Description */}
+            <p className='text-sm text-gray-600 leading-relaxed mb-4 flex-1 group-hover:text-gray-800'>
+              {website.description}
+            </p>
 
-                    {website.status === 'beta' && (
-                      <Badge
-                        variant='outline'
-                        className='text-xs px-2 py-1 bg-orange-50 text-orange-700 border-orange-300'
-                      >
-                        BETA
-                      </Badge>
-                    )}
+            {/* Footer with Icons */}
+            <div className='flex items-center justify-between pt-3 border-t border-gray-100'>
+              {/* Project name as clickable link */}
+              <a
+                href={website.url}
+                onClick={e => {
+                  e.stopPropagation()
+                  window.location.href = website.url
+                }}
+                className='text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors duration-200 flex-1 truncate'
+                title={website.url}
+              >
+                {website.name}
+              </a>
 
-                    <ExternalLink className='h-6 w-6 text-gray-400 group-hover:text-blue-600 group-hover:scale-110 transition-all duration-200' />
-                  </div>
-                </div>
+              {/* Icons: GitHub and Web */}
+              <div className='flex items-center gap-3 ml-4'>
+                {/* GitHub Icon - Always visible and clickable */}
+                <a
+                  href={website.githubUrl || '#'}
+                  onClick={e => {
+                    e.stopPropagation()
+                    if (website.githubUrl) {
+                      window.location.href = website.githubUrl
+                    } else {
+                      e.preventDefault()
+                    }
+                  }}
+                  className={`transition-colors duration-200 rounded-full p-1 hover:opacity-90 cursor-pointer ${
+                    website.githubUrl ? 'bg-black' : 'bg-black/50'
+                  }`}
+                  title={
+                    website.githubUrl
+                      ? 'View on GitHub'
+                      : 'GitHub repository not available'
+                  }
+                  aria-label={
+                    website.githubUrl
+                      ? 'GitHub repository'
+                      : 'GitHub repository not available'
+                  }
+                >
+                  <Github
+                    className={`h-4 w-4 hover:scale-110 transition-transform duration-200 ${
+                      website.githubUrl ? 'text-white' : 'text-white/70'
+                    }`}
+                  />
+                </a>
+
+                {/* Web/Internet Icon */}
+                <a
+                  href={website.url}
+                  onClick={e => {
+                    e.stopPropagation()
+                    window.location.href = website.url
+                  }}
+                  className='transition-colors duration-200 rounded-full p-1 hover:opacity-90 cursor-pointer bg-black'
+                  title='Visit website'
+                  aria-label='Visit website'
+                >
+                  <Globe className='h-4 w-4 text-white hover:scale-110 transition-transform duration-200' />
+                </a>
               </div>
             </div>
           </CardContent>

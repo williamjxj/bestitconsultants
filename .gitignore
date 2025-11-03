@@ -28,6 +28,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
+.env
 .env*.local
 
 # vercel
@@ -82,9 +83,8 @@ docs/build/
 *.temp
 .cache/
 
-# Local env files
+# Editor folders
 .cursor/
-.specify/
 .vscode/
 .github/
 public/screenshots/
