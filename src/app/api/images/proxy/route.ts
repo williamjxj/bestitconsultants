@@ -109,10 +109,13 @@ export async function GET(request: NextRequest) {
     const _responseTime = Date.now() - startTime
     console.warn(`Image served: ${imagePath} in ${_responseTime}ms`)
 
-    return new NextResponse(imageData.data, {
-      status: 200,
-      headers,
-    })
+    return new NextResponse(
+      new Uint8Array(imageData.data),
+      {
+        status: 200,
+        headers,
+      }
+    )
   } catch (error) {
     console.error(`Image proxy error for ${request.url}:`, error)
 
