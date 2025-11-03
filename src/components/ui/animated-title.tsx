@@ -47,18 +47,12 @@ export function AnimatedTitle({
       ref={ref}
       className={cn(
         'text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6',
+        'bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent',
         'drop-shadow-2xl',
         'flex flex-wrap items-center gap-x-2',
         justifyClasses[textAlign],
         className
       )}
-      style={{
-        background:
-          'linear-gradient(to right, white, rgb(219 234 254), rgb(243 232 255))',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        backgroundClip: 'text',
-      }}
     >
       {words.map((word, wordIndex) => (
         <div

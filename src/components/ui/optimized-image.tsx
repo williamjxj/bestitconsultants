@@ -93,9 +93,19 @@ export function OptimizedImage({
     // Public folder paths (offices, images, logos, etc.) are served directly by Next.js
     // These don't need the proxy API
     const publicFolderPaths = ['/offices/', '/images/', '/logos/', '/videos/']
+
+    // Root-level public files (like /placeholder.svg, /favicon.ico, etc.)
+    const publicFileExtensions = ['.svg', '.png', '.jpg', '.jpeg', '.webp', '.gif', '.ico', '.avif']
+    const isRootPublicFile =
+      originalSrc.startsWith('/') &&
+      publicFileExtensions.some(ext => originalSrc.toLowerCase().endsWith(ext)) &&
+      !originalSrc.includes('/api/') &&
+      originalSrc.split('/').length === 2 // Root level file (e.g., /placeholder.svg)
+
     if (
       originalSrc.startsWith('/') &&
-      publicFolderPaths.some(path => originalSrc.startsWith(path))
+      (publicFolderPaths.some(path => originalSrc.startsWith(path)) ||
+        isRootPublicFile)
     ) {
       return originalSrc
     }

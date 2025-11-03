@@ -86,5 +86,5 @@ docs/build/
 # Editor folders
 .cursor/
 .vscode/
-.github/
 public/screenshots/
+# .specify/

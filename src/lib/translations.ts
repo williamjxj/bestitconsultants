@@ -716,7 +716,7 @@ export const translations = {
         "Below you'll find a curated collection of external projects and tools that showcase our technical expertise and industry connections. These projects span multiple categories including business solutions, AI development, e-commerce platforms, and educational tools.",
       projectsTitle: 'Project Showcase',
       projectsDescription:
-        'Discover our external collaborations and featured projects. Click on any project to explore it directly.',
+        'Discover our external collaborations and featured projects. Among our proven, demonstrated apps, here are some demo showcases you can explore directly.',
       ctaTitle: 'Ready to Start Your Project?',
       ctaDescription:
         "Let's discuss how we can bring your vision to life with the same expertise and dedication shown in these projects.",
