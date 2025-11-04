@@ -87,7 +87,7 @@ export const translations = {
       cta: 'Contact Us Today',
     },
     about: {
-      title: 'About BestIT Consulting',
+      title: 'About BestIT Consultants',
       subtitle:
         'Your trusted partner in software development and digital transformation',
       mission: {
@@ -220,7 +220,7 @@ export const translations = {
         title: 'Our Impact',
         items: [
           {
-            number: '200+',
+            number: '50+',
             label: 'Projects Completed',
             description: 'Successfully delivered across industries',
           },

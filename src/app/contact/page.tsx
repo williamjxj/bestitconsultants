@@ -33,7 +33,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function ContactPage() {
-  const { translations } = useLanguage()
+  const { language, translations } = useLanguage()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -51,6 +51,126 @@ export default function ContactPage() {
     type: 'success' | 'error' | null
     message: string
   }>({ type: null, message: '' })
+
+  // Contact page content with translations
+  const contactContent = {
+    en: {
+      hero: {
+        description:
+          "Ready to transform your business with cutting-edge technology? Let's discuss your project and see how our Fortune 500 expertise can help you achieve your goals.",
+        ctaText: 'Schedule a Call',
+        secondaryCtaText: 'View Our Work',
+        badge: 'Free Consultation Available',
+      },
+      messages: {
+        sending: 'Sending...',
+        success: "Thank you! Your message has been sent successfully. We'll get back to you soon.",
+        error: 'Failed to send message. Please try again.',
+        networkError: 'Network error. Please check your connection and try again.',
+      },
+      location: {
+        ourLocation: 'Our Location',
+        address: 'Address',
+        getDirections: 'Get Directions',
+        openInGoogleMaps: 'Open in Google Maps',
+        openInAppleMaps: 'Open in Apple Maps',
+        nearbyLandmarks: 'Nearby Landmarks',
+        landmarks: [
+          'Near Guildford Town Centre',
+          'Close to Highway 1 access',
+          '15 minutes from Surrey Central',
+        ],
+      },
+    },
+    fr: {
+      hero: {
+        description:
+          'Prêt à transformer votre entreprise avec une technologie de pointe? Discutons de votre projet et voyons comment notre expertise Fortune 500 peut vous aider à atteindre vos objectifs.',
+        ctaText: 'Planifier un Appel',
+        secondaryCtaText: 'Voir Notre Travail',
+        badge: 'Consultation Gratuite Disponible',
+      },
+      messages: {
+        sending: 'Envoi en cours...',
+        success: 'Merci! Votre message a été envoyé avec succès. Nous vous répondrons bientôt.',
+        error: 'Échec de l\'envoi du message. Veuillez réessayer.',
+        networkError: 'Erreur réseau. Veuillez vérifier votre connexion et réessayer.',
+      },
+      location: {
+        ourLocation: 'Notre Emplacement',
+        address: 'Adresse',
+        getDirections: 'Obtenir l\'Itinéraire',
+        openInGoogleMaps: 'Ouvrir dans Google Maps',
+        openInAppleMaps: 'Ouvrir dans Apple Maps',
+        nearbyLandmarks: 'Points de Repère à Proximité',
+        landmarks: [
+          'Près du Centre Commercial Guildford',
+          'Proche de l\'accès à l\'Autoroute 1',
+          '15 minutes de Surrey Central',
+        ],
+      },
+    },
+    es: {
+      hero: {
+        description:
+          '¿Listo para transformar su negocio con tecnología de vanguardia? Hablemos de su proyecto y veamos cómo nuestra experiencia Fortune 500 puede ayudarlo a alcanzar sus objetivos.',
+        ctaText: 'Programar una Llamada',
+        secondaryCtaText: 'Ver Nuestro Trabajo',
+        badge: 'Consulta Gratuita Disponible',
+      },
+      messages: {
+        sending: 'Enviando...',
+        success: '¡Gracias! Su mensaje ha sido enviado exitosamente. Nos pondremos en contacto pronto.',
+        error: 'Error al enviar el mensaje. Por favor, intente nuevamente.',
+        networkError: 'Error de red. Por favor, verifique su conexión e intente nuevamente.',
+      },
+      location: {
+        ourLocation: 'Nuestra Ubicación',
+        address: 'Dirección',
+        getDirections: 'Obtener Direcciones',
+        openInGoogleMaps: 'Abrir en Google Maps',
+        openInAppleMaps: 'Abrir en Apple Maps',
+        nearbyLandmarks: 'Puntos de Referencia Cercanos',
+        landmarks: [
+          'Cerca del Centro Comercial Guildford',
+          'Cerca del acceso a la Autopista 1',
+          '15 minutos de Surrey Central',
+        ],
+      },
+    },
+    cn: {
+      hero: {
+        description:
+          '准备用尖端技术改变您的业务了吗？让我们讨论您的项目，看看我们的财富500强专业知识如何帮助您实现目标。',
+        ctaText: '安排通话',
+        secondaryCtaText: '查看我们的作品',
+        badge: '免费咨询可用',
+      },
+      messages: {
+        sending: '发送中...',
+        success: '谢谢！您的消息已成功发送。我们会尽快回复您。',
+        error: '发送消息失败。请重试。',
+        networkError: '网络错误。请检查您的连接并重试。',
+      },
+      location: {
+        ourLocation: '我们的位置',
+        address: '地址',
+        getDirections: '获取路线',
+        openInGoogleMaps: '在Google地图中打开',
+        openInAppleMaps: '在Apple地图中打开',
+        nearbyLandmarks: '附近地标',
+        landmarks: [
+          '靠近Guildford Town Centre',
+          '靠近1号高速公路入口',
+          '距离Surrey Central 15分钟',
+        ],
+      },
+    },
+  }
+
+  const currentContent =
+    contactContent[language as keyof typeof contactContent] ||
+    contactContent.en
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -86,8 +206,7 @@ export default function ContactPage() {
       if (response.ok) {
         setSubmitStatus({
           type: 'success',
-          message:
-            "Thank you! Your message has been sent successfully. We'll get back to you soon.",
+          message: currentContent.messages.success,
         })
         // Reset form
         setFormData({
@@ -104,14 +223,14 @@ export default function ContactPage() {
       } else {
         setSubmitStatus({
           type: 'error',
-          message: result.error || 'Failed to send message. Please try again.',
+          message: result.error || currentContent.messages.error,
         })
       }
     } catch (error) {
       console.error('Error submitting form:', error)
       setSubmitStatus({
         type: 'error',
-        message: 'Network error. Please check your connection and try again.',
+        message: currentContent.messages.networkError,
       })
     } finally {
       setIsSubmitting(false)
@@ -136,12 +255,12 @@ export default function ContactPage() {
       <ContactHero
         title={translations.contact.title}
         subtitle={translations.contact.subtitle}
-        description="Ready to transform your business with cutting-edge technology? Let's discuss your project and see how our Fortune 500 expertise can help you achieve your goals."
-        ctaText='Schedule a Call'
+        description={currentContent.hero.description}
+        ctaText={currentContent.hero.ctaText}
         ctaLink='#contact-form'
-        secondaryCtaText='View Our Work'
+        secondaryCtaText={currentContent.hero.secondaryCtaText}
         secondaryCtaLink='/portfolio'
-        badge='Free Consultation Available'
+        badge={currentContent.hero.badge}
       />
 
       {/* Main Content */}
@@ -362,7 +481,7 @@ export default function ContactPage() {
                       disabled={isSubmitting}
                     >
                       {isSubmitting
-                        ? 'Sending...'
+                        ? currentContent.messages.sending
                         : translations.contact.form.submit}
                     </Button>
                   </form>
@@ -490,12 +609,14 @@ export default function ContactPage() {
                 <CardHeader>
                   <CardTitle className='flex items-center space-x-2'>
                     <span className='text-2xl'>📍</span>
-                    <span>Our Location</span>
+                    <span>{currentContent.location.ourLocation}</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className='space-y-4'>
                   <div>
-                    <h4 className='font-semibold text-lg mb-2'>Address</h4>
+                    <h4 className='font-semibold text-lg mb-2'>
+                      {currentContent.location.address}
+                    </h4>
                     <p className='text-gray-600'>
                       10355 152 St
                       <br />
@@ -506,7 +627,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className='font-semibold text-lg mb-2'>
-                      Get Directions
+                      {currentContent.location.getDirections}
                     </h4>
                     <div className='space-y-2'>
                       <Button
@@ -520,7 +641,7 @@ export default function ContactPage() {
                           rel='noopener noreferrer'
                         >
                           <span className='mr-2'>🗺️</span>
-                          Open in Google Maps
+                          {currentContent.location.openInGoogleMaps}
                         </a>
                       </Button>
                       <Button
@@ -534,19 +655,19 @@ export default function ContactPage() {
                           rel='noopener noreferrer'
                         >
                           <span className='mr-2'>🍎</span>
-                          Open in Apple Maps
+                          {currentContent.location.openInAppleMaps}
                         </a>
                       </Button>
                     </div>
                   </div>
                   <div>
                     <h4 className='font-semibold text-lg mb-2'>
-                      Nearby Landmarks
+                      {currentContent.location.nearbyLandmarks}
                     </h4>
                     <ul className='text-gray-600 space-y-1'>
-                      <li>• Near Guildford Town Centre</li>
-                      <li>• Close to Highway 1 access</li>
-                      <li>• 15 minutes from Surrey Central</li>
+                      {currentContent.location.landmarks.map((landmark, index) => (
+                        <li key={index}>• {landmark}</li>
+                      ))}
                     </ul>
                   </div>
                 </CardContent>

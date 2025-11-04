@@ -1,6 +1,6 @@
 'use client'
 
-import { Globe, Menu, X } from 'lucide-react'
+import { Globe, Menu, X, ChevronDown, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
@@ -144,13 +144,51 @@ export default function Navbar() {
     },
   ]
 
-  // Available languages for the switcher
-  const languages = [
-    { code: 'en' as const, name: 'English' },
-    { code: 'fr' as const, name: 'Français' },
-    { code: 'es' as const, name: 'Español' },
-    { code: 'cn' as const, name: '中文' },
+  // Available languages for the switcher with country flags
+  const languages: Array<{
+    code: 'en' | 'fr' | 'es' | 'cn'
+    name: string
+    flag: string
+    color: string
+    bgColor: string
+    hoverColor: string
+  }> = [
+    {
+      code: 'en',
+      name: 'English',
+      flag: '🇺🇸',
+      color: 'text-blue-600',
+      bgColor: 'bg-blue-50',
+      hoverColor: 'hover:bg-blue-100',
+    },
+    {
+      code: 'fr',
+      name: 'Français',
+      flag: '🇫🇷',
+      color: 'text-red-600',
+      bgColor: 'bg-red-50',
+      hoverColor: 'hover:bg-red-100',
+    },
+    {
+      code: 'es',
+      name: 'Español',
+      flag: '🇪🇸',
+      color: 'text-yellow-600',
+      bgColor: 'bg-yellow-50',
+      hoverColor: 'hover:bg-yellow-100',
+    },
+    {
+      code: 'cn',
+      name: '中文',
+      flag: '🇨🇳',
+      color: 'text-green-600',
+      bgColor: 'bg-green-50',
+      hoverColor: 'hover:bg-green-100',
+    },
   ]
+
+  // Get current language info
+  const currentLanguage = languages.find(lang => lang.code === language) || languages[0]
 
   // Handles language change and closes dropdown
   const handleLanguageChange = (langCode: 'en' | 'fr' | 'es' | 'cn') => {
@@ -158,6 +196,27 @@ export default function Navbar() {
     setIsLangDropdownOpen(false)
     if (isMobileMenuOpen) setIsMobileMenuOpen(false)
   }
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: globalThis.MouseEvent) => {
+      const target = event.target as HTMLElement
+      if (
+        isLangDropdownOpen &&
+        !target.closest('.language-dropdown-container')
+      ) {
+        setIsLangDropdownOpen(false)
+      }
+    }
+
+    if (isLangDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isLangDropdownOpen])
 
   return (
     <nav className='bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-100'>
@@ -210,32 +269,53 @@ export default function Navbar() {
           </div>
 
           {/* Language Switcher and Mobile Menu Toggle */}
-          <div className='flex items-center space-x-4'>
+          <div className='flex items-center space-x-2 md:space-x-4'>
             {/* Desktop Language Switcher */}
-            <div className='relative hidden md:block'>
+            <div className='relative hidden md:block language-dropdown-container'>
               <button
                 onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-                className='flex items-center text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-md border border-gray-300 hover:border-blue-500'
+                className='flex items-center space-x-2 px-3 py-2 text-gray-700 hover:text-blue-600 transition-all duration-200 rounded-lg border border-gray-300 hover:border-blue-500 hover:shadow-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
                 aria-label='Change language'
+                aria-expanded={isLangDropdownOpen}
+                aria-haspopup='true'
               >
-                <Globe size={20} className='mr-1' />
-                {language.toUpperCase()}
+                <span className='text-xl leading-none'>{currentLanguage.flag}</span>
+                <span className='text-sm font-medium hidden lg:inline'>
+                  {currentLanguage.name}
+                </span>
+                <span className='text-sm font-medium lg:hidden'>
+                  {currentLanguage.code.toUpperCase()}
+                </span>
+                <ChevronDown
+                  size={16}
+                  className={`transition-transform duration-200 text-gray-500 ${
+                    isLangDropdownOpen ? 'rotate-180' : ''
+                  }`}
+                />
               </button>
               {isLangDropdownOpen && (
-                <div className='absolute right-0 mt-2 w-36 bg-white rounded-md shadow-lg py-1 z-20 border border-gray-200'>
-                  {languages.map(lang => (
-                    <button
-                      key={lang.code}
-                      onClick={() => handleLanguageChange(lang.code)}
-                      className={`block w-full text-left px-4 py-2 text-sm ${
-                        language === lang.code
-                          ? 'bg-blue-500 text-white'
-                          : 'text-gray-700 hover:bg-blue-100'
-                      }`}
-                    >
-                      {lang.name}
-                    </button>
-                  ))}
+                <div className='absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-20 border border-gray-200 animate-in fade-in slide-in-from-top-2 duration-200'>
+                  {languages.map(lang => {
+                    const isActive = language === lang.code
+                    return (
+                      <button
+                        key={lang.code}
+                        onClick={() => handleLanguageChange(lang.code)}
+                        className={`flex items-center space-x-3 w-full text-left px-4 py-2.5 text-sm transition-all duration-200 first:rounded-t-lg last:rounded-b-lg ${
+                          isActive
+                            ? 'bg-blue-50 text-blue-700 font-semibold border-l-4 border-blue-600'
+                            : `text-gray-700 ${lang.hoverColor}`
+                        }`}
+                        aria-label={`Switch to ${lang.name}`}
+                      >
+                        <span className='text-xl leading-none'>{lang.flag}</span>
+                        <span className='flex-1'>{lang.name}</span>
+                        {isActive && (
+                          <CheckCircle2 size={16} className={lang.color} />
+                        )}
+                      </button>
+                    )
+                  })}
                 </div>
               )}
             </div>
@@ -294,22 +374,38 @@ export default function Navbar() {
               )}
 
               {/* Mobile Language Switcher */}
-              <div className='pt-3 border-t border-gray-200'>
-                <p className='text-sm text-gray-500 mb-2'>Language:</p>
+              <div className='pt-4 border-t border-gray-200 mt-3'>
+                <div className='flex items-center space-x-2 mb-3 px-1'>
+                  <Globe size={18} className='text-gray-500' />
+                  <p className='text-sm font-semibold text-gray-700'>
+                    {language === 'en'
+                      ? 'Language'
+                      : language === 'fr'
+                      ? 'Langue'
+                      : language === 'es'
+                      ? 'Idioma'
+                      : '语言'}
+                  </p>
+                </div>
                 <div className='grid grid-cols-2 gap-2'>
-                  {languages.map(lang => (
-                    <button
-                      key={lang.code}
-                      onClick={() => handleLanguageChange(lang.code)}
-                      className={`text-sm py-2 px-3 rounded-lg transition-all duration-300 ${
-                        language === lang.code
-                          ? 'bg-blue-500 text-white shadow-md'
-                          : 'bg-gray-100 text-gray-700 hover:bg-blue-100 hover:shadow-sm'
-                      }`}
-                    >
-                      {lang.name}
-                    </button>
-                  ))}
+                  {languages.map(lang => {
+                    const isActive = language === lang.code
+                    return (
+                      <button
+                        key={lang.code}
+                        onClick={() => handleLanguageChange(lang.code)}
+                        className={`flex items-center justify-center space-x-2 text-xs sm:text-sm py-2.5 px-2 sm:px-3 rounded-lg transition-all duration-200 font-medium ${
+                          isActive
+                            ? 'bg-blue-500 text-white shadow-md'
+                            : `bg-gray-100 text-gray-700 ${lang.hoverColor} hover:shadow-sm active:scale-95`
+                        }`}
+                        aria-label={`Switch to ${lang.name}`}
+                      >
+                        <span className='text-lg leading-none'>{lang.flag}</span>
+                        <span className='truncate'>{lang.name}</span>
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
             </div>

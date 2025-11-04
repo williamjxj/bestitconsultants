@@ -6,7 +6,7 @@ export const heroCarouselItems: HeroCarouselItem[] = [
     title: 'Enterprise Software Solutions',
     subtitle: 'Fortune 500 Experience',
     description:
-      'Led by industry veterans with 60+ years combined experience, we deliver AI/ML solutions, enterprise systems, and cloud platforms for global clients including Xperi, HSBC, and Credit Suisse.',
+      'Led by industry veterans with 20+ years combined experience, we deliver AI/ML solutions, enterprise systems, and cloud platforms for global clients including Xperi, HSBC, and Credit Suisse.',
     image:
       'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg',
     ctaText: 'Start Your Project',

@@ -1,6 +1,6 @@
-# BestIT Consulting - Corporate Website
+# BestIT Consultants - Corporate Website
 
-A modern, professional website for BestIT Consulting showcasing our software development and digital
+A modern, professional website for BestIT Consultants showcasing our software development and digital
 transformation services.
 
 ## 🚀 Features
@@ -198,7 +198,7 @@ Comprehensive documentation is available in the `docs/` directory:
 
 ## 📄 License
 
-This project is proprietary software owned by BestIT Consulting Ltd.
+This project is proprietary software owned by BestIT Consultants Ltd.
 
 ## 🧹 Recent Cleanup
 
@@ -222,6 +222,6 @@ For technical support or questions:
 
 ---
 
-**BestIT Consulting** - Delivering Excellence Through Technology
+**BestIT Consultants** - Delivering Excellence Through Technology
 
 This project is licensed under the MIT License. See the LICENSE file for details.

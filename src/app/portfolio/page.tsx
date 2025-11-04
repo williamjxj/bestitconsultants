@@ -30,6 +30,7 @@ import {
 import { PortfolioHero } from '@/components/ui/hero-variants'
 import { OptimizedImage } from '@/components/ui/optimized-image'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 const portfolioItems = [
   {
@@ -319,17 +320,186 @@ const portfolioItems = [
 ]
 
 export default function PortfolioPage() {
+  const { language } = useLanguage()
   const [selectedCategory, setSelectedCategory] = useState('all')
 
-  const categories = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'ai', label: 'AI & ML' },
-    { id: 'fintech', label: 'Financial Services' },
-    { id: 'enterprise', label: 'Enterprise Systems' },
-    { id: 'ecommerce', label: 'E-commerce' },
-    { id: 'web', label: 'Web Applications' },
-    { id: 'desktop', label: 'Desktop Applications' },
-  ]
+  // Portfolio content with translations
+  const portfolioContent = {
+    en: {
+      hero: {
+        title: 'Our Portfolio',
+        subtitle: 'Success Stories from Fortune 500 Clients',
+        description:
+          'Explore our portfolio of successful projects for global clients including Xperi, HSBC, Credit Suisse, and more. See how we have helped businesses transform with cutting-edge technology.',
+        ctaText: 'View Case Studies',
+        secondaryCtaText: 'Start Your Project',
+        badge: 'Fortune 500 Proven Results',
+      },
+      categories: [
+        { id: 'all', label: 'All Projects' },
+        { id: 'ai', label: 'AI & ML' },
+        { id: 'fintech', label: 'Financial Services' },
+        { id: 'enterprise', label: 'Enterprise Systems' },
+        { id: 'ecommerce', label: 'E-commerce' },
+        { id: 'web', label: 'Web Applications' },
+        { id: 'desktop', label: 'Desktop Applications' },
+      ],
+      trackRecord: {
+        title: 'Our Track Record',
+        stats: {
+          experience: 'Years Combined Experience',
+          experienceDesc: 'Across all team members',
+          clients: 'Enterprise Clients',
+          clientsDesc: 'Including Xperi, HSBC, Credit Suisse',
+          projects: 'Major Projects Delivered',
+          projectsDesc: 'Across multiple industries',
+          reach: 'Reach & Experience',
+          reachDesc: 'US, Canada, China, Singapore, Europe',
+        },
+      },
+      cta: {
+        title: 'Ready to Start Your Next Project?',
+        description: "Let's discuss how our proven expertise can help drive your business forward.",
+        primary: 'Start Your Project',
+        secondary: 'View All Projects',
+      },
+      labels: {
+        keyAchievements: 'Key Achievements:',
+      },
+    },
+    fr: {
+      hero: {
+        title: 'Notre Portefeuille',
+        subtitle: 'Histoires de Réussite de Clients Fortune 500',
+        description:
+          'Explorez notre portefeuille de projets réussis pour des clients mondiaux, notamment Xperi, HSBC, Credit Suisse et plus encore. Découvrez comment nous avons aidé les entreprises à se transformer avec une technologie de pointe.',
+        ctaText: 'Voir les Études de Cas',
+        secondaryCtaText: 'Démarrer Votre Projet',
+        badge: 'Résultats Éprouvés Fortune 500',
+      },
+      categories: [
+        { id: 'all', label: 'Tous les Projets' },
+        { id: 'ai', label: 'IA & ML' },
+        { id: 'fintech', label: 'Services Financiers' },
+        { id: 'enterprise', label: 'Systèmes d\'Entreprise' },
+        { id: 'ecommerce', label: 'E-commerce' },
+        { id: 'web', label: 'Applications Web' },
+        { id: 'desktop', label: 'Applications Desktop' },
+      ],
+      trackRecord: {
+        title: 'Notre Historique',
+        stats: {
+          experience: 'Années d\'Expérience Combinées',
+          experienceDesc: 'Parmi tous les membres de l\'équipe',
+          clients: 'Clients d\'Entreprise',
+          clientsDesc: 'Incluant Xperi, HSBC, Credit Suisse',
+          projects: 'Projets Majeurs Livrés',
+          projectsDesc: 'Dans plusieurs industries',
+          reach: 'Portée et Expérience',
+          reachDesc: 'États-Unis, Canada, Chine, Singapour, Europe',
+        },
+      },
+      cta: {
+        title: 'Prêt à Démarrer Votre Prochain Projet?',
+        description: 'Discutons de la façon dont notre expertise éprouvée peut aider à faire progresser votre entreprise.',
+        primary: 'Démarrer Votre Projet',
+        secondary: 'Voir Tous les Projets',
+      },
+      labels: {
+        keyAchievements: 'Réalisations Clés:',
+      },
+    },
+    es: {
+      hero: {
+        title: 'Nuestro Portafolio',
+        subtitle: 'Historias de Éxito de Clientes Fortune 500',
+        description:
+          'Explore nuestro portafolio de proyectos exitosos para clientes globales, incluyendo Xperi, HSBC, Credit Suisse y más. Vea cómo hemos ayudado a las empresas a transformarse con tecnología de vanguardia.',
+        ctaText: 'Ver Casos de Estudio',
+        secondaryCtaText: 'Iniciar Su Proyecto',
+        badge: 'Resultados Probados Fortune 500',
+      },
+      categories: [
+        { id: 'all', label: 'Todos los Proyectos' },
+        { id: 'ai', label: 'IA y ML' },
+        { id: 'fintech', label: 'Servicios Financieros' },
+        { id: 'enterprise', label: 'Sistemas Empresariales' },
+        { id: 'ecommerce', label: 'E-commerce' },
+        { id: 'web', label: 'Aplicaciones Web' },
+        { id: 'desktop', label: 'Aplicaciones de Escritorio' },
+      ],
+      trackRecord: {
+        title: 'Nuestro Historial',
+        stats: {
+          experience: 'Años de Experiencia Combinada',
+          experienceDesc: 'Entre todos los miembros del equipo',
+          clients: 'Clientes Empresariales',
+          clientsDesc: 'Incluyendo Xperi, HSBC, Credit Suisse',
+          projects: 'Proyectos Principales Entregados',
+          projectsDesc: 'En múltiples industrias',
+          reach: 'Alcance y Experiencia',
+          reachDesc: 'EE.UU., Canadá, China, Singapur, Europa',
+        },
+      },
+      cta: {
+        title: '¿Listo para Iniciar Su Próximo Proyecto?',
+        description: 'Hablemos de cómo nuestra experiencia probada puede ayudar a impulsar su negocio.',
+        primary: 'Iniciar Su Proyecto',
+        secondary: 'Ver Todos los Proyectos',
+      },
+      labels: {
+        keyAchievements: 'Logros Clave:',
+      },
+    },
+    cn: {
+      hero: {
+        title: '我们的作品集',
+        subtitle: '财富500强客户成功案例',
+        description:
+          '探索我们为全球客户（包括Xperi、HSBC、Credit Suisse等）成功完成的项目组合。了解我们如何帮助企业在尖端技术的推动下实现转型。',
+        ctaText: '查看案例研究',
+        secondaryCtaText: '开始您的项目',
+        badge: '财富500强验证的结果',
+      },
+      categories: [
+        { id: 'all', label: '所有项目' },
+        { id: 'ai', label: '人工智能与机器学习' },
+        { id: 'fintech', label: '金融服务' },
+        { id: 'enterprise', label: '企业系统' },
+        { id: 'ecommerce', label: '电子商务' },
+        { id: 'web', label: 'Web应用' },
+        { id: 'desktop', label: '桌面应用' },
+      ],
+      trackRecord: {
+        title: '我们的业绩记录',
+        stats: {
+          experience: '年综合经验',
+          experienceDesc: '所有团队成员',
+          clients: '企业客户',
+          clientsDesc: '包括Xperi、HSBC、Credit Suisse',
+          projects: '已交付的主要项目',
+          projectsDesc: '跨多个行业',
+          reach: '覆盖范围和经验',
+          reachDesc: '美国、加拿大、中国、新加坡、欧洲',
+        },
+      },
+      cta: {
+        title: '准备开始您的下一个项目了吗？',
+        description: '让我们讨论一下我们经过验证的专业知识如何帮助推动您的业务发展。',
+        primary: '开始您的项目',
+        secondary: '查看所有项目',
+      },
+      labels: {
+        keyAchievements: '主要成就：',
+      },
+    },
+  }
+
+  const currentContent =
+    portfolioContent[language as keyof typeof portfolioContent] ||
+    portfolioContent.en
+
+  const categories = currentContent.categories
 
   const filteredProjects =
     selectedCategory === 'all'
@@ -339,14 +509,14 @@ export default function PortfolioPage() {
   return (
     <div className='-mt-8'>
       <PortfolioHero
-        title='Our Portfolio'
-        subtitle='Success Stories from Fortune 500 Clients'
-        description='Explore our portfolio of successful projects for global clients including Xperi, HSBC, Credit Suisse, and more. See how we have helped businesses transform with cutting-edge technology.'
-        ctaText='View Case Studies'
+        title={currentContent.hero.title}
+        subtitle={currentContent.hero.subtitle}
+        description={currentContent.hero.description}
+        ctaText={currentContent.hero.ctaText}
         ctaLink='/case-studies'
-        secondaryCtaText='Start Your Project'
+        secondaryCtaText={currentContent.hero.secondaryCtaText}
         secondaryCtaLink='/contact'
-        badge='Fortune 500 Proven Results'
+        badge={currentContent.hero.badge}
       />
       <div className='min-h-screen py-20'>
         <div className='container mx-auto px-4'>
@@ -436,7 +606,7 @@ export default function PortfolioPage() {
                       {project.achievements && (
                         <div>
                           <h4 className='text-sm font-medium text-gray-700 mb-2'>
-                            Key Achievements:
+                            {currentContent.labels.keyAchievements}
                           </h4>
                           <ul className='text-sm space-y-1'>
                             {project.achievements
@@ -465,16 +635,16 @@ export default function PortfolioPage() {
           {/* Success Stories Section */}
           <div className='bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl p-8 md:p-12 mb-16'>
             <h2 className='text-3xl font-bold text-center mb-12'>
-              Our Track Record
+              {currentContent.trackRecord.title}
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-4 gap-8'>
               <div className='text-center'>
-                <div className='text-4xl font-bold text-blue-600 mb-2'>60+</div>
+                <div className='text-4xl font-bold text-blue-600 mb-2'>20+</div>
                 <div className='text-lg font-medium mb-2'>
-                  Years Combined Experience
+                  {currentContent.trackRecord.stats.experience}
                 </div>
                 <div className='text-gray-600 text-sm'>
-                  Across all team members
+                  {currentContent.trackRecord.stats.experienceDesc}
                 </div>
               </div>
               <div className='text-center'>
@@ -482,19 +652,19 @@ export default function PortfolioPage() {
                   Fortune 500
                 </div>
                 <div className='text-lg font-medium mb-2'>
-                  Enterprise Clients
+                  {currentContent.trackRecord.stats.clients}
                 </div>
                 <div className='text-gray-600 text-sm'>
-                  Including Xperi, HSBC, Credit Suisse
+                  {currentContent.trackRecord.stats.clientsDesc}
                 </div>
               </div>
               <div className='text-center'>
                 <div className='text-4xl font-bold text-blue-600 mb-2'>12+</div>
                 <div className='text-lg font-medium mb-2'>
-                  Major Projects Delivered
+                  {currentContent.trackRecord.stats.projects}
                 </div>
                 <div className='text-gray-600 text-sm'>
-                  Across multiple industries
+                  {currentContent.trackRecord.stats.projectsDesc}
                 </div>
               </div>
               <div className='text-center'>
@@ -502,10 +672,10 @@ export default function PortfolioPage() {
                   Global
                 </div>
                 <div className='text-lg font-medium mb-2'>
-                  Reach & Experience
+                  {currentContent.trackRecord.stats.reach}
                 </div>
                 <div className='text-gray-600 text-sm'>
-                  US, Canada, China, Singapore, Europe
+                  {currentContent.trackRecord.stats.reachDesc}
                 </div>
               </div>
             </div>
@@ -514,22 +684,21 @@ export default function PortfolioPage() {
           {/* CTA Section */}
           <div className='text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white'>
             <h2 className='text-3xl font-bold mb-4'>
-              Ready to Start Your Next Project?
+              {currentContent.cta.title}
             </h2>
             <p className='text-xl mb-8 opacity-90'>
-              Let's discuss how our proven expertise can help drive your
-              business forward.
+              {currentContent.cta.description}
             </p>
             <div className='space-x-4'>
               <Button size='lg' variant='secondary'>
-                Start Your Project
+                {currentContent.cta.primary}
               </Button>
               <Button
                 size='lg'
                 variant='outline'
                 className='text-white border-white hover:bg-white hover:text-blue-600'
               >
-                View All Projects
+                {currentContent.cta.secondary}
               </Button>
             </div>
           </div>

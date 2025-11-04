@@ -1,20 +1,146 @@
 'use client'
 
 import { Award, Globe, Lightbulb, MapPin, Target, Users } from 'lucide-react'
-import React from 'react'
+import React, { useRef } from 'react'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 
 import { AboutHero } from '@/components/ui/hero-variants'
-import { OptimizedImage } from '@/components/ui/optimized-image'
+import { Card, CardContent } from '@/components/ui/card'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { getR2ImageUrl } from '@/lib/utils'
 
 export default function AboutPage() {
   const { language } = useLanguage()
+  const missionRef = useRef<HTMLDivElement>(null)
+  const visionRef = useRef<HTMLDivElement>(null)
+  const missionImageRef = useRef<HTMLDivElement>(null)
+  const visionImageRef = useRef<HTMLDivElement>(null)
+
+  // GSAP animations for Mission section
+  useGSAP(() => {
+    if (!missionImageRef.current || !missionRef.current) return
+
+    const image = missionImageRef.current
+    const card = missionRef.current
+
+    // Initial state
+    gsap.set(image, {
+      opacity: 0,
+      scale: 1.2,
+      rotation: -5,
+    })
+
+    // Scroll-triggered animation
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Animate image on scroll in
+            gsap.to(image, {
+              opacity: 0.6,
+              scale: 1,
+              rotation: 0,
+              duration: 1.5,
+              ease: 'power3.out',
+            })
+
+            // Continuous subtle rotation animation
+            gsap.to(image, {
+              rotation: 3,
+              duration: 8,
+              ease: 'sine.inOut',
+              repeat: -1,
+              yoyo: true,
+            })
+
+            // Continuous zoom pulse
+            gsap.to(image, {
+              scale: 1.05,
+              duration: 4,
+              ease: 'sine.inOut',
+              repeat: -1,
+              yoyo: true,
+            })
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+
+    observer.observe(card)
+
+    return () => {
+      observer.disconnect()
+      gsap.killTweensOf(image)
+    }
+  }, { scope: missionRef })
+
+  // GSAP animations for Vision section
+  useGSAP(() => {
+    if (!visionImageRef.current || !visionRef.current) return
+
+    const image = visionImageRef.current
+    const card = visionRef.current
+
+    // Initial state
+    gsap.set(image, {
+      opacity: 0,
+      scale: 1.2,
+      rotation: 5,
+    })
+
+    // Scroll-triggered animation
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Animate image on scroll in
+            gsap.to(image, {
+              opacity: 0.6,
+              scale: 1,
+              rotation: 0,
+              duration: 1.5,
+              ease: 'power3.out',
+              delay: 0.3, // Stagger from mission
+            })
+
+            // Continuous subtle rotation animation (opposite direction)
+            gsap.to(image, {
+              rotation: -3,
+              duration: 8,
+              ease: 'sine.inOut',
+              repeat: -1,
+              yoyo: true,
+            })
+
+            // Continuous zoom pulse
+            gsap.to(image, {
+              scale: 1.05,
+              duration: 4,
+              ease: 'sine.inOut',
+              repeat: -1,
+              yoyo: true,
+              delay: 0.5,
+            })
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+
+    observer.observe(card)
+
+    return () => {
+      observer.disconnect()
+      gsap.killTweensOf(image)
+    }
+  }, { scope: visionRef })
 
   // Detailed content for the about page based on real team information
   const aboutContent = {
     en: {
-      title: 'About BestITConsultants Ltd',
+      title: 'About BestITConsultants',
       intro:
         'We are a premier software outsourcing company founded by industry veterans with over 60 years of combined experience. Led by CEO William Jiang, our international team has delivered successful projects for Fortune 500 companies including Xperi, Credit Suisse, HSBC, WebMD, and BestBuy Canada.',
       mission: {
@@ -170,7 +296,7 @@ export default function AboutPage() {
       <AboutHero
         title={currentContent.title}
         description={currentContent.intro}
-        badge='60+ Years Combined Experience'
+        badge='20+ Years Combined Experience'
         ctaText='Meet Our Team'
         ctaLink='#team'
         secondaryCtaText='View Our Services'
@@ -182,24 +308,59 @@ export default function AboutPage() {
         <div className='container mx-auto px-4 space-y-12 md:space-y-16'>
           {/* Mission and Vision */}
           <section className='grid md:grid-cols-2 gap-8 md:gap-12 items-center'>
-            <div className='p-6 bg-blue-50 rounded-lg shadow-md'>
-              <Target size={40} className='mb-3 text-blue-600' />
-              <h2 className='text-2xl font-semibold text-gray-800 mb-3'>
-                {currentContent.mission.title}
-              </h2>
-              <p className='text-gray-700 leading-relaxed'>
-                {currentContent.mission.text}
-              </p>
-            </div>
-            <div className='p-6 bg-green-50 rounded-lg shadow-md'>
-              <Lightbulb size={40} className='mb-3 text-green-600' />
-              <h2 className='text-2xl font-semibold text-gray-800 mb-3'>
-                {currentContent.vision.title}
-              </h2>
-              <p className='text-gray-700 leading-relaxed'>
-                {currentContent.vision.text}
-              </p>
-            </div>
+            {/* Mission Card */}
+            <Card ref={missionRef} className='relative overflow-hidden bg-blue-50 shadow-md min-h-[400px]'>
+              {/* Background Image */}
+              <div
+                ref={missionImageRef}
+                className='absolute inset-0 z-0'
+                style={{
+                  backgroundImage: `url(${getR2ImageUrl('imgs/grok-1.jpg')})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                }}
+              />
+              {/* Overlay for better text readability */}
+              <div className='absolute inset-0 bg-blue-50/80 z-10' />
+              {/* Content */}
+              <CardContent className='relative z-20 p-6 h-full flex flex-col'>
+                <Target size={40} className='mb-3 text-blue-600' />
+                <h2 className='text-2xl font-semibold text-gray-800 mb-3'>
+                  {currentContent.mission.title}
+                </h2>
+                <p className='text-gray-700 leading-relaxed'>
+                  {currentContent.mission.text}
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Vision Card */}
+            <Card ref={visionRef} className='relative overflow-hidden bg-green-50 shadow-md min-h-[400px]'>
+              {/* Background Image */}
+              <div
+                ref={visionImageRef}
+                className='absolute inset-0 z-0'
+                style={{
+                  backgroundImage: `url(${getR2ImageUrl('imgs/grok-2.jpg')})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                }}
+              />
+              {/* Overlay for better text readability */}
+              <div className='absolute inset-0 bg-green-50/80 z-10' />
+              {/* Content */}
+              <CardContent className='relative z-20 p-6 h-full flex flex-col'>
+                <Lightbulb size={40} className='mb-3 text-green-600' />
+                <h2 className='text-2xl font-semibold text-gray-800 mb-3'>
+                  {currentContent.vision.title}
+                </h2>
+                <p className='text-gray-700 leading-relaxed'>
+                  {currentContent.vision.text}
+                </p>
+              </CardContent>
+            </Card>
           </section>
 
           {/* Our Expert Team */}
@@ -276,28 +437,6 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Image Gallery */}
-          <section className='p-8 bg-white rounded-lg shadow-md border border-gray-200'>
-            <h2 className='text-3xl font-semibold text-gray-800 mb-6 text-center'>
-              Our Innovation
-            </h2>
-            <div className='grid md:grid-cols-2 gap-6'>
-              <OptimizedImage
-                src={getR2ImageUrl('imgs/grok-1.jpg')}
-                alt='Innovation showcase 1'
-                width={600}
-                height={400}
-                className='rounded-lg shadow-md'
-              />
-              <OptimizedImage
-                src={getR2ImageUrl('imgs/grok-2.jpg')}
-                alt='Innovation showcase 2'
-                width={600}
-                height={400}
-                className='rounded-lg shadow-md'
-              />
-            </div>
-          </section>
         </div>
       </div>
     </div>

@@ -1,9 +1,12 @@
 // src/app/team/page.tsx
 
+'use client'
+
 import React from 'react'
 
 import { EnhancedTeamProfile } from '@/components/team/EnhancedTeamProfile'
 import { TeamHero } from '@/components/ui/hero-variants'
+import { useLanguage } from '@/contexts/LanguageContext'
 import { getR2ImageUrl } from '@/lib/utils'
 import { TeamMember } from '@/types/team'
 
@@ -414,18 +417,71 @@ const teamMembers: TeamMember[] = [
 ]
 
 const TeamPage = () => {
+  const { language } = useLanguage()
+
+  // Team content with translations
+  const teamContent = {
+    en: {
+      hero: {
+        title: 'Our Expert Team',
+        subtitle: 'Meet the seasoned professionals with Fortune 500 experience who drive our success',
+        description:
+          'Our leadership team brings decades of real-world experience from top-tier companies. From AI/ML experts to enterprise architects, we combine North American innovation with Asian efficiency.',
+        ctaText: 'View Our Services',
+        secondaryCtaText: 'Contact Us',
+        badge: '20+ Years Combined Experience',
+      },
+    },
+    fr: {
+      hero: {
+        title: 'Notre Équipe d\'Experts',
+        subtitle: 'Rencontrez les professionnels chevronnés avec une expérience Fortune 500 qui font notre succès',
+        description:
+          'Notre équipe de direction apporte des décennies d\'expérience réelle des meilleures entreprises. Des experts IA/ML aux architectes d\'entreprise, nous combinons l\'innovation nord-américaine avec l\'efficacité asiatique.',
+        ctaText: 'Voir Nos Services',
+        secondaryCtaText: 'Nous Contacter',
+        badge: '20+ Années d\'Expérience Combinées',
+      },
+    },
+    es: {
+      hero: {
+        title: 'Nuestro Equipo de Expertos',
+        subtitle: 'Conozca a los profesionales experimentados con experiencia Fortune 500 que impulsan nuestro éxito',
+        description:
+          'Nuestro equipo de liderazgo aporta décadas de experiencia del mundo real de empresas de primer nivel. Desde expertos en IA/ML hasta arquitectos empresariales, combinamos la innovación norteamericana con la eficiencia asiática.',
+        ctaText: 'Ver Nuestros Servicios',
+        secondaryCtaText: 'Contáctenos',
+        badge: '20+ Años de Experiencia Combinada',
+      },
+    },
+    cn: {
+      hero: {
+        title: '我们的专家团队',
+        subtitle: '认识拥有财富500强经验、推动我们成功的资深专业人士',
+        description:
+          '我们的领导团队带来了来自顶级公司的数十年实际经验。从AI/ML专家到企业架构师，我们将北美创新与亚洲效率相结合。',
+        ctaText: '查看我们的服务',
+        secondaryCtaText: '联系我们',
+        badge: '20+年综合经验',
+      },
+    },
+  }
+
+  const currentContent =
+    teamContent[language as keyof typeof teamContent] || teamContent.en
+
   return (
     <div className='-mt-8'>
       {/* Hero Section */}
       <TeamHero
-        title='Our Expert Team'
-        subtitle='Meet the seasoned professionals with Fortune 500 experience who drive our success'
-        description='Our leadership team brings decades of real-world experience from top-tier companies. From AI/ML experts to enterprise architects, we combine North American innovation with Asian efficiency.'
-        ctaText='View Our Services'
+        title={currentContent.hero.title}
+        subtitle={currentContent.hero.subtitle}
+        description={currentContent.hero.description}
+        ctaText={currentContent.hero.ctaText}
         ctaLink='/services'
-        secondaryCtaText='Contact Us'
+        secondaryCtaText={currentContent.hero.secondaryCtaText}
         secondaryCtaLink='/contact'
-        badge='60+ Years Combined Experience'
+        badge={currentContent.hero.badge}
       />
 
       {/* Team Members */}

@@ -1,7 +1,9 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 
 import { AnimatedTitle } from '@/components/ui/animated-title'
 import { Badge } from '@/components/ui/badge'
@@ -151,6 +153,11 @@ export function HeroSection({
           )}
         </>
       )
+    }
+
+    // Add GSAP floating shapes for pattern background
+    if (background === 'pattern') {
+      return <GSAPFloatingShapes />
     }
 
     return null
@@ -335,5 +342,173 @@ function FloatingElements() {
         }}
       />
     </>
+  )
+}
+
+// GSAP Floating Shapes Background Component
+function GSAPFloatingShapes() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const shapesRef = useRef<(HTMLDivElement | null)[]>([])
+
+  // Brighter, more visible shapes with higher opacity
+  const shapes = [
+    {
+      type: 'circle',
+      size: 120,
+      color: 'rgba(96, 165, 250, 0.4)', // Brighter blue
+      top: '10%',
+      left: '15%',
+    },
+    {
+      type: 'square',
+      size: 100,
+      color: 'rgba(167, 139, 250, 0.4)', // Brighter purple
+      top: '20%',
+      left: '75%',
+    },
+    {
+      type: 'triangle',
+      size: 140,
+      color: 'rgba(251, 113, 133, 0.4)', // Brighter pink
+      top: '60%',
+      left: '10%',
+    },
+    {
+      type: 'circle',
+      size: 80,
+      color: 'rgba(74, 222, 128, 0.4)', // Brighter green
+      top: '70%',
+      left: '80%',
+    },
+    {
+      type: 'square',
+      size: 90,
+      color: 'rgba(251, 146, 60, 0.4)', // Brighter orange
+      top: '40%',
+      left: '50%',
+    },
+    {
+      type: 'circle',
+      size: 110,
+      color: 'rgba(192, 132, 252, 0.4)', // Brighter purple
+      top: '85%',
+      left: '45%',
+    },
+  ]
+
+  useGSAP(() => {
+    // Animate each shape with random floating motion
+    shapesRef.current.forEach((shape, index) => {
+      if (!shape) return
+
+      // Random duration between 4-7 seconds
+      const duration = gsap.utils.random(4, 7)
+
+      // Random movement range (smaller for subtle effect)
+      const xMovement = gsap.utils.random(-80, 80)
+      const yMovement = gsap.utils.random(-80, 80)
+      const rotation = gsap.utils.random(-120, 120)
+      const scale = gsap.utils.random(0.85, 1.15)
+
+      // Create floating animation
+      gsap.to(shape, {
+        x: xMovement,
+        y: yMovement,
+        rotation: rotation,
+        scale: scale,
+        duration: duration,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: index * 0.3,
+      })
+
+      // Add subtle opacity pulse
+      gsap.to(shape, {
+        opacity: gsap.utils.random(0.3, 0.5),
+        duration: gsap.utils.random(3, 5),
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+      })
+    })
+
+    // Cleanup function
+    return () => {
+      shapesRef.current.forEach(shape => {
+        if (shape) {
+          gsap.killTweensOf(shape)
+        }
+      })
+    }
+  }, { scope: containerRef })
+
+  // Mouse parallax effect (subtle)
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e
+      const xPercent = (clientX / window.innerWidth - 0.5) * 2
+      const yPercent = (clientY / window.innerHeight - 0.5) * 2
+
+      shapesRef.current.forEach((shape, index) => {
+        if (!shape) return
+
+        const speed = (index + 1) * 0.3 // Subtle parallax
+        gsap.to(shape, {
+          x: `+=${xPercent * speed * 5}`,
+          y: `+=${yPercent * speed * 5}`,
+          duration: 0.8,
+          ease: 'power2.out',
+        })
+      })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
+  return (
+    <div
+      ref={containerRef}
+      className='absolute inset-0 w-full h-full overflow-hidden pointer-events-none'
+      style={{ zIndex: 0 }}
+    >
+      {/* Floating Shapes */}
+      {shapes.map((shape, index) => (
+        <div
+          key={index}
+          ref={el => (shapesRef.current[index] = el)}
+          className='absolute'
+          style={{
+            top: shape.top,
+            left: shape.left,
+            width: shape.size,
+            height: shape.size,
+          }}
+        >
+          {shape.type === 'circle' && (
+            <div
+              className='w-full h-full rounded-full blur-2xl'
+              style={{ backgroundColor: shape.color }}
+            />
+          )}
+          {shape.type === 'square' && (
+            <div
+              className='w-full h-full rounded-2xl blur-2xl'
+              style={{ backgroundColor: shape.color }}
+            />
+          )}
+          {shape.type === 'triangle' && (
+            <div
+              className='w-full h-full blur-2xl'
+              style={{
+                clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
+                backgroundColor: shape.color,
+              }}
+            />
+          )}
+        </div>
+      ))}
+    </div>
   )
 }

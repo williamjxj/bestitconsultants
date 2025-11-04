@@ -17,7 +17,7 @@ export default function HeroShowcasePage() {
         <HomepageHero
           title='Elite Enterprise Architects. Startup Speed.'
           subtitle='Get Fortune 500 Software Expertise Without the Overhead'
-          description='Global IT Outsourcing & AI Consulting – Canadian Quality, Global Talent. Led by industry veterans with 60+ years combined experience.'
+          description='Global IT Outsourcing & AI Consulting – Canadian Quality, Global Talent. Led by industry veterans with 20+ years combined experience.'
           ctaText='Start Your Project'
           ctaLink='/contact'
           secondaryCtaText='View Our Work'
@@ -30,9 +30,9 @@ export default function HeroShowcasePage() {
       <section>
         <h2 className='text-2xl font-bold mb-8 text-center'>About Hero</h2>
         <AboutHero
-          title='About BestITConsultants Ltd'
+          title='About BestITConsultants'
           description='We are a premier software outsourcing company founded by industry veterans with over 60 years of combined experience. Led by CEO William Jiang, our international team has delivered successful projects for Fortune 500 companies.'
-          badge='60+ Years Combined Experience'
+          badge='20+ Years Combined Experience'
           ctaText='Meet Our Team'
           ctaLink='/team'
           secondaryCtaText='View Our Services'
@@ -66,7 +66,7 @@ export default function HeroShowcasePage() {
           ctaLink='/services'
           secondaryCtaText='Contact Us'
           secondaryCtaLink='/contact'
-          badge='60+ Years Combined Experience'
+          badge='20+ Years Combined Experience'
         />
       </section>
 

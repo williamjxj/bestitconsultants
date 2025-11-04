@@ -33,7 +33,7 @@ const baseUrl = getBaseUrl()
 
 export const metadata = {
   metadataBase: new URL(baseUrl),
-  title: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting',
+  title: 'BestIT Consultants - Elite IT Outsourcing & AI Consulting',
   description:
     'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation. Canadian Quality, Global Talent.',
   keywords: [
