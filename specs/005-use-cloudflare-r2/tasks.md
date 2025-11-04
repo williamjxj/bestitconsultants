@@ -218,13 +218,11 @@ tests/
 _Applied during main() execution_
 
 1. **From Data Model**:
-
    - ImageAsset → T012 (model), T005 (test)
    - R2Configuration → T013 (model), T006 (test)
    - ImageCache → T014 (model), T007 (test)
 
 2. **From Research**:
-
    - R2 integration patterns → T015 (R2 client)
    - URL preservation → T020 (middleware)
    - Fallback behavior → T016 (image service)

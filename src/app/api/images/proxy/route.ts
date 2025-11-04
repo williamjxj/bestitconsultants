@@ -109,13 +109,10 @@ export async function GET(request: NextRequest) {
     const _responseTime = Date.now() - startTime
     console.warn(`Image served: ${imagePath} in ${_responseTime}ms`)
 
-    return new NextResponse(
-      new Uint8Array(imageData.data),
-      {
-        status: 200,
-        headers,
-      }
-    )
+    return new NextResponse(new Uint8Array(imageData.data), {
+      status: 200,
+      headers,
+    })
   } catch (error) {
     console.error(`Image proxy error for ${request.url}:`, error)
 
@@ -191,7 +188,8 @@ function isValidImagePath(imagePath: string): boolean {
  * Check if origin is allowed for CORS
  */
 function isAllowedOrigin(origin: string): boolean {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bestitconsultants.ca'
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL || 'https://bestitconsultants.ca'
   const allowedOrigins = [
     'http://localhost:3000',
     baseUrl,

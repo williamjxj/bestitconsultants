@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import React, { useEffect, useRef } from 'react'
 
 interface FloatingShapesHeroProps {
   title: string
@@ -26,56 +26,59 @@ export function FloatingShapesHero({
   const containerRef = useRef<HTMLDivElement>(null)
   const shapesRef = useRef<(HTMLDivElement | null)[]>([])
 
-  useGSAP(() => {
-    // Animate each shape with random floating motion
-    shapesRef.current.forEach((shape, index) => {
-      if (!shape) return
+  useGSAP(
+    () => {
+      // Animate each shape with random floating motion
+      shapesRef.current.forEach((shape, index) => {
+        if (!shape) return
 
-      // Random duration between 3-6 seconds
-      const duration = gsap.utils.random(3, 6)
+        // Random duration between 3-6 seconds
+        const duration = gsap.utils.random(3, 6)
 
-      // Random movement range
-      const xMovement = gsap.utils.random(-100, 100)
-      const yMovement = gsap.utils.random(-100, 100)
-      const rotation = gsap.utils.random(-180, 180)
-      const scale = gsap.utils.random(0.8, 1.2)
+        // Random movement range
+        const xMovement = gsap.utils.random(-100, 100)
+        const yMovement = gsap.utils.random(-100, 100)
+        const rotation = gsap.utils.random(-180, 180)
+        const scale = gsap.utils.random(0.8, 1.2)
 
-      // Create floating animation
-      gsap.to(shape, {
-        x: xMovement,
-        y: yMovement,
-        rotation: rotation,
-        scale: scale,
-        duration: duration,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: index * 0.2,
+        // Create floating animation
+        gsap.to(shape, {
+          x: xMovement,
+          y: yMovement,
+          rotation: rotation,
+          scale: scale,
+          duration: duration,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          delay: index * 0.2,
+        })
+
+        // Add subtle opacity pulse
+        gsap.to(shape, {
+          opacity: gsap.utils.random(0.3, 0.7),
+          duration: gsap.utils.random(2, 4),
+          repeat: -1,
+          yoyo: true,
+          ease: 'power1.inOut',
+        })
       })
 
-      // Add subtle opacity pulse
-      gsap.to(shape, {
-        opacity: gsap.utils.random(0.3, 0.7),
-        duration: gsap.utils.random(2, 4),
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-      })
-    })
-
-    // Cleanup function
-    return () => {
-      shapesRef.current.forEach(shape => {
-        if (shape) {
-          gsap.killTweensOf(shape)
-        }
-      })
-    }
-  }, { scope: containerRef })
+      // Cleanup function
+      return () => {
+        shapesRef.current.forEach(shape => {
+          if (shape) {
+            gsap.killTweensOf(shape)
+          }
+        })
+      }
+    },
+    { scope: containerRef }
+  )
 
   // Mouse parallax effect
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e: globalThis.MouseEvent) => {
       const { clientX, clientY } = e
       const xPercent = (clientX / window.innerWidth - 0.5) * 2
       const yPercent = (clientY / window.innerHeight - 0.5) * 2
@@ -166,7 +169,9 @@ export function FloatingShapesHero({
       {shapes.map((shape, index) => (
         <div
           key={index}
-          ref={el => (shapesRef.current[index] = el)}
+          ref={el => {
+            shapesRef.current[index] = el
+          }}
           className='absolute'
           style={{
             top: shape.top,
@@ -239,4 +244,3 @@ export function FloatingShapesHero({
     </div>
   )
 }
-

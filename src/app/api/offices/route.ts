@@ -17,5 +17,3 @@ export async function GET() {
     return NextResponse.json({ success: false, images: [] }, { status: 500 })
   }
 }
-
-

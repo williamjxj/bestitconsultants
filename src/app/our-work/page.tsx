@@ -66,7 +66,7 @@ export default function OurWorkPage() {
         title: 'Prêt à Démarrer Votre Projet?',
         description:
           'Discutons de la façon dont nous pouvons donner vie à votre vision avec la même expertise et le même dévouement démontrés dans ces projets.',
-        button: 'Commencer Aujourd\'hui',
+        button: "Commencer Aujourd'hui",
       },
     },
     es: {
@@ -132,8 +132,7 @@ export default function OurWorkPage() {
   }
 
   const currentContent =
-    ourWorkContent[language as keyof typeof ourWorkContent] ||
-    ourWorkContent.en
+    ourWorkContent[language as keyof typeof ourWorkContent] || ourWorkContent.en
 
   return (
     <div className='-mt-8'>
@@ -160,7 +159,9 @@ export default function OurWorkPage() {
                   <h3 className='font-semibold text-gray-800'>
                     {currentContent.stats.featuredProjects}
                   </h3>
-                  <p className='text-gray-600'>{currentContent.stats.featuredProjectsDesc}</p>
+                  <p className='text-gray-600'>
+                    {currentContent.stats.featuredProjectsDesc}
+                  </p>
                 </div>
                 <div className='text-center'>
                   <div className='bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4'>
@@ -168,8 +169,12 @@ export default function OurWorkPage() {
                       6
                     </span>
                   </div>
-                  <h3 className='font-semibold text-gray-800'>{currentContent.stats.categories}</h3>
-                  <p className='text-gray-600'>{currentContent.stats.categoriesDesc}</p>
+                  <h3 className='font-semibold text-gray-800'>
+                    {currentContent.stats.categories}
+                  </h3>
+                  <p className='text-gray-600'>
+                    {currentContent.stats.categoriesDesc}
+                  </p>
                 </div>
                 <div className='text-center'>
                   <div className='bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4'>
@@ -180,7 +185,9 @@ export default function OurWorkPage() {
                   <h3 className='font-semibold text-gray-800'>
                     {currentContent.stats.externalLinks}
                   </h3>
-                  <p className='text-gray-600'>{currentContent.stats.externalLinksDesc}</p>
+                  <p className='text-gray-600'>
+                    {currentContent.stats.externalLinksDesc}
+                  </p>
                 </div>
               </div>
             </div>

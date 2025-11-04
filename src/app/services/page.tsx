@@ -124,7 +124,7 @@ const ServicesPage = () => {
         title: 'Nos Services',
         subtitle: 'Solutions de Niveau Entreprise',
         description:
-          'Transformez votre entreprise avec notre gamme complète de solutions de niveau entreprise. De l\'IA/ML à l\'infrastructure cloud, nous offrons l\'expertise technologique dont votre entreprise a besoin pour réussir.',
+          "Transformez votre entreprise avec notre gamme complète de solutions de niveau entreprise. De l'IA/ML à l'infrastructure cloud, nous offrons l'expertise technologique dont votre entreprise a besoin pour réussir.",
         ctaText: 'Commencer',
         secondaryCtaText: 'Voir les Études de Cas',
         badge: 'Solutions Éprouvées Fortune 500',
@@ -137,18 +137,18 @@ const ServicesPage = () => {
           features: [
             'Pipelines de Données ML et MLOps',
             'Optimisation GPU/CPU dans Kubernetes',
-            'Intégration d\'Outils IA (ChatGPT, Claude, LangChain)',
+            "Intégration d'Outils IA (ChatGPT, Claude, LangChain)",
             'Traitement et Analyse de Données en Temps Réel',
             'Automatisation de Formation et Déploiement de Modèles',
           ],
         },
         {
-          title: 'Développement de Logiciels d\'Entreprise',
+          title: "Développement de Logiciels d'Entreprise",
           description:
-            'Applications d\'entreprise full-stack avec expérience Fortune 500. Des plateformes bancaires HSBC aux systèmes de trading Credit Suisse.',
+            "Applications d'entreprise full-stack avec expérience Fortune 500. Des plateformes bancaires HSBC aux systèmes de trading Credit Suisse.",
           features: [
             'Développement Full-Stack React.js, Node.js, Python',
-            'Applications d\'Entreprise .NET Core, Java Spring Boot',
+            "Applications d'Entreprise .NET Core, Java Spring Boot",
             'Architecture Microservices et APIs GraphQL',
             'Systèmes en Temps Réel',
             'Conformité Services Bancaires et Financiers',
@@ -157,19 +157,19 @@ const ServicesPage = () => {
         {
           title: 'Intégration et Automatisation de Systèmes',
           description:
-            'Intégration de systèmes experte et automatisation des processus métier. Des systèmes énergétiques du gouvernement néerlandais aux plateformes ETL d\'entreprise.',
+            "Intégration de systèmes experte et automatisation des processus métier. Des systèmes énergétiques du gouvernement néerlandais aux plateformes ETL d'entreprise.",
           features: [
             'Solutions RPA (UiPath, BluePrism, WorkFusion)',
             'Plateformes ETL et Intégration de Données',
             'BizTalk et Enterprise Service Bus',
             'Intégration API et Modernisation Legacy',
-            'Intégration de Systèmes Gouvernementaux et d\'Entreprise',
+            "Intégration de Systèmes Gouvernementaux et d'Entreprise",
           ],
         },
         {
           title: 'Solutions Cloud et DevOps',
           description:
-            'Transformation cloud complète et implémentation DevOps. Avec une expérience chez les principaux fournisseurs cloud et l\'orchestration de conteneurs.',
+            "Transformation cloud complète et implémentation DevOps. Avec une expérience chez les principaux fournisseurs cloud et l'orchestration de conteneurs.",
           features: [
             'Orchestration de Conteneurs Kubernetes et Docker',
             'Migration AWS, Azure, Google Cloud',
@@ -181,25 +181,25 @@ const ServicesPage = () => {
         {
           title: 'Développement Mobile et Multi-Plateforme',
           description:
-            'Solutions mobiles natives et multi-plateformes de la conception au déploiement. Avec une expérience dans les applications mobiles d\'entreprise pour les grandes entreprises.',
+            "Solutions mobiles natives et multi-plateformes de la conception au déploiement. Avec une expérience dans les applications mobiles d'entreprise pour les grandes entreprises.",
           features: [
             'Développement iOS Natif',
             'Développement Android Natif',
             'Solutions Multi-Plateforme React Native',
-            'Architecture d\'Applications Mobiles d\'Entreprise',
+            "Architecture d'Applications Mobiles d'Entreprise",
             'Déploiement App Store et Play Store',
           ],
         },
         {
-          title: 'Systèmes de Gestion d\'Entreprise et OA',
+          title: "Systèmes de Gestion d'Entreprise et OA",
           description:
-            'Solutions de gestion d\'entreprise spécialisées incluant les systèmes OA, ERP, gestion des coûts d\'ingénierie, et implémentations de projets gouvernementaux.',
+            "Solutions de gestion d'entreprise spécialisées incluant les systèmes OA, ERP, gestion des coûts d'ingénierie, et implémentations de projets gouvernementaux.",
           features: [
             'Systèmes OA (Gestion de Tâches, Projets, Actifs)',
-            'Systèmes de Gestion des Coûts d\'Ingénierie',
-            'Solutions d\'Entreprise ERP, MES, EKP',
+            "Systèmes de Gestion des Coûts d'Ingénierie",
+            "Solutions d'Entreprise ERP, MES, EKP",
             'Systèmes de Projets Gouvernementaux et Militaires',
-            'Plateformes de Financement de la Chaîne d\'Approvisionnement',
+            "Plateformes de Financement de la Chaîne d'Approvisionnement",
           ],
         },
       ],
@@ -583,36 +583,69 @@ const ServicesPage = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              {language === 'en' ? 'Our Process' : language === 'fr' ? 'Notre Processus' : language === 'es' ? 'Nuestro Proceso' : '我们的流程'}
+              {language === 'en'
+                ? 'Our Process'
+                : language === 'fr'
+                  ? 'Notre Processus'
+                  : language === 'es'
+                    ? 'Nuestro Proceso'
+                    : '我们的流程'}
             </motion.h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10'>
-              {(language === 'en' 
+              {(language === 'en'
                 ? [
-                    { title: 'Discovery', description: 'Understand your needs' },
+                    {
+                      title: 'Discovery',
+                      description: 'Understand your needs',
+                    },
                     { title: 'Planning', description: 'Design the solution' },
-                    { title: 'Development', description: 'Build with excellence' },
+                    {
+                      title: 'Development',
+                      description: 'Build with excellence',
+                    },
                     { title: 'Deployment', description: 'Launch and support' },
                   ]
                 : language === 'fr'
-                ? [
-                    { title: 'Découverte', description: 'Comprendre vos besoins' },
-                    { title: 'Planification', description: 'Concevoir la solution' },
-                    { title: 'Développement', description: 'Construire avec excellence' },
-                    { title: 'Déploiement', description: 'Lancer et soutenir' },
-                  ]
-                : language === 'es'
-                ? [
-                    { title: 'Descubrimiento', description: 'Entender sus necesidades' },
-                    { title: 'Planificación', description: 'Diseñar la solución' },
-                    { title: 'Desarrollo', description: 'Construir con excelencia' },
-                    { title: 'Despliegue', description: 'Lanzar y apoyar' },
-                  ]
-                : [
-                    { title: '发现', description: '了解您的需求' },
-                    { title: '规划', description: '设计解决方案' },
-                    { title: '开发', description: '卓越构建' },
-                    { title: '部署', description: '启动和支持' },
-                  ]
+                  ? [
+                      {
+                        title: 'Découverte',
+                        description: 'Comprendre vos besoins',
+                      },
+                      {
+                        title: 'Planification',
+                        description: 'Concevoir la solution',
+                      },
+                      {
+                        title: 'Développement',
+                        description: 'Construire avec excellence',
+                      },
+                      {
+                        title: 'Déploiement',
+                        description: 'Lancer et soutenir',
+                      },
+                    ]
+                  : language === 'es'
+                    ? [
+                        {
+                          title: 'Descubrimiento',
+                          description: 'Entender sus necesidades',
+                        },
+                        {
+                          title: 'Planificación',
+                          description: 'Diseñar la solución',
+                        },
+                        {
+                          title: 'Desarrollo',
+                          description: 'Construir con excelencia',
+                        },
+                        { title: 'Despliegue', description: 'Lanzar y apoyar' },
+                      ]
+                    : [
+                        { title: '发现', description: '了解您的需求' },
+                        { title: '规划', description: '设计解决方案' },
+                        { title: '开发', description: '卓越构建' },
+                        { title: '部署', description: '启动和支持' },
+                      ]
               ).map((step, index) => (
                 <motion.div
                   key={index}
@@ -675,7 +708,13 @@ const ServicesPage = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              {language === 'en' ? 'Pricing Plans' : language === 'fr' ? 'Plans Tarifaires' : language === 'es' ? 'Planes de Precios' : '定价方案'}
+              {language === 'en'
+                ? 'Pricing Plans'
+                : language === 'fr'
+                  ? 'Plans Tarifaires'
+                  : language === 'es'
+                    ? 'Planes de Precios'
+                    : '定价方案'}
             </motion.h2>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
               {(language === 'en'
@@ -684,95 +723,131 @@ const ServicesPage = () => {
                       name: 'Starter',
                       price: '$5K+',
                       description: 'Perfect for small projects',
-                      features: ['Basic features', 'Email support', '3 months support'],
+                      features: [
+                        'Basic features',
+                        'Email support',
+                        '3 months support',
+                      ],
                       popular: false,
                     },
                     {
                       name: 'Professional',
                       price: '$25K+',
                       description: 'Ideal for growing businesses',
-                      features: ['All features', 'Priority support', '6 months support'],
+                      features: [
+                        'All features',
+                        'Priority support',
+                        '6 months support',
+                      ],
                       popular: true,
                     },
                     {
                       name: 'Enterprise',
                       price: 'Custom',
                       description: 'Tailored for large organizations',
-                      features: ['Custom features', '24/7 support', '1 year support'],
+                      features: [
+                        'Custom features',
+                        '24/7 support',
+                        '1 year support',
+                      ],
                       popular: false,
                     },
                   ]
                 : language === 'fr'
-                ? [
-                    {
-                      name: 'Démarrage',
-                      price: '5K$+',
-                      description: 'Parfait pour les petits projets',
-                      features: ['Fonctionnalités de base', 'Support par email', '3 mois de support'],
-                      popular: false,
-                    },
-                    {
-                      name: 'Professionnel',
-                      price: '25K$+',
-                      description: 'Idéal pour les entreprises en croissance',
-                      features: ['Toutes les fonctionnalités', 'Support prioritaire', '6 mois de support'],
-                      popular: true,
-                    },
-                    {
-                      name: 'Entreprise',
-                      price: 'Sur mesure',
-                      description: 'Adapté aux grandes organisations',
-                      features: ['Fonctionnalités personnalisées', 'Support 24/7', '1 an de support'],
-                      popular: false,
-                    },
-                  ]
-                : language === 'es'
-                ? [
-                    {
-                      name: 'Inicial',
-                      price: '$5K+',
-                      description: 'Perfecto para proyectos pequeños',
-                      features: ['Características básicas', 'Soporte por email', '3 meses de soporte'],
-                      popular: false,
-                    },
-                    {
-                      name: 'Profesional',
-                      price: '$25K+',
-                      description: 'Ideal para negocios en crecimiento',
-                      features: ['Todas las características', 'Soporte prioritario', '6 meses de soporte'],
-                      popular: true,
-                    },
-                    {
-                      name: 'Empresarial',
-                      price: 'Personalizado',
-                      description: 'Adaptado para grandes organizaciones',
-                      features: ['Características personalizadas', 'Soporte 24/7', '1 año de soporte'],
-                      popular: false,
-                    },
-                  ]
-                : [
-                    {
-                      name: '入门',
-                      price: '5K$+',
-                      description: '适合小型项目',
-                      features: ['基本功能', '邮件支持', '3个月支持'],
-                      popular: false,
-                    },
-                    {
-                      name: '专业',
-                      price: '25K$+',
-                      description: '适合成长中的企业',
-                      features: ['所有功能', '优先支持', '6个月支持'],
-                      popular: true,
-                    },
-                    {
-                      name: '企业',
-                      price: '定制',
-                      description: '适合大型组织',
-                      features: ['定制功能', '24/7支持', '1年支持'],
-                      popular: false,
-                    },
-                  ]
+                  ? [
+                      {
+                        name: 'Démarrage',
+                        price: '5K$+',
+                        description: 'Parfait pour les petits projets',
+                        features: [
+                          'Fonctionnalités de base',
+                          'Support par email',
+                          '3 mois de support',
+                        ],
+                        popular: false,
+                      },
+                      {
+                        name: 'Professionnel',
+                        price: '25K$+',
+                        description: 'Idéal pour les entreprises en croissance',
+                        features: [
+                          'Toutes les fonctionnalités',
+                          'Support prioritaire',
+                          '6 mois de support',
+                        ],
+                        popular: true,
+                      },
+                      {
+                        name: 'Entreprise',
+                        price: 'Sur mesure',
+                        description: 'Adapté aux grandes organisations',
+                        features: [
+                          'Fonctionnalités personnalisées',
+                          'Support 24/7',
+                          '1 an de support',
+                        ],
+                        popular: false,
+                      },
+                    ]
+                  : language === 'es'
+                    ? [
+                        {
+                          name: 'Inicial',
+                          price: '$5K+',
+                          description: 'Perfecto para proyectos pequeños',
+                          features: [
+                            'Características básicas',
+                            'Soporte por email',
+                            '3 meses de soporte',
+                          ],
+                          popular: false,
+                        },
+                        {
+                          name: 'Profesional',
+                          price: '$25K+',
+                          description: 'Ideal para negocios en crecimiento',
+                          features: [
+                            'Todas las características',
+                            'Soporte prioritario',
+                            '6 meses de soporte',
+                          ],
+                          popular: true,
+                        },
+                        {
+                          name: 'Empresarial',
+                          price: 'Personalizado',
+                          description: 'Adaptado para grandes organizaciones',
+                          features: [
+                            'Características personalizadas',
+                            'Soporte 24/7',
+                            '1 año de soporte',
+                          ],
+                          popular: false,
+                        },
+                      ]
+                    : [
+                        {
+                          name: '入门',
+                          price: '5K$+',
+                          description: '适合小型项目',
+                          features: ['基本功能', '邮件支持', '3个月支持'],
+                          popular: false,
+                        },
+                        {
+                          name: '专业',
+                          price: '25K$+',
+                          description: '适合成长中的企业',
+                          features: ['所有功能', '优先支持', '6个月支持'],
+                          popular: true,
+                        },
+                        {
+                          name: '企业',
+                          price: '定制',
+                          description: '适合大型组织',
+                          features: ['定制功能', '24/7支持', '1年支持'],
+                          popular: false,
+                        },
+                      ]
               ).map((plan, index) => (
                 <motion.div
                   key={index}
@@ -802,7 +877,13 @@ const ServicesPage = () => {
                         viewport={{ once: true }}
                       >
                         <Badge className='absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-500 animate-pulse-slow'>
-                          {language === 'en' ? 'Popular' : language === 'fr' ? 'Populaire' : language === 'es' ? 'Popular' : '热门'}
+                          {language === 'en'
+                            ? 'Popular'
+                            : language === 'fr'
+                              ? 'Populaire'
+                              : language === 'es'
+                                ? 'Popular'
+                                : '热门'}
                         </Badge>
                       </motion.div>
                     )}
@@ -875,7 +956,13 @@ const ServicesPage = () => {
                           }`}
                           variant={plan.popular ? 'default' : 'outline'}
                         >
-                          {language === 'en' ? 'Get Started' : language === 'fr' ? 'Commencer' : language === 'es' ? 'Comenzar' : '开始'}
+                          {language === 'en'
+                            ? 'Get Started'
+                            : language === 'fr'
+                              ? 'Commencer'
+                              : language === 'es'
+                                ? 'Comenzar'
+                                : '开始'}
                         </Button>
                       </motion.div>
                     </CardContent>
@@ -912,7 +999,13 @@ const ServicesPage = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                {language === 'en' ? 'Ready to Get Started?' : language === 'fr' ? 'Prêt à Commencer?' : language === 'es' ? '¿Listo para Empezar?' : '准备开始了吗？'}
+                {language === 'en'
+                  ? 'Ready to Get Started?'
+                  : language === 'fr'
+                    ? 'Prêt à Commencer?'
+                    : language === 'es'
+                      ? '¿Listo para Empezar?'
+                      : '准备开始了吗？'}
               </motion.h2>
               <motion.p
                 className='text-xl mb-8 opacity-90'
@@ -921,7 +1014,13 @@ const ServicesPage = () => {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                {language === 'en' ? 'Let\'s discuss your project and see how we can help you succeed.' : language === 'fr' ? 'Discutons de votre projet et voyons comment nous pouvons vous aider à réussir.' : language === 'es' ? 'Hablemos de su proyecto y veamos cómo podemos ayudarlo a tener éxito.' : '让我们讨论您的项目，看看我们如何帮助您取得成功。'}
+                {language === 'en'
+                  ? "Let's discuss your project and see how we can help you succeed."
+                  : language === 'fr'
+                    ? 'Discutons de votre projet et voyons comment nous pouvons vous aider à réussir.'
+                    : language === 'es'
+                      ? 'Hablemos de su proyecto y veamos cómo podemos ayudarlo a tener éxito.'
+                      : '让我们讨论您的项目，看看我们如何帮助您取得成功。'}
               </motion.p>
               <motion.div
                 className='flex flex-col sm:flex-row gap-4 justify-center'
@@ -940,7 +1039,13 @@ const ServicesPage = () => {
                     variant='secondary'
                     className='shadow-lg hover:shadow-xl transition-all duration-300'
                   >
-                    {language === 'en' ? 'Free Consultation' : language === 'fr' ? 'Consultation Gratuite' : language === 'es' ? 'Consulta Gratuita' : '免费咨询'}
+                    {language === 'en'
+                      ? 'Free Consultation'
+                      : language === 'fr'
+                        ? 'Consultation Gratuite'
+                        : language === 'es'
+                          ? 'Consulta Gratuita'
+                          : '免费咨询'}
                   </Button>
                 </motion.div>
                 <motion.div
@@ -953,7 +1058,13 @@ const ServicesPage = () => {
                     variant='outline'
                     className='text-white border-white hover:bg-white hover:text-blue-600 shadow-lg hover:shadow-xl transition-all duration-300'
                   >
-                    {language === 'en' ? 'View Portfolio' : language === 'fr' ? 'Voir le Portfolio' : language === 'es' ? 'Ver Portafolio' : '查看作品集'}
+                    {language === 'en'
+                      ? 'View Portfolio'
+                      : language === 'fr'
+                        ? 'Voir le Portfolio'
+                        : language === 'es'
+                          ? 'Ver Portafolio'
+                          : '查看作品集'}
                   </Button>
                 </motion.div>
               </motion.div>

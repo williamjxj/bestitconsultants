@@ -28,8 +28,10 @@ export default function HomePage() {
           ctaText: 'Start Your Project',
         },
         {
-          title: 'Helping businesses integrate AI and modern software architectures',
-          subtitle: 'From strategy to production — we fuse AI with cloud-native patterns',
+          title:
+            'Helping businesses integrate AI and modern software architectures',
+          subtitle:
+            'From strategy to production — we fuse AI with cloud-native patterns',
           description:
             'We design event-driven, microservices, and data platforms that operationalize AI safely and at scale. Our teams deliver measurable impact with MLOps, vector search, and robust observability.',
           ctaText: 'Start Your Project',
@@ -46,24 +48,27 @@ export default function HomePage() {
     fr: {
       items: [
         {
-          title: 'Architectes d\'Entreprise d\'Élite. Vitesse de Startup.',
-          subtitle: 'Obtenez l\'Expertise Logicielle Fortune 500 Sans les Frais Généraux',
+          title: "Architectes d'Entreprise d'Élite. Vitesse de Startup.",
+          subtitle:
+            "Obtenez l'Expertise Logicielle Fortune 500 Sans les Frais Généraux",
           description:
-            'Externalisation TI Mondiale et Conseil IA – Qualité Canadienne, Talents Mondiaux. Dirigés par des vétérans de l\'industrie avec 20+ années d\'expérience combinées, nous livrons des solutions IA/ML, systèmes d\'entreprise et plateformes cloud pour des clients mondiaux.',
+            "Externalisation TI Mondiale et Conseil IA – Qualité Canadienne, Talents Mondiaux. Dirigés par des vétérans de l'industrie avec 20+ années d'expérience combinées, nous livrons des solutions IA/ML, systèmes d'entreprise et plateformes cloud pour des clients mondiaux.",
           ctaText: 'Démarrer Votre Projet',
         },
         {
-          title: 'Aider les entreprises à intégrer l\'IA et les architectures logicielles modernes',
-          subtitle: 'De la stratégie à la production — nous fusionnons l\'IA avec des modèles cloud-native',
+          title:
+            "Aider les entreprises à intégrer l'IA et les architectures logicielles modernes",
+          subtitle:
+            "De la stratégie à la production — nous fusionnons l'IA avec des modèles cloud-native",
           description:
-            'Nous concevons des plateformes orientées événements, microservices et données qui opérationnalisent l\'IA de manière sûre et à grande échelle. Nos équipes offrent un impact mesurable avec MLOps, recherche vectorielle et observabilité robuste.',
+            "Nous concevons des plateformes orientées événements, microservices et données qui opérationnalisent l'IA de manière sûre et à grande échelle. Nos équipes offrent un impact mesurable avec MLOps, recherche vectorielle et observabilité robuste.",
           ctaText: 'Démarrer Votre Projet',
         },
         {
           title: 'Ingénierie moderne pour des résultats commerciaux réels',
           subtitle: 'Sécurisé, observable et évolutif par défaut',
           description:
-            'Nous appliquons des modèles pragmatiques, l\'automatisation et des tests rigoureux pour livrer plus rapidement avec confiance — des constructions greenfield à la modernisation complexe de l\'héritage.',
+            "Nous appliquons des modèles pragmatiques, l'automatisation et des tests rigoureux pour livrer plus rapidement avec confiance — des constructions greenfield à la modernisation complexe de l'héritage.",
           ctaText: 'Démarrer Votre Projet',
         },
       ],
@@ -72,14 +77,17 @@ export default function HomePage() {
       items: [
         {
           title: 'Arquitectos Empresariales de Élite. Velocidad de Startup.',
-          subtitle: 'Obtenga Experiencia en Software Fortune 500 Sin los Costos Generales',
+          subtitle:
+            'Obtenga Experiencia en Software Fortune 500 Sin los Costos Generales',
           description:
             'Externalización de TI Global y Consultoría de IA – Calidad Canadiense, Talento Global. Liderados por veteranos de la industria con 20+ años de experiencia combinada, entregamos soluciones IA/ML, sistemas empresariales y plataformas cloud para clientes globales.',
           ctaText: 'Iniciar Su Proyecto',
         },
         {
-          title: 'Ayudando a las empresas a integrar IA y arquitecturas de software modernas',
-          subtitle: 'De la estrategia a la producción — fusionamos IA con patrones cloud-native',
+          title:
+            'Ayudando a las empresas a integrar IA y arquitecturas de software modernas',
+          subtitle:
+            'De la estrategia a la producción — fusionamos IA con patrones cloud-native',
           description:
             'Diseñamos plataformas basadas en eventos, microservicios y datos que operacionalizan la IA de manera segura y a escala. Nuestros equipos ofrecen impacto medible con MLOps, búsqueda vectorial y observabilidad robusta.',
           ctaText: 'Iniciar Su Proyecto',

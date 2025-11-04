@@ -628,7 +628,11 @@ export const translations = {
           },
           { icon: '📞', label: 'Phone', value: '+1 (236) 992-3846' },
           { icon: '📧', label: 'Email', value: 'jxjwilliam@gmail.com' },
-          { icon: '🌐', label: 'Website', value: getBaseUrl().replace('https://', '') },
+          {
+            icon: '🌐',
+            label: 'Website',
+            value: getBaseUrl().replace('https://', ''),
+          },
         ],
       },
       hours: {

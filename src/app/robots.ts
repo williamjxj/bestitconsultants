@@ -4,7 +4,7 @@ import { getBaseUrl } from '@/lib/utils'
 
 export default function robots(): MetadataRoute.Robots {
   const baseUrl = getBaseUrl()
-  
+
   return {
     rules: {
       userAgent: '*',

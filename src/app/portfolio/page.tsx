@@ -359,7 +359,8 @@ export default function PortfolioPage() {
       },
       cta: {
         title: 'Ready to Start Your Next Project?',
-        description: "Let's discuss how our proven expertise can help drive your business forward.",
+        description:
+          "Let's discuss how our proven expertise can help drive your business forward.",
         primary: 'Start Your Project',
         secondary: 'View All Projects',
       },
@@ -381,7 +382,7 @@ export default function PortfolioPage() {
         { id: 'all', label: 'Tous les Projets' },
         { id: 'ai', label: 'IA & ML' },
         { id: 'fintech', label: 'Services Financiers' },
-        { id: 'enterprise', label: 'Systèmes d\'Entreprise' },
+        { id: 'enterprise', label: "Systèmes d'Entreprise" },
         { id: 'ecommerce', label: 'E-commerce' },
         { id: 'web', label: 'Applications Web' },
         { id: 'desktop', label: 'Applications Desktop' },
@@ -389,9 +390,9 @@ export default function PortfolioPage() {
       trackRecord: {
         title: 'Notre Historique',
         stats: {
-          experience: 'Années d\'Expérience Combinées',
-          experienceDesc: 'Parmi tous les membres de l\'équipe',
-          clients: 'Clients d\'Entreprise',
+          experience: "Années d'Expérience Combinées",
+          experienceDesc: "Parmi tous les membres de l'équipe",
+          clients: "Clients d'Entreprise",
           clientsDesc: 'Incluant Xperi, HSBC, Credit Suisse',
           projects: 'Projets Majeurs Livrés',
           projectsDesc: 'Dans plusieurs industries',
@@ -401,7 +402,8 @@ export default function PortfolioPage() {
       },
       cta: {
         title: 'Prêt à Démarrer Votre Prochain Projet?',
-        description: 'Discutons de la façon dont notre expertise éprouvée peut aider à faire progresser votre entreprise.',
+        description:
+          'Discutons de la façon dont notre expertise éprouvée peut aider à faire progresser votre entreprise.',
         primary: 'Démarrer Votre Projet',
         secondary: 'Voir Tous les Projets',
       },
@@ -443,7 +445,8 @@ export default function PortfolioPage() {
       },
       cta: {
         title: '¿Listo para Iniciar Su Próximo Proyecto?',
-        description: 'Hablemos de cómo nuestra experiencia probada puede ayudar a impulsar su negocio.',
+        description:
+          'Hablemos de cómo nuestra experiencia probada puede ayudar a impulsar su negocio.',
         primary: 'Iniciar Su Proyecto',
         secondary: 'Ver Todos los Proyectos',
       },
@@ -485,7 +488,8 @@ export default function PortfolioPage() {
       },
       cta: {
         title: '准备开始您的下一个项目了吗？',
-        description: '让我们讨论一下我们经过验证的专业知识如何帮助推动您的业务发展。',
+        description:
+          '让我们讨论一下我们经过验证的专业知识如何帮助推动您的业务发展。',
         primary: '开始您的项目',
         secondary: '查看所有项目',
       },

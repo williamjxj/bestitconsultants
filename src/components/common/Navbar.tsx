@@ -188,7 +188,8 @@ export default function Navbar() {
   ]
 
   // Get current language info
-  const currentLanguage = languages.find(lang => lang.code === language) || languages[0]
+  const currentLanguage =
+    languages.find(lang => lang.code === language) || languages[0]
 
   // Handles language change and closes dropdown
   const handleLanguageChange = (langCode: 'en' | 'fr' | 'es' | 'cn') => {
@@ -279,7 +280,9 @@ export default function Navbar() {
                 aria-expanded={isLangDropdownOpen}
                 aria-haspopup='true'
               >
-                <span className='text-xl leading-none'>{currentLanguage.flag}</span>
+                <span className='text-xl leading-none'>
+                  {currentLanguage.flag}
+                </span>
                 <span className='text-sm font-medium hidden lg:inline'>
                   {currentLanguage.name}
                 </span>
@@ -308,7 +311,9 @@ export default function Navbar() {
                         }`}
                         aria-label={`Switch to ${lang.name}`}
                       >
-                        <span className='text-xl leading-none'>{lang.flag}</span>
+                        <span className='text-xl leading-none'>
+                          {lang.flag}
+                        </span>
                         <span className='flex-1'>{lang.name}</span>
                         {isActive && (
                           <CheckCircle2 size={16} className={lang.color} />
@@ -381,10 +386,10 @@ export default function Navbar() {
                     {language === 'en'
                       ? 'Language'
                       : language === 'fr'
-                      ? 'Langue'
-                      : language === 'es'
-                      ? 'Idioma'
-                      : '语言'}
+                        ? 'Langue'
+                        : language === 'es'
+                          ? 'Idioma'
+                          : '语言'}
                   </p>
                 </div>
                 <div className='grid grid-cols-2 gap-2'>
@@ -401,7 +406,9 @@ export default function Navbar() {
                         }`}
                         aria-label={`Switch to ${lang.name}`}
                       >
-                        <span className='text-lg leading-none'>{lang.flag}</span>
+                        <span className='text-lg leading-none'>
+                          {lang.flag}
+                        </span>
                         <span className='truncate'>{lang.name}</span>
                       </button>
                     )

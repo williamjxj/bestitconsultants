@@ -1,7 +1,7 @@
 # BestIT Consultants - Corporate Website
 
-A modern, professional website for BestIT Consultants showcasing our software development and digital
-transformation services.
+A modern, professional website for BestIT Consultants showcasing our software development and
+digital transformation services.
 
 ## 🚀 Features
 

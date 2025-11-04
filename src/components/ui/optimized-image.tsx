@@ -96,10 +96,21 @@ export function OptimizedImage({
     const publicFolderPaths: string[] = []
 
     // Root-level public files (like /placeholder.svg, /favicon.ico, etc.)
-    const publicFileExtensions = ['.svg', '.png', '.jpg', '.jpeg', '.webp', '.gif', '.ico', '.avif']
+    const publicFileExtensions = [
+      '.svg',
+      '.png',
+      '.jpg',
+      '.jpeg',
+      '.webp',
+      '.gif',
+      '.ico',
+      '.avif',
+    ]
     const isRootPublicFile =
       originalSrc.startsWith('/') &&
-      publicFileExtensions.some(ext => originalSrc.toLowerCase().endsWith(ext)) &&
+      publicFileExtensions.some(ext =>
+        originalSrc.toLowerCase().endsWith(ext)
+      ) &&
       !originalSrc.includes('/api/') &&
       originalSrc.split('/').length === 2 // Root level file (e.g., /placeholder.svg)
 

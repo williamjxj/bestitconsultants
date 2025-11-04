@@ -59,7 +59,11 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
 
   // Track manual navigation that causes loop
   useEffect(() => {
-    if (prevIndexRef.current === items.length - 1 && currentIndex === 0 && items.length > 1) {
+    if (
+      prevIndexRef.current === items.length - 1 &&
+      currentIndex === 0 &&
+      items.length > 1
+    ) {
       setLoopCount(prev => prev + 1)
     }
     prevIndexRef.current = currentIndex

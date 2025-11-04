@@ -64,9 +64,11 @@ export default function ContactPage() {
       },
       messages: {
         sending: 'Sending...',
-        success: "Thank you! Your message has been sent successfully. We'll get back to you soon.",
+        success:
+          "Thank you! Your message has been sent successfully. We'll get back to you soon.",
         error: 'Failed to send message. Please try again.',
-        networkError: 'Network error. Please check your connection and try again.',
+        networkError:
+          'Network error. Please check your connection and try again.',
       },
       location: {
         ourLocation: 'Our Location',
@@ -92,20 +94,22 @@ export default function ContactPage() {
       },
       messages: {
         sending: 'Envoi en cours...',
-        success: 'Merci! Votre message a été envoyé avec succès. Nous vous répondrons bientôt.',
-        error: 'Échec de l\'envoi du message. Veuillez réessayer.',
-        networkError: 'Erreur réseau. Veuillez vérifier votre connexion et réessayer.',
+        success:
+          'Merci! Votre message a été envoyé avec succès. Nous vous répondrons bientôt.',
+        error: "Échec de l'envoi du message. Veuillez réessayer.",
+        networkError:
+          'Erreur réseau. Veuillez vérifier votre connexion et réessayer.',
       },
       location: {
         ourLocation: 'Notre Emplacement',
         address: 'Adresse',
-        getDirections: 'Obtenir l\'Itinéraire',
+        getDirections: "Obtenir l'Itinéraire",
         openInGoogleMaps: 'Ouvrir dans Google Maps',
         openInAppleMaps: 'Ouvrir dans Apple Maps',
         nearbyLandmarks: 'Points de Repère à Proximité',
         landmarks: [
           'Près du Centre Commercial Guildford',
-          'Proche de l\'accès à l\'Autoroute 1',
+          "Proche de l'accès à l'Autoroute 1",
           '15 minutes de Surrey Central',
         ],
       },
@@ -120,9 +124,11 @@ export default function ContactPage() {
       },
       messages: {
         sending: 'Enviando...',
-        success: '¡Gracias! Su mensaje ha sido enviado exitosamente. Nos pondremos en contacto pronto.',
+        success:
+          '¡Gracias! Su mensaje ha sido enviado exitosamente. Nos pondremos en contacto pronto.',
         error: 'Error al enviar el mensaje. Por favor, intente nuevamente.',
-        networkError: 'Error de red. Por favor, verifique su conexión e intente nuevamente.',
+        networkError:
+          'Error de red. Por favor, verifique su conexión e intente nuevamente.',
       },
       location: {
         ourLocation: 'Nuestra Ubicación',
@@ -169,8 +175,7 @@ export default function ContactPage() {
   }
 
   const currentContent =
-    contactContent[language as keyof typeof contactContent] ||
-    contactContent.en
+    contactContent[language as keyof typeof contactContent] || contactContent.en
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -665,9 +670,11 @@ export default function ContactPage() {
                       {currentContent.location.nearbyLandmarks}
                     </h4>
                     <ul className='text-gray-600 space-y-1'>
-                      {currentContent.location.landmarks.map((landmark, index) => (
-                        <li key={index}>• {landmark}</li>
-                      ))}
+                      {currentContent.location.landmarks.map(
+                        (landmark, index) => (
+                          <li key={index}>• {landmark}</li>
+                        )
+                      )}
                     </ul>
                   </div>
                 </CardContent>

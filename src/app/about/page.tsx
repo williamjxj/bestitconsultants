@@ -1,12 +1,12 @@
 'use client'
 
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 import { Award, Globe, Lightbulb, MapPin, Target, Users } from 'lucide-react'
 import React, { useRef } from 'react'
-import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
 
-import { AboutHero } from '@/components/ui/hero-variants'
 import { Card, CardContent } from '@/components/ui/card'
+import { AboutHero } from '@/components/ui/hero-variants'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { getR2ImageUrl } from '@/lib/utils'
 
@@ -18,124 +18,130 @@ export default function AboutPage() {
   const visionImageRef = useRef<HTMLDivElement>(null)
 
   // GSAP animations for Mission section
-  useGSAP(() => {
-    if (!missionImageRef.current || !missionRef.current) return
+  useGSAP(
+    () => {
+      if (!missionImageRef.current || !missionRef.current) return
 
-    const image = missionImageRef.current
-    const card = missionRef.current
+      const image = missionImageRef.current
+      const card = missionRef.current
 
-    // Initial state
-    gsap.set(image, {
-      opacity: 0,
-      scale: 1.2,
-      rotation: -5,
-    })
+      // Initial state
+      gsap.set(image, {
+        opacity: 0,
+        scale: 1.2,
+        rotation: -5,
+      })
 
-    // Scroll-triggered animation
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Animate image on scroll in
-            gsap.to(image, {
-              opacity: 0.6,
-              scale: 1,
-              rotation: 0,
-              duration: 1.5,
-              ease: 'power3.out',
-            })
+      // Scroll-triggered animation
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // Animate image on scroll in
+              gsap.to(image, {
+                opacity: 0.6,
+                scale: 1,
+                rotation: 0,
+                duration: 1.5,
+                ease: 'power3.out',
+              })
 
-            // Continuous subtle rotation animation
-            gsap.to(image, {
-              rotation: 3,
-              duration: 8,
-              ease: 'sine.inOut',
-              repeat: -1,
-              yoyo: true,
-            })
+              // Continuous subtle rotation animation
+              gsap.to(image, {
+                rotation: 3,
+                duration: 8,
+                ease: 'sine.inOut',
+                repeat: -1,
+                yoyo: true,
+              })
 
-            // Continuous zoom pulse
-            gsap.to(image, {
-              scale: 1.05,
-              duration: 4,
-              ease: 'sine.inOut',
-              repeat: -1,
-              yoyo: true,
-            })
-          }
-        })
-      },
-      { threshold: 0.2 }
-    )
+              // Continuous zoom pulse
+              gsap.to(image, {
+                scale: 1.05,
+                duration: 4,
+                ease: 'sine.inOut',
+                repeat: -1,
+                yoyo: true,
+              })
+            }
+          })
+        },
+        { threshold: 0.2 }
+      )
 
-    observer.observe(card)
+      observer.observe(card)
 
-    return () => {
-      observer.disconnect()
-      gsap.killTweensOf(image)
-    }
-  }, { scope: missionRef })
+      return () => {
+        observer.disconnect()
+        gsap.killTweensOf(image)
+      }
+    },
+    { scope: missionRef }
+  )
 
   // GSAP animations for Vision section
-  useGSAP(() => {
-    if (!visionImageRef.current || !visionRef.current) return
+  useGSAP(
+    () => {
+      if (!visionImageRef.current || !visionRef.current) return
 
-    const image = visionImageRef.current
-    const card = visionRef.current
+      const image = visionImageRef.current
+      const card = visionRef.current
 
-    // Initial state
-    gsap.set(image, {
-      opacity: 0,
-      scale: 1.2,
-      rotation: 5,
-    })
+      // Initial state
+      gsap.set(image, {
+        opacity: 0,
+        scale: 1.2,
+        rotation: 5,
+      })
 
-    // Scroll-triggered animation
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Animate image on scroll in
-            gsap.to(image, {
-              opacity: 0.6,
-              scale: 1,
-              rotation: 0,
-              duration: 1.5,
-              ease: 'power3.out',
-              delay: 0.3, // Stagger from mission
-            })
+      // Scroll-triggered animation
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // Animate image on scroll in
+              gsap.to(image, {
+                opacity: 0.6,
+                scale: 1,
+                rotation: 0,
+                duration: 1.5,
+                ease: 'power3.out',
+                delay: 0.3, // Stagger from mission
+              })
 
-            // Continuous subtle rotation animation (opposite direction)
-            gsap.to(image, {
-              rotation: -3,
-              duration: 8,
-              ease: 'sine.inOut',
-              repeat: -1,
-              yoyo: true,
-            })
+              // Continuous subtle rotation animation (opposite direction)
+              gsap.to(image, {
+                rotation: -3,
+                duration: 8,
+                ease: 'sine.inOut',
+                repeat: -1,
+                yoyo: true,
+              })
 
-            // Continuous zoom pulse
-            gsap.to(image, {
-              scale: 1.05,
-              duration: 4,
-              ease: 'sine.inOut',
-              repeat: -1,
-              yoyo: true,
-              delay: 0.5,
-            })
-          }
-        })
-      },
-      { threshold: 0.2 }
-    )
+              // Continuous zoom pulse
+              gsap.to(image, {
+                scale: 1.05,
+                duration: 4,
+                ease: 'sine.inOut',
+                repeat: -1,
+                yoyo: true,
+                delay: 0.5,
+              })
+            }
+          })
+        },
+        { threshold: 0.2 }
+      )
 
-    observer.observe(card)
+      observer.observe(card)
 
-    return () => {
-      observer.disconnect()
-      gsap.killTweensOf(image)
-    }
-  }, { scope: visionRef })
+      return () => {
+        observer.disconnect()
+        gsap.killTweensOf(image)
+      }
+    },
+    { scope: visionRef }
+  )
 
   // Detailed content for the about page based on real team information
   const aboutContent = {
@@ -309,7 +315,10 @@ export default function AboutPage() {
           {/* Mission and Vision */}
           <section className='grid md:grid-cols-2 gap-8 md:gap-12 items-center'>
             {/* Mission Card */}
-            <Card ref={missionRef} className='relative overflow-hidden bg-blue-50 shadow-md min-h-[400px]'>
+            <Card
+              ref={missionRef}
+              className='relative overflow-hidden bg-blue-50 shadow-md min-h-[400px]'
+            >
               {/* Background Image */}
               <div
                 ref={missionImageRef}
@@ -336,7 +345,10 @@ export default function AboutPage() {
             </Card>
 
             {/* Vision Card */}
-            <Card ref={visionRef} className='relative overflow-hidden bg-green-50 shadow-md min-h-[400px]'>
+            <Card
+              ref={visionRef}
+              className='relative overflow-hidden bg-green-50 shadow-md min-h-[400px]'
+            >
               {/* Background Image */}
               <div
                 ref={visionImageRef}
@@ -436,7 +448,6 @@ export default function AboutPage() {
               </div>
             </div>
           </section>
-
         </div>
       </div>
     </div>

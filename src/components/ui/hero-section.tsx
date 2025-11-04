@@ -1,9 +1,9 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import { motion, useInView } from 'framer-motion'
+import gsap from 'gsap'
+import React, { useEffect, useRef } from 'react'
 
 import { AnimatedTitle } from '@/components/ui/animated-title'
 import { Badge } from '@/components/ui/badge'
@@ -396,56 +396,59 @@ function GSAPFloatingShapes() {
     },
   ]
 
-  useGSAP(() => {
-    // Animate each shape with random floating motion
-    shapesRef.current.forEach((shape, index) => {
-      if (!shape) return
+  useGSAP(
+    () => {
+      // Animate each shape with random floating motion
+      shapesRef.current.forEach((shape, index) => {
+        if (!shape) return
 
-      // Random duration between 4-7 seconds
-      const duration = gsap.utils.random(4, 7)
+        // Random duration between 4-7 seconds
+        const duration = gsap.utils.random(4, 7)
 
-      // Random movement range (smaller for subtle effect)
-      const xMovement = gsap.utils.random(-80, 80)
-      const yMovement = gsap.utils.random(-80, 80)
-      const rotation = gsap.utils.random(-120, 120)
-      const scale = gsap.utils.random(0.85, 1.15)
+        // Random movement range (smaller for subtle effect)
+        const xMovement = gsap.utils.random(-80, 80)
+        const yMovement = gsap.utils.random(-80, 80)
+        const rotation = gsap.utils.random(-120, 120)
+        const scale = gsap.utils.random(0.85, 1.15)
 
-      // Create floating animation
-      gsap.to(shape, {
-        x: xMovement,
-        y: yMovement,
-        rotation: rotation,
-        scale: scale,
-        duration: duration,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: index * 0.3,
+        // Create floating animation
+        gsap.to(shape, {
+          x: xMovement,
+          y: yMovement,
+          rotation: rotation,
+          scale: scale,
+          duration: duration,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          delay: index * 0.3,
+        })
+
+        // Add subtle opacity pulse
+        gsap.to(shape, {
+          opacity: gsap.utils.random(0.3, 0.5),
+          duration: gsap.utils.random(3, 5),
+          repeat: -1,
+          yoyo: true,
+          ease: 'power1.inOut',
+        })
       })
 
-      // Add subtle opacity pulse
-      gsap.to(shape, {
-        opacity: gsap.utils.random(0.3, 0.5),
-        duration: gsap.utils.random(3, 5),
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-      })
-    })
-
-    // Cleanup function
-    return () => {
-      shapesRef.current.forEach(shape => {
-        if (shape) {
-          gsap.killTweensOf(shape)
-        }
-      })
-    }
-  }, { scope: containerRef })
+      // Cleanup function
+      return () => {
+        shapesRef.current.forEach(shape => {
+          if (shape) {
+            gsap.killTweensOf(shape)
+          }
+        })
+      }
+    },
+    { scope: containerRef }
+  )
 
   // Mouse parallax effect (subtle)
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e: globalThis.MouseEvent) => {
       const { clientX, clientY } = e
       const xPercent = (clientX / window.innerWidth - 0.5) * 2
       const yPercent = (clientY / window.innerHeight - 0.5) * 2
@@ -477,7 +480,9 @@ function GSAPFloatingShapes() {
       {shapes.map((shape, index) => (
         <div
           key={index}
-          ref={el => (shapesRef.current[index] = el)}
+          ref={(el) => {
+            shapesRef.current[index] = el
+          }}
           className='absolute'
           style={{
             top: shape.top,

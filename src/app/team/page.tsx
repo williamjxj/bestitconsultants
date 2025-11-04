@@ -424,7 +424,8 @@ const TeamPage = () => {
     en: {
       hero: {
         title: 'Our Expert Team',
-        subtitle: 'Meet the seasoned professionals with Fortune 500 experience who drive our success',
+        subtitle:
+          'Meet the seasoned professionals with Fortune 500 experience who drive our success',
         description:
           'Our leadership team brings decades of real-world experience from top-tier companies. From AI/ML experts to enterprise architects, we combine North American innovation with Asian efficiency.',
         ctaText: 'View Our Services',
@@ -434,19 +435,21 @@ const TeamPage = () => {
     },
     fr: {
       hero: {
-        title: 'Notre Équipe d\'Experts',
-        subtitle: 'Rencontrez les professionnels chevronnés avec une expérience Fortune 500 qui font notre succès',
+        title: "Notre Équipe d'Experts",
+        subtitle:
+          'Rencontrez les professionnels chevronnés avec une expérience Fortune 500 qui font notre succès',
         description:
-          'Notre équipe de direction apporte des décennies d\'expérience réelle des meilleures entreprises. Des experts IA/ML aux architectes d\'entreprise, nous combinons l\'innovation nord-américaine avec l\'efficacité asiatique.',
+          "Notre équipe de direction apporte des décennies d'expérience réelle des meilleures entreprises. Des experts IA/ML aux architectes d'entreprise, nous combinons l'innovation nord-américaine avec l'efficacité asiatique.",
         ctaText: 'Voir Nos Services',
         secondaryCtaText: 'Nous Contacter',
-        badge: '20+ Années d\'Expérience Combinées',
+        badge: "20+ Années d'Expérience Combinées",
       },
     },
     es: {
       hero: {
         title: 'Nuestro Equipo de Expertos',
-        subtitle: 'Conozca a los profesionales experimentados con experiencia Fortune 500 que impulsan nuestro éxito',
+        subtitle:
+          'Conozca a los profesionales experimentados con experiencia Fortune 500 que impulsan nuestro éxito',
         description:
           'Nuestro equipo de liderazgo aporta décadas de experiencia del mundo real de empresas de primer nivel. Desde expertos en IA/ML hasta arquitectos empresariales, combinamos la innovación norteamericana con la eficiencia asiática.',
         ctaText: 'Ver Nuestros Servicios',

@@ -4,7 +4,7 @@ import { getBaseUrl } from '@/lib/utils'
 
 export const StructuredData: React.FC = () => {
   const baseUrl = getBaseUrl()
-  
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
