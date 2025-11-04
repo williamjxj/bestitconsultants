@@ -132,6 +132,7 @@ export function OptimizedImage({
       )}
 
       <Image
+        key={optimizedSrc}
         src={hasError ? fallbackSrc : optimizedSrc}
         alt={alt}
         width={fill ? undefined : width}
