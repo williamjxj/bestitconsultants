@@ -39,23 +39,52 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
   const router = useRouter()
   const prevIndexRef = React.useRef(currentIndex)
 
-  // Safety check: ensure we have items
-  if (!items || items.length === 0) {
-    return null
-  }
-
-  const currentItem = items[currentIndex]
-
   // Auto-play functionality
   useEffect(() => {
-    if (!autoPlay || items.length <= 1) return
+    if (!autoPlay || !items || items.length <= 1) return
 
     const interval: NodeJS.Timeout = setInterval(() => {
       setCurrentIndex(prevIndex => (prevIndex + 1) % items.length)
     }, autoPlayInterval)
 
     return () => clearInterval(interval)
-  }, [autoPlay, autoPlayInterval, items.length])
+  }, [autoPlay, autoPlayInterval, items])
+  
+  useEffect(() => {
+    if (!items || items.length === 0) return
+    
+    // Only increment when transitioning from last slide back to first slide
+    if (
+      prevIndexRef.current === items.length - 1 &&
+      currentIndex === 0 &&
+      items.length > 1
+    ) {
+      // Force complete remount by updating key with timestamp
+      setRemountKey(Date.now())
+    }
+    prevIndexRef.current = currentIndex
+  }, [currentIndex, items])
+  
+  // Create a truly unique key for each carousel item that changes on loop
+  const itemKey = React.useMemo(() => {
+    if (!items || items.length === 0) return 'empty'
+    const currentItem = items[currentIndex]
+    return `${currentIndex}-${currentItem.id}-${remountKey}`
+  }, [currentIndex, items, remountKey])
+  
+  // Create a unique key for the image that forces remount
+  const imageKey = React.useMemo(() => {
+    if (!items || items.length === 0) return 'empty'
+    const currentItem = items[currentIndex]
+    return `${currentItem.image}-${currentIndex}-${remountKey}`
+  }, [currentIndex, items, remountKey])
+
+  // Safety check: ensure we have items
+  if (!items || items.length === 0) {
+    return null
+  }
+
+  const currentItem = items[currentIndex]
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index)
@@ -74,31 +103,6 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
   const handleCtaClick = () => {
     router.push(currentItem.ctaLink)
   }
-  
-  useEffect(() => {
-    // Only increment when transitioning from last slide back to first slide
-    if (
-      prevIndexRef.current === items.length - 1 &&
-      currentIndex === 0 &&
-      items.length > 1
-    ) {
-      // Force complete remount by updating key with timestamp
-      setRemountKey(Date.now())
-    }
-    prevIndexRef.current = currentIndex
-  }, [currentIndex, items.length])
-  
-  // Create a truly unique key for each carousel item that changes on loop
-  const itemKey = React.useMemo(
-    () => `${currentIndex}-${currentItem.id}-${remountKey}`,
-    [currentIndex, currentItem.id, remountKey]
-  )
-  
-  // Create a unique key for the image that forces remount
-  const imageKey = React.useMemo(
-    () => `${currentItem.image}-${currentIndex}-${remountKey}`,
-    [currentItem.image, currentIndex, remountKey]
-  )
 
   return (
     <div className='relative w-full h-full overflow-hidden'>

@@ -4,9 +4,9 @@ import { Award, Globe, Lightbulb, MapPin, Target, Users } from 'lucide-react'
 import React from 'react'
 
 import { AboutHero } from '@/components/ui/hero-variants'
+import { OptimizedImage } from '@/components/ui/optimized-image'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { getR2ImageUrl } from '@/lib/utils'
-import { OptimizedImage } from '@/components/ui/optimized-image'
 
 export default function AboutPage() {
   const { language } = useLanguage()

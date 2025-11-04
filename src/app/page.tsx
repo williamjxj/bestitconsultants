@@ -8,8 +8,8 @@ import ContactSnippet from '@/components/home/ContactSnippet'
 import PortfolioPreview from '@/components/home/PortfolioPreview'
 import { QuickHighlights } from '@/components/home/QuickHighlights'
 import ServicesSummary from '@/components/home/ServicesSummary'
-import { getR2ImageUrl } from '@/lib/utils'
 import { HeroCarousel, HeroCarouselItem } from '@/components/ui/hero-carousel'
+import { getR2ImageUrl } from '@/lib/utils'
 
 // Fixed 3 carousel items with images and headlines
 const CAROUSEL_ITEMS: HeroCarouselItem[] = [

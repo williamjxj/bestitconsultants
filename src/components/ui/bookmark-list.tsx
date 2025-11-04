@@ -13,10 +13,9 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 
-import { getBaseUrl } from '@/lib/utils'
-
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
+import { getBaseUrl } from '@/lib/utils'
 
 interface Website {
   name: string
