@@ -627,7 +627,7 @@ export const translations = {
             value: '10355 152 St, Surrey, BC, Canada V3R 7C1',
           },
           { icon: '📞', label: 'Phone', value: '+1 (236) 992-3846' },
-          { icon: '📧', label: 'Email', value: 'jxjwilliam@gmail.com' },
+          { icon: '📧', label: 'Email', value: 'williamjxj@gmail.com' },
           {
             icon: '🌐',
             label: 'Website',
@@ -677,7 +677,7 @@ export const translations = {
           {
             label: 'Send Email',
             icon: '📧',
-            link: 'mailto:jxjwilliam@gmail.com',
+            link: 'mailto:williamjxj@gmail.com',
           },
           { label: 'Live Chat', icon: '💬', link: '#chat' },
         ],
@@ -734,7 +734,7 @@ export const translations = {
       contactInfo: 'Contact Information',
       vancouver: 'Vancouver HQ: 10355 152 St, Surrey, BC, Canada V3R 7C1',
       eastAsia: 'East Asia Branch: 456 Innovation Avenue, Tech City',
-      email: 'jxjwilliam@gmail.com',
+      email: 'williamjxj@gmail.com',
       phone: '+1 (236) 992-3846',
     },
     testimonials: {

@@ -47,8 +47,15 @@ export async function POST(request: NextRequest) {
     }
 
     // Get business email from environment variable
+    // This is where YOU receive contact form submissions
     const businessEmailAddress =
       process.env.BUSINESS_EMAIL || 'williamjxj@gmail.com'
+
+    // Get FROM email address
+    const fromEmailAddress =
+      process.env.FROM_EMAIL ||
+      process.env.RESEND_FROM_EMAIL ||
+      'BestITConsultants <contact@bestitconsultants.ca>'
 
     const resend = await getResendInstance()
 
@@ -125,22 +132,22 @@ export async function POST(request: NextRequest) {
       </p>
     `
 
-    // Send email to business owner using Resend's default domain
+    // Send email to business owner
     const businessEmailResult = await resend.emails.send({
-      from: 'BestITConsultants <onboarding@resend.dev>', // Using Resend's default verified domain
+      from: fromEmailAddress,
       to: [businessEmailAddress],
       subject: `New Contact Form Submission from ${name}`,
       html: businessEmailHtml,
-      replyTo: email, // Allow direct reply to customer
+      replyTo: email,
     })
 
-    // Send auto-reply to customer using Resend's default domain
+    // Send auto-reply to customer
     const customerEmailResult = await resend.emails.send({
-      from: 'BestITConsultants <onboarding@resend.dev>', // Using Resend's default verified domain
+      from: fromEmailAddress,
       to: [email],
       subject: 'Thank you for contacting BestITConsultants',
       html: customerEmailHtml,
-      replyTo: businessEmailAddress, // Allow replies to go to business email
+      replyTo: businessEmailAddress,
     })
 
     return NextResponse.json(
