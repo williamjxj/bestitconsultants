@@ -624,7 +624,7 @@ export const translations = {
           {
             icon: '📍',
             label: 'Address',
-            value: '9727 152B Street, Surrey, BC V3R 0G5, Canada',
+            value: '10355 152 St, Surrey, BC, Canada V3R 7C1',
           },
           { icon: '📞', label: 'Phone', value: '+1 (236) 992-3846' },
           { icon: '📧', label: 'Email', value: 'jxjwilliam@gmail.com' },
@@ -732,7 +732,7 @@ export const translations = {
       copy: '© {year} BestITConsultants Ltd. All rights reserved.',
       followUs: 'Follow us:',
       contactInfo: 'Contact Information',
-      vancouver: 'Vancouver HQ: 9727 152B Street, Surrey, BC V3R 0G5, Canada',
+      vancouver: 'Vancouver HQ: 10355 152 St, Surrey, BC, Canada V3R 7C1',
       eastAsia: 'East Asia Branch: 456 Innovation Avenue, Tech City',
       email: 'jxjwilliam@gmail.com',
       phone: '+1 (236) 992-3846',

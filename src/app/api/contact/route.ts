@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
 
       <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
         <h3>Contact Information</h3>
-        <p><strong>Address:</strong> 9727 152B Street, Surrey, BC V3R 0G5, Canada</p>
+        <p><strong>Address:</strong> 10355 152 St, Surrey, BC, Canada V3R 7C1</p>
         <p><strong>Phone:</strong> +1 (236) 992-3846</p>
         <p><strong>Email:</strong> ${businessEmailAddress}</p>
       </div>

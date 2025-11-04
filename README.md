@@ -218,7 +218,7 @@ For technical support or questions:
 
 - **Email**: williamjxj@gmail.com
 - **Phone**: +1 (236) 992-3846
-- **Address**: 9727 152B Street, Surrey, BC V3R 0G5, Canada
+- **Address**: 10355 152 St, Surrey, BC, Canada V3R 7C1
 
 ---
 
