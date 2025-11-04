@@ -1,3 +1,4 @@
+import { getR2ImageUrl } from '@/lib/utils'
 import { TeamMember } from '@/types/team'
 
 export const teamMembersData: TeamMember[] = [
@@ -7,7 +8,7 @@ export const teamMembersData: TeamMember[] = [
     title: 'Founder & CEO',
     location: 'Vancouver, Canada',
     experience: 20,
-    avatar: '/images/william-jiang.jpg',
+    avatar: getR2ImageUrl('selfies/william-jiang.jpg'),
     bio: 'Senior Full-Stack Engineer with 20+ years in software architecture and AI-driven solutions. APEC 2002 award winner for FedEx project. Led major initiatives at Xperi (ML Data Pipelines), Credit Suisse (real-time stock integration), HSBC (banking services), WebMD (Big Data pipelines), and BestBuy Canada (e-commerce).',
     expertise: [
       'AI & Machine Learning (MLOps, CUDA, Kubeflow)',
@@ -59,7 +60,7 @@ export const teamMembersData: TeamMember[] = [
     title: '.NET Architecture Specialist',
     location: 'Vancouver, Canada',
     experience: 20,
-    avatar: '/images/shaming-yang.jpeg',
+    avatar: getR2ImageUrl('selfies/shaming-yang.jpeg'),
     bio: '20+ years Microsoft technology expert with extensive Fortune 500 experience. Led major projects at HSBC (Transformers ETL Platform), IBM (Tiffany e-Commerce), HP (GM applications), and EPAM (Credit Suisse Alpha). Multiple certifications including Google Cloud Architect and DevOps Master.',
     expertise: [
       'ASP.NET, .NET Core, Blazor, WPF, UWP',

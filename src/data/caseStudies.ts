@@ -1,3 +1,4 @@
+import { getR2ImageUrl } from '@/lib/utils'
 import { CaseStudy } from '@/types/case-study'
 
 export const caseStudiesData: CaseStudy[] = [
@@ -40,7 +41,7 @@ export const caseStudiesData: CaseStudy[] = [
     client: 'Textile Manufacturing Company',
     duration: '6 months',
     teamSize: 4,
-    image: '/images/case-studies/ai-textile-design.jpg',
+    image: getR2ImageUrl('imgs/case-studies/ai-textile-design.jpg'),
     testimonial:
       'AI-assisted design completely changed our process and boosted our creativity by 10x',
     category: 'AI & Machine Learning Solutions',
@@ -76,7 +77,7 @@ export const caseStudiesData: CaseStudy[] = [
     client: 'E-commerce Retailer',
     duration: '8 months',
     teamSize: 6,
-    image: '/images/case-studies/ecommerce-modernization.jpg',
+    image: getR2ImageUrl('imgs/case-studies/ecommerce-modernization.jpg'),
     testimonial:
       'The new platform transformed our business with incredible performance gains',
     category: 'Web Development & Modernization',
@@ -111,7 +112,7 @@ export const caseStudiesData: CaseStudy[] = [
     client: 'Logistics Company',
     duration: '4 months',
     teamSize: 3,
-    image: '/images/case-studies/ai-logistics.jpg',
+    image: getR2ImageUrl('imgs/case-studies/ai-logistics.jpg'),
     testimonial:
       'AI optimization saved us millions in fuel costs and improved our delivery efficiency',
     category: 'AI & Machine Learning Solutions',

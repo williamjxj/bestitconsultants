@@ -1,26 +1,19 @@
-import fs from 'fs'
-import path from 'path'
-
 import { NextResponse } from 'next/server'
+
+import { getR2ImageUrl } from '@/lib/utils'
 
 export async function GET() {
   try {
-    const officesDir = path.join(process.cwd(), 'public', 'offices')
-    let files: string[] = []
-    try {
-      files = fs.readdirSync(officesDir)
-    } catch {
-      files = []
-    }
-
-    const allowed = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif'])
-    const images = files
-      .filter(name => allowed.has(path.extname(name).toLowerCase()))
-      .sort((a, b) => a.localeCompare(b))
-      .map(name => `/offices/${name}`)
+    // Fixed 3 office images from R2 bucket offices folder
+    const images = [
+      getR2ImageUrl('offices/gemini-1.png'),
+      getR2ImageUrl('offices/gemini-2.png'),
+      getR2ImageUrl('offices/kling-1.jpg'),
+    ]
 
     return NextResponse.json({ success: true, images })
   } catch (err) {
+    console.error('Error fetching office images:', err)
     return NextResponse.json({ success: false, images: [] }, { status: 500 })
   }
 }

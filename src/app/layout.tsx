@@ -5,6 +5,7 @@ import Footer from '@/components/common/Footer'
 import Navbar from '@/components/common/Navbar'
 import { StructuredData } from '@/components/seo/StructuredData'
 import { LanguageProvider } from '@/contexts/LanguageContext'
+import { getBaseUrl, getR2ImageUrl } from '@/lib/utils'
 
 // Initialize fonts with Latin subset
 const inter = Inter({
@@ -28,10 +29,10 @@ const roboto = Roboto({
 })
 
 // Metadata for the website (SEO purposes)
+const baseUrl = getBaseUrl()
+
 export const metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_BASE_URL || 'https://bestitconsultants.ca'
-  ),
+  metadataBase: new URL(baseUrl),
   title: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting',
   description:
     'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation. Canadian Quality, Global Talent.',
@@ -46,8 +47,8 @@ export const metadata = {
     title: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting',
     description:
       'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation.',
-    images: ['/images/og-homepage.jpg'],
-    url: 'https://bestitconsultants.ca',
+    images: [getR2ImageUrl('imgs/og-homepage.jpg')],
+    url: baseUrl,
     siteName: 'BestIT Consulting',
     locale: 'en_US',
     type: 'website',
@@ -57,7 +58,7 @@ export const metadata = {
     title: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting',
     description:
       'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation.',
-    images: ['/images/og-homepage.jpg'],
+    images: [getR2ImageUrl('imgs/og-homepage.jpg')],
   },
   icons: {
     icon: [

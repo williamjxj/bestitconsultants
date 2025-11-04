@@ -5,6 +5,8 @@ import React from 'react'
 
 import { AboutHero } from '@/components/ui/hero-variants'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { getR2ImageUrl } from '@/lib/utils'
+import { OptimizedImage } from '@/components/ui/optimized-image'
 
 export default function AboutPage() {
   const { language } = useLanguage()
@@ -271,6 +273,29 @@ export default function AboutPage() {
                   {currentContent.achievements.text}
                 </p>
               </div>
+            </div>
+          </section>
+
+          {/* Image Gallery */}
+          <section className='p-8 bg-white rounded-lg shadow-md border border-gray-200'>
+            <h2 className='text-3xl font-semibold text-gray-800 mb-6 text-center'>
+              Our Innovation
+            </h2>
+            <div className='grid md:grid-cols-2 gap-6'>
+              <OptimizedImage
+                src={getR2ImageUrl('imgs/grok-1.jpg')}
+                alt='Innovation showcase 1'
+                width={600}
+                height={400}
+                className='rounded-lg shadow-md'
+              />
+              <OptimizedImage
+                src={getR2ImageUrl('imgs/grok-2.jpg')}
+                alt='Innovation showcase 2'
+                width={600}
+                height={400}
+                className='rounded-lg shadow-md'
+              />
             </div>
           </section>
         </div>

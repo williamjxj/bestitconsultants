@@ -35,7 +35,16 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
   showNavigation = true,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [remountKey, setRemountKey] = useState(0)
   const router = useRouter()
+  const prevIndexRef = React.useRef(currentIndex)
+
+  // Safety check: ensure we have items
+  if (!items || items.length === 0) {
+    return null
+  }
+
+  const currentItem = items[currentIndex]
 
   // Auto-play functionality
   useEffect(() => {
@@ -63,17 +72,40 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
   }
 
   const handleCtaClick = () => {
-    router.push(items[currentIndex].ctaLink)
+    router.push(currentItem.ctaLink)
   }
-
-  const currentItem = items[currentIndex]
+  
+  useEffect(() => {
+    // Only increment when transitioning from last slide back to first slide
+    if (
+      prevIndexRef.current === items.length - 1 &&
+      currentIndex === 0 &&
+      items.length > 1
+    ) {
+      // Force complete remount by updating key with timestamp
+      setRemountKey(Date.now())
+    }
+    prevIndexRef.current = currentIndex
+  }, [currentIndex, items.length])
+  
+  // Create a truly unique key for each carousel item that changes on loop
+  const itemKey = React.useMemo(
+    () => `${currentIndex}-${currentItem.id}-${remountKey}`,
+    [currentIndex, currentItem.id, remountKey]
+  )
+  
+  // Create a unique key for the image that forces remount
+  const imageKey = React.useMemo(
+    () => `${currentItem.image}-${currentIndex}-${remountKey}`,
+    [currentItem.image, currentIndex, remountKey]
+  )
 
   return (
     <div className='relative w-full h-full overflow-hidden'>
       {/* Carousel Items */}
-      <AnimatePresence mode='wait'>
+      <AnimatePresence mode='wait' initial={false}>
         <motion.div
-          key={currentIndex}
+          key={itemKey}
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.9 }}
@@ -95,11 +127,12 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
               </video>
             ) : (
               <OptimizedImage
+                key={imageKey}
                 src={currentItem.image}
                 alt={currentItem.title}
                 width={1920}
                 height={1080}
-                priority={currentIndex === 0}
+                priority={currentIndex === 0 && remountKey === 0}
                 className='w-full h-full object-cover'
                 animation={{
                   type: 'fade',

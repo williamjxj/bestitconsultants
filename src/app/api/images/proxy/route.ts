@@ -191,10 +191,11 @@ function isValidImagePath(imagePath: string): boolean {
  * Check if origin is allowed for CORS
  */
 function isAllowedOrigin(origin: string): boolean {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bestitconsultants.ca'
   const allowedOrigins = [
     'http://localhost:3000',
-    'https://bestitconsultants.ca',
-    'https://www.bestitconsultants.ca',
+    baseUrl,
+    baseUrl.replace('https://', 'https://www.'),
   ]
 
   return allowedOrigins.includes(origin)

@@ -1,13 +1,17 @@
 import React from 'react'
 
+import { getBaseUrl } from '@/lib/utils'
+
 export const StructuredData: React.FC = () => {
+  const baseUrl = getBaseUrl()
+  
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'BestIT Consulting',
     description: 'Elite IT consulting and AI solutions',
-    url: 'https://bestitconsultants.ca',
-    logo: 'https://bestitconsultants.ca/logo.png',
+    url: baseUrl,
+    logo: `${baseUrl}/logo.png`,
     sameAs: [
       'https://linkedin.com/company/bestitconsultants',
       'https://twitter.com/bestitconsultants',

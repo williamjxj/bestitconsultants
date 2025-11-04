@@ -5,6 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 
+import { getR2ImageUrl } from '@/lib/utils'
 import { MediaAsset, MediaAssetsResponse, ApiResponse } from '@/types/media'
 
 // Mock data for development
@@ -79,7 +80,7 @@ const mockAssets: MediaAsset[] = [
   },
   {
     id: '5',
-    src: '/images/william-jiang.jpg',
+    src: getR2ImageUrl('selfies/william-jiang.jpg'),
     alt: 'William Jiang - Founder & CEO of BestIT Consulting',
     title: 'William Jiang - Founder & CEO',
     description:

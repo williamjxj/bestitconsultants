@@ -29,15 +29,15 @@ export const imageMapping = {
   innovation: getImageUrl('kling_20251012_1.png'),
   creativity: getImageUrl('kling_20251012_2.png'),
 
-  // Team member photos (still using local images for now)
+  // Team member photos - using R2 URLs
   teamMembers: {
-    william: '/images/william-jiang.jpg',
-    vicky: '/images/vicky-zheng.jpg',
-    mingchun: '/images/mingchun-hu.jpg',
-    lewis: '/images/lewis-liu.jpg',
-    wayne: '/images/wayne-li.jpg',
-    shamin: '/images/shaming-yang.jpeg',
-    james: '/images/james-cheung.jpeg',
+    william: getImageUrl('selfies/william-jiang.jpg'),
+    vicky: getImageUrl('selfies/vicky-zheng.png'),
+    mingchun: getImageUrl('selfies/mingchun-hu.jpg'),
+    lewis: getImageUrl('selfies/lewis-liu.jpg'),
+    wayne: getImageUrl('selfies/wayne-li.jpg'),
+    shamin: getImageUrl('selfies/shaming-yang.jpeg'),
+    james: getImageUrl('selfies/james-cheung.jpeg'),
   },
 } as const
 

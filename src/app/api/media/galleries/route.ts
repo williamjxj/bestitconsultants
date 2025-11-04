@@ -5,6 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 
+import { getR2ImageUrl } from '@/lib/utils'
 import {
   MediaGallery,
   MediaGalleriesResponse,
@@ -86,7 +87,7 @@ const mockGalleries: MediaGallery[] = [
     assets: [
       {
         id: '5',
-        src: '/images/william-jiang.jpg',
+        src: getR2ImageUrl('selfies/william-jiang.jpg'),
         alt: 'William Jiang - Founder & CEO',
         title: 'William Jiang - Founder & CEO',
         width: 400,

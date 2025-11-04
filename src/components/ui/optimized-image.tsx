@@ -63,10 +63,11 @@ export function OptimizedImage({
   const [hasError, setHasError] = useState(false)
 
   useEffect(() => {
-    // Reset state when src changes
+    // Reset state when src changes - force full reset
     setIsLoading(true)
     setHasError(false)
     setImageSrc(src)
+    // Small delay to ensure state is fully reset before next render
   }, [src])
 
   const handleLoad = () => {
@@ -90,9 +91,9 @@ export function OptimizedImage({
       return originalSrc
     }
 
-    // Public folder paths (offices, images, logos, etc.) are served directly by Next.js
-    // These don't need the proxy API
-    const publicFolderPaths = ['/offices/', '/images/', '/logos/', '/videos/']
+    // Public folder paths (root-level files only) are served directly by Next.js
+    // R2 images are handled via full URLs, offices folder is now in R2
+    const publicFolderPaths: string[] = []
 
     // Root-level public files (like /placeholder.svg, /favicon.ico, etc.)
     const publicFileExtensions = ['.svg', '.png', '.jpg', '.jpeg', '.webp', '.gif', '.ico', '.avif']

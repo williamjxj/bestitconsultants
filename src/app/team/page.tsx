@@ -4,6 +4,7 @@ import React from 'react'
 
 import { EnhancedTeamProfile } from '@/components/team/EnhancedTeamProfile'
 import { TeamHero } from '@/components/ui/hero-variants'
+import { getR2ImageUrl } from '@/lib/utils'
 import { TeamMember } from '@/types/team'
 
 const teamMembers: TeamMember[] = [
@@ -13,7 +14,7 @@ const teamMembers: TeamMember[] = [
     title: 'Founder & Full Stack Engineer, AI Consultant',
     location: 'Vancouver, Canada',
     experience: 20,
-    avatar: '/images/william-jiang.jpg',
+    avatar: getR2ImageUrl('selfies/william-jiang.jpg'),
     bio: 'Experienced technology professional with 20+ years in full-stack development, software architecture, and AI-driven solutions. Expertise includes: React.js, Node.js, Python, Java, Kubernetes, Docker, AWS, MLOps, Microservices, GraphQL, MongoDB, LangChain, LlamaIndex, Hugging Face, Kafka, ElasticSearch, and Prometheus. Significant software contributor to a major FedEx project awarded APEC 2002 accolade. Global experience: US, Canada, China, and Singapore.',
     expertise: [
       'Frontend: Nextjs, Reactjs, Tailwindcss, Shadcn, Gatsby',
@@ -68,7 +69,7 @@ const teamMembers: TeamMember[] = [
     title: 'Senior Full Stack Developer',
     location: 'Vancouver, Canada',
     experience: 20,
-    avatar: '/images/vicky-zheng.png',
+    avatar: getR2ImageUrl('selfies/vicky-zheng.png'),
     bio: 'Senior Full Stack Developer with 20 years of experience in software design, implementation, and full life cycle development using agile methodologies. Skilled in both frontend and backend development, RESTful APIs, SQL, and a wide array of enterprise-level technologies. Demonstrated great successes in diverse industries including government, healthcare, insurance, and commercial software solutions.',
     expertise: [
       'Languages: JavaScript, TypeScript, Java, C#, SQL, HTML, CSS, XML',
@@ -102,7 +103,7 @@ const teamMembers: TeamMember[] = [
       'Project Manager, Multimodal Model Engineering, Mobile Development Specialist',
     location: 'Chengdu, China',
     experience: 12,
-    avatar: '/images/mingchun-hu.jpg',
+    avatar: getR2ImageUrl('selfies/mingchun-hu.jpg'),
     bio: "Experienced Project Manager and R&D lead with 12 years in software development, specializing in multimodal model engineering and mobile applications. Led R&D for Meituan B&B and the AIGC product 'Yima Zhipian'. Proficient in full-stack development (Java, Python, C++), mobile development (Android, iOS), and cloud platforms (AWS, Alibaba Cloud). Proven ability to manage and deliver complex software solutions, with a focus on project management and quality assurance.",
     expertise: [
       'Project Management',
@@ -135,7 +136,7 @@ const teamMembers: TeamMember[] = [
     title: 'Software Architect, Programmer',
     location: 'Beijing, China',
     experience: 26,
-    avatar: '/images/lewis-liu.jpg',
+    avatar: getR2ImageUrl('selfies/lewis-liu.jpg'),
     bio: 'Software Architect and Programmer with 26 years of experience, specializing in **BIM/CAD technology**, geometric modeling (Parasolid/ACIS/OCC), parallel algorithm design (OpenMP), and AutoCAD/Revit development. Possesses strong mathematical capability and expertise in C/C++, C#, STL, Python, and third-party library integration. Holds 1 patent authorization for **Associated Parametric Modeling (APM)**.',
     expertise: [
       'BIM/CAD Data modeling and exchange, SDK technology (Autodesk ObjectARX-like)',
@@ -192,7 +193,7 @@ const teamMembers: TeamMember[] = [
     title: 'Senior Software Engineer / Solution Architect',
     location: 'Guangzhou, China',
     experience: 20,
-    avatar: '/images/shaming-yang.jpeg',
+    avatar: getR2ImageUrl('selfies/shaming-yang.jpeg'),
     bio: 'More than 20 years of .NET development experience across various Microsoft tech domains including Web, Windows, CI/CD, and System Integration. Has a strong background in RPA and Auto Testing, holding multiple industry certifications, and experience in finance (HSBC, Credit-Suisse) and large corporate projects (Huawei, IBM, GM).',
     expertise: [
       'Web Application: ASP.NET, .NetCore, Blazor, MVC, WebApi, WCF, Siverlight, EntityFramework & Linq, Html, CSS, Javascript, Jquery, Angular, Typescript, Bootstrap, Java & JSP',
@@ -296,7 +297,7 @@ const teamMembers: TeamMember[] = [
     title: 'AI Technical Director, Project Director, LLM Expert',
     location: 'Shanghai, China',
     experience: 25,
-    avatar: '/images/wayne-li.jpg',
+    avatar: getR2ImageUrl('selfies/wayne-li.jpg'),
     bio: 'Technical Director and LLM expert with 25 years of experience, specializing in AI solutions for government and enterprise clients. Achieves technology equity by lowering the AI usage threshold for organizations. Expert in AI+ innovation design in the textile and light industry, solving client problems like long design cycles and high manual dependency. Company service covers 10+ industries with 100+ successful cases. Strong AI engineering capability, rapidly building applications on platforms like OpenAI and ComfyUI. Experienced in global firms like Oracle and Accenture.',
     expertise: [
       'AI Solutions for Government & Enterprise',
@@ -348,7 +349,7 @@ const teamMembers: TeamMember[] = [
     title: 'Full Stack Software Engineer',
     location: 'Hong Kong',
     experience: 7,
-    avatar: '/images/james-cheung.jpeg',
+    avatar: getR2ImageUrl('selfies/james-cheung.jpeg'),
     bio: 'A full stack software engineer with 7+ years working on freelancing platforms like Freelancer and Upwork. Contributed to lots of software development ranging from small web and AI projects to enterprise applications. Seeking long-term collaboration with senior European developers due to perceived location bias.',
     expertise: [
       'Frontend: React, Next.js, Angular, Vue3, other JavaScript frameworks',
@@ -374,7 +375,7 @@ const teamMembers: TeamMember[] = [
     title: 'Knowledge Base, AI Tech Expert, Model Training Expert',
     location: 'Shenzhen, China',
     experience: 14,
-    avatar: '/images/vince-chen.jpg',
+    avatar: getR2ImageUrl('selfies/vince-chen.jpg'),
     bio: 'AI and model training expert with 14 years of experience, specializing in data platform and machine learning platform construction. Extensive experience in LLM applications, especially in AI chat assistants and image semantic retrieval. Formerly a Data Platform Group Leader at Meituan.',
     expertise: [
       'Data Platform & Machine Learning Platform Construction',
@@ -396,7 +397,7 @@ const teamMembers: TeamMember[] = [
     title: 'ComfyUI Expert',
     location: 'Shenzhen, China',
     experience: 5,
-    avatar: '/images/jack-lu.jpg',
+    avatar: getR2ImageUrl('selfies/jack-lu.jpg'),
     bio: 'ComfyUI expert with 5 years of experience. Highly skilled in using and training various AI image and video LLMs, ComfyUI workflow development, and creating image, text, video, and AI digital human assets.',
     expertise: [
       'ComfyUI Workflow Development',

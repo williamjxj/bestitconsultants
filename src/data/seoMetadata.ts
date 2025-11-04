@@ -1,4 +1,7 @@
+import { getBaseUrl, getR2ImageUrl } from '@/lib/utils'
 import { SEOMetadata } from '@/types/seo'
+
+const baseUrl = getBaseUrl()
 
 export const seoMetadataData: SEOMetadata[] = [
   {
@@ -17,15 +20,15 @@ export const seoMetadataData: SEOMetadata[] = [
     ogTitle: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting',
     ogDescription:
       'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation.',
-    ogImage: '/images/og-homepage.jpg',
-    canonicalUrl: 'https://bestitconsultants.ca',
+    ogImage: getR2ImageUrl('imgs/og-homepage.jpg'),
+    canonicalUrl: baseUrl,
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: 'BestIT Consulting',
       description: 'Elite IT consulting and AI solutions',
-      url: 'https://bestitconsultants.ca',
-      logo: 'https://bestitconsultants.ca/logo.png',
+      url: baseUrl,
+      logo: `${baseUrl}/logo.png`,
     },
   },
   {
@@ -44,8 +47,8 @@ export const seoMetadataData: SEOMetadata[] = [
     ogTitle: 'Our Expert Team - BestIT Consulting',
     ogDescription:
       'Meet our elite team of Fortune 500 experienced professionals.',
-    ogImage: '/images/og-team.jpg',
-    canonicalUrl: 'https://bestitconsultants.ca/team',
+    ogImage: getR2ImageUrl('imgs/og-team.jpg'),
+    canonicalUrl: `${baseUrl}/team`,
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'AboutPage',
@@ -70,8 +73,8 @@ export const seoMetadataData: SEOMetadata[] = [
     ogTitle: 'Success Stories & Case Studies - BestIT Consulting',
     ogDescription:
       "Discover how we've helped businesses achieve measurable results.",
-    ogImage: '/images/og-case-studies.jpg',
-    canonicalUrl: 'https://bestitconsultants.ca/case-studies',
+    ogImage: getR2ImageUrl('imgs/og-case-studies.jpg'),
+    canonicalUrl: `${baseUrl}/case-studies`,
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',

@@ -1,4 +1,6 @@
 // Translation data for multi-language support
+import { getBaseUrl, getR2ImageUrl } from './utils'
+
 export const translations = {
   en: {
     navbar: {
@@ -132,7 +134,7 @@ export const translations = {
             name: 'William Jiang',
             role: 'Founder & CEO',
             bio: 'Senior Full-Stack Engineer with 20+ years in software architecture and AI-driven solutions. APEC 2002 award winner for FedEx project. Led major initiatives at Xperi (ML Data Pipelines), Credit Suisse (real-time stock integration), HSBC (banking services), WebMD (Big Data pipelines), and BestBuy Canada (e-commerce).',
-            image: '/images/william-jiang.jpg',
+            image: getR2ImageUrl('selfies/william-jiang.jpg'),
             specialties: [
               'AI & Machine Learning (MLOps, CUDA, Kubeflow)',
               'React.js, Node.js, Python, Java',
@@ -146,7 +148,7 @@ export const translations = {
             name: 'Chengdu Zhanying Technology Co., Ltd.',
             role: 'Strategic Development Partner',
             bio: 'Professional software development company with teams in Chengdu and Hangzhou. Specializes in OA systems, engineering cost management, mobile development, and government solutions. Serves Fortune 500 clients, government agencies, and major engineering companies.',
-            image: '/images/james-cheung.jpeg',
+            image: getR2ImageUrl('selfies/james-cheung.jpeg'),
             specialties: [
               'OA Systems (Task, Project, Asset Management)',
               'Engineering Cost Management Systems',
@@ -160,7 +162,7 @@ export const translations = {
             name: 'Shamin Yang',
             role: '.NET Architecture Specialist',
             bio: '20+ years Microsoft technology expert with extensive Fortune 500 experience. Led major projects at HSBC (Transformers ETL Platform), IBM (Tiffany e-Commerce), HP (GM applications), and EPAM (Credit Suisse Alpha). Multiple certifications including Google Cloud Architect and DevOps Master.',
-            image: '/images/shaming-yang.jpeg',
+            image: getR2ImageUrl('selfies/shaming-yang.jpeg'),
             specialties: [
               'ASP.NET, .NET Core, Blazor, WPF, UWP',
               'Azure, Google Cloud, AWS Integration',
@@ -174,7 +176,7 @@ export const translations = {
             name: 'Lewis Liu',
             role: 'Senior Full-Stack Developer',
             bio: 'Experienced full-stack developer with expertise in modern web technologies and cloud solutions. Specializes in building scalable applications and leading development teams.',
-            image: '/images/lewis-liu.jpg',
+            image: getR2ImageUrl('selfies/lewis-liu.jpg'),
             specialties: [
               'React.js, Vue.js, Angular',
               'Node.js, Express, FastAPI',
@@ -188,7 +190,7 @@ export const translations = {
             name: 'Mingchun Hu',
             role: 'Mobile Development Specialist',
             bio: 'Mobile development expert with extensive experience in iOS and Android app development. Specializes in cross-platform solutions and native mobile applications.',
-            image: '/images/mingchun-hu.jpg',
+            image: getR2ImageUrl('selfies/mingchun-hu.jpg'),
             specialties: [
               'React Native, Flutter',
               'iOS (Swift, Objective-C)',
@@ -202,7 +204,7 @@ export const translations = {
             name: 'Wayne Li',
             role: 'DevOps & Cloud Engineer',
             bio: 'DevOps and cloud infrastructure specialist with expertise in automation, monitoring, and scalable system architecture. Focuses on improving development workflows and system reliability.',
-            image: '/images/wayne-li.jpg',
+            image: getR2ImageUrl('selfies/wayne-li.jpg'),
             specialties: [
               'AWS, Azure, Google Cloud',
               'Docker, Kubernetes, Terraform',
@@ -626,7 +628,7 @@ export const translations = {
           },
           { icon: '📞', label: 'Phone', value: '+1 (236) 992-3846' },
           { icon: '📧', label: 'Email', value: 'jxjwilliam@gmail.com' },
-          { icon: '🌐', label: 'Website', value: 'www.bestitconsultants.ca' },
+          { icon: '🌐', label: 'Website', value: getBaseUrl().replace('https://', '') },
         ],
       },
       hours: {
@@ -873,7 +875,7 @@ export const translations = {
           name: 'Sarah Johnson',
           position: 'CTO',
           company: 'TechCorp Solutions',
-          avatar: '/images/testimonial-1.jpg',
+          avatar: getR2ImageUrl('imgs/testimonial-1.jpg'),
           rating: 5,
           project: {
             type: 'E-Commerce Platform',
@@ -891,7 +893,7 @@ export const translations = {
           name: 'Michael Chen',
           position: 'Data Science Director',
           company: 'DataFlow Inc',
-          avatar: '/images/testimonial-2.jpg',
+          avatar: getR2ImageUrl('imgs/testimonial-2.jpg'),
           rating: 5,
           project: {
             type: 'AI/ML Solution',
@@ -909,7 +911,7 @@ export const translations = {
           name: 'Emily Rodriguez',
           position: 'Product Manager',
           company: 'MobileFirst',
-          avatar: '/images/testimonial-3.jpg',
+          avatar: getR2ImageUrl('imgs/testimonial-3.jpg'),
           rating: 5,
           project: {
             type: 'Mobile App Development',

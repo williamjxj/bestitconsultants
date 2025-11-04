@@ -13,6 +13,8 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 
+import { getBaseUrl } from '@/lib/utils'
+
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 
@@ -77,7 +79,7 @@ const websites: Website[] = [
   },
   {
     name: 'Best IT Consulting',
-    url: 'https://bestitconsultants.ca/',
+    url: `${getBaseUrl()}/`,
     description: 'IT consulting and services platform',
     category: 'Business',
     icon: Building2,
@@ -85,7 +87,7 @@ const websites: Website[] = [
   },
   {
     name: 'Best IT Consultants',
-    url: 'https://bestitconsultants.ca/',
+    url: `${getBaseUrl()}/`,
     description: 'Professional IT consulting services',
     category: 'Business',
     icon: Building2,
