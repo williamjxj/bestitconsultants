@@ -755,6 +755,40 @@ export const translations = {
       eastAsia: 'East Asia Branch: 621 Hitech Park, Nanshan District, Shenzhen China',
       email: 'williamjxj@gmail.com',
       phone: '+1 (236) 992-3846',
+      mobileAccess: 'Mobile Access',
+      scanQrCode: 'Scan to visit our website',
+      presentation: 'Presentation',
+      quickLinks: 'Quick Links',
+      companyDescription:
+        'Elite Enterprise Architects. Startup Speed. Get Fortune 500 Software Expertise Without the Overhead.',
+      companyTagline:
+        'Trusted by enterprises worldwide for AI innovation and IT outsourcing. 20+ years Fortune 500 experience with global talent.',
+      tags: {
+        aiSolutions: 'AI Solutions',
+        fullStack: 'Full-Stack Development',
+        cloudSolutions: 'Cloud Solutions',
+        enterpriseSystems: 'Enterprise Systems',
+      },
+      social: {
+        title: 'Follow Us',
+        links: [
+          {
+            platform: 'LinkedIn',
+            icon: '💼',
+            url: 'https://www.linkedin.com/company/bestitconsultants',
+          },
+          {
+            platform: 'Twitter',
+            icon: '🐦',
+            url: 'https://twitter.com/bestitconsultants',
+          },
+          {
+            platform: 'GitHub',
+            icon: '👨‍💻',
+            url: 'https://github.com/bestitconsultants',
+          },
+        ],
+      },
     },
     testimonials: {
       title: 'Client Testimonials',

@@ -2,6 +2,7 @@
 
 import BookmarkList from '@/components/ui/bookmark-list'
 import { OurWorkHero } from '@/components/ui/hero-variants'
+import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function CaseStudiesPage() {
@@ -135,17 +136,19 @@ export default function CaseStudiesPage() {
     caseStudiesContent[language as keyof typeof caseStudiesContent] || caseStudiesContent.en
 
   return (
-    <div className='-mt-8'>
-      <OurWorkHero
-        title={currentContent.hero.title}
-        subtitle={currentContent.hero.subtitle}
-        description={currentContent.hero.description}
-        ctaText={currentContent.hero.ctaText}
-        ctaLink='/portfolio'
-        secondaryCtaText={currentContent.hero.secondaryCtaText}
-        secondaryCtaLink='/contact-us?title=Get Started#contact-form'
-        badge={currentContent.hero.badge}
-      />
+    <div>
+      <FullWidthHeroWrapper>
+        <OurWorkHero
+          title={currentContent.hero.title}
+          subtitle={currentContent.hero.subtitle}
+          description={currentContent.hero.description}
+          ctaText={currentContent.hero.ctaText}
+          ctaLink='/portfolio'
+          secondaryCtaText={currentContent.hero.secondaryCtaText}
+          secondaryCtaLink='/contact-us?title=Get Started#contact-form'
+          badge={currentContent.hero.badge}
+        />
+      </FullWidthHeroWrapper>
       <div className='min-h-screen'>
         {/* Stats Section */}
         <section className='py-16 bg-gray-50'>

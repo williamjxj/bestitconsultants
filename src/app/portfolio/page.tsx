@@ -28,6 +28,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { PortfolioHero } from '@/components/ui/hero-variants'
+import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { OptimizedImage } from '@/components/ui/optimized-image'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -511,17 +512,19 @@ export default function PortfolioPage() {
       : portfolioItems.filter(project => project.category === selectedCategory)
 
   return (
-    <div className='-mt-8'>
-      <PortfolioHero
-        title={currentContent.hero.title}
-        subtitle={currentContent.hero.subtitle}
-        description={currentContent.hero.description}
-        ctaText={currentContent.hero.ctaText}
-        ctaLink='/case-studies'
-        secondaryCtaText={currentContent.hero.secondaryCtaText}
-        secondaryCtaLink='/contact-us?title=Get a Quote#contact-form'
-        badge={currentContent.hero.badge}
-      />
+    <div>
+      <FullWidthHeroWrapper>
+        <PortfolioHero
+          title={currentContent.hero.title}
+          subtitle={currentContent.hero.subtitle}
+          description={currentContent.hero.description}
+          ctaText={currentContent.hero.ctaText}
+          ctaLink='/case-studies'
+          secondaryCtaText={currentContent.hero.secondaryCtaText}
+          secondaryCtaLink='/contact-us?title=Get a Quote#contact-form'
+          badge={currentContent.hero.badge}
+        />
+      </FullWidthHeroWrapper>
       <div className='min-h-screen py-20'>
         <div className='container mx-auto px-4'>
           {/* Filter Tabs */}

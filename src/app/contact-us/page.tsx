@@ -20,6 +20,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { ContactHero } from '@/components/ui/hero-variants'
+import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { ShineBorder } from '@/components/ui/shine-border'
 import { useLanguage } from '@/contexts/LanguageContext'
 
@@ -177,18 +178,20 @@ export default function ContactPage() {
   }
 
   return (
-    <div className='-mt-8'>
+    <div>
       {/* Hero Section */}
-      <ContactHero
-        title={translations.contact.title}
-        subtitle={translations.contact.subtitle}
-        description={currentContent.hero.description}
-        ctaText={currentContent.hero.ctaText}
-        ctaLink='#contact-form'
-        secondaryCtaText={currentContent.hero.secondaryCtaText}
-        secondaryCtaLink='/portfolio'
-        badge={currentContent.hero.badge}
-      />
+      <FullWidthHeroWrapper>
+        <ContactHero
+          title={translations.contact.title}
+          subtitle={translations.contact.subtitle}
+          description={currentContent.hero.description}
+          ctaText={currentContent.hero.ctaText}
+          ctaLink='#contact-form'
+          secondaryCtaText={currentContent.hero.secondaryCtaText}
+          secondaryCtaLink='/portfolio'
+          badge={currentContent.hero.badge}
+        />
+      </FullWidthHeroWrapper>
 
       {/* Main Content */}
       <div className='min-h-screen py-20'>

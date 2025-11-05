@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { AboutHero } from '@/components/ui/hero-variants'
+import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { getProfessionalAvatarUrl, getR2ImageUrl } from '@/lib/utils'
 import { testimonialsService } from '@/services/testimonials'
@@ -360,17 +361,19 @@ export default function AboutPage() {
     aboutContent[language as keyof typeof aboutContent] || aboutContent.en
 
   return (
-    <div className='-mt-8'>
+    <div>
       {/* Hero Section */}
-      <AboutHero
-        title={currentContent.title}
-        description={currentContent.intro}
-        badge='20+ Years Combined Experience'
-        ctaText='Meet Our Team'
-        ctaLink='#team'
-        secondaryCtaText='View Our Services'
-        secondaryCtaLink='/services'
-      />
+      <FullWidthHeroWrapper>
+        <AboutHero
+          title={currentContent.title}
+          description={currentContent.intro}
+          badge='20+ Years Combined Experience'
+          ctaText='Meet Our Team'
+          ctaLink='#team'
+          secondaryCtaText='View Our Services'
+          secondaryCtaLink='/services'
+        />
+      </FullWidthHeroWrapper>
 
       {/* Main Content */}
       <div className='bg-white py-12 md:py-16'>

@@ -6,6 +6,7 @@ import React from 'react'
 
 import { EnhancedTeamProfile } from '@/components/team/EnhancedTeamProfile'
 import { TeamHero } from '@/components/ui/hero-variants'
+import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { getR2ImageUrl } from '@/lib/utils'
 import { TeamMember } from '@/types/team'
@@ -474,18 +475,20 @@ const TeamPage = () => {
     teamContent[language as keyof typeof teamContent] || teamContent.en
 
   return (
-    <div className='-mt-8'>
+    <div>
       {/* Hero Section */}
-      <TeamHero
-        title={currentContent.hero.title}
-        subtitle={currentContent.hero.subtitle}
-        description={currentContent.hero.description}
-        ctaText={currentContent.hero.ctaText}
-        ctaLink='/services'
-        secondaryCtaText={currentContent.hero.secondaryCtaText}
-        secondaryCtaLink='/contact-us?title=Contact Our Team#contact-form'
-        badge={currentContent.hero.badge}
-      />
+      <FullWidthHeroWrapper>
+        <TeamHero
+          title={currentContent.hero.title}
+          subtitle={currentContent.hero.subtitle}
+          description={currentContent.hero.description}
+          ctaText={currentContent.hero.ctaText}
+          ctaLink='/services'
+          secondaryCtaText={currentContent.hero.secondaryCtaText}
+          secondaryCtaLink='/contact-us?title=Contact Our Team#contact-form'
+          badge={currentContent.hero.badge}
+        />
+      </FullWidthHeroWrapper>
 
       {/* Team Members */}
       <div className='container mx-auto py-12'>

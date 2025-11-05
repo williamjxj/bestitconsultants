@@ -186,8 +186,12 @@ export default function HomePage() {
     <div className='space-y-16 md:space-y-24'>
       {/* Hero section: Main introductory content - Full viewport height with navbar */}
       <div
-        className='-mx-4 -mt-8 -mb-8'
-        style={{ height: `calc(100vh - ${navbarHeight}px)` }}
+        className='relative -mx-4 -mt-8 -mb-8 w-screen'
+        style={{
+          height: `calc(100vh - ${navbarHeight}px)`,
+          marginLeft: 'calc(50% - 50vw)',
+          marginRight: 'calc(50% - 50vw)',
+        }}
       >
         <HeroCarousel items={CAROUSEL_ITEMS} autoPlay autoPlayInterval={8000} />
       </div>

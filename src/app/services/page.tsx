@@ -27,6 +27,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { ServicesHero } from '@/components/ui/hero-variants'
+import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 const ServicesPage = () => {
@@ -432,18 +433,20 @@ const ServicesPage = () => {
   ]
 
   return (
-    <div className='-mt-8'>
+    <div>
       {/* Hero Section */}
-      <ServicesHero
-        title={currentContent.hero.title}
-        subtitle={currentContent.hero.subtitle}
-        description={currentContent.hero.description}
-        ctaText={currentContent.hero.ctaText}
-        ctaLink='/contact-us?title=Free Consultation#contact-form'
-        secondaryCtaText={currentContent.hero.secondaryCtaText}
-        secondaryCtaLink='/case-studies'
-        badge={currentContent.hero.badge}
-      />
+      <FullWidthHeroWrapper>
+        <ServicesHero
+          title={currentContent.hero.title}
+          subtitle={currentContent.hero.subtitle}
+          description={currentContent.hero.description}
+          ctaText={currentContent.hero.ctaText}
+          ctaLink='/contact-us?title=Free Consultation#contact-form'
+          secondaryCtaText={currentContent.hero.secondaryCtaText}
+          secondaryCtaLink='/case-studies'
+          badge={currentContent.hero.badge}
+        />
+      </FullWidthHeroWrapper>
 
       {/* Main Content */}
       <div className='min-h-screen py-20'>

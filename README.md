@@ -3,6 +3,11 @@
 A modern, professional website for BestIT Consultants showcasing our software development and
 digital transformation services.
 
+## Visual Overview
+
+- [Gamma Presentation (PPT)](https://gamma.app/docs/Best-IT-Consultants-Elite-Enterprise-Architects-Startup-Speed-1v8t3nud1ghb4iq)
+
+
 ## 🚀 Features
 
 - **Modern Tech Stack**: Next.js 15, React 19, TypeScript, Tailwind CSS
