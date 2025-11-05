@@ -5,8 +5,8 @@
 import React from 'react'
 
 import { EnhancedTeamProfile } from '@/components/team/EnhancedTeamProfile'
-import { TeamHero } from '@/components/ui/hero-variants'
 import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
+import { TeamHero } from '@/components/ui/hero-variants'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { getR2ImageUrl } from '@/lib/utils'
 import { TeamMember } from '@/types/team'

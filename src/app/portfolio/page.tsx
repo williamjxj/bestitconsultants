@@ -27,8 +27,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { PortfolioHero } from '@/components/ui/hero-variants'
 import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
+import { PortfolioHero } from '@/components/ui/hero-variants'
 import { OptimizedImage } from '@/components/ui/optimized-image'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useLanguage } from '@/contexts/LanguageContext'

@@ -207,7 +207,7 @@ export function FloatingShapesHero({
       {/* Hero Content */}
       <div className='relative z-10 flex flex-col items-center justify-center h-full text-center px-6'>
         {badge && (
-          <span className='inline-block px-4 py-2 mb-6 text-sm font-semibold text-white bg-blue-600/30 backdrop-blur-sm rounded-full border border-blue-400/30'>
+          <span className='inline-block px-4 py-2 mb-6 text-sm font-semibold text-white bg-blue-600/30 backdrop-blur-xs rounded-full border border-blue-400/30'>
             {badge}
           </span>
         )}
@@ -230,7 +230,7 @@ export function FloatingShapesHero({
             {secondaryCtaText && (
               <a
                 href={secondaryCtaLink || '#'}
-                className='px-8 py-4 bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm rounded-lg font-semibold transition-all duration-300 border border-white/20 hover:border-white/30'
+                className='px-8 py-4 bg-white/10 hover:bg-white/20 text-white backdrop-blur-xs rounded-lg font-semibold transition-all duration-300 border border-white/20 hover:border-white/30'
               >
                 {secondaryCtaText}
               </a>

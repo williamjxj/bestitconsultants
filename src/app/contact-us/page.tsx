@@ -19,8 +19,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { ContactHero } from '@/components/ui/hero-variants'
 import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
+import { ContactHero } from '@/components/ui/hero-variants'
 import { ShineBorder } from '@/components/ui/shine-border'
 import { useLanguage } from '@/contexts/LanguageContext'
 

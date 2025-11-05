@@ -216,7 +216,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
         <>
           <button
             onClick={goToPrevious}
-            className='absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm'
+            className='absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-xs'
             aria-label='Previous slide'
           >
             <ChevronLeft size={24} />
@@ -224,7 +224,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
 
           <button
             onClick={goToNext}
-            className='absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm'
+            className='absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-xs'
             aria-label='Next slide'
           >
             <ChevronRight size={24} />

@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import {
   Linkedin,
   Twitter,
@@ -10,11 +9,12 @@ import {
   Mail,
   Phone,
 } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import QRCodeSVG from 'react-qr-code'
 
 import { useLanguage } from '@/contexts/LanguageContext'
-import { getBaseUrl } from '@/lib/utils'
 import { PRESENTATION_URL } from '@/lib/footer-constants'
+import { getBaseUrl } from '@/lib/utils'
 
 /**
  * Footer component with company information, links, and contact details

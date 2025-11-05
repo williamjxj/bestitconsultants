@@ -26,8 +26,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { ServicesHero } from '@/components/ui/hero-variants'
 import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
+import { ServicesHero } from '@/components/ui/hero-variants'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 const ServicesPage = () => {

@@ -1,8 +1,8 @@
 'use client'
 
 import BookmarkList from '@/components/ui/bookmark-list'
-import { OurWorkHero } from '@/components/ui/hero-variants'
 import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
+import { OurWorkHero } from '@/components/ui/hero-variants'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function CaseStudiesPage() {
