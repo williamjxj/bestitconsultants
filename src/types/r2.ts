@@ -99,26 +99,6 @@ export interface MigrationStatus {
 }
 
 /**
- * Performance metrics interface
- */
-export interface ImagePerformanceMetrics {
-  cacheHitRate: number
-  averageResponseTime: number
-  errorRate: number
-  bandwidthUsage: number
-  lastUpdated: Date
-}
-
-/**
- * Validation result interface
- */
-export interface ValidationResult {
-  isValid: boolean
-  errors: string[]
-  warnings: string[]
-}
-
-/**
  * Image upload result interface
  */
 export interface ImageUploadResult {

@@ -116,7 +116,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
           <div className='relative w-full h-full'>
             {currentItem.video ? (
               <video
-                className='w-full h-full object-cover'
+                className='w-full h-full object-cover object-center'
                 autoPlay
                 muted
                 loop
@@ -133,7 +133,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
                 width={1920}
                 height={1080}
                 priority={currentIndex === 0}
-                className='w-full h-full object-cover'
+                className='w-full h-full object-cover object-center'
                 animation={{
                   type: 'fade',
                   duration: 1.2,
