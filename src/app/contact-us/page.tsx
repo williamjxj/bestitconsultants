@@ -20,6 +20,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { ContactHero } from '@/components/ui/hero-variants'
+import { ShineBorder } from '@/components/ui/shine-border'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function ContactPage() {
@@ -192,19 +193,22 @@ export default function ContactPage() {
       {/* Main Content */}
       <div className='min-h-screen py-20'>
         <div className='container mx-auto px-4'>
-          <div className='grid grid-cols-1 lg:grid-cols-3 gap-12'>
-            {/* Contact Form */}
-            <div id='contact-form' className='lg:col-span-2'>
-              <Card className='border-0 shadow-xl bg-white/50 backdrop-blur-sm'>
-                <CardHeader>
-                  <CardTitle className='text-2xl'>
-                    {translations.contact.form.title}
-                  </CardTitle>
-                  <CardDescription>
-                    {translations.contact.form.subtitle}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
+          {/* Contact Us Section */}
+          <div className='mb-12'>
+            <h2 className='text-3xl font-bold text-center mb-12'>
+              {translations.contact.form.title}
+            </h2>
+            <div className='grid grid-cols-1 lg:grid-cols-3 gap-12'>
+              {/* Contact Form */}
+              <div id='contact-form' className='lg:col-span-2'>
+                <Card className='relative w-full overflow-hidden border-0 shadow-xl bg-white/50 backdrop-blur-sm'>
+                  <ShineBorder shineColor={['#A07CFE', '#FE8FB5', '#FFBE7B']} />
+                  <CardHeader>
+                    <CardDescription>
+                      {translations.contact.form.subtitle}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
                   <Suspense
                     fallback={
                       <div className='flex items-center justify-center py-8'>
@@ -236,17 +240,48 @@ export default function ContactPage() {
                           detail.label.toLowerCase().includes('address')
                         )
                     )
-                    .map((detail, index) => (
-                      <div key={index} className='flex items-start space-x-3'>
-                        <div className='text-2xl'>{detail.icon}</div>
-                        <div>
-                          <div className='font-medium'>{detail.label}</div>
-                          <div className='text-gray-600 text-sm'>
-                            {detail.value}
+                    .map((detail, index) => {
+                      // Check if this detail should be displayed inline (phone, email, website)
+                      const isInline =
+                        detail.label?.toLowerCase() === 'phone' ||
+                        detail.label?.toLowerCase() === 'email' ||
+                        detail.label?.toLowerCase() === 'website'
+
+                      // Check if value is an array (for multiple emails)
+                      const isEmailArray =
+                        detail.label?.toLowerCase() === 'email' &&
+                        Array.isArray(detail.value)
+
+                      return (
+                        <div key={index} className='flex items-start space-x-3'>
+                          <div className='text-2xl'>{detail.icon}</div>
+                          <div>
+                            {isEmailArray ? (
+                              <>
+                                <div className='font-medium mb-1'>{detail.label}</div>
+                                <div className='text-gray-600 text-sm space-y-1'>
+                                  {(detail.value as string[]).map((email: string, emailIndex: number) => (
+                                    <div key={emailIndex}>{email}</div>
+                                  ))}
+                                </div>
+                              </>
+                            ) : isInline ? (
+                              <div className='text-gray-600 text-sm'>
+                                <span className='font-medium'>{detail.label}: </span>
+                                {detail.value}
+                              </div>
+                            ) : (
+                              <>
+                                <div className='font-medium'>{detail.label}</div>
+                                <div className='text-gray-600 text-sm'>
+                                  {detail.value}
+                                </div>
+                              </>
+                            )}
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      )
+                    })}
 
                   {/* Quick Contact (merged) */}
                   <div className='pt-4 border-t border-gray-200'>
@@ -305,6 +340,7 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
             </div>
+            </div>
           </div>
 
           {/* FAQ Section */}
@@ -334,9 +370,9 @@ export default function ContactPage() {
             <h2 className='text-3xl font-bold text-center mb-12'>
               {translations.contact.location.title}
             </h2>
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+            <div className='grid grid-cols-1 lg:grid-cols-4 gap-8'>
               {/* Address Information */}
-              <Card className='border-0 shadow-xl'>
+              <Card className='border-0 shadow-xl lg:col-span-1'>
                 <CardHeader>
                   <CardTitle className='flex items-center space-x-2'>
                     <span className='text-2xl'>📍</span>
@@ -407,7 +443,7 @@ export default function ContactPage() {
               </Card>
 
               {/* Google Maps Embed */}
-              <Card className='border-0 shadow-xl overflow-hidden'>
+              <Card className='border-0 shadow-xl overflow-hidden lg:col-span-3'>
                 <div className='aspect-square lg:aspect-video'>
                   <iframe
                     src='https://www.google.com/maps?q=10355+152+St,+Surrey,+BC+V3R+7C3&output=embed'

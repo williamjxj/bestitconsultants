@@ -10,6 +10,7 @@ export const translations = {
       portfolio: 'Portfolio',
       team: 'Our Team',
       caseStudies: 'Case Studies',
+      testimonials: 'Testimonials',
       contact: 'Contact Us',
     },
     hero: {
@@ -560,7 +561,7 @@ export const translations = {
       title: 'Contact Us',
       subtitle: 'Ready to start your next project? Get in touch with our team',
       form: {
-        title: 'Send us a Message',
+        title: 'Contact Us',
         subtitle:
           "Fill out the form below and we'll get back to you within 24 hours",
         submit: 'Send Message',
@@ -589,7 +590,7 @@ export const translations = {
             },
           },
           message: {
-            label: 'Message',
+            label: 'Message * (max 2000 chars)',
             placeholder: 'Tell us about your project or inquiry...',
             error: {
               required: 'Message is required',
@@ -641,7 +642,11 @@ export const translations = {
             value: '10355 152 St, Surrey, BC, Canada V3R 7C1',
           },
           { icon: '📞', label: 'Phone', value: '+1 (236) 992-3846' },
-          { icon: '📧', label: 'Email', value: 'williamjxj@gmail.com' },
+          {
+            icon: '📧',
+            label: 'Email',
+            value: ['service@bestitconsultants.ca', 'williamjxj@gmail.com'],
+          },
           {
             icon: '🌐',
             label: 'Website',
@@ -747,7 +752,7 @@ export const translations = {
       followUs: 'Follow us:',
       contactInfo: 'Contact Information',
       vancouver: 'Vancouver HQ: 10355 152 St, Surrey, BC, Canada V3R 7C1',
-      eastAsia: 'East Asia Branch: 456 Innovation Avenue, Tech City',
+      eastAsia: 'East Asia Branch: 621 Hitech Park, Nanshan District, Shenzhen China',
       email: 'williamjxj@gmail.com',
       phone: '+1 (236) 992-3846',
     },

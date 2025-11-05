@@ -2,6 +2,7 @@
 
 'use client'
 
+import { Globe, MapPin, Users } from 'lucide-react'
 import React from 'react'
 
 import { EnhancedTeamProfile } from '@/components/team/EnhancedTeamProfile'
@@ -487,12 +488,75 @@ const TeamPage = () => {
         badge={currentContent.hero.badge}
       />
 
-      {/* Team Members */}
-      <div className='container mx-auto py-12'>
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto'>
-          {teamMembers.map(member => (
-            <EnhancedTeamProfile key={member.id} member={member} />
-          ))}
+      {/* Main Content */}
+      <div className='bg-white py-12 md:py-16'>
+        <div className='container mx-auto px-4 space-y-12 md:space-y-16'>
+          {/* Strategic Global Presence */}
+          <section className='p-8 bg-gray-50 rounded-lg shadow-lg'>
+            <div className='flex flex-col md:flex-row items-start md:space-x-8'>
+              <Globe
+                size={60}
+                className='text-teal-600 mb-6 md:mb-0 flex-shrink-0'
+              />
+              <div className='flex-1'>
+                <h2 className='text-3xl font-semibold text-gray-800 mb-4'>
+                  {language === 'en'
+                    ? 'Strategic Global Presence'
+                    : language === 'fr'
+                      ? 'Notre Présence Mondiale Stratégique'
+                      : language === 'es'
+                        ? 'Presencia Global Estratégica'
+                        : '战略全球布局'}
+                </h2>
+                <p className='text-gray-700 leading-relaxed mb-4'>
+                  {language === 'en'
+                    ? "Our leadership team brings decades of real-world experience from top-tier companies. Headquartered in Vancouver, Canada with our core development center in Chengdu, China, this strategic positioning combines North American business acumen with Asian technical excellence. We deliver Fortune 500 quality at competitive rates with 24/7 development cycles."
+                    : language === 'fr'
+                      ? "Notre équipe de direction apporte des décennies d'expérience réelle des meilleures entreprises. Avec un siège stratégique à Vancouver, Canada et notre centre de développement principal à Chengdu, en Chine, ce positionnement stratégique combine le savoir-faire commercial nord-américain avec l'excellence technique asiatique. Nous offrons une qualité Fortune 500 à des tarifs compétitifs avec des cycles de développement 24/7."
+                      : language === 'es'
+                        ? 'Nuestro equipo de liderazgo aporta décadas de experiencia del mundo real de empresas de primer nivel. Con sede en Vancouver, Canadá y nuestro centro de desarrollo principal en Chengdu, China, este posicionamiento estratégico combina la perspicacia comercial de América del Norte con la excelencia técnica asiática. Entregamos calidad Fortune 500 a tarifas competitivas con ciclos de desarrollo 24/7.'
+                        : '我们的领导团队带来了来自顶级公司的数十年实际经验。总部位于加拿大温哥华，核心开发中心位于中国成都，这种战略定位结合了北美商业敏锐度与亚洲技术卓越性。我们以具有竞争力的价格提供财富500强品质，并支持24/7开发周期。'}
+                </p>
+                <div className='flex flex-wrap items-center gap-4'>
+                  <p className='font-medium text-gray-700'>
+                    <MapPin size={16} className='inline mr-2 text-teal-500' />
+                    Vancouver, Canada (HQ)
+                  </p>
+                  <p className='font-medium text-gray-700'>
+                    <MapPin size={16} className='inline mr-2 text-teal-500' />
+                    East Asia Branch
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Our Proven Expert Team */}
+          <section className='p-8 bg-gray-50 rounded-lg shadow-lg'>
+            <div className='flex flex-col md:flex-row items-start md:space-x-8 mb-8'>
+              <Users
+                size={60}
+                className='text-indigo-600 mb-6 md:mb-0 flex-shrink-0'
+              />
+              <div className='flex-1'>
+                <h2 className='text-3xl font-semibold text-gray-800 mb-4'>
+                  {language === 'en'
+                    ? 'Our Proven Expert Team'
+                    : language === 'fr'
+                      ? "Notre Équipe d'Experts Éprouvée"
+                      : language === 'es'
+                        ? 'Nuestro Equipo de Expertos Probados'
+                        : '我们的经验丰富的专家团队'}
+                </h2>
+              </div>
+            </div>
+            {/* Team Members */}
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto'>
+              {teamMembers.map(member => (
+                <EnhancedTeamProfile key={member.id} member={member} />
+              ))}
+            </div>
+          </section>
         </div>
       </div>
     </div>

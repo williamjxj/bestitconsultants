@@ -37,3 +37,23 @@ export function getR2ImageUrl(imagePath: string): string {
 
   return `${r2BaseUrl}/${cleanPath}`
 }
+
+/**
+ * Generate a professional avatar URL using UI Avatars service
+ * @param name - Full name of the person
+ * @param size - Size of the avatar (default: 128)
+ * @param background - Background color in hex (default: 3b82f6 - blue)
+ * @param color - Text color in hex (default: ffffff - white)
+ * @returns URL to the generated avatar
+ */
+export function getProfessionalAvatarUrl(
+  name: string,
+  size: number = 128,
+  background: string = '3b82f6',
+  color: string = 'ffffff'
+): string {
+  // UI Avatars is a free service that generates avatars from names
+  // Format: https://ui-avatars.com/api/?name=John+Doe&size=128&background=3b82f6&color=ffffff
+  const encodedName = encodeURIComponent(name.trim())
+  return `https://ui-avatars.com/api/?name=${encodedName}&size=${size}&background=${background}&color=${color}&bold=true&font-size=0.5`
+}

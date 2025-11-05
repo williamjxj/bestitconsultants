@@ -284,6 +284,11 @@
       transform: translateX(100%);
     }
   }
+
+  /* Shine border animation */
+  .animate-shine {
+    animation: shine var(--duration, 14s) infinite linear;
+  }
 }
 
 html,
@@ -300,4 +305,26 @@ body,
 
 main {
   flex-grow: 1;
+}
+
+@layer base {
+  .theme {
+    --animate-shine: shine var(--duration) infinite linear;
+  }
+}
+
+@layer base {
+  /* Body styles are handled in layout.tsx */
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
 }

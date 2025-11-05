@@ -223,7 +223,6 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>
                   {formTranslations.fields.message.label}
-                  <span className='text-destructive ml-1'>*</span>
                 </FormLabel>
                 <FormControl>
                   <Textarea
@@ -236,9 +235,6 @@ export function ContactForm() {
                   />
                 </FormControl>
                 <FormMessage />
-                <p className='text-xs text-muted-foreground'>
-                  {field.value?.length || 0}/2000 characters
-                </p>
               </FormItem>
             )}
           />
@@ -332,7 +328,7 @@ export function ContactForm() {
                           />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className='z-[100]'>
                         {serviceOptions.map(option => (
                           <SelectItem key={option.value} value={option.value}>
                             {option.label}

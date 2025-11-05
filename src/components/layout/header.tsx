@@ -13,8 +13,8 @@ const Header: React.FC = () => {
               </a>
             </li>
             <li>
-              <a href='/about-us' className='hover:underline'>
-                About
+              <a href='/testimonials' className='hover:underline'>
+                Testimonials
               </a>
             </li>
             <li>

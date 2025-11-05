@@ -30,7 +30,7 @@ import { ServicesHero } from '@/components/ui/hero-variants'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 const ServicesPage = () => {
-  const { language } = useLanguage()
+  const { language, translations } = useLanguage()
 
   // Services content with translations
   const servicesContent = {
@@ -969,6 +969,110 @@ const ServicesPage = () => {
                   </Card>
                 </motion.div>
               ))}
+            </div>
+          </motion.div>
+
+          {/* Awards & Recognition */}
+          <motion.div
+            className='mb-16'
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <motion.h2
+              className='text-3xl font-bold text-center mb-12'
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              {language === 'en'
+                ? 'Awards & Recognition'
+                : language === 'fr'
+                  ? 'Prix et Reconnaissance'
+                  : language === 'es'
+                    ? 'Premios y Reconocimiento'
+                    : '奖项与认可'}
+            </motion.h2>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+              {translations.testimonials.awards.list.map((award, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.1,
+                  }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                >
+                  <Card className='text-center hover:shadow-lg transition-shadow border-0 bg-white/50 backdrop-blur-sm h-full'>
+                    <CardContent className='p-6'>
+                      <div className='text-4xl mb-4'>{award.icon}</div>
+                      <h3 className='font-bold text-lg mb-2'>{award.title}</h3>
+                      <p className='text-gray-600 text-sm mb-3'>
+                        {award.organization}
+                      </p>
+                      <Badge variant='secondary' className='text-xs'>
+                        {award.year}
+                      </Badge>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Industries Served */}
+          <motion.div
+            className='mb-16'
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <motion.h2
+              className='text-3xl font-bold text-center mb-12'
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              {language === 'en'
+                ? 'Industries Served'
+                : language === 'fr'
+                  ? 'Industries Desservies'
+                  : language === 'es'
+                    ? 'Industrias Servidas'
+                    : '服务行业'}
+            </motion.h2>
+            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+              {translations.testimonials.industries.list.map(
+                (industry, index) => (
+                  <motion.div
+                    key={index}
+                    className='flex items-center space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-colors'
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: 0.4,
+                      delay: index * 0.05,
+                    }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className='text-2xl'>{industry.icon}</div>
+                    <div>
+                      <div className='font-medium'>{industry.name}</div>
+                      <div className='text-sm text-gray-600'>
+                        {industry.projects} {language === 'en' ? 'projects' : language === 'fr' ? 'projets' : language === 'es' ? 'proyectos' : '项目'}
+                      </div>
+                    </div>
+                  </motion.div>
+                )
+              )}
             </div>
           </motion.div>
 

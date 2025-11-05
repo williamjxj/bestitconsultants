@@ -10,8 +10,8 @@ const TeamPage = () => {
       bio: 'Technology professional with 20+ years of global experience in full-stack development, software architecture, and AI-driven solutions.',
       experience: '20+ Years',
       specialties: [
-        'AI/ML Solutions',
         'Full-Stack Development',
+        'AI/ML Solutions',
         'Enterprise Architecture',
       ],
     },

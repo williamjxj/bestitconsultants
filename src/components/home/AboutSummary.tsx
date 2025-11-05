@@ -58,7 +58,7 @@ export default function AboutSummary() {
               </div>
             </div>
             <Link
-              href='/about-us'
+              href='/testimonials'
               className='btn-secondary inline-block'
             >
               {translations.aboutSummary.learnMore}

@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${baseUrl}/about-us`,
+      url: `${baseUrl}/testimonials`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,

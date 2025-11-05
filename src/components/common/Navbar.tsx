@@ -13,11 +13,12 @@ import { NavigationCategory } from '@/types/navigation'
 interface Translations {
   navbar: {
     home: string
-    about: string
+    about?: string
     services: string
     portfolio: string
     caseStudies: string
     team: string
+    testimonials?: string
     contact: string
   }
 }
@@ -74,11 +75,11 @@ export default function Navbar() {
   ): string => {
     const labelMap: Record<string, string> = {
       home: translations.navbar.home,
-      about: translations.navbar.about,
       services: translations.navbar.services,
       portfolio: translations.navbar.portfolio,
       caseStudies: translations.navbar.caseStudies,
       team: translations.navbar.team,
+      testimonials: translations.navbar.testimonials || 'Testimonials',
       contact: translations.navbar.contact,
     }
     return labelMap[id] || id
@@ -98,20 +99,11 @@ export default function Navbar() {
       isVisible: true,
     },
     {
-      id: 'about',
-      label: translations.navbar.about,
-      href: '/about-us',
-      category: NavigationCategory.COMPANY,
-      order: 2,
-      isActive: false,
-      isVisible: true,
-    },
-    {
       id: 'services',
       label: translations.navbar.services,
       href: '/services',
       category: NavigationCategory.SERVICES,
-      order: 3,
+      order: 2,
       isActive: false,
       isVisible: true,
     },
@@ -120,7 +112,7 @@ export default function Navbar() {
       label: translations.navbar.portfolio,
       href: '/portfolio',
       category: NavigationCategory.WORK,
-      order: 4,
+      order: 3,
       isActive: false,
       isVisible: true,
     },
@@ -128,6 +120,15 @@ export default function Navbar() {
       id: 'team',
       label: translations.navbar.team,
       href: '/our-team',
+      category: NavigationCategory.COMPANY,
+      order: 4,
+      isActive: false,
+      isVisible: true,
+    },
+    {
+      id: 'testimonials',
+      label: translations.navbar.testimonials || 'Testimonials',
+      href: '/testimonials',
       category: NavigationCategory.COMPANY,
       order: 5,
       isActive: false,
