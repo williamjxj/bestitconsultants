@@ -5,11 +5,10 @@ import gsap from 'gsap'
 import { Lightbulb, Target } from 'lucide-react'
 import React, { useState, useRef, useEffect } from 'react'
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Badge } from '@/components/ui/badge'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { AboutHero } from '@/components/ui/hero-variants'
+import { Marquee3D } from '@/components/ui/marquee-3d'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { getProfessionalAvatarUrl, getR2ImageUrl } from '@/lib/utils'
 import { testimonialsService } from '@/services/testimonials'
@@ -17,14 +16,12 @@ import type { Testimonial } from '@/types/testimonial'
 
 export default function AboutPage() {
   const { language, translations } = useLanguage()
-  const [selectedTestimonial, setSelectedTestimonial] = useState(0)
   const [serviceTestimonials, setServiceTestimonials] = useState<Testimonial[]>([])
   const [isLoadingServiceTestimonials, setIsLoadingServiceTestimonials] = useState(true)
   const missionRef = useRef<HTMLDivElement>(null)
   const visionRef = useRef<HTMLDivElement>(null)
   const missionImageRef = useRef<HTMLDivElement>(null)
   const visionImageRef = useRef<HTMLDivElement>(null)
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   // Load service testimonials
   useEffect(() => {
@@ -43,43 +40,6 @@ export default function AboutPage() {
 
     loadServiceTestimonials()
   }, [])
-
-  // Auto-loop combined testimonials carousel every 5 seconds
-  useEffect(() => {
-    const totalTestimonials = translations.testimonials.list.length + serviceTestimonials.length
-    if (totalTestimonials === 0) return
-
-    // Clear any existing interval
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-    }
-
-    // Set up new interval
-    intervalRef.current = setInterval(() => {
-      setSelectedTestimonial(prev => (prev + 1) % totalTestimonials)
-    }, 5000) // 5 seconds
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current)
-      }
-    }
-  }, [translations.testimonials.list.length, serviceTestimonials.length])
-
-  // Handle manual testimonial selection - reset the timer
-  const handleTestimonialSelect = (index: number) => {
-    setSelectedTestimonial(index)
-    // Clear and restart the interval to give user full 5 seconds to read
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-    }
-    const totalTestimonials = translations.testimonials.list.length + serviceTestimonials.length
-    if (totalTestimonials > 0) {
-      intervalRef.current = setInterval(() => {
-        setSelectedTestimonial(prev => (prev + 1) % totalTestimonials)
-      }, 5000)
-    }
-  }
 
   // GSAP animations for Mission section
   useGSAP(
@@ -441,7 +401,7 @@ export default function AboutPage() {
             </Card>
           </section>
 
-          {/* What Our Clients Say - Combined Testimonials Section */}
+          {/* What Our Clients Say - 3D Marquee Section */}
           <section className='py-12'>
             <div className='text-center mb-12'>
               <h2 className='text-3xl md:text-4xl font-bold text-gray-800 mb-4'>
@@ -452,180 +412,40 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* Combine all testimonials for unified carousel */}
+            {/* Combine all testimonials for 3D marquee */}
             {(() => {
               // Map translations testimonials to unified format
-              const translationTestimonials = translations.testimonials.list.map((t, idx) => ({
-                id: `translation-${idx}`,
-                type: 'translation' as const,
-                content: t.content,
-                quote: t.content,
+              const translationTestimonials = translations.testimonials.list.map((t) => ({
                 name: t.name,
-                author: t.name,
                 position: t.position,
-                title: t.position,
                 company: t.company,
+                content: t.content,
                 avatar: t.avatar || getProfessionalAvatarUrl(t.name),
-                rating: t.rating,
-                project: t.project,
               }))
 
               // Map service testimonials to unified format
               const serviceTestimonialsMapped = serviceTestimonials.map((t) => ({
-                id: t.id,
-                type: 'service' as const,
-                content: t.quote,
-                quote: t.quote,
                 name: t.author,
-                author: t.author,
                 position: t.title,
-                title: t.title,
-                company: t.company || '',
+                company: t.company || undefined,
+                content: t.quote,
                 avatar: getProfessionalAvatarUrl(t.author),
-                rating: 5,
-                project: null,
               }))
 
               // Combine all testimonials
               const allTestimonials = [...translationTestimonials, ...serviceTestimonialsMapped]
-              const totalTestimonials = allTestimonials.length
 
-              if (totalTestimonials === 0 && isLoadingServiceTestimonials) {
+              if (allTestimonials.length === 0 && isLoadingServiceTestimonials) {
                 return (
-                  <div className='grid md:grid-cols-3 gap-6'>
-                    {[...Array(3)].map((_, i) => (
-                      <Card key={i} className='border-0 bg-gray-50'>
-                        <CardContent className='p-6'>
-                          <div className='h-4 bg-gray-300 rounded animate-pulse mb-4'></div>
-                          <div className='h-4 bg-gray-300 rounded animate-pulse mb-4'></div>
-                          <div className='h-4 bg-gray-300 rounded animate-pulse w-3/4'></div>
-                        </CardContent>
-                      </Card>
-                    ))}
+                  <div className='flex items-center justify-center h-96'>
+                    <div className='text-gray-500'>Loading testimonials...</div>
                   </div>
                 )
               }
 
-              if (totalTestimonials === 0) return null
+              if (allTestimonials.length === 0) return null
 
-              const currentTestimonial = allTestimonials[selectedTestimonial]
-
-              return (
-                <>
-                  {/* Featured Testimonial */}
-                  <div className='mb-12'>
-                    <Card className='bg-gradient-to-r from-blue-50 to-purple-50 border-0 shadow-xl'>
-                      <CardContent className='p-8 md:p-12'>
-                        <div className='text-center mb-8'>
-                          <div className='text-6xl text-blue-600 mb-4'>"</div>
-                          <blockquote className='text-2xl md:text-3xl font-medium text-gray-800 leading-relaxed mb-8'>
-                            {currentTestimonial.content}
-                          </blockquote>
-                          <div className='flex items-center justify-center space-x-4'>
-                            <Avatar className='h-16 w-16'>
-                              <AvatarImage src={currentTestimonial.avatar} alt={currentTestimonial.name} />
-                              <AvatarFallback className='text-lg bg-blue-600 text-white'>
-                                {currentTestimonial.name.charAt(0)}
-                              </AvatarFallback>
-                            </Avatar>
-                            <div className='text-left'>
-                              <div className='font-bold text-lg'>
-                                {currentTestimonial.name}
-                              </div>
-                              <div className='text-gray-600'>
-                                {currentTestimonial.position}
-                              </div>
-                              {currentTestimonial.company && (
-                                <div className='text-gray-500 text-sm'>
-                                  {currentTestimonial.company}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                        {currentTestimonial.project?.technologies && (
-                          <div className='flex flex-wrap gap-2 justify-center'>
-                            {currentTestimonial.project.technologies.map((tech, index) => (
-                              <Badge key={index} variant='secondary'>
-                                {tech}
-                              </Badge>
-                            ))}
-                          </div>
-                        )}
-                      </CardContent>
-                    </Card>
-                  </div>
-
-                  {/* Testimonial Navigation */}
-                  <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                    {allTestimonials.map((testimonial, index) => (
-                      <Card
-                        key={testimonial.id}
-                        className={`cursor-pointer transition-all duration-300 hover:shadow-lg ${
-                          selectedTestimonial === index
-                            ? 'ring-2 ring-blue-500 bg-blue-50'
-                            : 'hover:bg-gray-50'
-                        }`}
-                        onClick={() => handleTestimonialSelect(index)}
-                      >
-                        <CardHeader className='pb-3'>
-                          <div className='flex items-center space-x-3'>
-                            <Avatar>
-                              <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                              <AvatarFallback className='bg-blue-600 text-white'>
-                                {testimonial.name.charAt(0)}
-                              </AvatarFallback>
-                            </Avatar>
-                            <div>
-                              <CardTitle className='text-sm'>
-                                {testimonial.name}
-                              </CardTitle>
-                              <CardDescription className='text-xs'>
-                                {testimonial.company
-                                  ? `${testimonial.position}${testimonial.type === 'translation' ? ' at ' : ', '}${testimonial.company}`
-                                  : testimonial.position}
-                              </CardDescription>
-                            </div>
-                          </div>
-                        </CardHeader>
-                        <CardContent className='pt-0'>
-                          {testimonial.type === 'translation' && (
-                            <div className='flex items-center mb-2'>
-                              {[...Array(5)].map((_, i) => (
-                                <span
-                                  key={i}
-                                  className={`text-sm ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}
-                                >
-                                  ★
-                                </span>
-                              ))}
-                              <span className='ml-2 text-xs text-gray-600'>
-                                ({testimonial.rating}/5)
-                              </span>
-                            </div>
-                          )}
-                          <p className={`text-sm text-gray-600 line-clamp-3 ${testimonial.type === 'service' ? 'italic' : ''}`}>
-                            {testimonial.type === 'service' ? '"' : ''}
-                            {testimonial.content}
-                            {testimonial.type === 'service' ? '"' : ''}
-                          </p>
-                          <div className='mt-3'>
-                            {testimonial.project?.type ? (
-                              <Badge variant='outline' className='text-xs'>
-                                {testimonial.project.type}
-                              </Badge>
-                            ) : testimonial.company ? (
-                              <Badge variant='outline' className='text-xs'>
-                                {testimonial.company}
-                              </Badge>
-                            ) : null}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </>
-              )
+              return <Marquee3D testimonials={allTestimonials} />
             })()}
           </section>
         </div>
