@@ -1,5 +1,5 @@
-import { Marquee } from '@/components/ui/marquee'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Marquee } from '@/components/ui/marquee'
 import { cn } from '@/lib/utils'
 
 interface TestimonialCardProps {

@@ -1,5 +1,6 @@
 'use client'
 
+import { Globe } from './globe'
 import { HeroSection, HeroSectionProps } from './hero-section'
 
 // Homepage Hero with Carousel-like features
@@ -33,14 +34,19 @@ export function AboutHero(props: Partial<HeroSectionProps>) {
 // Services Page Hero
 export function ServicesHero(props: Partial<HeroSectionProps>) {
   return (
-    <HeroSection
-      variant='default'
-      background='gradient'
-      size='lg'
-      animation='slide'
-      textAlign='center'
-      {...props}
-    />
+    <div className="relative">
+      <HeroSection
+        variant='default'
+        background='gradient'
+        size='lg'
+        animation='slide'
+        textAlign='center'
+        {...props}
+      />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+        <Globe className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+      </div>
+    </div>
   )
 }
 

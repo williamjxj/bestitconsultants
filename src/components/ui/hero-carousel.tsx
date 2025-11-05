@@ -195,7 +195,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className='bg-transparent border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/10 transition-colors duration-300'
+                    className='bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/20 transition-colors duration-300 shadow-lg'
                     onClick={() => {
                       if (currentItem.secondaryCtaLink) {
                         router.push(currentItem.secondaryCtaLink)

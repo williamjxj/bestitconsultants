@@ -255,7 +255,7 @@ export function HeroSection({
               <Button
                 asChild
                 size='lg'
-                className='px-8 py-4 text-lg font-semibold bg-white text-blue-600 hover:bg-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300'
+                className='px-8 py-4 text-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 shadow-xl hover:shadow-2xl transition-all duration-300'
               >
                 <a href={ctaLink || '#'}>{ctaText}</a>
               </Button>
@@ -265,7 +265,7 @@ export function HeroSection({
                 asChild
                 variant='outline'
                 size='lg'
-                className='px-8 py-4 text-lg font-semibold border-white/30 text-white hover:bg-white/10 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300'
+                className='px-8 py-4 text-lg font-semibold bg-white text-blue-600 border-white hover:bg-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300'
               >
                 <a href={secondaryCtaLink || '#'}>{secondaryCtaText}</a>
               </Button>

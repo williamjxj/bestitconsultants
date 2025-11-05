@@ -757,7 +757,7 @@ export const translations = {
       phone: '+1 (236) 992-3846',
       mobileAccess: 'Mobile Access',
       scanQrCode: 'Scan to visit our website',
-      presentation: 'Presentation',
+      presentation: 'Our Presentation',
       quickLinks: 'Quick Links',
       companyDescription:
         'Elite Enterprise Architects. Startup Speed. Get Fortune 500 Software Expertise Without the Overhead.',
