@@ -10,7 +10,7 @@ export const heroCarouselItems: HeroCarouselItem[] = [
     image:
       'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg',
     ctaText: 'Start Your Project',
-    ctaLink: '/contact',
+    ctaLink: '/contact-us',
   },
   {
     id: 'ai-ml-expertise',

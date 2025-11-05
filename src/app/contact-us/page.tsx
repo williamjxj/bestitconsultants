@@ -8,8 +8,9 @@ import {
   Youtube,
   Instagram,
 } from 'lucide-react'
-import { useState } from 'react'
+import { Suspense, useEffect } from 'react'
 
+import { ContactForm } from '@/components/contact/ContactForm'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -18,39 +19,24 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Checkbox } from '@/components/ui/checkbox'
 import { ContactHero } from '@/components/ui/hero-variants'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import { Textarea } from '@/components/ui/textarea'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function ContactPage() {
   const { language, translations } = useLanguage()
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    phone: '',
-    service: '',
-    budget: '',
-    timeline: '',
-    message: '',
-    newsletter: false,
-  })
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<{
-    type: 'success' | 'error' | null
-    message: string
-  }>({ type: null, message: '' })
+  // Scroll to contact form when hash is present
+  useEffect(() => {
+    if (window.location.hash === '#contact-form') {
+      const formElement = document.getElementById('contact-form')
+      if (formElement) {
+        // Small delay to ensure page is fully rendered
+        setTimeout(() => {
+          formElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }, 100)
+      }
+    }
+  }, [])
 
   // Contact page content with translations
   const contactContent = {
@@ -59,7 +45,7 @@ export default function ContactPage() {
         description:
           "Ready to transform your business with cutting-edge technology? Let's discuss your project and see how our Fortune 500 expertise can help you achieve your goals.",
         ctaText: 'Schedule a Call',
-        secondaryCtaText: 'View Our Work',
+        secondaryCtaText: 'View Case Studies',
         badge: 'Free Consultation Available',
       },
       messages: {
@@ -177,71 +163,6 @@ export default function ContactPage() {
   const currentContent =
     contactContent[language as keyof typeof contactContent] || contactContent.en
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleSelectChange = (name: string, value: string) => {
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleCheckboxChange = (checked: boolean) => {
-    setFormData(prev => ({ ...prev, newsletter: checked }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus({ type: null, message: '' })
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-
-      const result = await response.json()
-
-      if (response.ok) {
-        setSubmitStatus({
-          type: 'success',
-          message: currentContent.messages.success,
-        })
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          company: '',
-          phone: '',
-          service: '',
-          budget: '',
-          timeline: '',
-          message: '',
-          newsletter: false,
-        })
-      } else {
-        setSubmitStatus({
-          type: 'error',
-          message: result.error || currentContent.messages.error,
-        })
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error)
-      setSubmitStatus({
-        type: 'error',
-        message: currentContent.messages.networkError,
-      })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
   const renderSocialIcon = (platform: string) => {
     const key = platform.toLowerCase()
     if (key.includes('facebook')) return <Facebook className='mr-2 h-5 w-5' />
@@ -284,212 +205,17 @@ export default function ContactPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className='space-y-6'>
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                      <div className='space-y-2'>
-                        <Label htmlFor='name'>
-                          {translations.contact.form.fields.name.label}
-                        </Label>
-                        <Input
-                          id='name'
-                          name='name'
-                          placeholder={
-                            translations.contact.form.fields.name.placeholder
-                          }
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          required
-                        />
+                  <Suspense
+                    fallback={
+                      <div className='flex items-center justify-center py-8'>
+                        <div className='text-muted-foreground'>
+                          Loading form...
+                        </div>
                       </div>
-                      <div className='space-y-2'>
-                        <Label htmlFor='email'>
-                          {translations.contact.form.fields.email.label}
-                        </Label>
-                        <Input
-                          id='email'
-                          name='email'
-                          type='email'
-                          placeholder={
-                            translations.contact.form.fields.email.placeholder
-                          }
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                      <div className='space-y-2'>
-                        <Label htmlFor='company'>
-                          {translations.contact.form.fields.company.label}
-                        </Label>
-                        <Input
-                          id='company'
-                          name='company'
-                          placeholder={
-                            translations.contact.form.fields.company.placeholder
-                          }
-                          value={formData.company}
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                      <div className='space-y-2'>
-                        <Label htmlFor='phone'>
-                          {translations.contact.form.fields.phone.label}
-                        </Label>
-                        <Input
-                          id='phone'
-                          name='phone'
-                          placeholder={
-                            translations.contact.form.fields.phone.placeholder
-                          }
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                    </div>
-
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                      <div className='space-y-2'>
-                        <Label htmlFor='service'>
-                          {translations.contact.form.fields.service.label}
-                        </Label>
-                        <Select
-                          onValueChange={value =>
-                            handleSelectChange('service', value)
-                          }
-                        >
-                          <SelectTrigger>
-                            <SelectValue
-                              placeholder={
-                                translations.contact.form.fields.service
-                                  .placeholder
-                              }
-                            />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {translations.contact.form.fields.service.options.map(
-                              (option, index) => (
-                                <SelectItem key={index} value={option.value}>
-                                  {option.label}
-                                </SelectItem>
-                              )
-                            )}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className='space-y-2'>
-                        <Label htmlFor='budget'>
-                          {translations.contact.form.fields.budget.label}
-                        </Label>
-                        <Select
-                          onValueChange={value =>
-                            handleSelectChange('budget', value)
-                          }
-                        >
-                          <SelectTrigger>
-                            <SelectValue
-                              placeholder={
-                                translations.contact.form.fields.budget
-                                  .placeholder
-                              }
-                            />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {translations.contact.form.fields.budget.options.map(
-                              (option, index) => (
-                                <SelectItem key={index} value={option.value}>
-                                  {option.label}
-                                </SelectItem>
-                              )
-                            )}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-
-                    <div className='space-y-2'>
-                      <Label htmlFor='timeline'>
-                        {translations.contact.form.fields.timeline.label}
-                      </Label>
-                      <Select
-                        onValueChange={value =>
-                          handleSelectChange('timeline', value)
-                        }
-                      >
-                        <SelectTrigger>
-                          <SelectValue
-                            placeholder={
-                              translations.contact.form.fields.timeline
-                                .placeholder
-                            }
-                          />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {translations.contact.form.fields.timeline.options.map(
-                            (option, index) => (
-                              <SelectItem key={index} value={option.value}>
-                                {option.label}
-                              </SelectItem>
-                            )
-                          )}
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className='space-y-2'>
-                      <Label htmlFor='message'>
-                        {translations.contact.form.fields.message.label}
-                      </Label>
-                      <Textarea
-                        id='message'
-                        name='message'
-                        placeholder={
-                          translations.contact.form.fields.message.placeholder
-                        }
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        rows={5}
-                        required
-                      />
-                    </div>
-
-                    <div className='flex items-center space-x-2'>
-                      <Checkbox
-                        id='newsletter'
-                        checked={formData.newsletter}
-                        onCheckedChange={handleCheckboxChange}
-                      />
-                      <Label htmlFor='newsletter' className='text-sm'>
-                        {translations.contact.form.fields.newsletter.label}
-                      </Label>
-                    </div>
-
-                    {/* Submit Status */}
-                    {submitStatus.type && (
-                      <div
-                        className={`p-4 rounded-lg text-center ${
-                          submitStatus.type === 'success'
-                            ? 'bg-green-100 text-green-800 border border-green-200'
-                            : 'bg-red-100 text-red-800 border border-red-200'
-                        }`}
-                      >
-                        {submitStatus.message}
-                      </div>
-                    )}
-
-                    <Button
-                      type='submit'
-                      className='w-full'
-                      size='lg'
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting
-                        ? currentContent.messages.sending
-                        : translations.contact.form.submit}
-                    </Button>
-                  </form>
+                    }
+                  >
+                    <ContactForm />
+                  </Suspense>
                 </CardContent>
               </Card>
             </div>

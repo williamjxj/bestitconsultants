@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function ContactSnippet() {
@@ -12,9 +14,12 @@ export default function ContactSnippet() {
         <p className='section-subtitle'>
           {translations.contactSnippet.description}
         </p>
-        <button className='btn-primary text-lg px-8 py-4'>
+        <Link
+          href='/contact-us?title=Contact Us Today#contact-form'
+          className='btn-primary text-lg px-8 py-4 inline-block'
+        >
           {translations.contactSnippet.cta}
-        </button>
+        </Link>
       </div>
     </section>
   )

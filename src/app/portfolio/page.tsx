@@ -519,7 +519,7 @@ export default function PortfolioPage() {
         ctaText={currentContent.hero.ctaText}
         ctaLink='/case-studies'
         secondaryCtaText={currentContent.hero.secondaryCtaText}
-        secondaryCtaLink='/contact'
+        secondaryCtaLink='/contact-us?title=Get a Quote#contact-form'
         badge={currentContent.hero.badge}
       />
       <div className='min-h-screen py-20'>

@@ -140,7 +140,9 @@ export default function HomePage() {
       description: currentCarouselContent.items[0].description,
       image: getR2ImageUrl('offices/gemini-1.png'),
       ctaText: currentCarouselContent.items[0].ctaText,
-      ctaLink: '/contact',
+      ctaLink: '/contact-us?title=Start Your Project#contact-form',
+      secondaryCtaText: 'Get Free Consultation',
+      secondaryCtaLink: '/contact-us?title=Free Consultation#contact-form',
     },
     {
       id: 'slide-2',
@@ -149,7 +151,9 @@ export default function HomePage() {
       description: currentCarouselContent.items[1].description,
       image: getR2ImageUrl('offices/gemini-2.png'),
       ctaText: currentCarouselContent.items[1].ctaText,
-      ctaLink: '/contact',
+      ctaLink: '/contact-us?title=Start Your Project#contact-form',
+      secondaryCtaText: 'Get Free Consultation',
+      secondaryCtaLink: '/contact-us?title=Free Consultation#contact-form',
     },
     {
       id: 'slide-3',
@@ -158,7 +162,9 @@ export default function HomePage() {
       description: currentCarouselContent.items[2].description,
       image: getR2ImageUrl('offices/kling-1.jpg'),
       ctaText: currentCarouselContent.items[2].ctaText,
-      ctaLink: '/contact',
+      ctaLink: '/contact-us?title=Start Your Project#contact-form',
+      secondaryCtaText: 'Get Free Consultation',
+      secondaryCtaLink: '/contact-us?title=Free Consultation#contact-form',
     },
   ]
   const [navbarHeight, setNavbarHeight] = useState<number>(88) // Default fallback

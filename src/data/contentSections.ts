@@ -9,7 +9,7 @@ export const contentSectionsData: ContentSection[] = [
     content:
       'Global IT Outsourcing & AI Consulting – Canadian Quality, Global Talent',
     ctaText: 'Get a Free Consultation',
-    ctaLink: '/contact',
+    ctaLink: '/contact-us?title=Free Consultation#contact-form',
     background: 'gradient-blue-indigo',
     order: 1,
     isActive: true,
@@ -22,7 +22,7 @@ export const contentSectionsData: ContentSection[] = [
     content:
       'Our team brings Fortune 500 experience with the flexibility and attention of a startup. We deliver enterprise-grade solutions with the speed and innovation that only a focused team can provide.',
     ctaText: 'Learn More',
-    ctaLink: '/about',
+    ctaLink: '/about-us',
     background: 'gradient-gray-blue',
     order: 2,
     isActive: true,
@@ -48,7 +48,7 @@ export const contentSectionsData: ContentSection[] = [
     content:
       'Let our elite team of experts help you achieve your business goals with cutting-edge technology solutions.',
     ctaText: 'Get Started Today',
-    ctaLink: '/contact',
+    ctaLink: '/contact-us?title=Start Your Project#contact-form',
     background: 'gradient-purple-pink',
     order: 4,
     isActive: true,

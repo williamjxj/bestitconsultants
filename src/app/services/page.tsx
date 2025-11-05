@@ -439,7 +439,7 @@ const ServicesPage = () => {
         subtitle={currentContent.hero.subtitle}
         description={currentContent.hero.description}
         ctaText={currentContent.hero.ctaText}
-        ctaLink='/contact'
+        ctaLink='/contact-us?title=Free Consultation#contact-form'
         secondaryCtaText={currentContent.hero.secondaryCtaText}
         secondaryCtaLink='/case-studies'
         badge={currentContent.hero.badge}
@@ -1038,14 +1038,17 @@ const ServicesPage = () => {
                     size='lg'
                     variant='secondary'
                     className='shadow-lg hover:shadow-xl transition-all duration-300'
+                    asChild
                   >
-                    {language === 'en'
-                      ? 'Free Consultation'
-                      : language === 'fr'
-                        ? 'Consultation Gratuite'
-                        : language === 'es'
-                          ? 'Consulta Gratuita'
-                          : '免费咨询'}
+                    <a href='/contact-us?title=Free Consultation#contact-form'>
+                      {language === 'en'
+                        ? 'Free Consultation'
+                        : language === 'fr'
+                          ? 'Consultation Gratuite'
+                          : language === 'es'
+                            ? 'Consulta Gratuita'
+                            : '免费咨询'}
+                    </a>
                   </Button>
                 </motion.div>
                 <motion.div
@@ -1057,14 +1060,17 @@ const ServicesPage = () => {
                     size='lg'
                     variant='outline'
                     className='text-white border-white hover:bg-white hover:text-blue-600 shadow-lg hover:shadow-xl transition-all duration-300'
+                    asChild
                   >
-                    {language === 'en'
-                      ? 'View Portfolio'
-                      : language === 'fr'
-                        ? 'Voir le Portfolio'
-                        : language === 'es'
-                          ? 'Ver Portafolio'
-                          : '查看作品集'}
+                    <a href='/portfolio'>
+                      {language === 'en'
+                        ? 'View Portfolio'
+                        : language === 'fr'
+                          ? 'Voir le Portfolio'
+                          : language === 'es'
+                            ? 'Ver Portafolio'
+                            : '查看作品集'}
+                    </a>
                   </Button>
                 </motion.div>
               </motion.div>

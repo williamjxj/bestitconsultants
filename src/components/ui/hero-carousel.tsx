@@ -17,6 +17,8 @@ export interface HeroCarouselItem {
   video?: string
   ctaText: string
   ctaLink: string
+  secondaryCtaText?: string
+  secondaryCtaLink?: string
 }
 
 interface HeroCarouselProps {
@@ -175,17 +177,35 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
                 {currentItem.description}
               </motion.p>
 
-              <motion.button
+              <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 1.1 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className='bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 transition-colors duration-300'
-                onClick={handleCtaClick}
+                className='flex flex-col sm:flex-row gap-4 justify-center items-center'
               >
-                {currentItem.ctaText}
-              </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className='bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 transition-colors duration-300'
+                  onClick={handleCtaClick}
+                >
+                  {currentItem.ctaText}
+                </motion.button>
+                {currentItem.secondaryCtaText && (
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className='bg-transparent border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/10 transition-colors duration-300'
+                    onClick={() => {
+                      if (currentItem.secondaryCtaLink) {
+                        router.push(currentItem.secondaryCtaLink)
+                      }
+                    }}
+                  >
+                    {currentItem.secondaryCtaText}
+                  </motion.button>
+                )}
+              </motion.div>
             </div>
           </motion.div>
         </motion.div>

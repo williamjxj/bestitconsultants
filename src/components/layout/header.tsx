@@ -13,7 +13,7 @@ const Header: React.FC = () => {
               </a>
             </li>
             <li>
-              <a href='/about' className='hover:underline'>
+              <a href='/about-us' className='hover:underline'>
                 About
               </a>
             </li>
@@ -23,7 +23,7 @@ const Header: React.FC = () => {
               </a>
             </li>
             <li>
-              <a href='/contact' className='hover:underline'>
+              <a href='/contact-us' className='hover:underline'>
                 Contact
               </a>
             </li>

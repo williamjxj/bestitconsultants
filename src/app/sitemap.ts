@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${baseUrl}/about`,
+      url: `${baseUrl}/about-us`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -25,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/team`,
+      url: `${baseUrl}/our-team`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -37,13 +37,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/our-work`,
+      url: `${baseUrl}/case-studies`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/contact`,
+      url: `${baseUrl}/contact-us`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,

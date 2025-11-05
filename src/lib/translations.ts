@@ -9,7 +9,7 @@ export const translations = {
       services: 'Services',
       portfolio: 'Portfolio',
       team: 'Our Team',
-      ourWork: 'Our Work',
+      caseStudies: 'Case Studies',
       contact: 'Contact Us',
     },
     hero: {
@@ -441,7 +441,7 @@ export const translations = {
         title: 'Ready to Start Your Project?',
         subtitle: "Let's discuss how we can help bring your vision to life",
         consultation: 'Schedule Free Consultation',
-        portfolio: 'View Our Work',
+        portfolio: 'View Case Studies',
       },
     },
     portfolio: {
@@ -564,20 +564,56 @@ export const translations = {
         subtitle:
           "Fill out the form below and we'll get back to you within 24 hours",
         submit: 'Send Message',
+        sending: 'Sending...',
+        success: "Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.",
+        error: 'Failed to send message. Please try again.',
+        networkError:
+          'Network error. Please check your connection and try again.',
+        tellUsMore: 'Tell us more (optional)',
         fields: {
-          name: { label: 'Full Name', placeholder: 'Enter your full name' },
+          name: {
+            label: 'Full Name',
+            placeholder: 'Enter your full name',
+            error: {
+              required: 'Name is required',
+              min: 'Name must be at least 2 characters',
+              max: 'Name must not exceed 100 characters',
+            },
+          },
           email: {
             label: 'Email Address',
             placeholder: 'Enter your email address',
+            error: {
+              required: 'Email is required',
+              invalid: 'Please enter a valid email address',
+            },
           },
-          company: { label: 'Company', placeholder: 'Enter your company name' },
+          message: {
+            label: 'Message',
+            placeholder: 'Tell us about your project or inquiry...',
+            error: {
+              required: 'Message is required',
+              min: 'Message must be at least 10 characters',
+              max: 'Message must not exceed 2000 characters',
+            },
+          },
+          company: {
+            label: 'Company',
+            placeholder: 'Enter your company name (optional)',
+            error: {
+              max: 'Company name must not exceed 100 characters',
+            },
+          },
           phone: {
             label: 'Phone Number',
-            placeholder: 'Enter your phone number',
+            placeholder: 'Enter your phone number (optional)',
+            error: {
+              invalid: 'Please enter a valid phone number',
+            },
           },
           service: {
-            label: 'Service Needed',
-            placeholder: 'Select a service',
+            label: 'Service Interest',
+            placeholder: 'Select a service (optional)',
             options: [
               { value: 'web-dev', label: 'Web Development' },
               { value: 'mobile-dev', label: 'Mobile Development' },
@@ -587,34 +623,12 @@ export const translations = {
               { value: 'other', label: 'Other' },
             ],
           },
-          budget: {
-            label: 'Project Budget',
-            placeholder: 'Select budget range',
-            options: [
-              { value: '5k-10k', label: '$5K - $10K' },
-              { value: '10k-25k', label: '$10K - $25K' },
-              { value: '25k-50k', label: '$25K - $50K' },
-              { value: '50k-100k', label: '$50K - $100K' },
-              { value: '100k+', label: '$100K+' },
-            ],
-          },
-          timeline: {
-            label: 'Project Timeline',
-            placeholder: 'Select timeline',
-            options: [
-              { value: 'asap', label: 'ASAP' },
-              { value: '1-3months', label: '1-3 months' },
-              { value: '3-6months', label: '3-6 months' },
-              { value: '6-12months', label: '6-12 months' },
-              { value: '12months+', label: '12+ months' },
-            ],
-          },
-          message: {
-            label: 'Project Details',
-            placeholder: 'Tell us about your project requirements...',
-          },
-          newsletter: {
-            label: 'Subscribe to our newsletter for tech insights and updates',
+          title: {
+            label: 'Title',
+            placeholder: 'Enter a title for your inquiry (optional)',
+            error: {
+              max: 'Title must not exceed 200 characters',
+            },
           },
         },
       },
@@ -713,8 +727,8 @@ export const translations = {
         description: 'Located in Surrey, BC - Greater Vancouver Area',
       },
     },
-    ourWork: {
-      title: 'Our Work',
+    caseStudies: {
+      title: 'Case Studies',
       subtitle:
         'Explore our portfolio of external projects and collaborations. These represent our diverse expertise and successful partnerships across various industries and technologies.',
       introTitle: 'Featured Projects & Partnerships',

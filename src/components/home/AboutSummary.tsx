@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 import { OptimizedImage } from '@/components/ui/optimized-image'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -56,9 +57,12 @@ export default function AboutSummary() {
                 <div className='text-sm text-gray-600'>Projects Completed</div>
               </div>
             </div>
-            <button className='btn-secondary'>
+            <Link
+              href='/about-us'
+              className='btn-secondary inline-block'
+            >
               {translations.aboutSummary.learnMore}
-            </button>
+            </Link>
           </motion.div>
         </div>
       </div>

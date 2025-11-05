@@ -16,7 +16,7 @@ interface Translations {
     about: string
     services: string
     portfolio: string
-    ourWork: string
+    caseStudies: string
     team: string
     contact: string
   }
@@ -77,7 +77,7 @@ export default function Navbar() {
       about: translations.navbar.about,
       services: translations.navbar.services,
       portfolio: translations.navbar.portfolio,
-      ourWork: translations.navbar.ourWork,
+      caseStudies: translations.navbar.caseStudies,
       team: translations.navbar.team,
       contact: translations.navbar.contact,
     }
@@ -100,7 +100,7 @@ export default function Navbar() {
     {
       id: 'about',
       label: translations.navbar.about,
-      href: '/about',
+      href: '/about-us',
       category: NavigationCategory.COMPANY,
       order: 2,
       isActive: false,
@@ -127,7 +127,7 @@ export default function Navbar() {
     {
       id: 'team',
       label: translations.navbar.team,
-      href: '/team',
+      href: '/our-team',
       category: NavigationCategory.COMPANY,
       order: 5,
       isActive: false,
@@ -136,7 +136,7 @@ export default function Navbar() {
     {
       id: 'contact',
       label: translations.navbar.contact,
-      href: '/contact',
+      href: '/contact-us',
       category: NavigationCategory.MAIN,
       order: 6,
       isActive: false,

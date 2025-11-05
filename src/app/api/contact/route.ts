@@ -13,6 +13,17 @@ async function getResendInstance() {
   }
 }
 
+// Dynamic import of Supabase client (optional)
+async function getSupabaseInstance() {
+  try {
+    const { supabase } = await import('@/lib/supabase')
+    return supabase
+  } catch (error) {
+    console.warn('Supabase not configured:', error)
+    return null
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
@@ -22,10 +33,8 @@ export async function POST(request: NextRequest) {
       company,
       phone,
       service,
-      budget,
-      timeline,
       message,
-      newsletter,
+      title,
     } = body
 
     // Validate required fields
@@ -72,10 +81,8 @@ export async function POST(request: NextRequest) {
 
       <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
         <h3>Project Details</h3>
+        ${title ? `<p><strong>Title:</strong> ${title}</p>` : ''}
         <p><strong>Service:</strong> ${service || 'Not specified'}</p>
-        <p><strong>Budget:</strong> ${budget || 'Not specified'}</p>
-        <p><strong>Timeline:</strong> ${timeline || 'Not specified'}</p>
-        <p><strong>Newsletter Subscription:</strong> ${newsletter ? 'Yes' : 'No'}</p>
       </div>
 
       <div style="background: #f0f8ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -100,7 +107,6 @@ export async function POST(request: NextRequest) {
       <div style="background: #f0f8ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
         <h3>Your Message Summary:</h3>
         <p><strong>Service Interest:</strong> ${service || 'General Inquiry'}</p>
-        <p><strong>Project Timeline:</strong> ${timeline || 'To be discussed'}</p>
         <p><strong>Message:</strong></p>
         <p style="white-space: pre-wrap; font-style: italic;">${message}</p>
       </div>
@@ -149,6 +155,33 @@ export async function POST(request: NextRequest) {
       html: customerEmailHtml,
       replyTo: businessEmailAddress,
     })
+
+    // Optionally save to Supabase (optional - doesn't fail if DB save fails)
+    const supabase = await getSupabaseInstance()
+    if (supabase) {
+      try {
+        const { error: dbError } = await supabase
+          .from('bestitconsultants_contacts')
+          .insert({
+            name,
+            email,
+            message,
+            company: company || null,
+            phone: phone || null,
+            service: service || null,
+            title: title || null,
+            submitted_at: new Date().toISOString(),
+          })
+
+        if (dbError) {
+          console.error('Error saving to Supabase:', dbError)
+          // Don't fail the request if DB save fails, email was already sent
+        }
+      } catch (dbError) {
+        console.error('Error saving to Supabase:', dbError)
+        // Don't fail the request if DB save fails, email was already sent
+      }
+    }
 
     return NextResponse.json(
       {

@@ -48,7 +48,7 @@ export const seoMetadataData: SEOMetadata[] = [
     ogDescription:
       'Meet our elite team of Fortune 500 experienced professionals.',
     ogImage: getR2ImageUrl('imgs/og-team.jpg'),
-    canonicalUrl: `${baseUrl}/team`,
+    canonicalUrl: `${baseUrl}/our-team`,
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'AboutPage',

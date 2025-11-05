@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function ServicesSummary() {
@@ -25,9 +27,12 @@ export default function ServicesSummary() {
         </div>
 
         <div className='text-center'>
-          <button className='btn-primary'>
+          <Link
+            href='/services'
+            className='btn-primary inline-block'
+          >
             {translations.servicesSummary.seeAllServices}
-          </button>
+          </Link>
         </div>
       </div>
     </section>

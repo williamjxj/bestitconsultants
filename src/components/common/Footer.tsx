@@ -182,7 +182,7 @@ export default function Footer() {
             </h4>
             <div className='space-y-2'>
               <a
-                href='/about'
+                href='/about-us'
                 className='block text-gray-300 hover:text-blue-400 transition-colors duration-300'
               >
                 About Us
@@ -194,25 +194,19 @@ export default function Footer() {
                 Services
               </a>
               <a
-                href='/our-work'
-                className='block text-gray-300 hover:text-blue-400 transition-colors duration-300'
-              >
-                Our Work
-              </a>
-              <a
                 href='/case-studies'
                 className='block text-gray-300 hover:text-blue-400 transition-colors duration-300'
               >
                 Case Studies
               </a>
               <a
-                href='/team'
+                href='/our-team'
                 className='block text-gray-300 hover:text-blue-400 transition-colors duration-300'
               >
                 Team
               </a>
               <a
-                href='/contact'
+                href='/contact-us'
                 className='block text-gray-300 hover:text-blue-400 transition-colors duration-300'
               >
                 Contact

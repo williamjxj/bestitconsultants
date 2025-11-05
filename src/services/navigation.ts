@@ -44,7 +44,7 @@ export class NavigationService {
       {
         id: 'about',
         label: 'About',
-        href: '/about',
+        href: '/about-us',
         category: NavigationCategory.COMPANY,
         order: 2,
         isActive: false,
@@ -69,9 +69,9 @@ export class NavigationService {
         isVisible: true,
       },
       {
-        id: 'ourWork',
-        label: 'Our Work',
-        href: '/our-work',
+        id: 'caseStudies',
+        label: 'Case Studies',
+        href: '/case-studies',
         category: NavigationCategory.WORK,
         order: 5,
         isActive: false,
@@ -80,7 +80,7 @@ export class NavigationService {
       {
         id: 'team',
         label: 'Team',
-        href: '/team',
+        href: '/our-team',
         category: NavigationCategory.COMPANY,
         order: 6,
         isActive: false,
@@ -89,7 +89,7 @@ export class NavigationService {
       {
         id: 'contact',
         label: 'Contact',
-        href: '/contact',
+        href: '/contact-us',
         category: NavigationCategory.MAIN,
         order: 7,
         isActive: false,

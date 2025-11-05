@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function PortfolioPreview() {
@@ -28,9 +30,12 @@ export default function PortfolioPreview() {
         </div>
 
         <div className='text-center'>
-          <button className='btn-primary'>
+          <Link
+            href='/portfolio'
+            className='btn-primary inline-block'
+          >
             {translations.portfolioPreview.allProjects}
-          </button>
+          </Link>
         </div>
       </div>
     </section>
