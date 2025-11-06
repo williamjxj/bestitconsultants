@@ -255,7 +255,10 @@ export function HeroSection({
               <Button
                 asChild
                 size='lg'
-                className='px-8 py-4 text-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 shadow-xl hover:shadow-2xl transition-all duration-300'
+                className='px-8 py-4 text-lg font-semibold text-white shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-sm border border-white/20 hover:border-white/30'
+                style={{
+                  background: 'rgba(34, 197, 94, 0.15)',
+                }}
               >
                 <a href={ctaLink || '#'}>{ctaText}</a>
               </Button>

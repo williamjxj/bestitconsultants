@@ -9,6 +9,14 @@ import {
   Cloud,
   Smartphone,
   Database,
+  Landmark,
+  Heart,
+  ShoppingCart,
+  GraduationCap,
+  Factory,
+  Car,
+  Hotel,
+  Cpu,
   // Sparkles,
   // Zap,
   // Shield,
@@ -29,6 +37,18 @@ import {
 import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { ServicesHero } from '@/components/ui/hero-variants'
 import { useLanguage } from '@/contexts/LanguageContext'
+
+// Icon mapping for industries
+const industryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  Landmark,
+  Heart,
+  ShoppingCart,
+  GraduationCap,
+  Factory,
+  Car,
+  Hotel,
+  Cpu,
+}
 
 const ServicesPage = () => {
   const { language, translations } = useLanguage()
@@ -1066,7 +1086,14 @@ const ServicesPage = () => {
                     viewport={{ once: true }}
                     whileHover={{ scale: 1.05 }}
                   >
-                    <div className='text-2xl'>{industry.icon}</div>
+                    {(() => {
+                      const IconComponent = industryIcons[industry.icon]
+                      return IconComponent ? (
+                        <IconComponent className='w-6 h-6 text-blue-600 flex-shrink-0' />
+                      ) : (
+                        <div className='text-2xl'>{industry.icon}</div>
+                      )
+                    })()}
                     <div>
                       <div className='font-medium'>{industry.name}</div>
                       <div className='text-sm text-gray-600'>

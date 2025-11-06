@@ -222,7 +222,10 @@ export function FloatingShapesHero({
             {ctaText && (
               <a
                 href={ctaLink || '#'}
-                className='px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105'
+                className='px-8 py-4 text-white rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm border border-white/20 hover:border-white/30'
+                style={{
+                  background: 'rgba(34, 197, 94, 0.15)',
+                }}
               >
                 {ctaText}
               </a>

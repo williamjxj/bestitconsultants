@@ -155,8 +155,9 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
             <div className='text-center text-white max-w-4xl mx-auto px-4'>
               <AnimatedTitle
                 title={currentItem.title}
-                className='text-4xl md:text-6xl font-bold mb-4'
+                className='text-3xl md:text-5xl font-bold mb-4'
                 textAlign='center'
+                variant='metallic'
               />
 
               <motion.h2
@@ -186,16 +187,29 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className='bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 transition-colors duration-300'
+                  className='relative px-8 py-4 rounded-2xl font-semibold text-lg text-white transition-all duration-300 shadow-xl hover:shadow-2xl overflow-hidden group'
+                  style={{
+                    background: 'linear-gradient(135deg, #B8860B 0%, #CD853F 20%, #D4AF37 40%, #FFD700 50%, #D4AF37 60%, #CD853F 80%, #B8860B 100%)',
+                    backgroundSize: '200% 200%',
+                    animation: 'metallicShine 4s ease-in-out infinite',
+                  }}
                   onClick={handleCtaClick}
                 >
-                  {currentItem.ctaText}
+                  <span className='relative z-10'>{currentItem.ctaText}</span>
+                  <div
+                    className='absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500'
+                    style={{
+                      background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent)',
+                      backgroundSize: '200% 100%',
+                      animation: 'shimmer 2s infinite',
+                    }}
+                  />
                 </motion.button>
                 {currentItem.secondaryCtaText && (
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className='bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/20 transition-colors duration-300 shadow-lg'
+                    className='px-8 py-4 rounded-2xl font-semibold text-lg text-white transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm border-2 border-white/30 hover:border-white/50 bg-gradient-to-r from-white/10 via-white/15 to-white/10 hover:from-white/20 hover:via-white/25 hover:to-white/20'
                     onClick={() => {
                       if (currentItem.secondaryCtaLink) {
                         router.push(currentItem.secondaryCtaLink)
