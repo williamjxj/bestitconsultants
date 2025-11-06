@@ -69,6 +69,7 @@ module.exports = [
         Image: 'readonly',
         IntersectionObserver: 'readonly',
         HTMLImageElement: 'readonly',
+        HTMLCanvasElement: 'readonly',
         PerformanceObserver: 'readonly',
         PerformanceNavigationTiming: 'readonly',
         NodeJS: 'readonly',

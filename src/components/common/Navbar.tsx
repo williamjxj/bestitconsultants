@@ -223,18 +223,18 @@ export default function Navbar() {
   return (
     <nav className='bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-100'>
       <div className='container mx-auto px-4'>
-        <div className='flex justify-between items-center py-4'>
+        <div className='flex justify-between items-center h-16 md:h-20'>
           {/* Logo with animation */}
           <Link
             href='/'
-            className='flex items-center space-x-3 transition-all duration-300 hover:scale-105'
+            className='flex items-center space-x-1 sm:space-x-2 transition-all duration-300 hover:scale-105'
           >
             <img
               src='/logo.png'
               alt='BestITConsultants Logo'
-              className='h-12 w-auto'
+              className='h-8 sm:h-9 md:h-12 lg:h-14 w-auto object-contain max-h-full'
             />
-            <span className='text-xl font-bold text-gray-800 hover:text-blue-600 transition-colors duration-200'>
+            <span className='text-base sm:text-lg md:text-xl font-bold text-gray-800 hover:text-blue-600 transition-colors duration-200 leading-none'>
               bestitconsultants
             </span>
           </Link>
@@ -326,28 +326,69 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Mobile Menu Toggle */}
-            <div className='md:hidden'>
+            {/* Mobile Language Switcher - Always visible on mobile */}
+            <div className='relative md:hidden language-dropdown-container'>
               <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className='text-gray-600 hover:text-blue-600 transition-colors'
-                aria-label='Toggle mobile menu'
+                onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+                className='p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500'
+                aria-label='Change language'
+                aria-expanded={isLangDropdownOpen}
+                aria-haspopup='true'
               >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                <span className='text-xl leading-none'>
+                  {currentLanguage.flag}
+                </span>
               </button>
+              {isLangDropdownOpen && (
+                <div className='absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-xl py-2 z-20 border border-gray-200 animate-in fade-in slide-in-from-top-2 duration-200'>
+                  {languages.map(lang => {
+                    const isActive = language === lang.code
+                    return (
+                      <button
+                        key={lang.code}
+                        onClick={() => handleLanguageChange(lang.code)}
+                        className={`flex items-center space-x-2 w-full text-left px-3 py-2 text-sm transition-all duration-200 first:rounded-t-lg last:rounded-b-lg ${
+                          isActive
+                            ? 'bg-blue-50 text-blue-700 font-semibold border-l-4 border-blue-600'
+                            : `text-gray-700 ${lang.hoverColor}`
+                        }`}
+                        aria-label={`Switch to ${lang.name}`}
+                      >
+                        <span className='text-lg leading-none'>
+                          {lang.flag}
+                        </span>
+                        <span className='flex-1 text-xs'>{lang.name}</span>
+                        {isActive && (
+                          <CheckCircle2 size={14} className={lang.color} />
+                        )}
+                      </button>
+                    )
+                  })}
+                </div>
+              )}
             </div>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className='md:hidden p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500'
+              aria-label='Toggle mobile menu'
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
 
         {/* Mobile Menu with smooth animation */}
         <div
-          className={`md:hidden transition-all duration-300 ease-in-out ${
+          className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
             isMobileMenuOpen
-              ? 'max-h-96 opacity-100'
-              : 'max-h-0 opacity-0 overflow-hidden'
+              ? 'max-h-[800px] opacity-100 visible'
+              : 'max-h-0 opacity-0 invisible'
           }`}
         >
-          <div className='py-4 border-t border-gray-200'>
+          <div className='py-4 border-t border-gray-200 bg-white'>
             <div className='flex flex-col space-y-3'>
               {isLoading ? (
                 <div className='space-y-3'>
