@@ -26,4 +26,3 @@ export const supabase = createClient(supabaseUrl, supabaseServiceRoleKey, {
     persistSession: false,
   },
 })
-

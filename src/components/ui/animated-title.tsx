@@ -44,25 +44,31 @@ export function AnimatedTitle({
     return index + charIndex
   }
 
-  const metallicStyle = variant === 'metallic' ? {
-    background: 'linear-gradient(135deg, #B8860B 0%, #CD853F 20%, #D4AF37 40%, #FFD700 50%, #D4AF37 60%, #CD853F 80%, #B8860B 100%)',
-    backgroundSize: '200% 200%',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    backgroundClip: 'text',
-    animation: 'metallicShine 4s ease-in-out infinite',
-  } : {
-    background: 'linear-gradient(to right, #ffffff, #e0e7ff, #ddd6fe)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    backgroundClip: 'text',
-  }
+  const metallicStyle =
+    variant === 'metallic'
+      ? {
+          background:
+            'linear-gradient(135deg, #B8860B 0%, #CD853F 20%, #D4AF37 40%, #FFD700 50%, #D4AF37 60%, #CD853F 80%, #B8860B 100%)',
+          backgroundSize: '200% 200%',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          animation: 'metallicShine 4s ease-in-out infinite',
+        }
+      : {
+          background: 'linear-gradient(to right, #ffffff, #e0e7ff, #ddd6fe)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+        }
 
   return (
     <motion.h1
       ref={ref}
       className={cn(
-        variant === 'metallic' ? 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl' : 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl',
+        variant === 'metallic'
+          ? 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl'
+          : 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl',
         'font-bold leading-tight mb-6',
         'flex flex-wrap items-center gap-x-2',
         'relative',

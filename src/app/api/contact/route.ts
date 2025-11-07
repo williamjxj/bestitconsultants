@@ -27,15 +27,7 @@ async function getSupabaseInstance() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const {
-      name,
-      email,
-      company,
-      phone,
-      service,
-      message,
-      title,
-    } = body
+    const { name, email, company, phone, service, message, title } = body
 
     // Validate required fields
     if (!name || !email || !message) {

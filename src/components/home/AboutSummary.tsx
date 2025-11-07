@@ -57,10 +57,7 @@ export default function AboutSummary() {
                 <div className='text-sm text-gray-600'>Projects Completed</div>
               </div>
             </div>
-            <Link
-              href='/testimonials'
-              className='btn-secondary inline-block'
-            >
+            <Link href='/testimonials' className='btn-secondary inline-block'>
               {translations.aboutSummary.learnMore}
             </Link>
           </motion.div>

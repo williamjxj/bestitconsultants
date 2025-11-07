@@ -566,7 +566,8 @@ export const translations = {
           "Fill out the form below and we'll get back to you within 24 hours",
         submit: 'Send Message',
         sending: 'Sending...',
-        success: "Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.",
+        success:
+          "Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.",
         error: 'Failed to send message. Please try again.',
         networkError:
           'Network error. Please check your connection and try again.',
@@ -752,7 +753,8 @@ export const translations = {
       followUs: 'Follow us:',
       contactInfo: 'Contact Information',
       vancouver: 'Vancouver HQ: 10355 152 St, Surrey, BC, Canada V3R 7C1',
-      eastAsia: 'East Asia Branch: 621 Hitech Park, Nanshan District, Shenzhen China',
+      eastAsia:
+        'East Asia Branch: 621 Hitech Park, Nanshan District, Shenzhen China',
       email: 'williamjxj@gmail.com',
       phone: '+1 (236) 992-3846',
       mobileAccess: 'Mobile Access',

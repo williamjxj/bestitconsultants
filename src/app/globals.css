@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Import hero animations */
 @import '../styles/hero-animations.css';
@@ -6,7 +6,7 @@
 /* Custom font variables */
 :root {
   --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
-  
+
   /* shadcn/ui color variables */
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;
@@ -97,7 +97,6 @@
 }
 
 @layer utilities {
-
   /* Animation utilities */
   .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
@@ -407,7 +406,7 @@ main {
   .animate-marquee {
     animation: marquee var(--duration, 40s) infinite linear;
   }
-  
+
   .animate-marquee-vertical {
     animation: marquee-vertical var(--duration, 40s) infinite linear;
   }

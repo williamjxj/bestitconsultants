@@ -40,24 +40,24 @@ const TestimonialCard = ({
         'dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]'
       )}
     >
-      <div className="flex flex-row items-center gap-2">
-        <Avatar className="h-8 w-8">
+      <div className='flex flex-row items-center gap-2'>
+        <Avatar className='h-8 w-8'>
           <AvatarImage src={img} alt={name} />
-          <AvatarFallback className="bg-blue-600 text-white text-xs">
+          <AvatarFallback className='bg-blue-600 text-white text-xs'>
             {getAvatarAbbr(name)}
           </AvatarFallback>
         </Avatar>
-        <div className="flex flex-col">
-          <figcaption className="text-sm font-medium dark:text-white">
+        <div className='flex flex-col'>
+          <figcaption className='text-sm font-medium dark:text-white'>
             {name}
           </figcaption>
-          <p className="text-xs font-medium dark:text-white/40">
+          <p className='text-xs font-medium dark:text-white/40'>
             {position}
             {company && ` at ${company}`}
           </p>
         </div>
       </div>
-      <blockquote className="mt-2 text-sm line-clamp-4">{body}</blockquote>
+      <blockquote className='mt-2 text-sm line-clamp-4'>{body}</blockquote>
     </figure>
   )
 }
@@ -86,21 +86,31 @@ export function Marquee3D({ testimonials }: Marquee3DProps) {
   ]
 
   // Split testimonials into rows for the marquee effect (matching Magic UI demo pattern)
-  const firstRow = extendedTestimonials.slice(0, Math.ceil(extendedTestimonials.length / 2))
-  const secondRow = extendedTestimonials.slice(Math.ceil(extendedTestimonials.length / 2))
-  const thirdRow = extendedTestimonials.slice(0, Math.ceil(extendedTestimonials.length / 2))
-  const fourthRow = extendedTestimonials.slice(Math.ceil(extendedTestimonials.length / 2))
+  const firstRow = extendedTestimonials.slice(
+    0,
+    Math.ceil(extendedTestimonials.length / 2)
+  )
+  const secondRow = extendedTestimonials.slice(
+    Math.ceil(extendedTestimonials.length / 2)
+  )
+  const thirdRow = extendedTestimonials.slice(
+    0,
+    Math.ceil(extendedTestimonials.length / 2)
+  )
+  const fourthRow = extendedTestimonials.slice(
+    Math.ceil(extendedTestimonials.length / 2)
+  )
 
   return (
-    <div className="relative flex h-[600px] w-full flex-row items-center justify-center gap-4 overflow-hidden [perspective:300px]">
+    <div className='relative flex h-[600px] w-full flex-row items-center justify-center gap-4 overflow-hidden [perspective:300px]'>
       <div
-        className="flex flex-row items-center gap-4"
+        className='flex flex-row items-center gap-4'
         style={{
           transform:
             'translateX(-100px) translateY(0px) translateZ(-100px) rotateX(20deg) rotateY(-10deg) rotateZ(20deg)',
         }}
       >
-        <Marquee pauseOnHover vertical className="[--duration:65s]" repeat={6}>
+        <Marquee pauseOnHover vertical className='[--duration:65s]' repeat={6}>
           {firstRow.map((testimonial, index) => (
             <TestimonialCard
               key={`first-${testimonial.name}-${index}`}
@@ -112,7 +122,13 @@ export function Marquee3D({ testimonials }: Marquee3DProps) {
             />
           ))}
         </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:65s]" vertical repeat={6}>
+        <Marquee
+          reverse
+          pauseOnHover
+          className='[--duration:65s]'
+          vertical
+          repeat={6}
+        >
           {secondRow.map((testimonial, index) => (
             <TestimonialCard
               key={`second-${testimonial.name}-${index}`}
@@ -124,7 +140,13 @@ export function Marquee3D({ testimonials }: Marquee3DProps) {
             />
           ))}
         </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:65s]" vertical repeat={6}>
+        <Marquee
+          reverse
+          pauseOnHover
+          className='[--duration:65s]'
+          vertical
+          repeat={6}
+        >
           {thirdRow.map((testimonial, index) => (
             <TestimonialCard
               key={`third-${testimonial.name}-${index}`}
@@ -136,7 +158,7 @@ export function Marquee3D({ testimonials }: Marquee3DProps) {
             />
           ))}
         </Marquee>
-        <Marquee pauseOnHover className="[--duration:65s]" vertical repeat={6}>
+        <Marquee pauseOnHover className='[--duration:65s]' vertical repeat={6}>
           {fourthRow.map((testimonial, index) => (
             <TestimonialCard
               key={`fourth-${testimonial.name}-${index}`}
@@ -151,11 +173,10 @@ export function Marquee3D({ testimonials }: Marquee3DProps) {
       </div>
 
       {/* Gradient overlays for fade effect */}
-      <div className="from-background pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b"></div>
-      <div className="from-background pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t"></div>
-      <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
-      <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
+      <div className='from-background pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b'></div>
+      <div className='from-background pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t'></div>
+      <div className='from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r'></div>
+      <div className='from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l'></div>
     </div>
   )
 }
-

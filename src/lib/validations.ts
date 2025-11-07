@@ -10,10 +10,7 @@ export const contactFormSchema = z.object({
     .min(2, 'Name must be at least 2 characters')
     .max(100, 'Name must not exceed 100 characters')
     .trim(),
-  email: z
-    .string()
-    .email('Please enter a valid email address')
-    .trim(),
+  email: z.string().email('Please enter a valid email address').trim(),
   message: z
     .string()
     .min(10, 'Message must be at least 10 characters')
@@ -34,10 +31,7 @@ export const contactFormSchema = z.object({
     .trim()
     .optional()
     .or(z.literal('')),
-  service: z
-    .string()
-    .optional()
-    .or(z.literal('')),
+  service: z.string().optional().or(z.literal('')),
   title: z
     .string()
     .max(200, 'Title must not exceed 200 characters')
@@ -47,4 +41,3 @@ export const contactFormSchema = z.object({
 })
 
 export type ContactFormInput = z.infer<typeof contactFormSchema>
-

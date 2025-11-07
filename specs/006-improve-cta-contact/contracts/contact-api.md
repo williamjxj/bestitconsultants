@@ -94,7 +94,8 @@ Content-Type: application/json
 - **phone**: Optional, valid international phone format, trimmed (empty string = undefined)
 - **service**: Optional, must match service category IDs (empty string = undefined)
 - **source**: Optional, must be one of: `homepage`, `services`, `portfolio`, `case-studies`, `about`
-- **cta**: Optional, must be one of: `free-consultation`, `get-quote`, `start-project`, `schedule-call`
+- **cta**: Optional, must be one of: `free-consultation`, `get-quote`, `start-project`,
+  `schedule-call`
 
 ### Server-Side (API Route)
 
@@ -148,6 +149,7 @@ Content-Type: application/json
 **Reply-To**: User's email address
 
 **Content**: HTML email with:
+
 - Contact information (name, email, company, phone)
 - Project details (service, source, cta)
 - Message content
@@ -160,6 +162,7 @@ Content-Type: application/json
 **Reply-To**: Business email
 
 **Content**: HTML email with:
+
 - Thank you message
 - Message summary
 - Next steps (response within 24 hours)
@@ -172,21 +175,20 @@ Content-Type: application/json
 If Supabase is configured, the API route should also:
 
 1. **Save to Database**:
+
    ```typescript
-   await supabase
-     .from('contact_submissions')
-     .insert({
-       name,
-       email,
-       message,
-       company: company || null,
-       phone: phone || null,
-       service: service || null,
-       source: source || null,
-       cta: cta || null,
-       ip_address: request.headers.get('x-forwarded-for') || null,
-       submitted_at: new Date().toISOString()
-     })
+   await supabase.from('contact_submissions').insert({
+     name,
+     email,
+     message,
+     company: company || null,
+     phone: phone || null,
+     service: service || null,
+     source: source || null,
+     cta: cta || null,
+     ip_address: request.headers.get('x-forwarded-for') || null,
+     submitted_at: new Date().toISOString(),
+   })
    ```
 
 2. **Handle Database Errors**:
@@ -250,8 +252,8 @@ Consider implementing rate limiting to prevent spam:
 ## Changelog
 
 ### v1.0 (2025-01-27)
+
 - Initial API contract
 - Support for required and optional fields
 - Email notifications via Resend
 - Optional Supabase integration documented
-

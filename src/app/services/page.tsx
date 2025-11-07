@@ -39,7 +39,10 @@ import { ServicesHero } from '@/components/ui/hero-variants'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 // Icon mapping for industries
-const industryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+const industryIcons: Record<
+  string,
+  React.ComponentType<{ className?: string }>
+> = {
   Landmark,
   Heart,
   ShoppingCart,
@@ -1097,7 +1100,14 @@ const ServicesPage = () => {
                     <div>
                       <div className='font-medium'>{industry.name}</div>
                       <div className='text-sm text-gray-600'>
-                        {industry.projects} {language === 'en' ? 'projects' : language === 'fr' ? 'projets' : language === 'es' ? 'proyectos' : '项目'}
+                        {industry.projects}{' '}
+                        {language === 'en'
+                          ? 'projects'
+                          : language === 'fr'
+                            ? 'projets'
+                            : language === 'es'
+                              ? 'proyectos'
+                              : '项目'}
                       </div>
                     </div>
                   </motion.div>

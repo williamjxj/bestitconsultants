@@ -16,8 +16,11 @@ import type { Testimonial } from '@/types/testimonial'
 
 export default function AboutPage() {
   const { language, translations } = useLanguage()
-  const [serviceTestimonials, setServiceTestimonials] = useState<Testimonial[]>([])
-  const [isLoadingServiceTestimonials, setIsLoadingServiceTestimonials] = useState(true)
+  const [serviceTestimonials, setServiceTestimonials] = useState<Testimonial[]>(
+    []
+  )
+  const [isLoadingServiceTestimonials, setIsLoadingServiceTestimonials] =
+    useState(true)
   const missionRef = useRef<HTMLDivElement>(null)
   const visionRef = useRef<HTMLDivElement>(null)
   const missionImageRef = useRef<HTMLDivElement>(null)
@@ -415,16 +418,17 @@ export default function AboutPage() {
             {/* Combine all testimonials for 3D marquee */}
             {(() => {
               // Map translations testimonials to unified format
-              const translationTestimonials = translations.testimonials.list.map((t) => ({
-                name: t.name,
-                position: t.position,
-                company: t.company,
-                content: t.content,
-                avatar: t.avatar || getProfessionalAvatarUrl(t.name),
-              }))
+              const translationTestimonials =
+                translations.testimonials.list.map(t => ({
+                  name: t.name,
+                  position: t.position,
+                  company: t.company,
+                  content: t.content,
+                  avatar: t.avatar || getProfessionalAvatarUrl(t.name),
+                }))
 
               // Map service testimonials to unified format
-              const serviceTestimonialsMapped = serviceTestimonials.map((t) => ({
+              const serviceTestimonialsMapped = serviceTestimonials.map(t => ({
                 name: t.author,
                 position: t.title,
                 company: t.company || undefined,
@@ -433,9 +437,15 @@ export default function AboutPage() {
               }))
 
               // Combine all testimonials
-              const allTestimonials = [...translationTestimonials, ...serviceTestimonialsMapped]
+              const allTestimonials = [
+                ...translationTestimonials,
+                ...serviceTestimonialsMapped,
+              ]
 
-              if (allTestimonials.length === 0 && isLoadingServiceTestimonials) {
+              if (
+                allTestimonials.length === 0 &&
+                isLoadingServiceTestimonials
+              ) {
                 return (
                   <div className='flex items-center justify-center h-96'>
                     <div className='text-gray-500'>Loading testimonials...</div>

@@ -27,10 +27,7 @@ export default function ServicesSummary() {
         </div>
 
         <div className='text-center'>
-          <Link
-            href='/services'
-            className='btn-primary inline-block'
-          >
+          <Link href='/services' className='btn-primary inline-block'>
             {translations.servicesSummary.seeAllServices}
           </Link>
         </div>

@@ -30,10 +30,7 @@ export default function PortfolioPreview() {
         </div>
 
         <div className='text-center'>
-          <Link
-            href='/portfolio'
-            className='btn-primary inline-block'
-          >
+          <Link href='/portfolio' className='btn-primary inline-block'>
             {translations.portfolioPreview.allProjects}
           </Link>
         </div>

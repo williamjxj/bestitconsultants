@@ -11,20 +11,21 @@ Represents a contact form submission from a user.
 
 **Fields**:
 
-| Field | Type | Required | Validation | Description |
-|-------|------|----------|------------|-------------|
-| `name` | `string` | Yes | min: 2, max: 100 | User's full name |
-| `email` | `string` | Yes | valid email format | User's email address |
-| `message` | `string` | Yes | min: 10, max: 2000 | User's inquiry message |
-| `company` | `string` | No | max: 100 | Company name (optional) |
-| `phone` | `string` | No | valid phone format | Phone number (optional, international format) |
-| `service` | `string` | No | enum: service options | Service interest category (optional) |
-| `source` | `string` | No | enum: cta sources | Where the form was accessed from (URL param) |
-| `cta` | `string` | No | enum: cta types | Which CTA button was clicked (URL param) |
-| `submittedAt` | `Date` | Yes | - | Timestamp of submission (server-side) |
-| `ipAddress` | `string` | No | - | User's IP address (server-side, optional) |
+| Field         | Type     | Required | Validation            | Description                                   |
+| ------------- | -------- | -------- | --------------------- | --------------------------------------------- |
+| `name`        | `string` | Yes      | min: 2, max: 100      | User's full name                              |
+| `email`       | `string` | Yes      | valid email format    | User's email address                          |
+| `message`     | `string` | Yes      | min: 10, max: 2000    | User's inquiry message                        |
+| `company`     | `string` | No       | max: 100              | Company name (optional)                       |
+| `phone`       | `string` | No       | valid phone format    | Phone number (optional, international format) |
+| `service`     | `string` | No       | enum: service options | Service interest category (optional)          |
+| `source`      | `string` | No       | enum: cta sources     | Where the form was accessed from (URL param)  |
+| `cta`         | `string` | No       | enum: cta types       | Which CTA button was clicked (URL param)      |
+| `submittedAt` | `Date`   | Yes      | -                     | Timestamp of submission (server-side)         |
+| `ipAddress`   | `string` | No       | -                     | User's IP address (server-side, optional)     |
 
 **Validation Rules**:
+
 - Name must be at least 2 characters and not exceed 100 characters
 - Email must be valid email format (RFC 5322 compliant)
 - Message must be at least 10 characters (to avoid spam) and not exceed 2000 characters
@@ -33,6 +34,7 @@ Represents a contact form submission from a user.
 - All fields are trimmed (whitespace removed) before validation
 
 **State Transitions**:
+
 1. **Draft** → Form is being filled out (client-side only)
 2. **Validating** → Form submission initiated, validation in progress
 3. **Submitting** → Form data sent to API, awaiting response
@@ -47,14 +49,15 @@ Represents URL search parameters passed from CTA buttons to contact form.
 
 **Fields**:
 
-| Field | Type | Required | Description | Example |
-|-------|------|----------|-------------|---------|
-| `source` | `string` | No | Page where CTA was clicked | `homepage`, `services`, `portfolio`, `case-studies` |
-| `service` | `string` | No | Service category identifier | `ai-ml`, `web-dev`, `mobile`, `cloud`, `consulting` |
-| `cta` | `string` | No | CTA button identifier | `free-consultation`, `get-quote`, `start-project` |
-| `message` | `string` | No | Pre-filled message template | Pre-written inquiry text |
+| Field     | Type     | Required | Description                 | Example                                             |
+| --------- | -------- | -------- | --------------------------- | --------------------------------------------------- |
+| `source`  | `string` | No       | Page where CTA was clicked  | `homepage`, `services`, `portfolio`, `case-studies` |
+| `service` | `string` | No       | Service category identifier | `ai-ml`, `web-dev`, `mobile`, `cloud`, `consulting` |
+| `cta`     | `string` | No       | CTA button identifier       | `free-consultation`, `get-quote`, `start-project`   |
+| `message` | `string` | No       | Pre-filled message template | Pre-written inquiry text                            |
 
 **URL Format**:
+
 ```
 /contact?source=homepage&service=ai-ml&cta=free-consultation
 /contact?source=services&service=web-dev
@@ -62,6 +65,7 @@ Represents URL search parameters passed from CTA buttons to contact form.
 ```
 
 **Validation**:
+
 - `source` must be one of: `homepage`, `services`, `portfolio`, `case-studies`, `about`
 - `service` must match service category IDs from `serviceCategories.ts`
 - `cta` must be one of: `free-consultation`, `get-quote`, `start-project`, `schedule-call`
@@ -76,6 +80,7 @@ Service categories that can be pre-filled in contact form.
 **Source**: `src/data/serviceCategories.ts`
 
 **Categories** (from existing data):
+
 - AI & Machine Learning
 - Web Development
 - Mobile Development
@@ -84,6 +89,7 @@ Service categories that can be pre-filled in contact form.
 - Consulting
 
 **Mapping**:
+
 - Service category `id` maps to `service` URL parameter
 - Service category `name` displays in form dropdown
 
@@ -126,10 +132,12 @@ CREATE INDEX idx_contact_submissions_source ON contact_submissions(source);
 ```
 
 **Notes**:
+
 - `id`: UUID for unique identification
 - `submitted_at`: When form was submitted
 - `created_at`: When record was created (same as submitted_at for new records)
-- Indexes on `email` (for duplicate detection), `submitted_at` (for sorting), `source` (for analytics)
+- Indexes on `email` (for duplicate detection), `submitted_at` (for sorting), `source` (for
+  analytics)
 
 ---
 
@@ -161,12 +169,7 @@ export interface ContactFormSubmission extends ContactFormData {
   ipAddress?: string
 }
 
-export type ContactFormStatus = 
-  | 'draft'
-  | 'validating'
-  | 'submitting'
-  | 'success'
-  | 'error'
+export type ContactFormStatus = 'draft' | 'validating' | 'submitting' | 'success' | 'error'
 ```
 
 ---
@@ -184,10 +187,7 @@ export const contactFormSchema = z.object({
     .min(2, 'Name must be at least 2 characters')
     .max(100, 'Name must not exceed 100 characters')
     .trim(),
-  email: z
-    .string()
-    .email('Please enter a valid email address')
-    .trim(),
+  email: z.string().email('Please enter a valid email address').trim(),
   message: z
     .string()
     .min(10, 'Message must be at least 10 characters')
@@ -208,10 +208,7 @@ export const contactFormSchema = z.object({
     .trim()
     .optional()
     .or(z.literal('')),
-  service: z
-    .string()
-    .optional()
-    .or(z.literal('')),
+  service: z.string().optional().or(z.literal('')),
 })
 
 export type ContactFormInput = z.infer<typeof contactFormSchema>
@@ -255,4 +252,3 @@ export type ContactFormInput = z.infer<typeof contactFormSchema>
 4. **Very long messages**: Truncate to 2000 characters before validation
 5. **Special characters**: Properly encode/decode URL parameters
 6. **Empty optional fields**: Convert empty strings to `undefined` before submission
-

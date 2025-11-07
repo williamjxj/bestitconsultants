@@ -212,137 +212,150 @@ export default function ContactPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                  <Suspense
-                    fallback={
-                      <div className='flex items-center justify-center py-8'>
-                        <div className='text-muted-foreground'>
-                          Loading form...
-                        </div>
-                      </div>
-                    }
-                  >
-                    <ContactForm />
-                  </Suspense>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Contact Information */}
-            <div className='space-y-8'>
-              {/* Contact Details */}
-              <Card className='border-0 shadow-xl bg-white/50 backdrop-blur-sm'>
-                <CardHeader>
-                  <CardTitle>{translations.contact.info.title}</CardTitle>
-                </CardHeader>
-                <CardContent className='space-y-6'>
-                  {translations.contact.info.details
-                    .filter(
-                      detail =>
-                        !(
-                          typeof detail?.label === 'string' &&
-                          detail.label.toLowerCase().includes('address')
-                        )
-                    )
-                    .map((detail, index) => {
-                      // Check if this detail should be displayed inline (phone, email, website)
-                      const isInline =
-                        detail.label?.toLowerCase() === 'phone' ||
-                        detail.label?.toLowerCase() === 'email' ||
-                        detail.label?.toLowerCase() === 'website'
-
-                      // Check if value is an array (for multiple emails)
-                      const isEmailArray =
-                        detail.label?.toLowerCase() === 'email' &&
-                        Array.isArray(detail.value)
-
-                      return (
-                        <div key={index} className='flex items-start space-x-3'>
-                          <div className='text-2xl'>{detail.icon}</div>
-                          <div>
-                            {isEmailArray ? (
-                              <>
-                                <div className='font-medium mb-1'>{detail.label}</div>
-                                <div className='text-gray-600 text-sm space-y-1'>
-                                  {(detail.value as string[]).map((email: string, emailIndex: number) => (
-                                    <div key={emailIndex}>{email}</div>
-                                  ))}
-                                </div>
-                              </>
-                            ) : isInline ? (
-                              <div className='text-gray-600 text-sm'>
-                                <span className='font-medium'>{detail.label}: </span>
-                                {detail.value}
-                              </div>
-                            ) : (
-                              <>
-                                <div className='font-medium'>{detail.label}</div>
-                                <div className='text-gray-600 text-sm'>
-                                  {detail.value}
-                                </div>
-                              </>
-                            )}
+                    <Suspense
+                      fallback={
+                        <div className='flex items-center justify-center py-8'>
+                          <div className='text-muted-foreground'>
+                            Loading form...
                           </div>
                         </div>
-                      )
-                    })}
+                      }
+                    >
+                      <ContactForm />
+                    </Suspense>
+                  </CardContent>
+                </Card>
+              </div>
 
-                  {/* Quick Contact (merged) */}
-                  <div className='pt-4 border-t border-gray-200'>
-                    <h4 className='font-semibold mb-3'>
-                      {translations.contact.quick.title}
-                    </h4>
-                    <p className='text-sm text-gray-600 mb-4'>
-                      {translations.contact.quick.subtitle}
-                    </p>
-                    <div className='grid grid-cols-1 gap-3'>
-                      {translations.contact.quick.options.map(
-                        (option, index) => (
+              {/* Contact Information */}
+              <div className='space-y-8'>
+                {/* Contact Details */}
+                <Card className='border-0 shadow-xl bg-white/50 backdrop-blur-sm'>
+                  <CardHeader>
+                    <CardTitle>{translations.contact.info.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className='space-y-6'>
+                    {translations.contact.info.details
+                      .filter(
+                        detail =>
+                          !(
+                            typeof detail?.label === 'string' &&
+                            detail.label.toLowerCase().includes('address')
+                          )
+                      )
+                      .map((detail, index) => {
+                        // Check if this detail should be displayed inline (phone, email, website)
+                        const isInline =
+                          detail.label?.toLowerCase() === 'phone' ||
+                          detail.label?.toLowerCase() === 'email' ||
+                          detail.label?.toLowerCase() === 'website'
+
+                        // Check if value is an array (for multiple emails)
+                        const isEmailArray =
+                          detail.label?.toLowerCase() === 'email' &&
+                          Array.isArray(detail.value)
+
+                        return (
+                          <div
+                            key={index}
+                            className='flex items-start space-x-3'
+                          >
+                            <div className='text-2xl'>{detail.icon}</div>
+                            <div>
+                              {isEmailArray ? (
+                                <>
+                                  <div className='font-medium mb-1'>
+                                    {detail.label}
+                                  </div>
+                                  <div className='text-gray-600 text-sm space-y-1'>
+                                    {(detail.value as string[]).map(
+                                      (email: string, emailIndex: number) => (
+                                        <div key={emailIndex}>{email}</div>
+                                      )
+                                    )}
+                                  </div>
+                                </>
+                              ) : isInline ? (
+                                <div className='text-gray-600 text-sm'>
+                                  <span className='font-medium'>
+                                    {detail.label}:{' '}
+                                  </span>
+                                  {detail.value}
+                                </div>
+                              ) : (
+                                <>
+                                  <div className='font-medium'>
+                                    {detail.label}
+                                  </div>
+                                  <div className='text-gray-600 text-sm'>
+                                    {detail.value}
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        )
+                      })}
+
+                    {/* Quick Contact (merged) */}
+                    <div className='pt-4 border-t border-gray-200'>
+                      <h4 className='font-semibold mb-3'>
+                        {translations.contact.quick.title}
+                      </h4>
+                      <p className='text-sm text-gray-600 mb-4'>
+                        {translations.contact.quick.subtitle}
+                      </p>
+                      <div className='grid grid-cols-1 gap-3'>
+                        {translations.contact.quick.options.map(
+                          (option, index) => (
+                            <Button
+                              key={index}
+                              variant='outline'
+                              className='w-full justify-start'
+                              asChild
+                            >
+                              <a href={option.link}>
+                                <span className='mr-2'>{option.icon}</span>
+                                {option.label}
+                              </a>
+                            </Button>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Social Media */}
+                <Card className='border-0 shadow-xl bg-white/50 backdrop-blur-sm'>
+                  <CardHeader>
+                    <CardTitle>{translations.contact.social.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className='grid grid-cols-2 gap-4'>
+                      {translations.contact.social.links.map(
+                        (social, index) => (
                           <Button
                             key={index}
                             variant='outline'
-                            className='w-full justify-start'
+                            className='justify-start'
                             asChild
                           >
-                            <a href={option.link}>
-                              <span className='mr-2'>{option.icon}</span>
-                              {option.label}
+                            <a
+                              href={social.url}
+                              target='_blank'
+                              rel='noopener noreferrer'
+                            >
+                              {renderSocialIcon(social.platform)}
+                              {social.platform}
                             </a>
                           </Button>
                         )
                       )}
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Social Media */}
-              <Card className='border-0 shadow-xl bg-white/50 backdrop-blur-sm'>
-                <CardHeader>
-                  <CardTitle>{translations.contact.social.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className='grid grid-cols-2 gap-4'>
-                    {translations.contact.social.links.map((social, index) => (
-                      <Button
-                        key={index}
-                        variant='outline'
-                        className='justify-start'
-                        asChild
-                      >
-                        <a
-                          href={social.url}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                        >
-                          {renderSocialIcon(social.platform)}
-                          {social.platform}
-                        </a>
-                      </Button>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
 

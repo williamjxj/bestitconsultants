@@ -189,7 +189,8 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
                   whileTap={{ scale: 0.95 }}
                   className='relative px-8 py-4 rounded-2xl font-semibold text-lg text-white transition-all duration-300 shadow-xl hover:shadow-2xl overflow-hidden group'
                   style={{
-                    background: 'linear-gradient(135deg, #B8860B 0%, #CD853F 20%, #D4AF37 40%, #FFD700 50%, #D4AF37 60%, #CD853F 80%, #B8860B 100%)',
+                    background:
+                      'linear-gradient(135deg, #B8860B 0%, #CD853F 20%, #D4AF37 40%, #FFD700 50%, #D4AF37 60%, #CD853F 80%, #B8860B 100%)',
                     backgroundSize: '200% 200%',
                     animation: 'metallicShine 4s ease-in-out infinite',
                   }}
@@ -199,7 +200,8 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
                   <div
                     className='absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500'
                     style={{
-                      background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent)',
+                      background:
+                        'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent)',
                       backgroundSize: '200% 100%',
                       animation: 'shimmer 2s infinite',
                     }}

@@ -34,7 +34,7 @@ export function AboutHero(props: Partial<HeroSectionProps>) {
 // Services Page Hero
 export function ServicesHero(props: Partial<HeroSectionProps>) {
   return (
-    <div className="relative">
+    <div className='relative'>
       <HeroSection
         variant='default'
         background='gradient'
@@ -43,8 +43,8 @@ export function ServicesHero(props: Partial<HeroSectionProps>) {
         textAlign='center'
         {...props}
       />
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
-        <Globe className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+      <div className='absolute inset-0 overflow-hidden pointer-events-none opacity-30'>
+        <Globe className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' />
       </div>
     </div>
   )

@@ -133,7 +133,8 @@ export default function CaseStudiesPage() {
   }
 
   const currentContent =
-    caseStudiesContent[language as keyof typeof caseStudiesContent] || caseStudiesContent.en
+    caseStudiesContent[language as keyof typeof caseStudiesContent] ||
+    caseStudiesContent.en
 
   return (
     <div>

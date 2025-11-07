@@ -5,7 +5,8 @@
 
 ## Overview
 
-This guide provides step-by-step instructions to implement the redesigned contact form with shadcn/ui, simplified fields, CTA integration, and optional Supabase persistence.
+This guide provides step-by-step instructions to implement the redesigned contact form with
+shadcn/ui, simplified fields, CTA integration, and optional Supabase persistence.
 
 ## Prerequisites
 
@@ -31,6 +32,7 @@ npx shadcn@latest add form
 ```
 
 This will:
+
 - Install the Form component to `src/components/ui/form.tsx`
 - Install required dependencies (if not already installed)
 
@@ -78,10 +80,7 @@ export const contactFormSchema = z.object({
     .min(2, 'Name must be at least 2 characters')
     .max(100, 'Name must not exceed 100 characters')
     .trim(),
-  email: z
-    .string()
-    .email('Please enter a valid email address')
-    .trim(),
+  email: z.string().email('Please enter a valid email address').trim(),
   message: z
     .string()
     .min(10, 'Message must be at least 10 characters')
@@ -102,10 +101,7 @@ export const contactFormSchema = z.object({
     .trim()
     .optional()
     .or(z.literal('')),
-  service: z
-    .string()
-    .optional()
-    .or(z.literal('')),
+  service: z.string().optional().or(z.literal('')),
 })
 
 export type ContactFormInput = z.infer<typeof contactFormSchema>
@@ -116,6 +112,7 @@ export type ContactFormInput = z.infer<typeof contactFormSchema>
 Create `src/components/contact/ContactForm.tsx`:
 
 **Key Features**:
+
 - Uses shadcn/ui Form component with React Hook Form
 - Reads URL search parameters for auto-filling
 - Simplified field structure (required: name, email, message)
@@ -186,6 +183,7 @@ Update `src/app/contact/page.tsx`:
 4. Update translations if needed
 
 **Changes**:
+
 - Import `ContactForm` component
 - Replace form JSX with `<ContactForm />`
 - Remove newsletter-related code
@@ -195,6 +193,7 @@ Update `src/app/contact/page.tsx`:
 Update CTA buttons across the site to include URL parameters:
 
 **Homepage** (`src/app/page.tsx`):
+
 ```typescript
 <Button asChild>
   <a href="/contact?source=homepage&cta=free-consultation">
@@ -204,6 +203,7 @@ Update CTA buttons across the site to include URL parameters:
 ```
 
 **Services Page** (`src/app/services/page.tsx`):
+
 ```typescript
 <Button asChild>
   <a href="/contact?source=services&service=ai-ml&cta=free-consultation">
@@ -219,11 +219,13 @@ Update CTA buttons across the site to include URL parameters:
 If Supabase is configured, update `src/app/api/contact/route.ts`:
 
 1. Import Supabase client:
+
    ```typescript
    import { createClient } from '@supabase/supabase-js'
    ```
 
 2. Create Supabase client (if not exists):
+
    ```typescript
    const supabase = createClient(
      process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -232,20 +234,19 @@ If Supabase is configured, update `src/app/api/contact/route.ts`:
    ```
 
 3. Save submission to database after email success:
+
    ```typescript
-   await supabase
-     .from('contact_submissions')
-     .insert({
-       name,
-       email,
-       message,
-       company: company || null,
-       phone: phone || null,
-       service: service || null,
-       source: source || null,
-       cta: cta || null,
-       submitted_at: new Date().toISOString()
-     })
+   await supabase.from('contact_submissions').insert({
+     name,
+     email,
+     message,
+     company: company || null,
+     phone: phone || null,
+     service: service || null,
+     source: source || null,
+     cta: cta || null,
+     submitted_at: new Date().toISOString(),
+   })
    ```
 
 4. Handle database errors gracefully (don't fail email if DB fails)
@@ -255,6 +256,7 @@ If Supabase is configured, update `src/app/api/contact/route.ts`:
 Add form translations to `src/lib/translations.ts`:
 
 Update `translations.contact.form` with:
+
 - Field labels
 - Placeholders
 - Error messages
@@ -329,12 +331,14 @@ If implementing Supabase persistence:
    - Get project URL and service role key
 
 2. **Add Environment Variables**:
+
    ```env
    NEXT_PUBLIC_SUPABASE_URL=your-project-url
    SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
    ```
 
 3. **Create Database Table**:
+
    ```sql
    CREATE TABLE contact_submissions (
      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -353,12 +357,13 @@ If implementing Supabase persistence:
    ```
 
 4. **Install Supabase Client**:
+
    ```bash
    npm install @supabase/supabase-js
    ```
 
-5. **Create Supabase Client Utility**:
-   Create `src/lib/supabase.ts`:
+5. **Create Supabase Client Utility**: Create `src/lib/supabase.ts`:
+
    ```typescript
    import { createClient } from '@supabase/supabase-js'
 
@@ -386,7 +391,8 @@ If implementing Supabase persistence:
 
 **Issue**: Form doesn't pre-fill from URL parameters
 
-**Solution**: 
+**Solution**:
+
 - Ensure `ContactForm` is wrapped in `Suspense` (Next.js 15 requirement)
 - Check that `useSearchParams()` is called at component level
 - Verify URL format: `/contact?source=homepage&service=ai-ml`
@@ -396,6 +402,7 @@ If implementing Supabase persistence:
 **Issue**: Form submits even with invalid data
 
 **Solution**:
+
 - Check Zod schema is correctly imported
 - Verify `zodResolver` is properly configured
 - Ensure `FormField` components are used (not plain inputs)
@@ -405,6 +412,7 @@ If implementing Supabase persistence:
 **Issue**: Form submission succeeds but no email received
 
 **Solution**:
+
 - Check `RESEND_API_KEY` environment variable
 - Verify `BUSINESS_EMAIL` is set
 - Check Resend dashboard for email logs
@@ -426,4 +434,3 @@ After implementation:
 - [React Hook Form Documentation](https://react-hook-form.com/)
 - [Zod Documentation](https://zod.dev/)
 - [Next.js useSearchParams](https://nextjs.org/docs/app/api-reference/functions/use-search-params)
-

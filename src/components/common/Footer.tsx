@@ -64,16 +64,14 @@ export default function Footer() {
       streetAddress: '10355 152 St',
       postalCode: 'V3R 7C1',
     },
-    sameAs: socialLinks.map((link) => link.url),
+    sameAs: socialLinks.map(link => link.url),
   }
 
   // Set website URL on client side only to avoid hydration mismatch
   useEffect(() => {
     setIsClient(true)
     setWebsiteUrl(
-      typeof window !== 'undefined'
-        ? window.location.origin
-        : baseUrl
+      typeof window !== 'undefined' ? window.location.origin : baseUrl
     )
   }, [baseUrl])
 
@@ -104,7 +102,11 @@ export default function Footer() {
             <p className='text-sm text-gray-400 mb-4'>
               {translations.footer.companyTagline}
             </p>
-            <div className='flex flex-wrap gap-2' role='list' aria-label='Service tags'>
+            <div
+              className='flex flex-wrap gap-2'
+              role='list'
+              aria-label='Service tags'
+            >
               <span
                 className='bg-blue-600/20 text-blue-300 px-2 py-1 rounded text-xs'
                 role='listitem'
@@ -245,9 +247,11 @@ export default function Footer() {
                   className='h-5 w-5 text-blue-400 flex-shrink-0'
                   aria-hidden='true'
                 />
-                <span className='text-sm'>{translations.footer.presentation}</span>
+                <span className='text-sm'>
+                  {translations.footer.presentation}
+                </span>
               </a>
-              {socialLinks.map((link) => {
+              {socialLinks.map(link => {
                 const IconComponent = getSocialIcon(link.platform)
                 if (!IconComponent) return null
 

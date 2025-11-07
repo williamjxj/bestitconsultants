@@ -483,7 +483,7 @@ function GSAPFloatingShapes() {
       {shapes.map((shape, index) => (
         <div
           key={index}
-          ref={(el) => {
+          ref={el => {
             shapesRef.current[index] = el
           }}
           className='absolute'

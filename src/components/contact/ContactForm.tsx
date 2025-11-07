@@ -200,9 +200,7 @@ export function ContactForm() {
             name='title'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>
-                  {formTranslations.fields.title.label}
-                </FormLabel>
+                <FormLabel>{formTranslations.fields.title.label}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
@@ -221,9 +219,7 @@ export function ContactForm() {
             name='message'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>
-                  {formTranslations.fields.message.label}
-                </FormLabel>
+                <FormLabel>{formTranslations.fields.message.label}</FormLabel>
                 <FormControl>
                   <Textarea
                     {...field}
@@ -274,7 +270,9 @@ export function ContactForm() {
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder={formTranslations.fields.company.placeholder}
+                        placeholder={
+                          formTranslations.fields.company.placeholder
+                        }
                         disabled={isSubmitting}
                       />
                     </FormControl>
@@ -289,9 +287,7 @@ export function ContactForm() {
                 name='phone'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
-                      {formTranslations.fields.phone.label}
-                    </FormLabel>
+                    <FormLabel>{formTranslations.fields.phone.label}</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -324,7 +320,9 @@ export function ContactForm() {
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue
-                            placeholder={formTranslations.fields.service.placeholder}
+                            placeholder={
+                              formTranslations.fields.service.placeholder
+                            }
                           />
                         </SelectTrigger>
                       </FormControl>
@@ -373,4 +371,3 @@ export function ContactForm() {
     </Form>
   )
 }
-

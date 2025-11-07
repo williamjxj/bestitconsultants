@@ -513,7 +513,7 @@ const TeamPage = () => {
                 </h2>
                 <p className='text-gray-700 leading-relaxed mb-4'>
                   {language === 'en'
-                    ? "Our leadership team brings decades of real-world experience from top-tier companies. Headquartered in Vancouver, Canada with our core development center in Chengdu, China, this strategic positioning combines North American business acumen with Asian technical excellence. We deliver Fortune 500 quality at competitive rates with 24/7 development cycles."
+                    ? 'Our leadership team brings decades of real-world experience from top-tier companies. Headquartered in Vancouver, Canada with our core development center in Chengdu, China, this strategic positioning combines North American business acumen with Asian technical excellence. We deliver Fortune 500 quality at competitive rates with 24/7 development cycles.'
                     : language === 'fr'
                       ? "Notre équipe de direction apporte des décennies d'expérience réelle des meilleures entreprises. Avec un siège stratégique à Vancouver, Canada et notre centre de développement principal à Chengdu, en Chine, ce positionnement stratégique combine le savoir-faire commercial nord-américain avec l'excellence technique asiatique. Nous offrons une qualité Fortune 500 à des tarifs compétitifs avec des cycles de développement 24/7."
                       : language === 'es'

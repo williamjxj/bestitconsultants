@@ -6,16 +6,20 @@
 
 ## Overview
 
-This feature implements a redesigned contact form using shadcn/ui Form component with React Hook Form, simplifies form fields for better UX, removes newsletter subscription, integrates CTA buttons with URL parameters for auto-filling, and optionally adds Supabase persistence.
+This feature implements a redesigned contact form using shadcn/ui Form component with React Hook
+Form, simplifies form fields for better UX, removes newsletter subscription, integrates CTA buttons
+with URL parameters for auto-filling, and optionally adds Supabase persistence.
 
-**MVP Scope**: User Story 3 (Contact Form UX) - Complete form redesign with shadcn/ui, validation, and simplified fields.
+**MVP Scope**: User Story 3 (Contact Form UX) - Complete form redesign with shadcn/ui, validation,
+and simplified fields.
 
 ## Implementation Strategy
 
 - **MVP First**: Start with User Story 3 (Contact Form UX) to deliver immediate value
 - **Incremental Delivery**: Add CTA integration (US2) after form is working
 - **Optional Enhancement**: Supabase integration can be added later if credentials available
-- **Parallel Opportunities**: Type definitions, validation schemas, and translations can be developed in parallel
+- **Parallel Opportunities**: Type definitions, validation schemas, and translations can be
+  developed in parallel
 
 ## Dependencies
 
@@ -27,7 +31,8 @@ This feature implements a redesigned contact form using shadcn/ui Form component
 
 ### Independent Test Criteria
 
-- **US3**: Users can submit contact form with validation feedback, success/error states, and mobile responsiveness
+- **US3**: Users can submit contact form with validation feedback, success/error states, and mobile
+  responsiveness
 - **US2**: CTAs across pages link to contact form with URL parameters that pre-fill form fields
 - **Supabase**: Form submissions are saved to database (if implemented)
 
@@ -55,53 +60,71 @@ This feature implements a redesigned contact form using shadcn/ui Form component
 
 ## Phase 2: Foundational
 
-**Goal**: Create type definitions, validation schemas, and translation structure. These are prerequisites for form implementation.
+**Goal**: Create type definitions, validation schemas, and translation structure. These are
+prerequisites for form implementation.
 
 ### Type Definitions
 
-- [x] T009 [P] Create TypeScript types file at `src/types/contact.ts` with ContactFormData, ContactFormURLParams, ContactFormSubmission, and ContactFormStatus interfaces
+- [x] T009 [P] Create TypeScript types file at `src/types/contact.ts` with ContactFormData,
+      ContactFormURLParams, ContactFormSubmission, and ContactFormStatus interfaces
 
 ### Validation Schema
 
-- [x] T010 [P] Create validation schema file at `src/lib/validations.ts` with contactFormSchema using Zod (name, email, message required; company, phone, service optional)
+- [x] T010 [P] Create validation schema file at `src/lib/validations.ts` with contactFormSchema
+      using Zod (name, email, message required; company, phone, service optional)
 
 ### Translation Updates
 
-- [x] T011 [P] Update translations in `src/lib/translations.ts` to add contact form field labels, placeholders, error messages, and success/error messages for all languages (EN, FR, ES, CN)
+- [x] T011 [P] Update translations in `src/lib/translations.ts` to add contact form field labels,
+      placeholders, error messages, and success/error messages for all languages (EN, FR, ES, CN)
 
 ### Supabase Client (Optional)
 
-- [x] T012 [P] Create Supabase client utility at `src/lib/supabase.ts` if Supabase credentials are available (check for NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY env vars)
+- [x] T012 [P] Create Supabase client utility at `src/lib/supabase.ts` if Supabase credentials are
+      available (check for NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY env vars)
 
 ---
 
 ## Phase 3: User Story 3 - Improved Contact Form User Experience
 
 **Priority**: P1  
-**Goal**: Redesign contact form with shadcn/ui Form component, simplified fields, real-time validation, and improved UX.
+**Goal**: Redesign contact form with shadcn/ui Form component, simplified fields, real-time
+validation, and improved UX.
 
-**Independent Test**: Users can complete contact form with clear guidance, helpful validation, and immediate feedback on submission status.
+**Independent Test**: Users can complete contact form with clear guidance, helpful validation, and
+immediate feedback on submission status.
 
 ### Form Component Development
 
-- [x] T013 [US3] Create ContactForm component at `src/components/contact/ContactForm.tsx` with 'use client' directive
-- [x] T014 [US3] Implement useSearchParams hook in ContactForm to read URL query parameters (source, service, cta, message)
-- [x] T015 [US3] Set up React Hook Form with useForm hook using zodResolver and contactFormSchema in ContactForm
-- [x] T016 [US3] Configure form defaultValues from URL parameters (pre-fill service and message if provided)
-- [x] T017 [US3] Implement required form fields (name, email, message) using shadcn/ui FormField, FormItem, FormLabel, FormControl components
-- [x] T018 [US3] Implement optional form fields (company, phone, service) in collapsible "Tell us more" section
+- [x] T013 [US3] Create ContactForm component at `src/components/contact/ContactForm.tsx` with 'use
+      client' directive
+- [x] T014 [US3] Implement useSearchParams hook in ContactForm to read URL query parameters (source,
+      service, cta, message)
+- [x] T015 [US3] Set up React Hook Form with useForm hook using zodResolver and contactFormSchema in
+      ContactForm
+- [x] T016 [US3] Configure form defaultValues from URL parameters (pre-fill service and message if
+      provided)
+- [x] T017 [US3] Implement required form fields (name, email, message) using shadcn/ui FormField,
+      FormItem, FormLabel, FormControl components
+- [x] T018 [US3] Implement optional form fields (company, phone, service) in collapsible "Tell us
+      more" section
 - [x] T019 [US3] Remove newsletter checkbox field from form
 - [x] T020 [US3] Remove budget and timeline dropdown fields from form
-- [x] T021 [US3] Add FormMessage components for field-level error display with proper ARIA attributes
-- [x] T022 [US3] Implement form submission handler with loading state and form disable during submission
-- [x] T023 [US3] Add success message display after successful submission with expected response timeframe
+- [x] T021 [US3] Add FormMessage components for field-level error display with proper ARIA
+      attributes
+- [x] T022 [US3] Implement form submission handler with loading state and form disable during
+      submission
+- [x] T023 [US3] Add success message display after successful submission with expected response
+      timeframe
 - [x] T024 [US3] Add error message display for submission failures with actionable guidance
 - [x] T025 [US3] Implement form reset on successful submission
-- [x] T026 [US3] Add debouncing to prevent duplicate submissions (disable submit button during submission)
+- [x] T026 [US3] Add debouncing to prevent duplicate submissions (disable submit button during
+      submission)
 
 ### Validation & Error Handling
 
-- [x] T027 [US3] Implement real-time validation feedback (error messages appear within 500ms of user input)
+- [x] T027 [US3] Implement real-time validation feedback (error messages appear within 500ms of user
+      input)
 - [x] T028 [US3] Add email format validation with clear error message
 - [x] T029 [US3] Add required field validation with clear error messages
 - [x] T030 [US3] Add message length validation (min 10, max 2000 characters)
@@ -112,7 +135,8 @@ This feature implements a redesigned contact form using shadcn/ui Form component
 ### Mobile Responsiveness
 
 - [x] T034 [US3] Ensure form fields are properly sized for mobile (320px+ width)
-- [x] T035 [US3] Set appropriate keyboard types (email keyboard for email field, tel for phone field)
+- [x] T035 [US3] Set appropriate keyboard types (email keyboard for email field, tel for phone
+      field)
 - [x] T036 [US3] Verify no horizontal scrolling on mobile devices
 - [x] T037 [US3] Ensure submit button is accessible and properly sized for touch targets
 
@@ -133,7 +157,8 @@ This feature implements a redesigned contact form using shadcn/ui Form component
 ### Contact Page Integration
 
 - [x] T046 [US3] Update contact page at `src/app/contact/page.tsx` to use new ContactForm component
-- [x] T047 [US3] Remove old form implementation from contact page (keep hero section and contact info sections)
+- [x] T047 [US3] Remove old form implementation from contact page (keep hero section and contact
+      info sections)
 - [x] T048 [US3] Remove newsletter-related code from contact page
 - [x] T049 [US3] Wrap ContactForm in Suspense boundary for useSearchParams (Next.js 15 requirement)
 
@@ -142,34 +167,46 @@ This feature implements a redesigned contact form using shadcn/ui Form component
 ## Phase 4: User Story 2 - Strategic CTA Placement and Messaging
 
 **Priority**: P1  
-**Goal**: Integrate CTA buttons with contact form by adding URL parameters that pre-fill form fields.
+**Goal**: Integrate CTA buttons with contact form by adding URL parameters that pre-fill form
+fields.
 
-**Independent Test**: CTAs across pages link to contact form with URL parameters; form fields auto-populate when URL params are present.
+**Independent Test**: CTAs across pages link to contact form with URL parameters; form fields
+auto-populate when URL params are present.
 
 ### Homepage CTA Updates
 
-- [x] T050 [US2] Update homepage hero CTA in `src/app/page.tsx` to include URL parameters: `/contact?source=homepage&cta=free-consultation`
-- [x] T051 [US2] Update homepage carousel CTAs in `src/app/page.tsx` to include URL parameters with appropriate source and cta values
+- [x] T050 [US2] Update homepage hero CTA in `src/app/page.tsx` to include URL parameters:
+      `/contact?source=homepage&cta=free-consultation`
+- [x] T051 [US2] Update homepage carousel CTAs in `src/app/page.tsx` to include URL parameters with
+      appropriate source and cta values
 
 ### Services Page CTA Updates
 
-- [x] T052 [US2] Update services page CTAs in `src/app/services/page.tsx` to include URL parameters: `/contact?source=services&service={serviceId}&cta=free-consultation`
-- [x] T053 [US2] Map service categories to service IDs in CTA links (use service category IDs from serviceCategories.ts)
+- [x] T052 [US2] Update services page CTAs in `src/app/services/page.tsx` to include URL parameters:
+      `/contact?source=services&service={serviceId}&cta=free-consultation`
+- [x] T053 [US2] Map service categories to service IDs in CTA links (use service category IDs from
+      serviceCategories.ts)
 
 ### Portfolio/Case Studies CTA Updates
 
-- [x] T054 [US2] Update portfolio page CTAs in `src/app/portfolio/page.tsx` to include URL parameters: `/contact?source=portfolio&cta=get-quote`
-- [x] T055 [US2] Update case studies page CTAs in `src/app/case-studies/page.tsx` to include URL parameters: `/contact?source=case-studies&cta=start-project`
+- [x] T054 [US2] Update portfolio page CTAs in `src/app/portfolio/page.tsx` to include URL
+      parameters: `/contact?source=portfolio&cta=get-quote`
+- [x] T055 [US2] Update case studies page CTAs in `src/app/case-studies/page.tsx` to include URL
+      parameters: `/contact?source=case-studies&cta=start-project`
 
 ### Content Sections CTA Updates
 
-- [x] T056 [US2] Update content sections CTAs in `src/data/contentSections.ts` to include URL parameters in ctaLink fields
-- [x] T057 [US2] Update hero section CTAs in `src/components/ui/hero-variants.tsx` if needed to support URL parameters
+- [x] T056 [US2] Update content sections CTAs in `src/data/contentSections.ts` to include URL
+      parameters in ctaLink fields
+- [x] T057 [US2] Update hero section CTAs in `src/components/ui/hero-variants.tsx` if needed to
+      support URL parameters
 
 ### CTA URL Parameter Validation
 
-- [ ] T058 [US2] Verify ContactForm correctly handles all valid source values (homepage, services, portfolio, case-studies, about)
-- [ ] T059 [US2] Verify ContactForm correctly handles all valid cta values (free-consultation, get-quote, start-project, schedule-call)
+- [ ] T058 [US2] Verify ContactForm correctly handles all valid source values (homepage, services,
+      portfolio, case-studies, about)
+- [ ] T059 [US2] Verify ContactForm correctly handles all valid cta values (free-consultation,
+      get-quote, start-project, schedule-call)
 - [ ] T060 [US2] Verify ContactForm ignores invalid URL parameters and uses defaults
 
 ---
@@ -179,16 +216,20 @@ This feature implements a redesigned contact form using shadcn/ui Form component
 **Priority**: Optional  
 **Goal**: Add Supabase database persistence for contact form submissions.
 
-**Independent Test**: Form submissions are saved to Supabase contact_submissions table; submissions can be queried.
+**Independent Test**: Form submissions are saved to Supabase contact_submissions table; submissions
+can be queried.
 
 ### Database Schema
 
-- [x] T061 Apply Supabase migration to create contact_submissions table with schema from data-model.md (id, name, email, message, company, phone, service, source, cta, ip_address, submitted_at, created_at)
+- [x] T061 Apply Supabase migration to create contact_submissions table with schema from
+      data-model.md (id, name, email, message, company, phone, service, source, cta, ip_address,
+      submitted_at, created_at)
 - [x] T062 Create indexes on contact_submissions table (email, submitted_at DESC, source)
 
 ### API Route Updates
 
-- [x] T063 Update contact API route at `src/app/api/contact/route.ts` to import Supabase client from `src/lib/supabase.ts`
+- [x] T063 Update contact API route at `src/app/api/contact/route.ts` to import Supabase client from
+      `src/lib/supabase.ts`
 - [x] T064 Add Supabase insert operation after successful email send in contact API route
 - [x] T065 Handle database errors gracefully (log error but don't fail email submission)
 - [x] T066 Extract IP address from request headers (x-forwarded-for) for database storage
@@ -234,7 +275,8 @@ This feature implements a redesigned contact form using shadcn/ui Form component
 
 - [ ] T089 Update README.md if needed with new form dependencies
 - [ ] T090 Document environment variables needed for Supabase (if implemented)
-- [ ] T091 Verify all code follows project constitution (Next.js App Router, TypeScript strict, shadcn/ui, Tailwind CSS only)
+- [ ] T091 Verify all code follows project constitution (Next.js App Router, TypeScript strict,
+      shadcn/ui, Tailwind CSS only)
 
 ### Build Verification
 
@@ -252,7 +294,7 @@ This feature implements a redesigned contact form using shadcn/ui Form component
 # Terminal 1
 T009 - Create types/contact.ts
 
-# Terminal 2  
+# Terminal 2
 T010 - Create lib/validations.ts
 
 # Terminal 3
@@ -261,7 +303,8 @@ T011 - Update translations.ts
 
 ### Example 2: Form Component Development (Sequential within component)
 
-Tasks T013-T049 should be completed sequentially as they build on each other within the ContactForm component.
+Tasks T013-T049 should be completed sequentially as they build on each other within the ContactForm
+component.
 
 ### Example 3: CTA Updates (Can run in parallel after form is complete)
 
@@ -294,6 +337,7 @@ T056, T057 - Content sections CTAs
 ### MVP Scope (Minimum Viable Product)
 
 Complete Phases 1-3 for initial delivery:
+
 - Setup (T001-T008)
 - Foundational (T009-T012)
 - User Story 3 - Contact Form (T013-T049)
@@ -310,10 +354,10 @@ Complete Phases 1-3 for initial delivery:
 
 ## Notes
 
-- All tasks follow strict checklist format with Task ID, optional [P] marker, optional [Story] label, and file paths
+- All tasks follow strict checklist format with Task ID, optional [P] marker, optional [Story]
+  label, and file paths
 - Tasks marked with [P] can be executed in parallel with other [P] tasks
 - Tasks without [P] should be completed sequentially
 - User Story labels ([US2], [US3]) map to user stories from spec.md
 - File paths are absolute or relative to project root
 - Supabase integration (Phase 5) is optional and can be skipped if credentials are not available
-

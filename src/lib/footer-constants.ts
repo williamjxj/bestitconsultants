@@ -17,4 +17,3 @@ export function getWebsiteUrl(): string {
   }
   return DEFAULT_WEBSITE_URL
 }
-
