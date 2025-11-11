@@ -3,34 +3,37 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-import { OptimizedImage } from '@/components/ui/optimized-image'
+import { VideoWithPoster } from '@/components/ui/video-with-poster'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { getImageForContext } from '@/services/image-mapping'
+import { getR2BaseUrl } from '@/lib/utils'
 
 export default function AboutSummary() {
   const { translations } = useLanguage()
+  const R2_BASE_URL = getR2BaseUrl()
 
   return (
     <section className='py-20 bg-gray-50'>
       <div className='max-w-7xl mx-auto px-4'>
         <div className='grid md:grid-cols-2 gap-12 items-center'>
-          {/* Image */}
+          {/* Video with poster */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className='relative p-0 m-0'
           >
-            <OptimizedImage
-              src={getImageForContext('about')}
+            <VideoWithPoster
+              videoSrc={`${R2_BASE_URL}/Best IT Consultants.mov`}
+              posterSrc={`${R2_BASE_URL}/Best IT Consultants.jpg`}
               alt='Professional team collaboration in modern office environment with diverse team members working together'
               width={612}
-              height={612}
               className='rounded-lg shadow-lg'
-              animation={{
-                type: 'slide',
-                duration: 0.8,
-              }}
+              autoplay={true}
+              loop={true}
+              muted={true}
+              playsInline={true}
+              lazy={true}
             />
           </motion.div>
 

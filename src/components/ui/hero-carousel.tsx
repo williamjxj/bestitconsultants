@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import React, { useState, useEffect } from 'react'
 
 import { AnimatedTitle } from './animated-title'
-import { OptimizedImage } from './optimized-image'
+import { PictureImage } from './picture-image'
 
 export interface HeroCarouselItem {
   id: string
@@ -71,6 +71,49 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
     prevIndexRef.current = currentIndex
   }, [currentIndex, items])
 
+  // Preload next and previous images to prevent white flash
+  useEffect(() => {
+    if (!items || items.length <= 1) return
+
+    const preloadImage = (srcBase: string) => {
+      const avifLink = document.createElement('link')
+      avifLink.rel = 'preload'
+      avifLink.as = 'image'
+      avifLink.href = `${srcBase}.avif`
+      avifLink.type = 'image/avif'
+      document.head.appendChild(avifLink)
+
+      const webpLink = document.createElement('link')
+      webpLink.rel = 'preload'
+      webpLink.as = 'image'
+      webpLink.href = `${srcBase}.webp`
+      webpLink.type = 'image/webp'
+      document.head.appendChild(webpLink)
+
+      return () => {
+        if (document.head.contains(avifLink)) {
+          document.head.removeChild(avifLink)
+        }
+        if (document.head.contains(webpLink)) {
+          document.head.removeChild(webpLink)
+        }
+      }
+    }
+
+    // Preload next image
+    const nextIndex = (currentIndex + 1) % items.length
+    const nextCleanup = preloadImage(items[nextIndex].image)
+
+    // Preload previous image
+    const prevIndex = currentIndex === 0 ? items.length - 1 : currentIndex - 1
+    const prevCleanup = preloadImage(items[prevIndex].image)
+
+    return () => {
+      nextCleanup()
+      prevCleanup()
+    }
+  }, [currentIndex, items])
+
   // Safety check: ensure we have items
   if (!items || items.length === 0) {
     return null
@@ -103,13 +146,13 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
   return (
     <div className='relative w-full h-full overflow-hidden'>
       {/* Carousel Items */}
-      <AnimatePresence mode='wait' initial={false}>
+      <AnimatePresence initial={false}>
         <motion.div
           key={itemKey}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
           className='absolute inset-0'
         >
           {/* Background Image/Video */}
@@ -126,18 +169,15 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
                 Your browser does not support the video tag.
               </video>
             ) : (
-              <OptimizedImage
+              <PictureImage
                 key={imageKey}
-                src={currentItem.image}
+                srcBase={currentItem.image}
                 alt={currentItem.title}
                 width={1920}
                 height={1080}
                 priority={currentIndex === 0}
-                className='w-full h-full object-cover object-center'
-                animation={{
-                  type: 'fade',
-                  duration: 1.2,
-                }}
+                className='w-full h-full'
+                fill
               />
             )}
 

@@ -646,7 +646,7 @@ export const translations = {
           {
             icon: '📧',
             label: 'Email',
-            value: ['service@bestitconsultants.ca', 'williamjxj@gmail.com'],
+            value: ['service@bestitconsultants.ca', 'jxjwilliam@gmail.com'],
           },
           {
             icon: '🌐',
@@ -697,7 +697,7 @@ export const translations = {
           {
             label: 'Send Email',
             icon: '📧',
-            link: 'mailto:williamjxj@gmail.com',
+            link: 'mailto:service@bestitconsultants.ca',
           },
           { label: 'Live Chat', icon: '💬', link: '#chat' },
         ],
@@ -755,7 +755,7 @@ export const translations = {
       vancouver: 'Vancouver HQ: 10355 152 St, Surrey, BC, Canada V3R 7C1',
       eastAsia:
         'East Asia Branch: 621 Hitech Park, Nanshan District, Shenzhen China',
-      email: 'williamjxj@gmail.com',
+      email: 'service@bestitconsultants.ca',
       phone: '+1 (236) 992-3846',
       mobileAccess: 'Mobile Access',
       scanQrCode: 'Scan to visit our website',

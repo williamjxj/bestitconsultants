@@ -50,7 +50,19 @@ export async function POST(request: NextRequest) {
     // Get business email from environment variable
     // This is where YOU receive contact form submissions
     const businessEmailAddress =
-      process.env.BUSINESS_EMAIL || 'williamjxj@gmail.com'
+      process.env.BUSINESS_EMAIL ||
+      process.env.CONTACT_EMAIL ||
+      'williamjxj@gmail.com'
+
+    // Validate business email address
+    if (!businessEmailAddress) {
+      return NextResponse.json(
+        {
+          error: 'Business email not configured. Please contact administrator.',
+        },
+        { status: 500 }
+      )
+    }
 
     // Get FROM email address
     const fromEmailAddress =

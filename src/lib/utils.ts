@@ -22,15 +22,24 @@ export function getBaseUrl(): string {
 }
 
 /**
+ * Get R2 public base URL from environment variables
+ * @returns R2 base URL or fallback placeholder
+ */
+export function getR2BaseUrl(): string {
+  return (
+    process.env.R2_PUBLIC_URL ||
+    process.env.NEXT_PUBLIC_R2_PUBLIC_URL ||
+    'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev'
+  )
+}
+
+/**
  * Get R2 bucket URL for an image
  * @param imagePath - Path relative to R2 bucket (e.g., 'selfies/william-jiang.jpg' or 'imgs/grok-1.jpg')
  * @returns Full R2 URL or fallback placeholder
  */
 export function getR2ImageUrl(imagePath: string): string {
-  const r2BaseUrl =
-    process.env.R2_PUBLIC_URL ||
-    process.env.NEXT_PUBLIC_R2_PUBLIC_URL ||
-    'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev'
+  const r2BaseUrl = getR2BaseUrl()
 
   // Remove leading slash if present
   const cleanPath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath

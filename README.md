@@ -220,7 +220,7 @@ The codebase has been cleaned up to remove unused code and fix issues:
 
 For technical support or questions:
 
-- **Email**: williamjxj@gmail.com
+- **Email**: service@bestitconsultants.ca
 - **Phone**: +1 (236) 992-3846
 - **Address**: 10355 152 St, Surrey, BC, Canada V3R 7C1
 

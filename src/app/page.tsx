@@ -10,7 +10,7 @@ import { QuickHighlights } from '@/components/home/QuickHighlights'
 import ServicesSummary from '@/components/home/ServicesSummary'
 import { HeroCarousel, HeroCarouselItem } from '@/components/ui/hero-carousel'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { getR2ImageUrl } from '@/lib/utils'
+import { getR2BaseUrl } from '@/lib/utils'
 
 // HomePage component with animations
 export default function HomePage() {
@@ -132,13 +132,15 @@ export default function HomePage() {
     homeCarouselContent[language as keyof typeof homeCarouselContent] ||
     homeCarouselContent.en
 
+  const R2_BASE_URL = getR2BaseUrl()
+
   const CAROUSEL_ITEMS: HeroCarouselItem[] = [
     {
       id: 'slide-1',
       title: currentCarouselContent.items[0].title,
       subtitle: currentCarouselContent.items[0].subtitle,
       description: currentCarouselContent.items[0].description,
-      image: getR2ImageUrl('offices/gemini-1.png'),
+      image: `${R2_BASE_URL}/optimized/b1`,
       ctaText: currentCarouselContent.items[0].ctaText,
       ctaLink: '/contact-us?title=Start Your Project#contact-form',
       secondaryCtaText: 'Get Free Consultation',
@@ -149,7 +151,7 @@ export default function HomePage() {
       title: currentCarouselContent.items[1].title,
       subtitle: currentCarouselContent.items[1].subtitle,
       description: currentCarouselContent.items[1].description,
-      image: getR2ImageUrl('offices/gemini-2.png'),
+      image: `${R2_BASE_URL}/optimized/b2`,
       ctaText: currentCarouselContent.items[1].ctaText,
       ctaLink: '/contact-us?title=Start Your Project#contact-form',
       secondaryCtaText: 'Get Free Consultation',
@@ -160,7 +162,7 @@ export default function HomePage() {
       title: currentCarouselContent.items[2].title,
       subtitle: currentCarouselContent.items[2].subtitle,
       description: currentCarouselContent.items[2].description,
-      image: getR2ImageUrl('offices/kling-1.jpg'),
+      image: `${R2_BASE_URL}/optimized/b3`,
       ctaText: currentCarouselContent.items[2].ctaText,
       ctaLink: '/contact-us?title=Start Your Project#contact-form',
       secondaryCtaText: 'Get Free Consultation',
