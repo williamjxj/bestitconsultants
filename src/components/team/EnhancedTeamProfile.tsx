@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { BorderBeam } from '@/components/ui/border-beam'
 import { SimpleAccordion } from '@/components/ui/simple-accordion'
 import { TeamMember } from '@/types/team'
 
@@ -44,9 +45,26 @@ export const EnhancedTeamProfile: React.FC<EnhancedTeamProfileProps> = ({
     return parts
   }
   return (
-    <div className='bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow'>
-      {/* Header Section - Fixed Height */}
-      <div className='flex items-center space-x-4 mb-4'>
+    <div className='group relative bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow overflow-hidden'>
+      {/* Border Beam Effect - 2 Border Beams - Only visible on hover */}
+      <div className='absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0'>
+        <BorderBeam
+          duration={6}
+          size={400}
+          className='from-transparent via-blue-500 to-transparent'
+        />
+        <BorderBeam
+          duration={6}
+          delay={3}
+          size={400}
+          borderWidth={2}
+          className='from-transparent via-purple-500 to-transparent'
+        />
+      </div>
+      {/* Content - Positioned above border beam */}
+      <div className='relative z-10'>
+        {/* Header Section - Fixed Height */}
+        <div className='flex items-center space-x-4 mb-4'>
         {member.avatar && member.avatar.trim() !== '' ? (
           <img
             src={member.avatar}
@@ -137,6 +155,7 @@ export const EnhancedTeamProfile: React.FC<EnhancedTeamProfileProps> = ({
             </div>
           </SimpleAccordion>
         )}
+      </div>
       </div>
     </div>
   )
