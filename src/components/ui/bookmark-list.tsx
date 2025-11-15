@@ -1,20 +1,27 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import {
   Building2,
   Globe,
-  BarChart3,
-  Zap,
   Code,
   Heart,
-  Baby,
   ShoppingBag,
   Github,
+  LayoutGrid,
+  List,
 } from 'lucide-react'
-import Image from 'next/image'
+import { useState } from 'react'
 
 import { Badge } from '@/components/ui/badge'
-import { Card, CardContent } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { ImageCarousel } from '@/components/ui/image-carousel'
 import { getBaseUrl, getR2ImageUrl } from '@/lib/utils'
 
 interface Website {
@@ -22,9 +29,10 @@ interface Website {
   url: string
   description: string
   category: string
-  icon: React.ComponentType<{ className?: string }>
+  icon: React.ComponentType<{ className?: string; size?: string | number }>
   status: string
   githubUrl?: string
+  images?: string[] // Optional array of images for carousel
 }
 
 const websites: Website[] = [
@@ -35,6 +43,7 @@ const websites: Website[] = [
     category: 'AI/ML',
     icon: Code,
     status: 'active',
+    images: [getR2ImageUrl('optimized/g-25.webp'), getR2ImageUrl('optimized/g-21.webp')],
   },
   {
     name: 'Images Synthesis & Online Subscription',
@@ -43,6 +52,7 @@ const websites: Website[] = [
     category: 'Development',
     icon: Code,
     status: 'active',
+    images: [getR2ImageUrl('istockphoto-1350198816-612x612.jpg'), getR2ImageUrl('optimized/g-17.webp')],
   },
   {
     name: 'AI Images Cart & Purchase',
@@ -51,6 +61,7 @@ const websites: Website[] = [
     category: 'E-commerce',
     icon: ShoppingBag,
     status: 'active',
+    images: [getR2ImageUrl('optimized/g-10.webp'), getR2ImageUrl('optimized/g-49.webp')],
   },
   {
     name: 'BidMaster Hub',
@@ -59,6 +70,7 @@ const websites: Website[] = [
     category: 'Business',
     icon: Building2,
     status: 'active',
+    images: [getR2ImageUrl('optimized/g-36.webp'), getR2ImageUrl('optimized/g-38.webp'), getR2ImageUrl('optimized/g-39.webp')],
   },
   {
     name: 'Cart & Online Payment',
@@ -67,6 +79,7 @@ const websites: Website[] = [
     category: 'Development',
     icon: Code,
     status: 'beta',
+    images: [getR2ImageUrl('optimized/g-23.webp')],
   },
   {
     name: 'Friendship Daycare',
@@ -75,6 +88,7 @@ const websites: Website[] = [
     category: 'Education',
     icon: Heart,
     status: 'active',
+    images: [getR2ImageUrl('optimized/g-19.webp'), getR2ImageUrl('optimized/g-22.webp'), getR2ImageUrl('optimized/g-12.webp')],
   },
   {
     name: 'Best IT Consulting',
@@ -83,6 +97,7 @@ const websites: Website[] = [
     category: 'Business',
     icon: Building2,
     status: 'active',
+    images: [getR2ImageUrl('optimized/g-37.webp'), getR2ImageUrl('optimized/g-46.webp')],
   },
   {
     name: 'Best IT Consultants',
@@ -91,6 +106,7 @@ const websites: Website[] = [
     category: 'Business',
     icon: Building2,
     status: 'active',
+    images: [getR2ImageUrl('optimized/g-42.webp'), getR2ImageUrl('optimized/g-45.webp')],
   },
   {
     name: 'Erongdan',
@@ -99,6 +115,7 @@ const websites: Website[] = [
     category: 'Business',
     icon: Building2,
     status: 'active',
+    images: [getR2ImageUrl('optimized/g-18.webp'), getR2ImageUrl('optimized/g-9.webp')],
   },
   {
     name: 'Admin Portfolio Dashboard',
@@ -108,51 +125,19 @@ const websites: Website[] = [
     category: 'Development',
     icon: Code,
     status: 'active',
+    images: [getR2ImageUrl('optimized/g-15.webp'), getR2ImageUrl('optimized/g-38.webp')],
   },
 ]
 
-const getCategoryIcon = (category: string) => {
-  switch (category) {
-    case 'Business':
-      return <BarChart3 className='h-3 w-3' />
-    case 'AI/ML':
-      return <Zap className='h-3 w-3' />
-    case 'Development':
-      return <Code className='h-3 w-3' />
-    case 'E-commerce':
-      return <Heart className='h-3 w-3' />
-    case 'Education':
-      return <Baby className='h-3 w-3' />
-    default:
-      return <Globe className='h-3 w-3' />
-  }
-}
-
-const getCategoryColor = (category: string) => {
-  switch (category) {
-    case 'Business':
-      return 'bg-blue-50 text-blue-700 border-blue-300 hover:bg-blue-100'
-    case 'AI/ML':
-      return 'bg-yellow-50 text-yellow-700 border-yellow-300 hover:bg-yellow-100'
-    case 'Development':
-      return 'bg-green-50 text-green-700 border-green-300 hover:bg-green-100'
-    case 'E-commerce':
-      return 'bg-pink-50 text-pink-700 border-pink-300 hover:bg-pink-100'
-    case 'Education':
-      return 'bg-orange-50 text-orange-700 border-orange-300 hover:bg-orange-100'
-    default:
-      return 'bg-gray-50 text-gray-700 border-gray-300 hover:bg-gray-100'
-  }
-}
-
-// Fallback placeholder for screenshots using R2 images
+// Fallback placeholder for screenshots - now using website-specific images from Image2
+// This function is kept for backward compatibility but websites now have their own images array
 const getPlaceholderScreenshot = (category: string) => {
   const placeholders = {
-    Business: getR2ImageUrl('istockphoto-1358835459-612x612.webp'),
-    'AI/ML': getR2ImageUrl('kling_20251012_1.png'),
-    Development: getR2ImageUrl('istockphoto-1350198816-612x612.jpg'),
-    'E-commerce': getR2ImageUrl('istockphoto-1145868161-612x612.webp'),
-    Education: getR2ImageUrl('istockphoto-2227310361-612x612.webp'),
+    Business: getR2ImageUrl('optimized/g-8.webp'), // Fallback for Business category
+    'AI/ML': getR2ImageUrl('optimized/g-25.webp'), // Fallback for AI/ML category
+    Development: getR2ImageUrl('istockphoto-1350198816-612x612.jpg'), // Fallback for Development category
+    'E-commerce': getR2ImageUrl('optimized/g-10.webp'), // Fallback for E-commerce category
+    Education: getR2ImageUrl('optimized/g-21.webp'), // Fallback for Education category
   }
   return (
     placeholders[category as keyof typeof placeholders] ||
@@ -161,151 +146,171 @@ const getPlaceholderScreenshot = (category: string) => {
 }
 
 export default function BookmarkList() {
-  const handleItemClick = (url: string) => {
-    // Navigate in same window to avoid losing focus
-    window.location.href = url
-  }
-
-  const renderScreenshot = (website: Website) => {
-    // Always use local placeholder images instead of external screenshots
-    const placeholderUrl = getPlaceholderScreenshot(website.category)
-
-    return (
-      <div className='relative w-full h-48 rounded-t-lg overflow-hidden bg-gray-100 border-b border-gray-200'>
-        <Image
-          src={placeholderUrl}
-          alt={`Screenshot of ${website.name}`}
-          fill
-          className='object-cover'
-        />
-        <div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent' />
-      </div>
-    )
-  }
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
 
   return (
-    <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-      {websites.map(website => (
-        <Card
-          key={website.name}
-          className='group cursor-pointer transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/20 hover:border-blue-400 hover:-translate-y-2 border border-gray-200 bg-white overflow-hidden flex flex-col'
-          role='button'
-          tabIndex={0}
-          title={website.description}
-          aria-label={`Open ${website.name}`}
-          onClick={() => handleItemClick(website.url)}
-          onKeyDown={e => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault()
-              handleItemClick(website.url)
-            }
-          }}
-        >
-          {/* Screenshot Thumbnail */}
-          {renderScreenshot(website)}
+    <div className='w-full'>
+      {/* View Toggle */}
+      <div className='flex justify-end mb-6'>
+        <div className='flex items-center gap-2 bg-gray-100 rounded-lg p-1'>
+          <button
+            onClick={() => setViewMode('grid')}
+            className={`p-2 rounded transition-all duration-200 ${
+              viewMode === 'grid'
+                ? 'bg-white text-blue-600 shadow-sm'
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
+            aria-label='Grid view'
+            title='Grid view'
+          >
+            <LayoutGrid size={20} />
+          </button>
+          <button
+            onClick={() => setViewMode('list')}
+            className={`p-2 rounded transition-all duration-200 ${
+              viewMode === 'list'
+                ? 'bg-white text-blue-600 shadow-sm'
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
+            aria-label='List view'
+            title='List view'
+          >
+            <List size={20} />
+          </button>
+        </div>
+      </div>
 
-          {/* Content */}
-          <CardContent className='p-6 flex-1 flex flex-col'>
-            {/* Category Badge */}
-            <div className='mb-3'>
-              {website.category && (
-                <Badge
-                  variant='outline'
-                  className={`text-xs px-3 py-1 border font-semibold transition-all duration-200 ${getCategoryColor(website.category)}`}
-                >
-                  <span className='mr-1.5'>
-                    {getCategoryIcon(website.category)}
-                  </span>
-                  {website.category}
-                </Badge>
-              )}
-              {website.status === 'beta' && (
-                <Badge
-                  variant='outline'
-                  className='ml-2 text-xs px-2 py-1 bg-orange-50 text-orange-700 border-orange-300'
-                >
-                  BETA
-                </Badge>
-              )}
-            </div>
+      {/* Cards Container */}
+      <div
+        className={
+          viewMode === 'grid'
+            ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+            : 'flex flex-col gap-6'
+        }
+      >
+        {websites.map((website, index) => {
+          // Use website-specific images if available, otherwise fallback to category placeholder
+          const images = website.images && website.images.length > 0
+            ? website.images
+            : [getPlaceholderScreenshot(website.category)]
 
-            {/* Title */}
-            <h3 className='font-bold text-xl text-gray-900 group-hover:text-blue-700 transition-colors duration-200 tracking-tight mb-2'>
-              {website.name}
-            </h3>
-
-            {/* Description */}
-            <p className='text-sm text-gray-600 leading-relaxed mb-4 flex-1 group-hover:text-gray-800'>
-              {website.description}
-            </p>
-
-            {/* Footer with Icons */}
-            <div className='flex items-center justify-between pt-3 border-t border-gray-100'>
-              {/* Project name as clickable link */}
-              <a
-                href={website.url}
-                onClick={e => {
-                  e.stopPropagation()
-                  window.location.href = website.url
-                }}
-                className='text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors duration-200 flex-1 truncate'
-                title={website.url}
+          return (
+            <motion.div
+              key={website.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className={viewMode === 'list' ? 'w-full' : ''}
+            >
+              <Card
+                className={`group hover:shadow-xl transition-all duration-300 border-0 bg-white/50 backdrop-blur-sm overflow-hidden ${
+                  viewMode === 'list' ? 'flex flex-row' : ''
+                }`}
               >
-                {website.name}
-              </a>
-
-              {/* Icons: GitHub and Web */}
-              <div className='flex items-center gap-3 ml-4'>
-                {/* GitHub Icon - Always visible and clickable */}
-                <a
-                  href={website.githubUrl || '#'}
-                  onClick={e => {
-                    e.stopPropagation()
-                    if (website.githubUrl) {
-                      window.location.href = website.githubUrl
-                    } else {
-                      e.preventDefault()
-                    }
-                  }}
-                  className={`transition-colors duration-200 rounded-full p-1 hover:opacity-90 cursor-pointer ${
-                    website.githubUrl ? 'bg-black' : 'bg-black/50'
+                {/* Image Area - Matching Portfolio Style with Carousel */}
+                <div
+                  className={`relative overflow-hidden ${
+                    viewMode === 'list'
+                      ? 'w-64 h-48 flex-shrink-0'
+                      : 'aspect-video'
                   }`}
-                  title={
-                    website.githubUrl
-                      ? 'View on GitHub'
-                      : 'GitHub repository not available'
-                  }
-                  aria-label={
-                    website.githubUrl
-                      ? 'GitHub repository'
-                      : 'GitHub repository not available'
-                  }
                 >
-                  <Github
-                    className={`h-4 w-4 hover:scale-110 transition-transform duration-200 ${
-                      website.githubUrl ? 'text-white' : 'text-white/70'
-                    }`}
+                  <ImageCarousel
+                    images={images}
+                    alt={`Screenshot of ${website.name}`}
+                    className='w-full h-full'
+                    aspectRatio={viewMode === 'list' ? 'auto' : 'video'}
+                    autoPlay={false}
+                    showIndicators={images.length > 1}
+                    showNavigation={images.length > 1}
                   />
-                </a>
+                  <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none' />
+                  {/* Category Badge */}
+                  <div className='absolute bottom-4 left-4 text-white z-10'>
+                    <Badge variant='secondary'>
+                      {website.category}
+                    </Badge>
+                  </div>
+                  {/* Icon */}
+                  <div className='absolute top-4 right-4 z-10'>
+                    <website.icon size={32} className='text-white/80' />
+                  </div>
+                </div>
 
-                {/* Web/Internet Icon */}
-                <a
-                  href={website.url}
-                  onClick={e => {
-                    e.stopPropagation()
-                    window.location.href = website.url
-                  }}
-                  className='transition-colors duration-200 rounded-full p-1 hover:opacity-90 cursor-pointer bg-black'
-                  title='Visit website'
-                  aria-label='Visit website'
-                >
-                  <Globe className='h-4 w-4 text-white hover:scale-110 transition-transform duration-200' />
-                </a>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      ))}
+                {/* Card Content */}
+                <div className={`flex-1 flex flex-col ${viewMode === 'list' ? 'min-w-0' : ''}`}>
+                  {/* Card Header - Matching Portfolio Style */}
+                  <CardHeader>
+                    <div className='flex items-start justify-between'>
+                      <div>
+                        <CardTitle className='text-xl mb-2'>
+                          {website.name}
+                        </CardTitle>
+                        <CardDescription className='text-gray-600'>
+                          {website.description}
+                        </CardDescription>
+                      </div>
+                      {website.status === 'beta' && (
+                        <Badge variant='secondary' className='ml-2'>
+                          BETA
+                        </Badge>
+                      )}
+                    </div>
+                  </CardHeader>
+
+                  {/* Card Content - Matching Portfolio Style */}
+                  <CardContent className='flex-1 flex flex-col justify-between'>
+                    <div className='space-y-4'>
+                      {/* Footer with Icons */}
+                      <div className='flex items-center justify-between pt-3 border-t border-gray-100'>
+                        <a
+                          href={website.url}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          className='text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors duration-200 flex-1 truncate'
+                          title={website.url}
+                        >
+                          Visit Project
+                        </a>
+
+                        {/* Icons: GitHub and Web */}
+                        <div className='flex items-center gap-3 ml-4'>
+                          {/* GitHub Icon */}
+                          {website.githubUrl && (
+                            <a
+                              href={website.githubUrl}
+                              target='_blank'
+                              rel='noopener noreferrer'
+                              className='transition-colors duration-200 rounded-full p-1 hover:opacity-90 cursor-pointer bg-black'
+                              title='View on GitHub'
+                              aria-label='GitHub repository'
+                            >
+                              <Github className='h-4 w-4 text-white hover:scale-110 transition-transform duration-200' />
+                            </a>
+                          )}
+
+                          {/* Web/Internet Icon */}
+                          <a
+                            href={website.url}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='transition-colors duration-200 rounded-full p-1 hover:opacity-90 cursor-pointer bg-black'
+                            title='Visit website'
+                            aria-label='Visit website'
+                          >
+                            <Globe className='h-4 w-4 text-white hover:scale-110 transition-transform duration-200' />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </div>
+              </Card>
+            </motion.div>
+          )
+        })}
+      </div>
     </div>
   )
 }

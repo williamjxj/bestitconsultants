@@ -336,7 +336,7 @@ export default function AboutPage() {
           secondaryCtaText='View Our Services'
           secondaryCtaLink='/services'
           background='image'
-          backgroundImage='/optimized/hs-7.webp'
+          backgroundImage={getR2ImageUrl('optimized/hs-7.webp')}
           overlay={false}
           imageBrightness={0.8}
           imageContrast={1.1}

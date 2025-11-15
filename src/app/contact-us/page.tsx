@@ -23,6 +23,7 @@ import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { ContactHero } from '@/components/ui/hero-variants'
 import { ShineBorder } from '@/components/ui/shine-border'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { getR2ImageUrl } from '@/lib/utils'
 
 export default function ContactPage() {
   const { language, translations } = useLanguage()
@@ -191,7 +192,7 @@ export default function ContactPage() {
           secondaryCtaLink='/portfolio'
           badge={currentContent.hero.badge}
           background='image'
-          backgroundImage='/optimized/hs-6.webp'
+          backgroundImage={getR2ImageUrl('optimized/hs-6.webp')}
           overlay={false}
           imageBrightness={0.8}
           imageContrast={1.1}

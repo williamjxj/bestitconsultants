@@ -489,7 +489,7 @@ const TeamPage = () => {
           secondaryCtaLink='/contact-us?title=Contact Our Team#contact-form'
           badge={currentContent.hero.badge}
           background='image'
-          backgroundImage='/optimized/hs-4.webp'
+          backgroundImage={getR2ImageUrl('optimized/hs-4.webp')}
           overlay={false}
           imageBrightness={0.8}
           imageContrast={1.1}

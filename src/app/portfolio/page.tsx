@@ -15,6 +15,8 @@ import {
   Laptop,
   Plane,
   CreditCard,
+  LayoutGrid,
+  List,
 } from 'lucide-react'
 import React, { useState } from 'react'
 
@@ -29,7 +31,7 @@ import {
 } from '@/components/ui/card'
 import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { PortfolioHero } from '@/components/ui/hero-variants'
-import { OptimizedImage } from '@/components/ui/optimized-image'
+import { ImageCarousel } from '@/components/ui/image-carousel'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { getR2ImageUrl } from '@/lib/utils'
@@ -41,7 +43,7 @@ const portfolioItems = [
       'Machine Learning Data Pipelines and Experiment Collection Manager for AI-related tasks. Developed using microservices architecture with React.js, Node.js, Python and Java. Optimized GPU/CPU performance in Kubernetes environments with Kubeflow, CUDA, and MLOps workflows.',
     icon: Brain,
     category: 'ai',
-    image: getR2ImageUrl('kling_20251012_1.png'),
+    images: [getR2ImageUrl('optimized/g-8.webp'), getR2ImageUrl('optimized/g-34.webp'), getR2ImageUrl('optimized/g-45.webp')],
     tech: [
       'React.js',
       'Node.js',
@@ -53,7 +55,6 @@ const portfolioItems = [
       'Kubeflow',
     ],
     client: 'Xperi Corporation',
-    year: '2021-Present',
     achievements: [
       'GPU/CPU Optimization',
       'MLOps Workflows',
@@ -66,7 +67,7 @@ const portfolioItems = [
       'Real-time stock integration system with existing datasets via various pipelines and microservices. Built with React/Node.js, WebSockets, MongoDB, and Python for high-frequency trading operations.',
     icon: CreditCard,
     category: 'fintech',
-    image: getR2ImageUrl('istockphoto-1212876953-612x612.jpg'),
+    images: [getR2ImageUrl('optimized/g-5.webp'), getR2ImageUrl('optimized/g-18.webp')],
     tech: [
       'React',
       'Node.js',
@@ -76,7 +77,6 @@ const portfolioItems = [
       'Microservices',
     ],
     client: 'Credit Suisse (via EPAM)',
-    year: '2018-2020',
     achievements: [
       'Real-time Processing',
       'High-frequency Trading',
@@ -89,7 +89,7 @@ const portfolioItems = [
       'Retail Business Banking onboarding services for small and medium customers. Built with React, Redux, Java Spring Boot microservices, Node.js + MongoDB, and mobile apps for SME banking.',
     icon: Landmark,
     category: 'fintech',
-    image: getR2ImageUrl('istockphoto-1358835459-612x612.webp'),
+    images: [getR2ImageUrl('optimized/g-4.webp'), getR2ImageUrl('optimized/g-11.webp')],
     tech: [
       'React',
       'Redux',
@@ -99,7 +99,6 @@ const portfolioItems = [
       'Mobile Apps',
     ],
     client: 'HSBC Bank (via China Soft)',
-    year: '2017-2018',
     achievements: [
       'SME Banking Platform',
       'Mobile Integration',
@@ -112,7 +111,7 @@ const portfolioItems = [
       'Semi-ETL self-service platform supporting file extraction, data processing, and reporting. Features PDF processing, XML parsing, file management, and citizen-developer workflow creation with drag-and-drop interface.',
     icon: Database,
     category: 'enterprise',
-    image: getR2ImageUrl('istockphoto-1350198816-612x612.jpg'),
+    images: [getR2ImageUrl('optimized/g-9.webp'), getR2ImageUrl('optimized/g-14.webp')],
     tech: [
       'WPF',
       'MongoDB',
@@ -122,7 +121,6 @@ const portfolioItems = [
       'PDF Processing',
     ],
     client: 'HSBC Global Market Services',
-    year: '2020-Present',
     achievements: [
       'Self-Service ETL',
       'PDF Data Extraction',
@@ -135,7 +133,7 @@ const portfolioItems = [
       'Web-based advertisement delivery system using JavaScript, HTML5/CSS3, Google DFP, Node.js, and jQuery. Integrated with Google DFP, Adobe tools, and Media.net header-bidding to significantly improve revenue.',
     icon: Globe,
     category: 'web',
-    image: getR2ImageUrl('istockphoto-2227310361-612x612.webp'),
+    images: [getR2ImageUrl('optimized/g-1.webp'), getR2ImageUrl('optimized/g-2.webp')],
     tech: [
       'JavaScript',
       'HTML5/CSS3',
@@ -145,7 +143,6 @@ const portfolioItems = [
       'MongoDB',
     ],
     client: 'WebMD New York',
-    year: '2014-2017',
     achievements: [
       'Big Data Pipelines',
       'Revenue Optimization',
@@ -158,10 +155,9 @@ const portfolioItems = [
       'E-commerce platform improvements including product gallery updates, multi-video features, 360 rotate, desktop/tablet/mobile optimization, warranties, and shopping cart enhancements.',
     icon: ShoppingCart,
     category: 'ecommerce',
-    image: getR2ImageUrl('istockphoto-1145868161-612x612.webp'),
+    images: [getR2ImageUrl('optimized/g-6.webp'), getR2ImageUrl('optimized/g-17.webp')],
     tech: ['JavaScript', 'HTML5', 'CSS3', 'Responsive Design', 'E-commerce'],
     client: 'BestBuy Canada',
-    year: '2007-2014',
     achievements: [
       'Multi-video Gallery',
       '360° Product View',
@@ -174,7 +170,7 @@ const portfolioItems = [
       'FedEx GIVS (Global Inventory Visibility System) and EC-IV system. Includes Global Clearance System for Australia, South Korea, and China. Wireless application for mobile tracking awarded APEC 2002 accolade.',
     icon: Truck,
     category: 'enterprise',
-    image: getR2ImageUrl('istockphoto-2163952011-612x612.webp'),
+    images: [getR2ImageUrl('optimized/g-50.webp'), getR2ImageUrl('optimized/g-47.webp'), getR2ImageUrl('optimized/g-31.webp')],
     tech: [
       'Java',
       'C/C++',
@@ -184,7 +180,6 @@ const portfolioItems = [
       'Global Systems',
     ],
     client: 'FedEx Singapore',
-    year: '2000-2004',
     achievements: [
       'APEC 2002 Award',
       'Global System Integration',
@@ -197,7 +192,7 @@ const portfolioItems = [
       'World Of Tiffany (WOT) CMS and frontend system, global site maintenance, Compass Case management system, and EOM order management. Served multiple international markets including US, CA, AU, BE, MX.',
     icon: Diamond,
     category: 'ecommerce',
-    image: getR2ImageUrl('istockphoto-492514758-612x612.webp'),
+    images: [getR2ImageUrl('optimized/g-35.webp'), getR2ImageUrl('optimized/g-36.webp')],
     tech: [
       '.NET MVC',
       'WebAPI',
@@ -208,7 +203,6 @@ const portfolioItems = [
       'SSRS',
     ],
     client: 'Tiffany & Co (via IBM)',
-    year: '2012-2016',
     achievements: [
       'Global Platform',
       'Multi-country Deployment',
@@ -221,10 +215,9 @@ const portfolioItems = [
       'Gas energy integration systems for Gate & TAQA companies. Microsoft BizTalk integration solution for 20+ servers managing 100+ daily message types, improving processing from 2 hours to under 1 minute.',
     icon: Zap,
     category: 'enterprise',
-    image: getR2ImageUrl('kling_20251012_2.png'),
+    images: [getR2ImageUrl('optimized/g-49.webp'), getR2ImageUrl('optimized/g-45.webp')],
     tech: ['BizTalk', 'Oracle', 'SQL Server', 'Web Services', 'JBoss', 'Linux'],
     client: 'Netherlands Government (via IBM)',
-    year: '2011-2012',
     achievements: [
       '99% Performance Improvement',
       '24/7 Operations',
@@ -237,10 +230,9 @@ const portfolioItems = [
       'GM ABM applications supporting Assets, Datamart, Global Lease management, and Product Order systems. PSP/TSP implementation with team leadership and professional development programs.',
     icon: Car,
     category: 'enterprise',
-    image: getR2ImageUrl('istockphoto-1358835459-612x612.webp'),
+    images: [getR2ImageUrl('optimized/g-48.webp'), getR2ImageUrl('optimized/g-32.webp'), getR2ImageUrl('optimized/g-33.webp')],
     tech: ['VB.NET', 'ASP.NET', 'SQL Server', 'SSIS', 'DTS', 'Agent Jobs'],
     client: 'General Motors (via HP)',
-    year: '2008-2011',
     achievements: [
       'Asset Management',
       'Global Lease System',
@@ -253,10 +245,9 @@ const portfolioItems = [
       'Desktop application for MateBook devices with localization for 54 languages and 100+ countries. Includes user guides, driver updates, PSI functionality, and MateTrans file sharing between devices.',
     icon: Laptop,
     category: 'desktop',
-    image: getR2ImageUrl('istockphoto-1212876953-612x612.jpg'),
+    images: [getR2ImageUrl('optimized/g-39.webp'), getR2ImageUrl('optimized/g-40.webp')],
     tech: ['WPF', 'UWP', 'MVVM', 'Localization', 'COM', 'Multi-language'],
     client: 'Huawei (via iSoftstone)',
-    year: '2016-2018',
     achievements: [
       '54 Languages Support',
       '100+ Countries',
@@ -269,7 +260,7 @@ const portfolioItems = [
       'Enterprise Knowledge Portal (EKP) system with resource navigation, expert networks, and aerospace industry data analytics. Provides intelligence, technical documentation, and global aerospace industry insights.',
     icon: Plane,
     category: 'enterprise',
-    image: getR2ImageUrl('istockphoto-1350198816-612x612.jpg'),
+    images: [getR2ImageUrl('optimized/g-43.webp'), getR2ImageUrl('optimized/g-44.webp')],
     tech: [
       'EKP Systems',
       'Knowledge Management',
@@ -277,7 +268,6 @@ const portfolioItems = [
       'Expert Networks',
     ],
     client: 'Aerospace Engineering (via Chengdu Partner)',
-    year: '2020-Present',
     achievements: [
       'Knowledge Management',
       'Expert Networks',
@@ -290,7 +280,7 @@ const portfolioItems = [
       'Risk management and electronic signature platform for supply chain financing. Features multi-level approval, contract management, loan processing, and real-time monitoring with mobile integration.',
     icon: Building2,
     category: 'fintech',
-    image: getR2ImageUrl('istockphoto-2227310361-612x612.webp'),
+    images: [getR2ImageUrl('optimized/g-30.webp'), getR2ImageUrl('optimized/g-29.webp')],
     tech: [
       'Java',
       '.NET',
@@ -299,7 +289,6 @@ const portfolioItems = [
       'Risk Management',
     ],
     client: 'Financial Services (via Chengdu Partner)',
-    year: '2019-Present',
     achievements: [
       'Risk Management',
       'Electronic Signatures',
@@ -311,6 +300,7 @@ const portfolioItems = [
 export default function PortfolioPage() {
   const { language } = useLanguage()
   const [selectedCategory, setSelectedCategory] = useState('all')
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
 
   // Portfolio content with translations
   const portfolioContent = {
@@ -512,7 +502,7 @@ export default function PortfolioPage() {
           secondaryCtaLink='/contact-us?title=Get a Quote#contact-form'
           badge={currentContent.hero.badge}
           background='image'
-          backgroundImage='/optimized/hs-2.webp'
+          backgroundImage={getR2ImageUrl('optimized/hs-2.webp')}
           overlay={false}
           imageBrightness={0.8}
           imageContrast={1.1}
@@ -541,37 +531,88 @@ export default function PortfolioPage() {
             </TabsList>
           </Tabs>
 
-          {/* Projects Grid */}
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16'>
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+          {/* View Toggle */}
+          <div className='flex justify-end mb-6'>
+            <div className='flex items-center gap-2 bg-gray-100 rounded-lg p-1'>
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-2 rounded transition-all duration-200 ${
+                  viewMode === 'grid'
+                    ? 'bg-white text-blue-600 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                aria-label='Grid view'
+                title='Grid view'
               >
-                <Card className='group hover:shadow-xl transition-all duration-300 border-0 bg-white/50 backdrop-blur-sm overflow-hidden'>
-                  <div className='aspect-video relative overflow-hidden'>
-                    <OptimizedImage
-                      src={project.image || '/placeholder.svg'}
-                      alt={`${project.title} - ${project.client} project showcase`}
-                      width={400}
-                      height={225}
-                      className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
-                    />
-                    <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent' />
-                    <div className='absolute bottom-4 left-4 text-white'>
-                      <Badge variant='secondary' className='mb-2'>
+                <LayoutGrid size={20} />
+              </button>
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-2 rounded transition-all duration-200 ${
+                  viewMode === 'list'
+                    ? 'bg-white text-blue-600 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                aria-label='List view'
+                title='List view'
+              >
+                <List size={20} />
+              </button>
+            </div>
+          </div>
+
+          {/* Projects Grid/List */}
+          <div
+            className={
+              viewMode === 'grid'
+                ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16'
+                : 'flex flex-col gap-6 mb-16'
+            }
+          >
+            {filteredProjects.map((project, index) => {
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className={viewMode === 'list' ? 'w-full' : ''}
+                >
+                  <Card
+                    className={`group hover:shadow-xl transition-all duration-300 border-0 bg-white/50 backdrop-blur-sm overflow-hidden ${
+                      viewMode === 'list' ? 'flex flex-row' : ''
+                    }`}
+                  >
+                    <div
+                      className={`relative overflow-hidden ${
+                        viewMode === 'list'
+                          ? 'w-64 h-48 flex-shrink-0'
+                          : 'aspect-video'
+                      }`}
+                    >
+                      <ImageCarousel
+                        images={project.images}
+                        alt={`${project.title} - ${project.client} project showcase`}
+                        className='w-full h-full'
+                        aspectRatio={viewMode === 'list' ? 'auto' : 'video'}
+                        autoPlay={false}
+                        showIndicators={project.images.length > 1}
+                        showNavigation={project.images.length > 1}
+                      />
+                    <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none' />
+                    <div className='absolute bottom-4 left-4 text-white z-10'>
+                      <Badge variant='secondary'>
                         {project.client}
                       </Badge>
-                      <p className='text-sm font-medium'>{project.year}</p>
                     </div>
-                    <div className='absolute top-4 right-4'>
+                    <div className='absolute top-4 right-4 z-10'>
                       <project.icon size={32} className='text-white/80' />
                     </div>
                   </div>
 
+                  {/* Card Content */}
+                  <div className={`flex-1 flex flex-col ${viewMode === 'list' ? 'min-w-0' : ''}`}>
                   <CardHeader>
                     <div className='flex items-start justify-between'>
                       <div>
@@ -629,9 +670,11 @@ export default function PortfolioPage() {
                       )}
                     </div>
                   </CardContent>
+                  </div>
                 </Card>
               </motion.div>
-            ))}
+              )
+            })}
           </div>
 
           {/* Success Stories Section */}

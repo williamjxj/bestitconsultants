@@ -37,6 +37,7 @@ import {
 import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { ServicesHero } from '@/components/ui/hero-variants'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { getR2ImageUrl } from '@/lib/utils'
 
 // Icon mapping for industries
 const industryIcons: Record<
@@ -497,7 +498,7 @@ const ServicesPage = () => {
           secondaryCtaLink='/case-studies'
           badge={currentContent.hero.badge}
           background='image'
-          backgroundImage='/optimized/hs-1.webp'
+          backgroundImage={getR2ImageUrl('optimized/hs-1.webp')}
           overlay={false}
           imageBrightness={0.8}
           imageContrast={1.1}

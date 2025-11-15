@@ -4,6 +4,7 @@ import BookmarkList from '@/components/ui/bookmark-list'
 import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { OurWorkHero } from '@/components/ui/hero-variants'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { getR2ImageUrl } from '@/lib/utils'
 
 export default function CaseStudiesPage() {
   const { language } = useLanguage()
@@ -149,7 +150,7 @@ export default function CaseStudiesPage() {
           secondaryCtaLink='/contact-us?title=Get Started#contact-form'
           badge={currentContent.hero.badge}
           background='image'
-          backgroundImage='/optimized/hs-3.webp'
+          backgroundImage={getR2ImageUrl('optimized/hs-3.webp')}
           overlay={false}
           imageBrightness={0.8}
           imageContrast={1.1}
@@ -218,10 +219,8 @@ export default function CaseStudiesPage() {
                 </p>
               </div>
 
-              {/* Enhanced BookmarkList Container */}
-              <div className='bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-xl border border-gray-200 p-8'>
-                <BookmarkList />
-              </div>
+              {/* BookmarkList Container */}
+              <BookmarkList />
             </div>
           </div>
         </section>

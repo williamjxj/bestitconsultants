@@ -5,6 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 
+import { getR2ImageUrl } from '@/lib/utils'
 import { OptimizeRequest, OptimizeResponse } from '@/types/media'
 
 // POST /api/media/optimize
@@ -74,7 +75,7 @@ export async function POST(request: NextRequest) {
     // Mock optimization process
     const optimizedAssets = assetIds.map(assetId => ({
       id: assetId,
-      src: `/optimized/${assetId}.webp`,
+      src: getR2ImageUrl(`optimized/${assetId}.webp`),
       alt: `Optimized image ${assetId}`,
       title: `Optimized Image ${assetId}`,
       width: 800,

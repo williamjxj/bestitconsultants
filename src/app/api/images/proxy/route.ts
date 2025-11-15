@@ -167,17 +167,29 @@ function isValidImagePath(imagePath: string): boolean {
     return false
   }
 
-  // Check for valid image path format
-  if (!imagePath.match(/^R2 bucket [a-zA-Z0-9._-]+\.(jpg|jpeg|png|webp)$/)) {
-    return false
-  }
-
   // Check for suspicious characters
   if (
     imagePath.includes('<') ||
     imagePath.includes('>') ||
     imagePath.includes('"')
   ) {
+    return false
+  }
+
+  // Check for valid image file extension
+  const validExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg']
+  const hasValidExtension = validExtensions.some(ext =>
+    imagePath.toLowerCase().endsWith(ext)
+  )
+
+  if (!hasValidExtension) {
+    return false
+  }
+
+  // Allow paths that start with / or are relative paths
+  // Paths should contain only alphanumeric, dots, slashes, hyphens, underscores
+  const validPathPattern = /^[\/]?[a-zA-Z0-9._\/-]+$/
+  if (!validPathPattern.test(imagePath)) {
     return false
   }
 
