@@ -43,7 +43,11 @@ const portfolioItems = [
       'Machine Learning Data Pipelines and Experiment Collection Manager for AI-related tasks. Developed using microservices architecture with React.js, Node.js, Python and Java. Optimized GPU/CPU performance in Kubernetes environments with Kubeflow, CUDA, and MLOps workflows.',
     icon: Brain,
     category: 'ai',
-    images: [getR2ImageUrl('optimized/g-8.webp'), getR2ImageUrl('optimized/g-34.webp'), getR2ImageUrl('optimized/g-45.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-8.webp'),
+      getR2ImageUrl('optimized/g-34.webp'),
+      getR2ImageUrl('optimized/g-45.webp'),
+    ],
     tech: [
       'React.js',
       'Node.js',
@@ -67,7 +71,10 @@ const portfolioItems = [
       'Real-time stock integration system with existing datasets via various pipelines and microservices. Built with React/Node.js, WebSockets, MongoDB, and Python for high-frequency trading operations.',
     icon: CreditCard,
     category: 'fintech',
-    images: [getR2ImageUrl('optimized/g-5.webp'), getR2ImageUrl('optimized/g-18.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-5.webp'),
+      getR2ImageUrl('optimized/g-18.webp'),
+    ],
     tech: [
       'React',
       'Node.js',
@@ -89,7 +96,10 @@ const portfolioItems = [
       'Retail Business Banking onboarding services for small and medium customers. Built with React, Redux, Java Spring Boot microservices, Node.js + MongoDB, and mobile apps for SME banking.',
     icon: Landmark,
     category: 'fintech',
-    images: [getR2ImageUrl('optimized/g-4.webp'), getR2ImageUrl('optimized/g-11.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-4.webp'),
+      getR2ImageUrl('optimized/g-11.webp'),
+    ],
     tech: [
       'React',
       'Redux',
@@ -111,7 +121,10 @@ const portfolioItems = [
       'Semi-ETL self-service platform supporting file extraction, data processing, and reporting. Features PDF processing, XML parsing, file management, and citizen-developer workflow creation with drag-and-drop interface.',
     icon: Database,
     category: 'enterprise',
-    images: [getR2ImageUrl('optimized/g-9.webp'), getR2ImageUrl('optimized/g-14.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-9.webp'),
+      getR2ImageUrl('optimized/g-14.webp'),
+    ],
     tech: [
       'WPF',
       'MongoDB',
@@ -133,7 +146,10 @@ const portfolioItems = [
       'Web-based advertisement delivery system using JavaScript, HTML5/CSS3, Google DFP, Node.js, and jQuery. Integrated with Google DFP, Adobe tools, and Media.net header-bidding to significantly improve revenue.',
     icon: Globe,
     category: 'web',
-    images: [getR2ImageUrl('optimized/g-1.webp'), getR2ImageUrl('optimized/g-2.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-1.webp'),
+      getR2ImageUrl('optimized/g-2.webp'),
+    ],
     tech: [
       'JavaScript',
       'HTML5/CSS3',
@@ -155,7 +171,10 @@ const portfolioItems = [
       'E-commerce platform improvements including product gallery updates, multi-video features, 360 rotate, desktop/tablet/mobile optimization, warranties, and shopping cart enhancements.',
     icon: ShoppingCart,
     category: 'ecommerce',
-    images: [getR2ImageUrl('optimized/g-6.webp'), getR2ImageUrl('optimized/g-17.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-6.webp'),
+      getR2ImageUrl('optimized/g-17.webp'),
+    ],
     tech: ['JavaScript', 'HTML5', 'CSS3', 'Responsive Design', 'E-commerce'],
     client: 'BestBuy Canada',
     achievements: [
@@ -170,7 +189,11 @@ const portfolioItems = [
       'FedEx GIVS (Global Inventory Visibility System) and EC-IV system. Includes Global Clearance System for Australia, South Korea, and China. Wireless application for mobile tracking awarded APEC 2002 accolade.',
     icon: Truck,
     category: 'enterprise',
-    images: [getR2ImageUrl('optimized/g-50.webp'), getR2ImageUrl('optimized/g-47.webp'), getR2ImageUrl('optimized/g-31.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-50.webp'),
+      getR2ImageUrl('optimized/g-47.webp'),
+      getR2ImageUrl('optimized/g-31.webp'),
+    ],
     tech: [
       'Java',
       'C/C++',
@@ -192,7 +215,10 @@ const portfolioItems = [
       'World Of Tiffany (WOT) CMS and frontend system, global site maintenance, Compass Case management system, and EOM order management. Served multiple international markets including US, CA, AU, BE, MX.',
     icon: Diamond,
     category: 'ecommerce',
-    images: [getR2ImageUrl('optimized/g-35.webp'), getR2ImageUrl('optimized/g-36.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-35.webp'),
+      getR2ImageUrl('optimized/g-36.webp'),
+    ],
     tech: [
       '.NET MVC',
       'WebAPI',
@@ -215,7 +241,10 @@ const portfolioItems = [
       'Gas energy integration systems for Gate & TAQA companies. Microsoft BizTalk integration solution for 20+ servers managing 100+ daily message types, improving processing from 2 hours to under 1 minute.',
     icon: Zap,
     category: 'enterprise',
-    images: [getR2ImageUrl('optimized/g-49.webp'), getR2ImageUrl('optimized/g-45.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-49.webp'),
+      getR2ImageUrl('optimized/g-45.webp'),
+    ],
     tech: ['BizTalk', 'Oracle', 'SQL Server', 'Web Services', 'JBoss', 'Linux'],
     client: 'Netherlands Government (via IBM)',
     achievements: [
@@ -230,7 +259,11 @@ const portfolioItems = [
       'GM ABM applications supporting Assets, Datamart, Global Lease management, and Product Order systems. PSP/TSP implementation with team leadership and professional development programs.',
     icon: Car,
     category: 'enterprise',
-    images: [getR2ImageUrl('optimized/g-48.webp'), getR2ImageUrl('optimized/g-32.webp'), getR2ImageUrl('optimized/g-33.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-48.webp'),
+      getR2ImageUrl('optimized/g-32.webp'),
+      getR2ImageUrl('optimized/g-33.webp'),
+    ],
     tech: ['VB.NET', 'ASP.NET', 'SQL Server', 'SSIS', 'DTS', 'Agent Jobs'],
     client: 'General Motors (via HP)',
     achievements: [
@@ -245,7 +278,10 @@ const portfolioItems = [
       'Desktop application for MateBook devices with localization for 54 languages and 100+ countries. Includes user guides, driver updates, PSI functionality, and MateTrans file sharing between devices.',
     icon: Laptop,
     category: 'desktop',
-    images: [getR2ImageUrl('optimized/g-39.webp'), getR2ImageUrl('optimized/g-40.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-39.webp'),
+      getR2ImageUrl('optimized/g-40.webp'),
+    ],
     tech: ['WPF', 'UWP', 'MVVM', 'Localization', 'COM', 'Multi-language'],
     client: 'Huawei (via iSoftstone)',
     achievements: [
@@ -260,7 +296,10 @@ const portfolioItems = [
       'Enterprise Knowledge Portal (EKP) system with resource navigation, expert networks, and aerospace industry data analytics. Provides intelligence, technical documentation, and global aerospace industry insights.',
     icon: Plane,
     category: 'enterprise',
-    images: [getR2ImageUrl('optimized/g-43.webp'), getR2ImageUrl('optimized/g-44.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-43.webp'),
+      getR2ImageUrl('optimized/g-44.webp'),
+    ],
     tech: [
       'EKP Systems',
       'Knowledge Management',
@@ -280,7 +319,10 @@ const portfolioItems = [
       'Risk management and electronic signature platform for supply chain financing. Features multi-level approval, contract management, loan processing, and real-time monitoring with mobile integration.',
     icon: Building2,
     category: 'fintech',
-    images: [getR2ImageUrl('optimized/g-30.webp'), getR2ImageUrl('optimized/g-29.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-30.webp'),
+      getR2ImageUrl('optimized/g-29.webp'),
+    ],
     tech: [
       'Java',
       '.NET',
@@ -600,79 +642,80 @@ export default function PortfolioPage() {
                         showIndicators={project.images.length > 1}
                         showNavigation={project.images.length > 1}
                       />
-                    <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none' />
-                    <div className='absolute bottom-4 left-4 text-white z-10'>
-                      <Badge variant='secondary'>
-                        {project.client}
-                      </Badge>
-                    </div>
-                    <div className='absolute top-4 right-4 z-10'>
-                      <project.icon size={32} className='text-white/80' />
-                    </div>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className={`flex-1 flex flex-col ${viewMode === 'list' ? 'min-w-0' : ''}`}>
-                  <CardHeader>
-                    <div className='flex items-start justify-between'>
-                      <div>
-                        <CardTitle className='text-xl mb-2'>
-                          {project.title}
-                        </CardTitle>
-                        <CardDescription className='text-gray-600'>
-                          {project.description}
-                        </CardDescription>
+                      <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none' />
+                      <div className='absolute bottom-4 left-4 text-white z-10'>
+                        <Badge variant='secondary'>{project.client}</Badge>
                       </div>
-                      <Badge variant='secondary' className='ml-2'>
-                        {
-                          categories.find(cat => cat.id === project.category)
-                            ?.label
-                        }
-                      </Badge>
+                      <div className='absolute top-4 right-4 z-10'>
+                        <project.icon size={32} className='text-white/80' />
+                      </div>
                     </div>
-                  </CardHeader>
 
-                  <CardContent>
-                    <div className='space-y-4'>
-                      <div className='flex flex-wrap gap-2'>
-                        {project.tech.map((tech, techIndex) => (
-                          <Badge
-                            key={techIndex}
-                            variant='outline'
-                            className='text-xs'
-                          >
-                            {tech}
+                    {/* Card Content */}
+                    <div
+                      className={`flex-1 flex flex-col ${viewMode === 'list' ? 'min-w-0' : ''}`}
+                    >
+                      <CardHeader>
+                        <div className='flex items-start justify-between'>
+                          <div>
+                            <CardTitle className='text-xl mb-2'>
+                              {project.title}
+                            </CardTitle>
+                            <CardDescription className='text-gray-600'>
+                              {project.description}
+                            </CardDescription>
+                          </div>
+                          <Badge variant='secondary' className='ml-2'>
+                            {
+                              categories.find(
+                                cat => cat.id === project.category
+                              )?.label
+                            }
                           </Badge>
-                        ))}
-                      </div>
-
-                      {project.achievements && (
-                        <div>
-                          <h4 className='text-sm font-medium text-gray-700 mb-2'>
-                            {currentContent.labels.keyAchievements}
-                          </h4>
-                          <ul className='text-sm space-y-1'>
-                            {project.achievements
-                              .slice(0, 3)
-                              .map((achievement, achievementIndex) => (
-                                <li
-                                  key={achievementIndex}
-                                  className='flex items-start'
-                                >
-                                  <span className='text-green-500 mr-2 text-xs'>
-                                    ✓
-                                  </span>
-                                  {achievement}
-                                </li>
-                              ))}
-                          </ul>
                         </div>
-                      )}
+                      </CardHeader>
+
+                      <CardContent>
+                        <div className='space-y-4'>
+                          <div className='flex flex-wrap gap-2'>
+                            {project.tech.map((tech, techIndex) => (
+                              <Badge
+                                key={techIndex}
+                                variant='outline'
+                                className='text-xs'
+                              >
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
+
+                          {project.achievements && (
+                            <div>
+                              <h4 className='text-sm font-medium text-gray-700 mb-2'>
+                                {currentContent.labels.keyAchievements}
+                              </h4>
+                              <ul className='text-sm space-y-1'>
+                                {project.achievements
+                                  .slice(0, 3)
+                                  .map((achievement, achievementIndex) => (
+                                    <li
+                                      key={achievementIndex}
+                                      className='flex items-start'
+                                    >
+                                      <span className='text-green-500 mr-2 text-xs'>
+                                        ✓
+                                      </span>
+                                      {achievement}
+                                    </li>
+                                  ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+                      </CardContent>
                     </div>
-                  </CardContent>
-                  </div>
-                </Card>
-              </motion.div>
+                  </Card>
+                </motion.div>
               )
             })}
           </div>

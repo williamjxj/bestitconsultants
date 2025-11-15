@@ -188,7 +188,7 @@ function isValidImagePath(imagePath: string): boolean {
 
   // Allow paths that start with / or are relative paths
   // Paths should contain only alphanumeric, dots, slashes, hyphens, underscores
-  const validPathPattern = /^[\/]?[a-zA-Z0-9._\/-]+$/
+  const validPathPattern = /^[/]?[a-zA-Z0-9._/-]+$/
   if (!validPathPattern.test(imagePath)) {
     return false
   }

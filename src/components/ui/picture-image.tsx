@@ -48,11 +48,17 @@ export function PictureImage({
         if (imgRef.current.complete && imgRef.current.naturalHeight !== 0) {
           setIsLoading(false)
           setHasError(false)
-        } else if (imgRef.current.complete && imgRef.current.naturalHeight === 0) {
+        } else if (
+          imgRef.current.complete &&
+          imgRef.current.naturalHeight === 0
+        ) {
           // Image failed to load - but wait a bit more before showing error
           // Sometimes the browser needs time to try all sources in picture element
           errorTimeout = window.setTimeout(() => {
-            if (imgRef.current?.complete && imgRef.current.naturalHeight === 0) {
+            if (
+              imgRef.current?.complete &&
+              imgRef.current.naturalHeight === 0
+            ) {
               setIsLoading(false)
               setHasError(true)
             }
@@ -112,7 +118,12 @@ export function PictureImage({
   // Log paths in development for debugging
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
-      console.warn('PictureImage paths:', { srcBase, avifSrc, webpSrc, fallbackSrc })
+      console.warn('PictureImage paths:', {
+        srcBase,
+        avifSrc,
+        webpSrc,
+        fallbackSrc,
+      })
     }
   }, [srcBase, avifSrc, webpSrc, fallbackSrc])
 
@@ -147,7 +158,9 @@ export function PictureImage({
         <div className='absolute inset-0 bg-gradient-to-r from-blue-600/80 to-indigo-700/80 z-0' />
       )}
 
-      <picture className={fill ? 'absolute inset-0 w-full h-full z-0' : 'block'}>
+      <picture
+        className={fill ? 'absolute inset-0 w-full h-full z-0' : 'block'}
+      >
         {/* AVIF source - best compression, modern browsers */}
         <source srcSet={avifSrc} type='image/avif' />
         {/* WebP source - good compression, wider support */}
@@ -172,4 +185,3 @@ export function PictureImage({
     </div>
   )
 }
-

@@ -43,7 +43,10 @@ const websites: Website[] = [
     category: 'AI/ML',
     icon: Code,
     status: 'active',
-    images: [getR2ImageUrl('optimized/g-25.webp'), getR2ImageUrl('optimized/g-21.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-25.webp'),
+      getR2ImageUrl('optimized/g-21.webp'),
+    ],
   },
   {
     name: 'Images Synthesis & Online Subscription',
@@ -52,7 +55,10 @@ const websites: Website[] = [
     category: 'Development',
     icon: Code,
     status: 'active',
-    images: [getR2ImageUrl('istockphoto-1350198816-612x612.jpg'), getR2ImageUrl('optimized/g-17.webp')],
+    images: [
+      getR2ImageUrl('istockphoto-1350198816-612x612.jpg'),
+      getR2ImageUrl('optimized/g-17.webp'),
+    ],
   },
   {
     name: 'AI Images Cart & Purchase',
@@ -61,7 +67,10 @@ const websites: Website[] = [
     category: 'E-commerce',
     icon: ShoppingBag,
     status: 'active',
-    images: [getR2ImageUrl('optimized/g-10.webp'), getR2ImageUrl('optimized/g-49.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-10.webp'),
+      getR2ImageUrl('optimized/g-49.webp'),
+    ],
   },
   {
     name: 'BidMaster Hub',
@@ -70,7 +79,11 @@ const websites: Website[] = [
     category: 'Business',
     icon: Building2,
     status: 'active',
-    images: [getR2ImageUrl('optimized/g-36.webp'), getR2ImageUrl('optimized/g-38.webp'), getR2ImageUrl('optimized/g-39.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-36.webp'),
+      getR2ImageUrl('optimized/g-38.webp'),
+      getR2ImageUrl('optimized/g-39.webp'),
+    ],
   },
   {
     name: 'Cart & Online Payment',
@@ -88,7 +101,11 @@ const websites: Website[] = [
     category: 'Education',
     icon: Heart,
     status: 'active',
-    images: [getR2ImageUrl('optimized/g-19.webp'), getR2ImageUrl('optimized/g-22.webp'), getR2ImageUrl('optimized/g-12.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-19.webp'),
+      getR2ImageUrl('optimized/g-22.webp'),
+      getR2ImageUrl('optimized/g-12.webp'),
+    ],
   },
   {
     name: 'Best IT Consulting',
@@ -97,7 +114,10 @@ const websites: Website[] = [
     category: 'Business',
     icon: Building2,
     status: 'active',
-    images: [getR2ImageUrl('optimized/g-37.webp'), getR2ImageUrl('optimized/g-46.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-37.webp'),
+      getR2ImageUrl('optimized/g-46.webp'),
+    ],
   },
   {
     name: 'Best IT Consultants',
@@ -106,7 +126,10 @@ const websites: Website[] = [
     category: 'Business',
     icon: Building2,
     status: 'active',
-    images: [getR2ImageUrl('optimized/g-42.webp'), getR2ImageUrl('optimized/g-45.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-42.webp'),
+      getR2ImageUrl('optimized/g-45.webp'),
+    ],
   },
   {
     name: 'Erongdan',
@@ -115,7 +138,10 @@ const websites: Website[] = [
     category: 'Business',
     icon: Building2,
     status: 'active',
-    images: [getR2ImageUrl('optimized/g-18.webp'), getR2ImageUrl('optimized/g-9.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-18.webp'),
+      getR2ImageUrl('optimized/g-9.webp'),
+    ],
   },
   {
     name: 'Admin Portfolio Dashboard',
@@ -125,7 +151,10 @@ const websites: Website[] = [
     category: 'Development',
     icon: Code,
     status: 'active',
-    images: [getR2ImageUrl('optimized/g-15.webp'), getR2ImageUrl('optimized/g-38.webp')],
+    images: [
+      getR2ImageUrl('optimized/g-15.webp'),
+      getR2ImageUrl('optimized/g-38.webp'),
+    ],
   },
 ]
 
@@ -190,9 +219,10 @@ export default function BookmarkList() {
       >
         {websites.map((website, index) => {
           // Use website-specific images if available, otherwise fallback to category placeholder
-          const images = website.images && website.images.length > 0
-            ? website.images
-            : [getPlaceholderScreenshot(website.category)]
+          const images =
+            website.images && website.images.length > 0
+              ? website.images
+              : [getPlaceholderScreenshot(website.category)]
 
           return (
             <motion.div
@@ -228,9 +258,7 @@ export default function BookmarkList() {
                   <div className='absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none' />
                   {/* Category Badge */}
                   <div className='absolute bottom-4 left-4 text-white z-10'>
-                    <Badge variant='secondary'>
-                      {website.category}
-                    </Badge>
+                    <Badge variant='secondary'>{website.category}</Badge>
                   </div>
                   {/* Icon */}
                   <div className='absolute top-4 right-4 z-10'>
@@ -239,7 +267,9 @@ export default function BookmarkList() {
                 </div>
 
                 {/* Card Content */}
-                <div className={`flex-1 flex flex-col ${viewMode === 'list' ? 'min-w-0' : ''}`}>
+                <div
+                  className={`flex-1 flex flex-col ${viewMode === 'list' ? 'min-w-0' : ''}`}
+                >
                   {/* Card Header - Matching Portfolio Style */}
                   <CardHeader>
                     <div className='flex items-start justify-between'>

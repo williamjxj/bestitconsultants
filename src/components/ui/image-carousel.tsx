@@ -92,12 +92,7 @@ export function ImageCarousel({
 
   return (
     <div className={cn('relative w-full overflow-hidden group', className)}>
-      <div
-        className={cn(
-          'relative w-full',
-          aspectClasses[aspectRatio]
-        )}
-      >
+      <div className={cn('relative w-full', aspectClasses[aspectRatio])}>
         <AnimatePresence mode='wait' initial={false}>
           <motion.div
             key={currentIndex}
@@ -160,4 +155,3 @@ export function ImageCarousel({
     </div>
   )
 }
-
