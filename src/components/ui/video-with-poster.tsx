@@ -80,8 +80,9 @@ export function VideoWithPoster({
       ref={containerRef}
       className={`relative overflow-hidden rounded-lg shadow-lg ${className}`}
       style={{
-        width: width || '100%',
-        aspectRatio: '4 / 3',
+        width: '100%',
+        maxWidth: width ? `${width}px` : '100%',
+        aspectRatio: '16 / 9',
         padding: 0,
         margin: 0,
       }}

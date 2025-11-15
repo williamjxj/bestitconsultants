@@ -3,14 +3,11 @@
  * Maps context-specific image paths to R2 bucket URLs
  */
 
-// R2 bucket configuration - Always use R2 URLs
-const R2_BASE_URL =
-  process.env.R2_PUBLIC_URL ||
-  'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev'
+import { getR2ImageUrl } from '@/lib/utils'
 
 // Helper function to get image URL (always use R2 URLs)
 function getImageUrl(imageName: string): string {
-  return `${R2_BASE_URL}/${imageName}`
+  return getR2ImageUrl(imageName)
 }
 
 export const imageMapping = {

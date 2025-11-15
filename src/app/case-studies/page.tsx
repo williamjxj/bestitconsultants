@@ -148,6 +148,13 @@ export default function CaseStudiesPage() {
           secondaryCtaText={currentContent.hero.secondaryCtaText}
           secondaryCtaLink='/contact-us?title=Get Started#contact-form'
           badge={currentContent.hero.badge}
+          background='image'
+          backgroundImage='/optimized/hs-3.webp'
+          overlay={false}
+          imageBrightness={0.8}
+          imageContrast={1.1}
+          imagePosition='center center'
+          enableParallax={true}
         />
       </FullWidthHeroWrapper>
       <div className='min-h-screen'>

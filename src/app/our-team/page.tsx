@@ -488,6 +488,13 @@ const TeamPage = () => {
           secondaryCtaText={currentContent.hero.secondaryCtaText}
           secondaryCtaLink='/contact-us?title=Contact Our Team#contact-form'
           badge={currentContent.hero.badge}
+          background='image'
+          backgroundImage='/optimized/hs-4.webp'
+          overlay={false}
+          imageBrightness={0.8}
+          imageContrast={1.1}
+          imagePosition='center center'
+          enableParallax={true}
         />
       </FullWidthHeroWrapper>
 

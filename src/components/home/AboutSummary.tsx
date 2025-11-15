@@ -21,14 +21,14 @@ export default function AboutSummary() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className='relative p-0 m-0'
+            className='relative p-0 m-0 w-full'
           >
             <VideoWithPoster
               videoSrc={`${R2_BASE_URL}/Best IT Consultants.mov`}
               posterSrc={`${R2_BASE_URL}/Best IT Consultants.jpg`}
               alt='Professional team collaboration in modern office environment with diverse team members working together'
               width={612}
-              className='rounded-lg shadow-lg'
+              className='rounded-lg shadow-lg w-full'
               autoplay={true}
               loop={true}
               muted={true}

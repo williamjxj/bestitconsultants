@@ -19,7 +19,7 @@ import {
   Cpu,
   // Sparkles,
   // Zap,
-  // Shield,
+  Shield,
   // Rocket,
   // Target,
 } from 'lucide-react'
@@ -140,6 +140,22 @@ const ServicesPage = () => {
             'Government & Military Project Systems',
             'Supply Chain Finance Platforms',
           ],
+        },
+        {
+          id: 'security',
+          title: 'Cybersecurity',
+          description:
+            'Comprehensive security solutions to protect your digital assets.',
+          icon: <Shield className='h-8 w-8 text-white' />,
+          features: [
+            'Security Audits',
+            'Penetration Testing',
+            'Compliance Management',
+            'Threat Detection & Response',
+          ],
+          color: 'from-red-500 to-pink-500',
+          hoverGradient: 'from-red-50 to-pink-50',
+          iconGradient: 'from-red-500 to-pink-500',
         },
       ],
     },
@@ -453,6 +469,18 @@ const ServicesPage = () => {
       description: currentContent.services[5].description,
       features: currentContent.services[5].features,
     },
+    ...(currentContent.services[6]
+      ? [
+          {
+            title: currentContent.services[6].title,
+            icon: Shield,
+            gradient: 'from-red-500 to-pink-500',
+            bgGradient: 'from-red-50 to-pink-50',
+            description: currentContent.services[6].description,
+            features: currentContent.services[6].features,
+          },
+        ]
+      : []),
   ]
 
   return (
@@ -468,6 +496,13 @@ const ServicesPage = () => {
           secondaryCtaText={currentContent.hero.secondaryCtaText}
           secondaryCtaLink='/case-studies'
           badge={currentContent.hero.badge}
+          background='image'
+          backgroundImage='/optimized/hs-1.webp'
+          overlay={false}
+          imageBrightness={0.8}
+          imageContrast={1.1}
+          imagePosition='center center'
+          enableParallax={true}
         />
       </FullWidthHeroWrapper>
 

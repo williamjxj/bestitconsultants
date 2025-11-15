@@ -3,6 +3,7 @@
 import { useGSAP } from '@gsap/react'
 import { motion, useInView } from 'framer-motion'
 import gsap from 'gsap'
+import Image from 'next/image'
 import React, { useEffect, useRef } from 'react'
 
 import { AnimatedTitle } from '@/components/ui/animated-title'
@@ -36,6 +37,10 @@ export interface HeroSectionProps {
   backgroundVideo?: string
   overlay?: boolean
   overlayOpacity?: number
+  imageBrightness?: number // 0-1, default 0.6
+  imageContrast?: number // 0-2, default 1
+  imagePosition?: string // CSS object-position, default 'center'
+  enableParallax?: boolean // Enable subtle parallax effect, default false
 
   // Animation
   animation?: 'fade' | 'slide' | 'scale' | 'stagger'
@@ -99,6 +104,10 @@ export function HeroSection({
   backgroundVideo,
   overlay = true,
   overlayOpacity = 0.6,
+  imageBrightness = 0.6,
+  imageContrast = 1,
+  imagePosition = 'center',
+  enableParallax = false,
   animation: _animation = 'slide',
   animationDelay = 0,
   animationDuration: _animationDuration = 0.8,
@@ -111,9 +120,26 @@ export function HeroSection({
   children,
 }: HeroSectionProps) {
   const ref = useRef(null)
+  const imageRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   const delay = animationDelay
+
+  // Parallax effect for background image
+  useEffect(() => {
+    if (!enableParallax || !imageRef.current) return
+
+    const handleScroll = () => {
+      const scrolled = window.scrollY
+      const rate = scrolled * 0.3 // Parallax speed multiplier
+      if (imageRef.current) {
+        imageRef.current.style.transform = `translateY(${rate}px)`
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [enableParallax])
 
   const renderBackground = () => {
     if (backgroundVideo) {
@@ -139,17 +165,73 @@ export function HeroSection({
     }
 
     if (backgroundImage) {
+      // Determine gradient colors based on background type
+      const getGradientOverlay = () => {
+        switch (background) {
+          case 'gradient-portfolio':
+            return 'from-violet-900/70 via-purple-900/60 to-fuchsia-900/70'
+          case 'gradient-contact':
+            return 'from-emerald-900/70 via-teal-900/60 to-cyan-900/70'
+          case 'gradient-our-work':
+            return 'from-rose-900/70 via-pink-900/60 to-red-900/70'
+          default:
+            return 'from-blue-900/70 via-purple-900/60 to-indigo-900/70'
+        }
+      }
+
+      // Build filter string with brightness and contrast
+      const filterValue = `brightness(${imageBrightness}) contrast(${imageContrast})`
+
       return (
         <>
-          <div
-            className='absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat'
-            style={{ backgroundImage: `url(${backgroundImage})` }}
-          />
-          {overlay && (
+          {/* Background Image with Next.js Image component - 2.35:1 aspect ratio */}
+          <div className='absolute inset-0 w-full h-full overflow-hidden'>
             <div
-              className='absolute inset-0 bg-black'
-              style={{ opacity: overlayOpacity }}
-            />
+              ref={imageRef}
+              className='relative w-full h-full transition-transform duration-300 ease-out'
+              style={{
+                willChange: enableParallax ? 'transform' : 'auto',
+              }}
+            >
+              <Image
+                src={backgroundImage}
+                alt='Hero background'
+                fill
+                priority
+                quality={90}
+                className='object-cover'
+                style={{
+                  filter: filterValue,
+                  objectPosition: imagePosition,
+                  transition: 'filter 0.5s ease-out, transform 0.3s ease-out',
+                }}
+                sizes='100vw'
+              />
+            </div>
+          </div>
+          {/* Gradient Overlay - more sophisticated than solid black */}
+          {overlay && (
+            <>
+              {/* Primary gradient overlay with theme-based colors - optimized opacity */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${getGradientOverlay()}`}
+                style={{ opacity: Math.min(overlayOpacity * 1.2, 0.65) }}
+              />
+              {/* Secondary subtle overlay for depth - darker at bottom, lighter at top */}
+              <div className='absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/12' />
+              {/* Additional subtle radial gradient for focus - creates vignette effect */}
+              <div
+                className='absolute inset-0'
+                style={{
+                  backgroundImage:
+                    'radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.1) 100%)',
+                }}
+              />
+            </>
+          )}
+          {/* Minimal overlay for text readability when overlay={false} - very subtle */}
+          {!overlay && (
+            <div className='absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent' />
           )}
         </>
       )
@@ -213,7 +295,9 @@ export function HeroSection({
             transition={{ duration: 0.8, delay: delay + 0.4 }}
             className={cn(
               'text-xl sm:text-2xl md:text-3xl font-semibold mb-6',
-              'text-blue-200 drop-shadow-lg',
+              'text-white',
+              'relative inline-block px-4 py-2 rounded-lg',
+              'bg-black/30 backdrop-blur-sm',
               subtitleClassName
             )}
           >
@@ -228,8 +312,10 @@ export function HeroSection({
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: delay + 0.6 }}
             className={cn(
-              'text-lg sm:text-xl text-gray-200 mb-8 max-w-3xl',
-              'leading-relaxed drop-shadow-md',
+              'text-lg sm:text-xl text-white mb-8 max-w-3xl',
+              'leading-relaxed',
+              'relative inline-block px-6 py-3 rounded-lg',
+              'bg-black/30 backdrop-blur-sm',
               textAlign === 'center' && 'mx-auto',
               descriptionClassName
             )}
@@ -287,13 +373,10 @@ export function HeroSection({
       className={cn(
         'relative overflow-hidden',
         backgroundClasses[background],
+        // For image backgrounds, use full width with min-height from size prop
+        backgroundImage && 'w-full',
         className
       )}
-      style={
-        backgroundImage
-          ? { backgroundImage: `url(${backgroundImage})` }
-          : undefined
-      }
     >
       {renderBackground()}
       {renderContent()}

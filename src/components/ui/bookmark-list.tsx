@@ -15,7 +15,7 @@ import Image from 'next/image'
 
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
-import { getBaseUrl } from '@/lib/utils'
+import { getBaseUrl, getR2ImageUrl } from '@/lib/utils'
 
 interface Website {
   name: string
@@ -145,43 +145,14 @@ const getCategoryColor = (category: string) => {
   }
 }
 
-// R2 bucket configuration - Use R2 URLs when configured, fallback to local for development
-const R2_BASE_URL =
-  process.env.R2_PUBLIC_URL ||
-  'https://pub-1234567890abcdef.r2.cloudflarestorage.com'
-const R2_ENABLED = process.env.R2_ENABLED === 'true'
-const IS_PRODUCTION = process.env.NODE_ENV === 'production'
-
-// Helper function to get image URL (R2 in production, local in development)
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function _getImageUrl(_imagePath: string): string {
-  // This function is currently unused but kept for future R2 integration
-  // In production with R2 enabled, use R2 URLs
-  if (
-    IS_PRODUCTION &&
-    R2_ENABLED &&
-    R2_BASE_URL &&
-    !R2_BASE_URL.includes('1234567890abcdef')
-  ) {
-    return `${R2_BASE_URL}${_imagePath}`
-  }
-  // In development or when R2 not configured, use local paths
-  return _imagePath
-}
-
-// Fallback placeholder for screenshots using R2 images in production, local in development
+// Fallback placeholder for screenshots using R2 images
 const getPlaceholderScreenshot = (category: string) => {
   const placeholders = {
-    Business:
-      'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp',
-    'AI/ML':
-      'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/kling_20251012_1.png',
-    Development:
-      'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1350198816-612x612.jpg',
-    'E-commerce':
-      'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1145868161-612x612.webp',
-    Education:
-      'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-2227310361-612x612.webp',
+    Business: getR2ImageUrl('istockphoto-1358835459-612x612.webp'),
+    'AI/ML': getR2ImageUrl('kling_20251012_1.png'),
+    Development: getR2ImageUrl('istockphoto-1350198816-612x612.jpg'),
+    'E-commerce': getR2ImageUrl('istockphoto-1145868161-612x612.webp'),
+    Education: getR2ImageUrl('istockphoto-2227310361-612x612.webp'),
   }
   return (
     placeholders[category as keyof typeof placeholders] ||

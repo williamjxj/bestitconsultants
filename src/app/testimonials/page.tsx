@@ -335,6 +335,13 @@ export default function AboutPage() {
           ctaLink='#team'
           secondaryCtaText='View Our Services'
           secondaryCtaLink='/services'
+          background='image'
+          backgroundImage='/optimized/hs-7.webp'
+          overlay={false}
+          imageBrightness={0.8}
+          imageContrast={1.1}
+          imagePosition='center center'
+          enableParallax={true}
         />
       </FullWidthHeroWrapper>
 

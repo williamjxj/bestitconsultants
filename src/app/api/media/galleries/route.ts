@@ -21,7 +21,7 @@ const mockGalleries: MediaGallery[] = [
     assets: [
       {
         id: '1',
-        src: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1212876953-612x612.jpg',
+        src: getR2ImageUrl('istockphoto-1212876953-612x612.jpg'),
         alt: 'Modern technology and innovation workspace',
         title: 'Technology Innovation Workspace',
         width: 612,
@@ -47,7 +47,7 @@ const mockGalleries: MediaGallery[] = [
     assets: [
       {
         id: '2',
-        src: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1358835459-612x612.webp',
+        src: getR2ImageUrl('istockphoto-1358835459-612x612.webp'),
         alt: 'Professional team collaboration',
         title: 'Team Collaboration',
         width: 612,
@@ -61,7 +61,7 @@ const mockGalleries: MediaGallery[] = [
       },
       {
         id: '3',
-        src: 'https://pub-280494fad9014906948b6a6a70b3466f.r2.dev/istockphoto-1350198816-612x612.jpg',
+        src: getR2ImageUrl('istockphoto-1350198816-612x612.jpg'),
         alt: 'Professional workspace',
         title: 'Professional Workspace',
         width: 612,

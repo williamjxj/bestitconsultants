@@ -181,8 +181,19 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
               />
             )}
 
-            {/* Overlay */}
-            <div className='absolute inset-0 bg-gradient-to-r from-blue-600/80 to-indigo-700/80' />
+            {/* Multi-layer Overlay for better visual balance */}
+            {/* Primary gradient overlay - 55% opacity for optimal balance */}
+            <div className='absolute inset-0 bg-gradient-to-br from-blue-900/55 via-purple-900/50 to-indigo-900/55' />
+            {/* Secondary overlay - darker at bottom for text readability */}
+            <div className='absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/15' />
+            {/* Subtle radial vignette for focus */}
+            <div
+              className='absolute inset-0'
+              style={{
+                backgroundImage:
+                  'radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.12) 100%)',
+              }}
+            />
           </div>
 
           {/* Content */}

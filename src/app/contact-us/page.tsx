@@ -190,6 +190,13 @@ export default function ContactPage() {
           secondaryCtaText={currentContent.hero.secondaryCtaText}
           secondaryCtaLink='/portfolio'
           badge={currentContent.hero.badge}
+          background='image'
+          backgroundImage='/optimized/hs-6.webp'
+          overlay={false}
+          imageBrightness={0.8}
+          imageContrast={1.1}
+          imagePosition='center center'
+          enableParallax={true}
         />
       </FullWidthHeroWrapper>
 
