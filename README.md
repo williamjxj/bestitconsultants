@@ -1,11 +1,90 @@
-# BestIT Consultants - Corporate Website
+<div align="center">
+  <img src="public/logo.png" alt="BestIT Consultants" width="120"/>
+  <h1>BestIT Consultants</h1>
+  <p><strong>Enterprise-Grade Software Development & Digital Transformation</strong></p>
+  
+  [![Live Website](https://img.shields.io/badge/🌐_Live_Site-bestitconsultants.ca-blue?style=for-the-badge)](https://www.bestitconsultants.ca/)
+  [![Next.js](https://img.shields.io/badge/Next.js_15-black?style=flat&logo=next.js)](https://nextjs.org/)
+  [![React](https://img.shields.io/badge/React_19-61DAFB?style=flat&logo=react&logoColor=black)](https://react.dev/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+</div>
 
-A modern, professional website for BestIT Consultants showcasing our software development and
-digital transformation services.
+---
 
-## Visual Overview
+## 🌟 About This Project
 
-- [Gamma Presentation (PPT)](https://gamma.app/docs/Best-IT-Consultants-Elite-Enterprise-Architects-Startup-Speed-1v8t3nud1ghb4iq)
+**BestIT Consultants** is a full-service software outsourcing company specializing in AI/ML
+solutions, web development, cloud architecture, and digital transformation. This repository powers
+our corporate website at **[www.bestitconsultants.ca](https://www.bestitconsultants.ca/)**.
+
+### 🎯 Why BestIT Consultants?
+
+- ✅ **AI & Machine Learning Expertise** - LangChain, RAG, ChatBI, MLOps
+- ✅ **Modern Web Development** - React, Next.js, TypeScript, full-stack solutions
+- ✅ **Cloud & DevOps** - AWS, Azure, Kubernetes, CI/CD automation
+- ✅ **Legacy System Modernization** - Transform outdated systems into scalable platforms
+- ✅ **Rapid Delivery** - Startup speed with enterprise quality
+- ✅ **Proven Results** - 90% acceptance rate, 10x productivity improvements
+
+### 📊 Success Stories
+
+**Case Study Highlights:**
+
+- **AI Textile Design** - Reduced design cycle from 12 weeks to 4-6 days, 90% acceptance rate
+- **E-commerce Modernization** - 3x faster page loads, 50% increase in conversions
+- **Healthcare Portal** - Serving 100,000+ users with 99.9% uptime
+
+[View All Case Studies →](https://www.bestitconsultants.ca/case-studies)
+
+## 📸 Website Preview
+
+Visit **[www.bestitconsultants.ca](https://www.bestitconsultants.ca/)** to explore our full
+portfolio and services.
+
+**Key Pages:**
+
+- **Home** - Hero section with service highlights and portfolio preview
+- **Services** - AI/ML, Web Development, Cloud Solutions, DevOps, Data Analytics
+- **Case Studies** - Real-world success stories with measurable outcomes
+- **Our Work** - Portfolio showcase with technology breakdowns
+- **Team** - Expert developers with prestige project experience
+- **Contact** - Professional contact form with instant email notifications
+
+## 🚀 Quick Links
+
+| Resource | Description |
+|----------|-------------|
+| 🌐 [**Live Website**](https://www.bestitconsultants.ca/) | Visit our production site |
+| 📊 [**Presentation**](https://gamma.app/docs/Best-IT-Consultants-Elite-Enterprise-Architects-Startup-Speed-1v8t3nud1ghb4iq) | Company overview (Gamma PPT) |
+| 📧 **Contact** | service@bestitconsultants.ca |
+
+---
+
+## 💼 For Employers & Business Partners
+
+This repository demonstrates professional software engineering practices and modern web development
+expertise:
+
+**Technical Highlights:**
+
+- 🏗️ **Modern Architecture** - Next.js 15, React 19, TypeScript, Server Components
+- 🎨 **UI/UX Excellence** - Responsive design, accessibility (WCAG 2.1 AA), performance optimized
+- 🔌 **API Design** - RESTful endpoints, structured data, robust error handling
+- 📧 **Email Integration** - Professional contact form with Resend API
+- 🚀 **Production Ready** - SEO optimized, deployed on Vercel, custom domain configured
+- 📚 **Documentation** - Comprehensive technical docs, API references, deployment guides
+
+**Business Value:**
+
+- Proven ability to deliver enterprise-grade software solutions
+- Experience with AI/ML, cloud architecture, full-stack development
+- Strong focus on code quality, maintainability, and scalability
+- Track record of measurable results (see case studies on live site)
+
+**[→ View Live Website](https://www.bestitconsultants.ca/)** | **[→ Contact for Projects](https://www.bestitconsultants.ca/contact-us)**
+
+---
 
 ## 🚀 Features
 
@@ -216,16 +295,16 @@ The codebase has been cleaned up to remove unused code and fix issues:
   implemented
 - **Updated documentation**: Refreshed README and specs to reflect current state
 
-## 📞 Support
+## 📞 Contact & Support
 
-For technical support or questions:
+**Ready to transform your business with cutting-edge technology?**
 
-- **Email**: service@bestitconsultants.ca
-- **Phone**: +1 (236) 992-3846
-- **Address**: 10355 152 St, Surrey, BC, Canada V3R 7C1
+Visit our live website: **[www.bestitconsultants.ca](https://www.bestitconsultants.ca/)**, **Email**: service@bestitconsultants.ca
 
 ---
 
-**BestIT Consultants** - Delivering Excellence Through Technology
-
-This project is licensed under the MIT License. See the LICENSE file for details.
+<div align="center">
+  <strong>BestIT Consultants</strong> - Delivering Excellence Through Technology
+  <br/>
+  <em>Enterprise Architects. Startup Speed. Proven Results.</em>
+</div>
