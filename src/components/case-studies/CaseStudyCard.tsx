@@ -30,7 +30,7 @@ export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({
             alt={`${caseStudy.title} - ${caseStudy.client} case study`}
             width={400}
             height={256}
-            className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+            className='w-full h-full object-cover group-hover:scale-110 transition-transform duration-300'
           />
         </div>
       )}

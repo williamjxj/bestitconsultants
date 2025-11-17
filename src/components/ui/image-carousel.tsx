@@ -62,7 +62,7 @@ export function ImageCarousel({
             src={images[0]}
             alt={alt}
             fill
-            className='object-cover'
+            className='object-cover group-hover:scale-110 transition-transform duration-300'
             sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
           />
         </div>
@@ -106,7 +106,7 @@ export function ImageCarousel({
               src={images[currentIndex]}
               alt={`${alt} - Image ${currentIndex + 1}`}
               fill
-              className='object-cover'
+              className='object-cover group-hover:scale-110 transition-transform duration-300'
               sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
             />
           </motion.div>
