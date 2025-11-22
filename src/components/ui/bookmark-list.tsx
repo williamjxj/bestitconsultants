@@ -22,7 +22,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { ImageCarousel } from '@/components/ui/image-carousel'
-import { getBaseUrl, getR2ImageUrl } from '@/lib/utils'
+import { getR2ImageUrl } from '@/lib/utils'
 
 interface Website {
   name: string
@@ -43,9 +43,26 @@ const websites: Website[] = [
     category: 'AI/ML',
     icon: Code,
     status: 'active',
+    githubUrl: 'https://github.com/williamjxj/face-swap-poc',
     images: [
       getR2ImageUrl('optimized/g-25.webp'),
       getR2ImageUrl('optimized/g-21.webp'),
+    ],
+  },
+  {
+    name: 'Images Hub',
+    url: 'https://images-hub-pim.vercel.app/',
+    description:
+      'A unified gateway to stunning images from Cloudflare, Unsplash, Pexels, Pixabay, and more—your one-stop source for high-quality visuals, and AI Chatbot assistant!',
+    category: 'Development',
+    icon: LayoutGrid,
+    status: 'active',
+    githubUrl: 'https://github.com/williamjxj/images-hub',
+    images: [
+      getR2ImageUrl('case-studies/images-hub-1.webp'),
+      getR2ImageUrl('case-studies/images-hub-2.webp'),
+      getR2ImageUrl('case-studies/images-hub-3.webp'),
+      getR2ImageUrl('case-studies/images-hub-4.webp'),
     ],
   },
   {
@@ -55,6 +72,7 @@ const websites: Website[] = [
     category: 'Development',
     icon: Code,
     status: 'active',
+    githubUrl: 'https://github.com/williamjxj/nextjs-supabase',
     images: [
       getR2ImageUrl('istockphoto-1350198816-612x612.jpg'),
       getR2ImageUrl('optimized/g-17.webp'),
@@ -67,6 +85,7 @@ const websites: Website[] = [
     category: 'E-commerce',
     icon: ShoppingBag,
     status: 'active',
+    githubUrl: 'https://github.com/williamjxj/manus-ai-shop',
     images: [
       getR2ImageUrl('optimized/g-10.webp'),
       getR2ImageUrl('optimized/g-49.webp'),
@@ -79,6 +98,7 @@ const websites: Website[] = [
     category: 'Business',
     icon: Building2,
     status: 'active',
+    githubUrl: 'https://github.com/williamjxj/bidmaster',
     images: [
       getR2ImageUrl('optimized/g-36.webp'),
       getR2ImageUrl('optimized/g-38.webp'),
@@ -92,6 +112,7 @@ const websites: Website[] = [
     category: 'Development',
     icon: Code,
     status: 'beta',
+    githubUrl: 'https://github.com/williamjxj/nextjs-mcp-template',
     images: [getR2ImageUrl('optimized/g-23.webp')],
   },
   {
@@ -101,6 +122,7 @@ const websites: Website[] = [
     category: 'Education',
     icon: Heart,
     status: 'active',
+    githubUrl: 'https://github.com/williamjxj/friendshipdaycare',
     images: [
       getR2ImageUrl('optimized/g-19.webp'),
       getR2ImageUrl('optimized/g-22.webp'),
@@ -109,7 +131,8 @@ const websites: Website[] = [
   },
   {
     name: 'Best IT Consulting',
-    url: `${getBaseUrl()}/`,
+    url: `https://www.bestitconsulting.ca`,
+    githubUrl: 'https://github.com/williamjxj/bestitconsulting',
     description: 'IT consulting and services platform',
     category: 'Business',
     icon: Building2,
@@ -121,7 +144,8 @@ const websites: Website[] = [
   },
   {
     name: 'Best IT Consultants',
-    url: `${getBaseUrl()}/`,
+    url: `https://www.bestitconsultants.ca`,
+    githubUrl: 'https://github.com/williamjxj/bestitconsultants',
     description: 'Professional IT consulting services',
     category: 'Business',
     icon: Building2,
@@ -134,7 +158,8 @@ const websites: Website[] = [
   {
     name: 'Erongdan',
     url: 'https://www.erongdan.com',
-    description: 'Digital solutions and business services platform',
+    githubUrl: '',
+    description: 'Digital solutions and business services platform for a Fortune 500 company ',
     category: 'Business',
     icon: Building2,
     status: 'active',
@@ -146,6 +171,7 @@ const websites: Website[] = [
   {
     name: 'Admin Portfolio Dashboard',
     url: 'https://cursor-portfolio-dashboard.vercel.app/',
+    githubUrl: 'https://github.com/williamjxj/portfolio-dashboard',
     description:
       'AI-powered portfolio dashboard showcasing curated applications',
     category: 'Development',
