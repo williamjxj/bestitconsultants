@@ -1,0 +1,184 @@
+openapi: 3.0.0
+info:
+  title: AI Chatbot API
+  description: API endpoint for AI chatbot conversations
+  version: 1.0.0
+servers:
+  - url: /api/chat
+    description: Chat API endpoint
+
+paths:
+  /api/chat:
+    post:
+      summary: Send a message to the AI chatbot
+      description: |
+        Sends a message to the AI chatbot and receives a streaming response.
+        Uses Vercel AI Gateway with DeepSeek LLM in production, or DeepSeek provider directly in local development.
+        Falls back to rule-based responses when AI API is unavailable.
+      operationId: sendChatMessage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - messages
+              properties:
+                messages:
+                  type: array
+                  description: Array of conversation messages
+                  items:
+                    $ref: '#/components/schemas/Message'
+                language:
+                  type: string
+                  enum: [en, fr, es, cn]
+                  description: Language preference for response
+                  default: en
+      responses:
+        '200':
+          description: Streaming response (text/event-stream)
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                description: Server-Sent Events stream from Vercel AI SDK
+        '400':
+          description: Bad request (validation error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                emptyMessages:
+                  value:
+                    error:
+                      type: validation
+                      message: Messages array is required and cannot be empty
+                      retryable: false
+                tokenLimit:
+                  value:
+                    error:
+                      type: validation
+                      message: Message exceeds token limit. Please shorten your message.
+                      retryable: false
+                      details: Maximum tokens: 8000
+        '408':
+          description: Request timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error:
+                  type: timeout
+                  message: Request timed out. Please try again.
+                  retryable: true
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error:
+                  type: rate_limit
+                  message: Rate limit exceeded. Please try again later.
+                  retryable: true
+                  retryAfter: 60
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                serviceError:
+                  value:
+                    error:
+                      type: service
+                      message: An error occurred processing your request. Please try again.
+                      retryable: true
+                networkError:
+                  value:
+                    error:
+                      type: network
+                      message: Network error occurred. Please check your connection and try again.
+                      retryable: true
+
+components:
+  schemas:
+    Message:
+      type: object
+      required:
+        - id
+        - role
+        - content
+      properties:
+        id:
+          type: string
+          description: Unique message identifier
+        role:
+          type: string
+          enum: [user, assistant, system]
+          description: Message sender role
+        content:
+          type: string
+          description: Message text content
+        parts:
+          type: array
+          description: Structured message parts (for extensibility)
+          items:
+            $ref: '#/components/schemas/MessagePart'
+        timestamp:
+          type: number
+          description: Message timestamp (milliseconds since epoch)
+          format: int64
+
+    MessagePart:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum: [text, image, tool]
+          description: Part type
+        text:
+          type: string
+          description: Text content (required if type is text)
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          required:
+            - type
+            - message
+            - retryable
+          properties:
+            type:
+              type: string
+              enum: [validation, timeout, rate_limit, service, network, authentication, authorization, configuration]
+              description: Error type
+            message:
+              type: string
+              description: Human-readable error message
+            retryable:
+              type: boolean
+              description: Whether the request can be retried
+            retryAfter:
+              type: number
+              description: Seconds to wait before retrying (if retryable)
+              format: int32
+            details:
+              type: string
+              description: Additional error details
+            actionUrl:
+              type: string
+              description: URL for user action (e.g., add credit card)
+              format: uri
+

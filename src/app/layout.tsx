@@ -1,6 +1,7 @@
 import './globals.css'
 import { Inter, Poppins, Roboto } from 'next/font/google'
 
+import { ChatWidget } from '@/components/chat-widget/chat-widget'
 import Footer from '@/components/common/Footer'
 import Navbar from '@/components/common/Navbar'
 import { StructuredData } from '@/components/seo/StructuredData'
@@ -106,6 +107,7 @@ export default function RootLayout({
             </main>
             <Footer /> {/* Site footer */}
             <StructuredData /> {/* SEO structured data */}
+            <ChatWidget /> {/* AI Chatbot widget */}
           </div>
         </LanguageProvider>
       </body>

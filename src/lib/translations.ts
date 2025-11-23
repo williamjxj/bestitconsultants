@@ -733,6 +733,17 @@ export const translations = {
         description: 'Located in Surrey, BC - Greater Vancouver Area',
       },
     },
+    chat: {
+      title: 'AI Assistant',
+      welcome: 'Start a conversation!',
+      placeholder: 'Type your message...',
+      thinking: 'Thinking...',
+      error: 'An error occurred. Please try again.',
+      retry: 'Retry',
+      copy: 'Copy message',
+      close: 'Close chat',
+      open: 'Open AI Assistant',
+    },
     caseStudies: {
       title: 'Case Studies',
       subtitle:

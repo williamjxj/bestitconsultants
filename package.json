@@ -18,6 +18,8 @@
     "test": "echo 'No tests configured'"
   },
   "dependencies": {
+    "@ai-sdk/deepseek": "^1.0.29",
+    "@ai-sdk/react": "^2.0.100",
     "@aws-sdk/client-s3": "^3.908.0",
     "@aws-sdk/s3-request-presigner": "^3.908.0",
     "@gsap/react": "^2.1.2",
@@ -31,6 +33,7 @@
     "@radix-ui/react-tabs": "^1.1.13",
     "@supabase/supabase-js": "^2.79.0",
     "@types/mime-types": "^3.0.1",
+    "ai": "^5.0.100",
     "canvas": "^3.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
