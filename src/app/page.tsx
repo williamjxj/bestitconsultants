@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
+import { ChatWidget } from '@/components/chat-widget/chat-widget'
 import AboutSummary from '@/components/home/AboutSummary'
 import ContactSnippet from '@/components/home/ContactSnippet'
 import PortfolioPreview from '@/components/home/PortfolioPreview'
@@ -247,6 +248,9 @@ export default function HomePage() {
       >
         <ContactSnippet />
       </motion.div>
+
+      {/* AI Chatbot widget - only on landing page */}
+      <ChatWidget />
     </div>
   )
 }

@@ -7,7 +7,9 @@ import {
 } from '@/lib/utils/fallback-responses'
 import { getCompanyKnowledgeBase } from '@/lib/utils/knowledge-base'
 
-export const runtime = 'edge' // Edge runtime for lower latency
+// Using Node.js runtime instead of Edge to avoid compatibility issues with AI SDK dependencies
+// Edge runtime has issues with packages that reference browser globals like 'self'
+export const runtime = 'nodejs'
 
 // Timeout: 60 seconds (per spec requirement)
 const REQUEST_TIMEOUT_MS = 60_000
