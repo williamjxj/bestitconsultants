@@ -175,7 +175,7 @@ export default function AboutPage() {
     en: {
       title: 'About BestITConsultants',
       intro:
-        'We are a premier software outsourcing company founded by industry veterans with over 60 years of combined experience. Led by CEO William Jiang, our international team has delivered successful projects for Fortune 500 companies including Xperi, Credit Suisse, HSBC, WebMD, and BestBuy Canada.',
+        'We are a premier software outsourcing company founded by industry veterans with over 60 years of combined experience. Our international team has delivered successful projects for Fortune 500 companies including Xperi, Credit Suisse, HSBC, WebMD, and BestBuy Canada.',
       mission: {
         title: 'Our Mission',
         text: 'To empower businesses worldwide with exceptional software solutions, leveraging our deep expertise in AI/ML, enterprise systems, and cloud technologies. We combine North American innovation with Asian efficiency to deliver world-class results.',

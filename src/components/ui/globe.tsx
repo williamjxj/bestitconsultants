@@ -18,7 +18,7 @@ const GLOBE_CONFIG: COBEOptions = {
   dark: 0,
   diffuse: 0.4,
   mapSamples: 16000,
-  mapBrightness: 1.2,
+  mapBrightness: 1.4, // Balanced brightness between previous (1.2) and current (1.8)
   baseColor: [1, 1, 1],
   markerColor: [251 / 255, 100 / 255, 21 / 255],
   glowColor: [1, 1, 1],
@@ -33,6 +33,8 @@ const GLOBE_CONFIG: COBEOptions = {
     { location: [40.7128, -74.006], size: 0.1 },
     { location: [34.6937, 135.5022], size: 0.05 },
     { location: [41.0082, 28.9784], size: 0.06 },
+    // Vancouver, Canada - highlighted with larger size
+    { location: [49.2827, -123.1207], size: 0.15 }, // Vancouver, Canada - larger size to highlight
   ],
 }
 

@@ -520,12 +520,12 @@ const TeamPage = () => {
                 </h2>
                 <p className='text-gray-700 leading-relaxed mb-4'>
                   {language === 'en'
-                    ? 'Our leadership team brings decades of real-world experience from top-tier companies. Headquartered in Vancouver, Canada with our core development center in Chengdu, China, this strategic positioning combines North American business acumen with Asian technical excellence. We deliver Fortune 500 quality at competitive rates with 24/7 development cycles.'
+                    ? 'Our leadership team brings decades of real-world experience from top-tier companies. Headquartered in Vancouver, Canada with our core development center in Shenzhen, China, this strategic positioning combines North American business acumen with Asian technical excellence. We deliver Fortune 500 quality at competitive rates with 24/7 development cycles.'
                     : language === 'fr'
-                      ? "Notre équipe de direction apporte des décennies d'expérience réelle des meilleures entreprises. Avec un siège stratégique à Vancouver, Canada et notre centre de développement principal à Chengdu, en Chine, ce positionnement stratégique combine le savoir-faire commercial nord-américain avec l'excellence technique asiatique. Nous offrons une qualité Fortune 500 à des tarifs compétitifs avec des cycles de développement 24/7."
+                      ? "Notre équipe de direction apporte des décennies d'expérience réelle des meilleures entreprises. Avec un siège stratégique à Vancouver, Canada et notre centre de développement principal à Shenzhen, en Chine, ce positionnement stratégique combine le savoir-faire commercial nord-américain avec l'excellence technique asiatique. Nous offrons une qualité Fortune 500 à des tarifs compétitifs avec des cycles de développement 24/7."
                       : language === 'es'
-                        ? 'Nuestro equipo de liderazgo aporta décadas de experiencia del mundo real de empresas de primer nivel. Con sede en Vancouver, Canadá y nuestro centro de desarrollo principal en Chengdu, China, este posicionamiento estratégico combina la perspicacia comercial de América del Norte con la excelencia técnica asiática. Entregamos calidad Fortune 500 a tarifas competitivas con ciclos de desarrollo 24/7.'
-                        : '我们的领导团队带来了来自顶级公司的数十年实际经验。总部位于加拿大温哥华，核心开发中心位于中国成都，这种战略定位结合了北美商业敏锐度与亚洲技术卓越性。我们以具有竞争力的价格提供财富500强品质，并支持24/7开发周期。'}
+                        ? 'Nuestro equipo de liderazgo aporta décadas de experiencia del mundo real de empresas de primer nivel. Con sede en Vancouver, Canadá y nuestro centro de desarrollo principal en Shenzhen, China, este posicionamiento estratégico combina la perspicacia comercial de América del Norte con la excelencia técnica asiática. Entregamos calidad Fortune 500 a tarifas competitivas con ciclos de desarrollo 24/7.'
+                        : '我们的领导团队带来了来自顶级公司的数十年实际经验。总部位于加拿大温哥华，核心开发中心位于中国深圳，这种战略定位结合了北美商业敏锐度与亚洲技术卓越性。我们以具有竞争力的价格提供财富500强品质，并支持24/7开发周期。'}
                 </p>
                 <div className='flex flex-wrap items-center gap-4'>
                   <p className='font-medium text-gray-700'>

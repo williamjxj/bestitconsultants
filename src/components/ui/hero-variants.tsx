@@ -99,7 +99,7 @@ export function ContactHero(props: Partial<HeroSectionProps>) {
         textAlign='center'
         {...props}
       />
-      <div className='absolute inset-0 overflow-hidden pointer-events-none opacity-30'>
+      <div className='absolute inset-0 overflow-hidden pointer-events-none opacity-40'>
         <Globe className='absolute top-1/2 left-1/2 translate-x-[30%] -translate-y-1/2 scale-[0.8]' />
       </div>
     </div>

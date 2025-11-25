@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 import { Suspense, useEffect } from 'react'
 
+import { AnimatedFAQ } from '@/components/contact/AnimatedFAQ'
 import { ContactForm } from '@/components/contact/ContactForm'
 import { Button } from '@/components/ui/button'
 import {
@@ -369,24 +370,10 @@ export default function ContactPage() {
 
           {/* FAQ Section */}
           <div className='mt-20'>
-            <h2 className='text-3xl font-bold text-center mb-12'>
-              {translations.contact.faq.title}
-            </h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-              {translations.contact.faq.items.map((item, index) => (
-                <Card
-                  key={index}
-                  className='border-0 bg-white/50 backdrop-blur-sm'
-                >
-                  <CardHeader>
-                    <CardTitle className='text-lg'>{item.question}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className='text-gray-600'>{item.answer}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <AnimatedFAQ
+              items={translations.contact.faq.items}
+              title={translations.contact.faq.title}
+            />
           </div>
 
           {/* Location Map */}

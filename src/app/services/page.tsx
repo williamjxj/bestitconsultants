@@ -20,6 +20,8 @@ import {
   // Sparkles,
   // Zap,
   Shield,
+  BarChart3,
+  TestTube,
   // Rocket,
   // Target,
 } from 'lucide-react'
@@ -143,6 +145,28 @@ const ServicesPage = () => {
           ],
         },
         {
+          title: 'Data Analytics & Business Intelligence',
+          description:
+            'Transform raw data into actionable insights with advanced analytics and business intelligence solutions. We help businesses make data-driven decisions with AI-powered analytics platforms.',
+          features: [
+            'Data Warehousing & ETL Pipelines',
+            'Business Intelligence Dashboards & Reporting',
+            'Predictive Analytics & Machine Learning Models',
+            'Real-time Data Processing & Streaming Analytics',
+          ],
+        },
+        {
+          title: 'Quality Assurance & Testing',
+          description:
+            'Comprehensive QA and testing services to ensure your software meets the highest quality standards. We deliver bug-free, reliable software solutions through automated and performance testing.',
+          features: [
+            'Automated Testing (Unit, Integration, E2E)',
+            'Performance Testing & Load Testing',
+            'Security Testing & Vulnerability Assessment',
+            'Mobile App Testing (iOS, Android)',
+          ],
+        },
+        {
           id: 'security',
           title: 'Cybersecurity',
           description:
@@ -243,6 +267,28 @@ const ServicesPage = () => {
             "Plateformes de Financement de la Chaîne d'Approvisionnement",
           ],
         },
+        {
+          title: 'Analyse de Données et Intelligence d\'Affaires',
+          description:
+            'Transformez les données brutes en informations exploitables avec des solutions d\'analyse avancées et d\'intelligence d\'affaires. Nous aidons les entreprises à prendre des décisions basées sur les données avec des plateformes d\'analyse alimentées par l\'IA.',
+          features: [
+            'Entrepôt de Données et Pipelines ETL',
+            'Tableaux de Bord et Rapports d\'Intelligence d\'Affaires',
+            'Analyse Prédictive et Modèles d\'Apprentissage Automatique',
+            'Traitement de Données en Temps Réel et Analyse de Flux',
+          ],
+        },
+        {
+          title: 'Assurance Qualité et Tests',
+          description:
+            'Services complets d\'assurance qualité et de tests pour garantir que votre logiciel répond aux normes de qualité les plus élevées. Nous livrons des solutions logicielles fiables et sans erreur grâce aux tests automatisés et de performance.',
+          features: [
+            'Tests Automatisés (Unitaires, Intégration, E2E)',
+            'Tests de Performance et de Charge',
+            'Tests de Sécurité et Évaluation des Vulnérabilités',
+            'Tests d\'Applications Mobiles (iOS, Android)',
+          ],
+        },
       ],
     },
     es: {
@@ -326,6 +372,28 @@ const ServicesPage = () => {
             'Soluciones Empresariales ERP, MES, EKP',
             'Sistemas de Proyectos Gubernamentales y Militares',
             'Plataformas de Financiamiento de Cadena de Suministro',
+          ],
+        },
+        {
+          title: 'Análisis de Datos e Inteligencia de Negocios',
+          description:
+            'Transforme datos sin procesar en información accionable con soluciones avanzadas de análisis e inteligencia de negocios. Ayudamos a las empresas a tomar decisiones basadas en datos con plataformas de análisis impulsadas por IA.',
+          features: [
+            'Almacenamiento de Datos y Pipelines ETL',
+            'Paneles de Inteligencia de Negocios e Informes',
+            'Análisis Predictivo y Modelos de Aprendizaje Automático',
+            'Procesamiento de Datos en Tiempo Real y Análisis de Transmisión',
+          ],
+        },
+        {
+          title: 'Aseguramiento de Calidad y Pruebas',
+          description:
+            'Servicios completos de QA y pruebas para garantizar que su software cumpla con los más altos estándares de calidad. Entregamos soluciones de software confiables y sin errores mediante pruebas automatizadas y de rendimiento.',
+          features: [
+            'Pruebas Automatizadas (Unitarias, Integración, E2E)',
+            'Pruebas de Rendimiento y Carga',
+            'Pruebas de Seguridad y Evaluación de Vulnerabilidades',
+            'Pruebas de Aplicaciones Móviles (iOS, Android)',
           ],
         },
       ],
@@ -413,6 +481,28 @@ const ServicesPage = () => {
             '供应链金融平台',
           ],
         },
+        {
+          title: '数据分析与商业智能',
+          description:
+            '通过先进的分析和商业智能解决方案将原始数据转化为可操作的见解。我们帮助企业使用AI驱动的分析平台做出数据驱动的决策。',
+          features: [
+            '数据仓库和ETL管道',
+            '商业智能仪表板和报告',
+            '预测分析和机器学习模型',
+            '实时数据处理和流式分析',
+          ],
+        },
+        {
+          title: '质量保证与测试',
+          description:
+            '全面的QA和测试服务，确保您的软件符合最高质量标准。我们通过自动化和性能测试提供无错误、可靠的软件解决方案。',
+          features: [
+            '自动化测试（单元、集成、端到端）',
+            '性能测试和负载测试',
+            '安全测试和漏洞评估',
+            '移动应用测试（iOS、Android）',
+          ],
+        },
       ],
     },
   }
@@ -470,15 +560,31 @@ const ServicesPage = () => {
       description: currentContent.services[5].description,
       features: currentContent.services[5].features,
     },
-    ...(currentContent.services[6]
+    {
+      title: currentContent.services[6].title,
+      icon: BarChart3,
+      gradient: 'from-teal-500 to-cyan-500',
+      bgGradient: 'from-teal-50 to-cyan-50',
+      description: currentContent.services[6].description,
+      features: currentContent.services[6].features,
+    },
+    {
+      title: currentContent.services[7].title,
+      icon: TestTube,
+      gradient: 'from-amber-500 to-orange-500',
+      bgGradient: 'from-amber-50 to-orange-50',
+      description: currentContent.services[7].description,
+      features: currentContent.services[7].features,
+    },
+    ...(currentContent.services[8]
       ? [
           {
-            title: currentContent.services[6].title,
+            title: currentContent.services[8].title,
             icon: Shield,
             gradient: 'from-red-500 to-pink-500',
             bgGradient: 'from-red-50 to-pink-50',
-            description: currentContent.services[6].description,
-            features: currentContent.services[6].features,
+            description: currentContent.services[8].description,
+            features: currentContent.services[8].features,
           },
         ]
       : []),
