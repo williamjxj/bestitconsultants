@@ -1,13 +1,13 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
-import { R2ConfigurationModel } from '@/types/r2-config'
 import { R2ClientService } from '@/services/r2-client'
+import { R2ConfigurationModel } from '@/types/r2-config'
 
 /**
  * GET /api/resources
  * List all resources from R2 bucket 'resources' folder
  */
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     // Initialize R2 client
     const config = R2ConfigurationModel.fromEnvironment()
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
       .map(obj => {
         const fileName = obj.key.replace(prefix, '')
         const extension = fileName.split('.').pop()?.toLowerCase() || ''
-        
+
         // Determine file type and icon
         let fileType: 'video' | 'audio' | 'document' | 'image' | 'other' = 'other'
         if (['mp4', 'webm', 'mov', 'avi'].includes(extension)) {
@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
     })
   } catch (error) {
     console.error('Error fetching resources from R2:', error)
-    
+
     // Return empty array if R2 is not configured or there's an error
     return NextResponse.json(
       {
