@@ -769,7 +769,7 @@ export const translations = {
       email: 'service@bestitconsultants.ca',
       phone: '+1 (236) 992-3846',
       mobileAccess: 'Mobile Access',
-      scanQrCode: 'Scan to visit our website',
+      scanQrCode: 'Scan to visit us',
       presentation: 'Our Presentation',
       quickLinks: 'Quick Links',
       companyDescription:

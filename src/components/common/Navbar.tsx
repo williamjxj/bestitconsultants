@@ -271,7 +271,7 @@ export default function Navbar() {
           </div>
 
           {/* Language Switcher and Mobile Menu Toggle */}
-          <div className='flex items-center space-x-2 md:space-x-4'>
+          <div className='flex items-center space-x-2 md:space-x-3'>
             {/* Desktop Language Switcher */}
             <div className='relative hidden md:block language-dropdown-container'>
               <button
@@ -325,6 +325,21 @@ export default function Navbar() {
                 </div>
               )}
             </div>
+
+            {/* Sister Website Link - After Language Switcher */}
+            <Link
+              href='https://www.bestitconsulting.ca'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='flex items-center transition-all duration-300 hover:scale-105 hidden md:block'
+              aria-label='Visit Best IT Consulting sister website'
+            >
+              <img
+                src='/b11-logo.png'
+                alt='Best IT Consulting Logo'
+                className='h-4 sm:h-5 md:h-6 w-auto object-contain max-h-full opacity-80 hover:opacity-100 transition-opacity duration-200'
+              />
+            </Link>
 
             {/* Mobile Language Switcher - Always visible on mobile */}
             <div className='relative md:hidden language-dropdown-container'>
