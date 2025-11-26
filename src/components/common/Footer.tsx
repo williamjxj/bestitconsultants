@@ -261,7 +261,7 @@ export default function Footer() {
                 <Mail className='h-5 w-5 text-white flex-shrink-0' aria-hidden='true' />
                 <a
                   href='mailto:service@BestITConsultants.ca'
-                  className='text-sm text-gray-300 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='text-xs sm:text-sm text-gray-300 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                   aria-label='Email us at service@BestITConsultants.ca'
                 >
                   service@BestITConsultants.ca
@@ -271,7 +271,7 @@ export default function Footer() {
                 <Phone className='h-5 w-5 text-white flex-shrink-0' aria-hidden='true' />
                 <a
                   href='tel:+12369923846'
-                  className='text-sm text-gray-300 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='text-xs sm:text-sm text-gray-300 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                   aria-label='Call us at +1 (236) 992-3846'
                 >
                   +1 (236) 992-3846
@@ -279,7 +279,7 @@ export default function Footer() {
               </div>
               <div className='flex items-center gap-3'>
                 <MapPin className='h-5 w-5 text-white flex-shrink-0' aria-hidden='true' />
-                <p className='text-sm text-gray-300'>Great Vancouver, Canada 🇨🇦</p>
+                <p className='text-xs sm:text-sm text-gray-300'>Great Vancouver, Canada 🇨🇦</p>
               </div>
             </div>
             {/* Social Media Icons */}
@@ -314,7 +314,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   {translations.navbar.home}
                 </a>
@@ -322,7 +322,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/services'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   {translations.navbar.services}
                 </a>
@@ -330,7 +330,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/portfolio'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   {translations.navbar.portfolio}
                 </a>
@@ -338,7 +338,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/case-studies'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   {translations.navbar.caseStudies}
                 </a>
@@ -346,7 +346,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/our-team'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   {translations.navbar.team}
                 </a>
@@ -354,7 +354,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/testimonials'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   {translations.navbar.testimonials || 'Testimonials'}
                 </a>
@@ -362,7 +362,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/contact-us'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   {translations.navbar.contact}
                 </a>
@@ -379,7 +379,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/services#ai-ml-solutions'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   AI Consulting
                 </a>
@@ -387,7 +387,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/services#enterprise-solutions'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   Software Outsourcing
                 </a>
@@ -395,7 +395,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/services#web-development'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   Web Development
                 </a>
@@ -403,7 +403,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/services#cloud-solutions'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   Cloud Solutions
                 </a>
@@ -411,7 +411,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/services#mobile-development'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   Mobile Apps
                 </a>
@@ -419,7 +419,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/services#cloud-solutions'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   DevOps
                 </a>
@@ -453,7 +453,7 @@ export default function Footer() {
                         href={resource.url}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded group'
+                        className='flex items-center gap-2 text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded group'
                         title={resource.fileName}
                         aria-label={`Download ${resource.fileName} (${resource.fileType})`}
                       >
@@ -479,7 +479,7 @@ export default function Footer() {
                 })}
               </ul>
             ) : (
-              <p className='text-sm text-gray-500'>No resources available</p>
+              <p className='text-xs sm:text-sm text-gray-500'>No resources available</p>
             )}
           </nav>
 
@@ -492,7 +492,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/privacy-policy'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   Privacy Policy
                 </a>
@@ -500,7 +500,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/terms-of-service'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   Terms of Service
                 </a>
@@ -508,7 +508,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/cookie-policy'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   Cookie Policy
                 </a>
@@ -516,7 +516,7 @@ export default function Footer() {
               <li>
                 <a
                   href='/gdpr'
-                  className='block text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
+                  className='block text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                 >
                   GDPR
                 </a>
@@ -552,7 +552,7 @@ export default function Footer() {
                   <div className='w-[120px] h-[120px] bg-gray-200 animate-pulse rounded' />
                 )}
               </div>
-              <p className='text-sm text-gray-400 mt-2 text-left ml-8 sm:ml-0'>
+              <p className='text-xs sm:text-sm text-gray-400 mt-2 text-left ml-8 sm:ml-0'>
                 {translations.footer.scanQrCode}
               </p>
             </section>
