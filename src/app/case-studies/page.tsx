@@ -168,10 +168,10 @@ export default function CaseStudiesPage() {
                   <div className='bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4'>
                     <span className='text-2xl font-bold text-blue-600'>9</span>
                   </div>
-                  <h3 className='font-semibold text-gray-800'>
+                  <h3 className='font-semibold main-content-subtitle'>
                     {currentContent.stats.featuredProjects}
                   </h3>
-                  <p className='text-gray-600'>
+                  <p className='main-content-paragraph'>
                     {currentContent.stats.featuredProjectsDesc}
                   </p>
                 </div>
@@ -181,10 +181,10 @@ export default function CaseStudiesPage() {
                       6
                     </span>
                   </div>
-                  <h3 className='font-semibold text-gray-800'>
+                  <h3 className='font-semibold main-content-subtitle'>
                     {currentContent.stats.categories}
                   </h3>
-                  <p className='text-gray-600'>
+                  <p className='main-content-paragraph'>
                     {currentContent.stats.categoriesDesc}
                   </p>
                 </div>
@@ -194,10 +194,10 @@ export default function CaseStudiesPage() {
                       100%
                     </span>
                   </div>
-                  <h3 className='font-semibold text-gray-800'>
+                  <h3 className='font-semibold main-content-subtitle'>
                     {currentContent.stats.externalLinks}
                   </h3>
-                  <p className='text-gray-600'>
+                  <p className='main-content-paragraph'>
                     {currentContent.stats.externalLinksDesc}
                   </p>
                 </div>
@@ -211,10 +211,10 @@ export default function CaseStudiesPage() {
           <div className='container mx-auto px-4'>
             <div className='max-w-7xl mx-auto'>
               <div className='text-center mb-12'>
-                <h2 className='text-4xl font-bold mb-6 text-gray-900'>
+                <h2 className='text-4xl font-bold mb-6 main-content-title'>
                   {currentContent.projects.title}
                 </h2>
-                <p className='text-xl text-gray-600 max-w-3xl mx-auto'>
+                <p className='text-xl max-w-3xl mx-auto main-content-paragraph'>
                   {currentContent.projects.description}
                 </p>
               </div>
@@ -228,10 +228,10 @@ export default function CaseStudiesPage() {
         {/* Call to Action Section */}
         <section className='bg-gradient-to-r from-gray-800 to-gray-900 text-white py-16'>
           <div className='container mx-auto px-4 text-center'>
-            <h2 className='text-3xl font-bold mb-6'>
+            <h2 className='text-3xl font-bold mb-6 text-white'>
               {currentContent.cta.title}
             </h2>
-            <p className='text-xl mb-8 max-w-2xl mx-auto'>
+            <p className='text-xl mb-8 max-w-2xl mx-auto text-white'>
               {currentContent.cta.description}
             </p>
             <a

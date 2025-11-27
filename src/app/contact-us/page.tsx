@@ -207,7 +207,7 @@ export default function ContactPage() {
         <div className='container mx-auto px-4'>
           {/* Contact Us Section */}
           <div className='mb-12'>
-            <h2 className='text-3xl font-bold text-center mb-12'>
+            <h2 className='text-3xl font-bold text-center mb-12 main-content-title'>
               {translations.contact.form.title}
             </h2>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-12'>
@@ -276,7 +276,7 @@ export default function ContactPage() {
                                   <div className='font-medium mb-1'>
                                     {detail.label}
                                   </div>
-                                  <div className='text-gray-600 text-sm space-y-1'>
+                                  <div className='text-sm space-y-1 main-content-paragraph'>
                                     {(detail.value as string[]).map(
                                       (email: string, emailIndex: number) => (
                                         <div key={emailIndex}>{email}</div>
@@ -285,7 +285,7 @@ export default function ContactPage() {
                                   </div>
                                 </>
                               ) : isInline ? (
-                                <div className='text-gray-600 text-sm'>
+                                <div className='text-sm main-content-paragraph'>
                                   <span className='font-medium'>
                                     {detail.label}:{' '}
                                   </span>
@@ -293,10 +293,10 @@ export default function ContactPage() {
                                 </div>
                               ) : (
                                 <>
-                                  <div className='font-medium'>
+                                  <div className='font-medium main-content-subtitle'>
                                     {detail.label}
                                   </div>
-                                  <div className='text-gray-600 text-sm'>
+                                  <div className='text-sm main-content-paragraph'>
                                     {detail.value}
                                   </div>
                                 </>
@@ -308,10 +308,10 @@ export default function ContactPage() {
 
                     {/* Quick Contact (merged) */}
                     <div className='pt-4 border-t border-gray-200'>
-                      <h4 className='font-semibold mb-3'>
+                      <h4 className='font-semibold mb-3 main-content-subtitle'>
                         {translations.contact.quick.title}
                       </h4>
-                      <p className='text-sm text-gray-600 mb-4'>
+                      <p className='text-sm mb-4 main-content-paragraph'>
                         {translations.contact.quick.subtitle}
                       </p>
                       <div className='grid grid-cols-1 gap-3'>
@@ -378,7 +378,7 @@ export default function ContactPage() {
 
           {/* Location Map */}
           <div className='mt-20'>
-            <h2 className='text-3xl font-bold text-center mb-12'>
+            <h2 className='text-3xl font-bold text-center mb-12 main-content-title'>
               {translations.contact.location.title}
             </h2>
             <div className='grid grid-cols-1 lg:grid-cols-4 gap-8'>
@@ -392,10 +392,10 @@ export default function ContactPage() {
                 </CardHeader>
                 <CardContent className='space-y-4'>
                   <div>
-                    <h4 className='font-semibold text-lg mb-2'>
+                    <h4 className='font-semibold text-lg mb-2 main-content-subtitle'>
                       {currentContent.location.address}
                     </h4>
-                    <p className='text-gray-600'>
+                    <p className='main-content-paragraph'>
                       10355 152 St
                       <br />
                       Surrey, BC V3R 7C3
@@ -404,7 +404,7 @@ export default function ContactPage() {
                     </p>
                   </div>
                   <div>
-                    <h4 className='font-semibold text-lg mb-2'>
+                    <h4 className='font-semibold text-lg mb-2 main-content-subtitle'>
                       {currentContent.location.getDirections}
                     </h4>
                     <div className='space-y-2'>
@@ -439,10 +439,10 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div>
-                    <h4 className='font-semibold text-lg mb-2'>
+                    <h4 className='font-semibold text-lg mb-2 main-content-subtitle'>
                       {currentContent.location.nearbyLandmarks}
                     </h4>
-                    <ul className='text-gray-600 space-y-1'>
+                    <ul className='space-y-1 main-content-paragraph'>
                       {currentContent.location.landmarks.map(
                         (landmark, index) => (
                           <li key={index}>• {landmark}</li>

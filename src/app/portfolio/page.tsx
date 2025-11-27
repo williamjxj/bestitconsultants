@@ -661,7 +661,7 @@ export default function PortfolioPage() {
                             <CardTitle className='text-xl mb-2'>
                               {project.title}
                             </CardTitle>
-                            <CardDescription className='text-gray-600'>
+                            <CardDescription className='main-content-paragraph'>
                               {project.description}
                             </CardDescription>
                           </div>
@@ -691,7 +691,7 @@ export default function PortfolioPage() {
 
                           {project.achievements && (
                             <div>
-                              <h4 className='text-sm font-medium text-gray-700 mb-2'>
+                              <h4 className='text-sm font-medium mb-2 main-content-subtitle'>
                                 {currentContent.labels.keyAchievements}
                               </h4>
                               <ul className='text-sm space-y-1'>
@@ -722,7 +722,7 @@ export default function PortfolioPage() {
 
           {/* Success Stories Section */}
           <div className='bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl p-8 md:p-12 mb-16'>
-            <h2 className='text-3xl font-bold text-center mb-12'>
+            <h2 className='text-3xl font-bold text-center mb-12 main-content-title'>
               {currentContent.trackRecord.title}
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-4 gap-8'>
@@ -731,7 +731,7 @@ export default function PortfolioPage() {
                 <div className='text-lg font-medium mb-2'>
                   {currentContent.trackRecord.stats.experience}
                 </div>
-                <div className='text-gray-600 text-sm'>
+                <div className='text-sm main-content-paragraph'>
                   {currentContent.trackRecord.stats.experienceDesc}
                 </div>
               </div>
@@ -742,7 +742,7 @@ export default function PortfolioPage() {
                 <div className='text-lg font-medium mb-2'>
                   {currentContent.trackRecord.stats.clients}
                 </div>
-                <div className='text-gray-600 text-sm'>
+                <div className='text-sm main-content-paragraph'>
                   {currentContent.trackRecord.stats.clientsDesc}
                 </div>
               </div>
@@ -751,7 +751,7 @@ export default function PortfolioPage() {
                 <div className='text-lg font-medium mb-2'>
                   {currentContent.trackRecord.stats.projects}
                 </div>
-                <div className='text-gray-600 text-sm'>
+                <div className='text-sm main-content-paragraph'>
                   {currentContent.trackRecord.stats.projectsDesc}
                 </div>
               </div>
@@ -762,7 +762,7 @@ export default function PortfolioPage() {
                 <div className='text-lg font-medium mb-2'>
                   {currentContent.trackRecord.stats.reach}
                 </div>
-                <div className='text-gray-600 text-sm'>
+                <div className='text-sm main-content-paragraph'>
                   {currentContent.trackRecord.stats.reachDesc}
                 </div>
               </div>
@@ -771,10 +771,10 @@ export default function PortfolioPage() {
 
           {/* CTA Section */}
           <div className='text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 text-white'>
-            <h2 className='text-3xl font-bold mb-4'>
+            <h2 className='text-3xl font-bold mb-4 text-white'>
               {currentContent.cta.title}
             </h2>
-            <p className='text-xl mb-8 opacity-90'>
+            <p className='text-xl mb-8 opacity-90 text-white'>
               {currentContent.cta.description}
             </p>
             <div className='space-x-4'>

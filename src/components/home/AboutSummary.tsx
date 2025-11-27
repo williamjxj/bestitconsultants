@@ -44,10 +44,10 @@ export default function AboutSummary() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className='text-3xl md:text-4xl font-bold text-gray-900 mb-6'>
+            <h2 className='text-3xl md:text-4xl font-bold mb-6 main-content-title'>
               {translations.aboutSummary.title}
             </h2>
-            <p className='text-lg text-gray-600 mb-6'>
+            <p className='text-lg mb-6 main-content-paragraph'>
               {translations.aboutSummary.content}
             </p>
             <div className='grid grid-cols-2 gap-4 mb-6'>

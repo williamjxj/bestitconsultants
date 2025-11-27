@@ -66,10 +66,23 @@
     @apply hover:shadow-xl hover:scale-105;
   }
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-gray-800 mb-3 text-center;
+    @apply text-3xl md:text-4xl font-bold mb-3 text-center;
+    color: rgb(53, 17, 69);
   }
   .section-subtitle {
-    @apply text-lg text-gray-600 mb-8 md:mb-12 max-w-2xl mx-auto text-center;
+    @apply text-lg mb-8 md:mb-12 max-w-2xl mx-auto text-center;
+    color: rgb(75, 30, 90);
+  }
+  
+  /* Main content text colors - excluding hero sections, nav, footer */
+  .main-content-title {
+    color: rgb(53, 17, 69);
+  }
+  .main-content-subtitle {
+    color: rgb(53, 17, 69);
+  }
+  .main-content-paragraph {
+    color: rgb(75, 30, 90);
   }
 
   /* Removed AI News specific components */

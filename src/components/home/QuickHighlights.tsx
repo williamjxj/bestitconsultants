@@ -26,10 +26,10 @@ export const QuickHighlights: React.FC = () => {
           {highlights.map((highlight, index) => (
             <div key={index} className='text-center'>
               <div className='text-4xl mb-4'>{highlight.icon}</div>
-              <h3 className='text-xl font-bold text-gray-900 mb-2'>
+              <h3 className='text-xl font-bold mb-2 main-content-subtitle'>
                 {highlight.title}
               </h3>
-              <p className='text-gray-700'>{highlight.description}</p>
+              <p className='main-content-paragraph'>{highlight.description}</p>
             </div>
           ))}
         </div>

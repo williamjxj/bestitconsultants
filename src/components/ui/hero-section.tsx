@@ -281,7 +281,10 @@ export function HeroSection({
           <div ref={ref}>
             <AnimatedTitle
               title={title}
-              className={titleClassName}
+              className={cn(
+                'text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight',
+                titleClassName
+              )}
               textAlign={textAlign}
             />
           </div>
@@ -294,8 +297,8 @@ export function HeroSection({
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: delay + 0.4 }}
             className={cn(
-              'text-xl sm:text-2xl md:text-3xl font-semibold mb-6',
-              'text-white',
+              'text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-6',
+              'text-white drop-shadow-lg',
               'relative inline-block px-4 py-2 rounded-lg',
               'bg-black/30 backdrop-blur-sm',
               subtitleClassName
@@ -312,8 +315,8 @@ export function HeroSection({
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: delay + 0.6 }}
             className={cn(
-              'text-lg sm:text-xl text-white mb-8 max-w-3xl',
-              'leading-relaxed',
+              'text-sm sm:text-base md:text-lg lg:text-xl text-white/95 mb-8 max-w-3xl',
+              'leading-relaxed drop-shadow-md',
               'relative inline-block px-6 py-3 rounded-lg',
               'bg-black/30 backdrop-blur-sm',
               textAlign === 'center' && 'mx-auto',
@@ -338,26 +341,52 @@ export function HeroSection({
             )}
           >
             {ctaText && (
-              <Button
-                asChild
-                size='lg'
-                className='px-8 py-4 text-lg font-semibold text-white shadow-xl hover:shadow-2xl transition-all duration-300 backdrop-blur-sm border border-white/20 hover:border-white/30'
-                style={{
-                  background: 'rgba(34, 197, 94, 0.15)',
-                }}
+              <motion.div
+                whileHover={{ scale: 1.08, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <a href={ctaLink || '#'}>{ctaText}</a>
-              </Button>
+                <Button
+                  asChild
+                  size='lg'
+                  className='px-10 py-5 text-lg sm:text-xl font-bold text-white shadow-2xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-300 backdrop-blur-md border-2 border-white/30 hover:border-white/50 rounded-full'
+                  style={{
+                    background:
+                      'linear-gradient(135deg, rgba(34, 197, 94, 0.9) 0%, rgba(16, 185, 129, 0.9) 100%)',
+                  }}
+                >
+                  <a href={ctaLink || '#'} className='flex items-center gap-2'>
+                    {ctaText}
+                    <svg
+                      className='w-5 h-5'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M13 7l5 5m0 0l-5 5m5-5H6'
+                      />
+                    </svg>
+                  </a>
+                </Button>
+              </motion.div>
             )}
             {secondaryCtaText && (
-              <Button
-                asChild
-                variant='outline'
-                size='lg'
-                className='px-8 py-4 text-lg font-semibold bg-white text-blue-600 border-white hover:bg-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300'
+              <motion.div
+                whileHover={{ scale: 1.08, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <a href={secondaryCtaLink || '#'}>{secondaryCtaText}</a>
-              </Button>
+                <Button
+                  asChild
+                  variant='outline'
+                  size='lg'
+                  className='px-10 py-5 text-lg sm:text-xl font-bold bg-white/95 text-blue-600 border-2 border-white/50 hover:bg-white hover:text-blue-700 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-full'
+                >
+                  <a href={secondaryCtaLink || '#'}>{secondaryCtaText}</a>
+                </Button>
+              </motion.div>
             )}
           </motion.div>
         )}

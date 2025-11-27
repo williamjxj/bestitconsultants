@@ -669,14 +669,14 @@ const ServicesPage = () => {
                             <IconComponent className='w-8 h-8 text-white' />
                           </motion.div>
                           <div className='ml-4 flex-1'>
-                            <CardTitle className='text-xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors duration-300'>
+                            <CardTitle className='text-xl font-bold group-hover:opacity-90 transition-opacity duration-300 main-content-subtitle'>
                               {service.title}
                             </CardTitle>
                           </div>
                         </div>
                       </CardHeader>
                       <CardContent className='pt-0'>
-                        <p className='text-gray-600 mb-6 leading-relaxed group-hover:text-gray-700 transition-colors duration-300'>
+                        <p className='mb-6 leading-relaxed group-hover:opacity-90 transition-opacity duration-300 main-content-paragraph'>
                           {service.description}
                         </p>
                         <ul className='space-y-3'>
@@ -699,7 +699,7 @@ const ServicesPage = () => {
                               >
                                 <CheckCircle className='w-5 h-5 text-green-500' />
                               </motion.div>
-                              <span className='text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300'>
+                              <span className='text-sm group-hover:opacity-90 transition-opacity duration-300 main-content-paragraph'>
                                 {feature}
                               </span>
                             </motion.li>
@@ -745,7 +745,7 @@ const ServicesPage = () => {
             ></div>
 
             <motion.h2
-              className='text-3xl font-bold text-center mb-12 relative z-10'
+              className='text-3xl font-bold text-center mb-12 relative z-10 main-content-title'
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -850,10 +850,10 @@ const ServicesPage = () => {
                   >
                     {index + 1}
                   </motion.div>
-                  <h3 className='text-lg font-semibold mb-2 group-hover:text-blue-600 transition-colors duration-300'>
+                  <h3 className='text-lg font-semibold mb-2 group-hover:opacity-90 transition-opacity duration-300 main-content-subtitle'>
                     {step.title}
                   </h3>
-                  <p className='text-gray-600 text-sm group-hover:text-gray-700 transition-colors duration-300'>
+                  <p className='text-sm group-hover:opacity-90 transition-opacity duration-300 main-content-paragraph'>
                     {step.description}
                   </p>
                 </motion.div>
@@ -870,7 +870,7 @@ const ServicesPage = () => {
             viewport={{ once: true }}
           >
             <motion.h2
-              className='text-3xl font-bold mb-8'
+              className='text-3xl font-bold mb-8 main-content-title'
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -1080,7 +1080,7 @@ const ServicesPage = () => {
                         >
                           {plan.price}
                         </motion.div>
-                        <CardDescription className='group-hover:text-gray-700 transition-colors duration-300'>
+                        <CardDescription className='group-hover:opacity-90 transition-opacity duration-300 main-content-paragraph'>
                           {plan.description}
                         </CardDescription>
                       </motion.div>
@@ -1106,7 +1106,7 @@ const ServicesPage = () => {
                             >
                               ✓
                             </motion.span>
-                            <span className='group-hover:text-gray-700 transition-colors duration-300'>
+                            <span className='group-hover:opacity-90 transition-opacity duration-300 main-content-paragraph'>
                               {feature}
                             </span>
                           </motion.li>
@@ -1149,7 +1149,7 @@ const ServicesPage = () => {
             viewport={{ once: true }}
           >
             <motion.h2
-              className='text-3xl font-bold text-center mb-12'
+              className='text-3xl font-bold text-center mb-12 main-content-title'
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -1179,8 +1179,8 @@ const ServicesPage = () => {
                   <Card className='text-center hover:shadow-lg transition-shadow border-0 bg-white/50 backdrop-blur-sm h-full'>
                     <CardContent className='p-6'>
                       <div className='text-4xl mb-4'>{award.icon}</div>
-                      <h3 className='font-bold text-lg mb-2'>{award.title}</h3>
-                      <p className='text-gray-600 text-sm mb-3'>
+                      <h3 className='font-bold text-lg mb-2 main-content-subtitle'>{award.title}</h3>
+                      <p className='text-sm mb-3 main-content-paragraph'>
                         {award.organization}
                       </p>
                       <Badge variant='secondary' className='text-xs'>
@@ -1202,7 +1202,7 @@ const ServicesPage = () => {
             viewport={{ once: true }}
           >
             <motion.h2
-              className='text-3xl font-bold text-center mb-12'
+              className='text-3xl font-bold text-center mb-12 main-content-title'
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -1241,7 +1241,7 @@ const ServicesPage = () => {
                     })()}
                     <div>
                       <div className='font-medium'>{industry.name}</div>
-                      <div className='text-sm text-gray-600'>
+                      <div className='text-sm main-content-paragraph'>
                         {industry.projects}{' '}
                         {language === 'en'
                           ? 'projects'
@@ -1279,7 +1279,7 @@ const ServicesPage = () => {
 
             <motion.div className='relative z-10'>
               <motion.h2
-                className='text-3xl font-bold mb-4'
+                className='text-3xl font-bold mb-4 text-white'
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -1294,7 +1294,7 @@ const ServicesPage = () => {
                       : '准备开始了吗？'}
               </motion.h2>
               <motion.p
-                className='text-xl mb-8 opacity-90'
+                className='text-xl mb-8 opacity-90 text-white'
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 0.9, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}

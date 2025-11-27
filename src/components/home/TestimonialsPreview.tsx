@@ -16,10 +16,10 @@ export default function TestimonialsPreview() {
           {translations.testimonials.testimonialsPreview.testimonials.map(
             testimonial => (
               <div key={testimonial.id} className='card card-hover'>
-                <blockquote className='text-gray-600 mb-4 italic'>
+                <blockquote className='mb-4 italic main-content-paragraph'>
                   {testimonial.quote}
                 </blockquote>
-                <cite className='text-gray-800 font-semibold not-italic'>
+                <cite className='font-semibold not-italic main-content-subtitle'>
                   {testimonial.name}
                 </cite>
               </div>

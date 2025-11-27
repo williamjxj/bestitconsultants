@@ -203,10 +203,10 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
             transition={{ duration: 0.8, delay: 0.3 }}
             className='absolute inset-0 flex items-center justify-center z-10'
           >
-            <div className='text-center text-white max-w-4xl mx-auto px-4'>
+            <div className='text-center text-white max-w-5xl mx-auto px-4'>
               <AnimatedTitle
                 title={currentItem.title}
-                className='text-3xl md:text-5xl font-bold mb-4'
+                className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight'
                 textAlign='center'
                 variant='metallic'
               />
@@ -215,7 +215,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
-                className='text-2xl md:text-3xl font-semibold mb-6 text-blue-200'
+                className='text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-6 text-blue-100 drop-shadow-lg'
               >
                 {currentItem.subtitle}
               </motion.h2>
@@ -224,7 +224,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.9 }}
-                className='text-lg md:text-xl mb-8 max-w-3xl mx-auto'
+                className='text-sm sm:text-base md:text-lg lg:text-xl mb-8 max-w-3xl mx-auto leading-relaxed text-white/95 drop-shadow-md'
               >
                 {currentItem.description}
               </motion.p>
@@ -236,9 +236,9 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
                 className='flex flex-col sm:flex-row gap-4 justify-center items-center'
               >
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.08, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className='relative px-8 py-4 rounded-2xl font-semibold text-lg text-white transition-all duration-300 shadow-xl hover:shadow-2xl overflow-hidden group'
+                  className='relative px-10 py-5 rounded-full font-bold text-lg sm:text-xl text-white transition-all duration-300 shadow-2xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden group'
                   style={{
                     background:
                       'linear-gradient(135deg, #B8860B 0%, #CD853F 20%, #D4AF37 40%, #FFD700 50%, #D4AF37 60%, #CD853F 80%, #B8860B 100%)',
@@ -247,7 +247,25 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
                   }}
                   onClick={handleCtaClick}
                 >
-                  <span className='relative z-10'>{currentItem.ctaText}</span>
+                  <span className='relative z-10 flex items-center gap-2'>
+                    {currentItem.ctaText}
+                    <motion.svg
+                      className='w-5 h-5'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                      initial={{ x: 0 }}
+                      whileHover={{ x: 5 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M13 7l5 5m0 0l-5 5m5-5H6'
+                      />
+                    </motion.svg>
+                  </span>
                   <div
                     className='absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500'
                     style={{
@@ -260,9 +278,9 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
                 </motion.button>
                 {currentItem.secondaryCtaText && (
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.08, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className='px-8 py-4 rounded-2xl font-semibold text-lg text-white transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm border-2 border-white/30 hover:border-white/50 bg-gradient-to-r from-white/10 via-white/15 to-white/10 hover:from-white/20 hover:via-white/25 hover:to-white/20'
+                    className='px-10 py-5 rounded-full font-bold text-lg sm:text-xl text-white transition-all duration-300 shadow-xl hover:shadow-2xl backdrop-blur-md border-2 border-white/40 hover:border-white/60 bg-gradient-to-r from-white/15 via-white/20 to-white/15 hover:from-white/25 hover:via-white/30 hover:to-white/25'
                     onClick={() => {
                       if (currentItem.secondaryCtaLink) {
                         router.push(currentItem.secondaryCtaLink)
