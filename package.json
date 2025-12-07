@@ -32,6 +32,7 @@
     "@radix-ui/react-slot": "^1.2.4",
     "@radix-ui/react-tabs": "^1.1.13",
     "@supabase/supabase-js": "^2.79.0",
+    "@tabler/icons-react": "^3.35.0",
     "@types/mime-types": "^3.0.1",
     "ai": "^5.0.100",
     "canvas": "^3.2.0",

@@ -2,7 +2,7 @@
 
 import { Mail, Phone, MapPin, Linkedin, Twitter, Github, Video, Music, FileText, Image as ImageIcon, Play } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import QRCodeSVG from 'react-qr-code'
+import QRCode from 'react-qr-code'
 
 import { useLanguage } from '@/contexts/LanguageContext'
 import { getBaseUrl } from '@/lib/utils'
@@ -24,7 +24,6 @@ interface Resource {
 export default function Footer() {
   const { translations } = useLanguage()
   const currentYear = new Date().getFullYear()
-  const [websiteUrl, setWebsiteUrl] = useState<string>('')
   const [isClient, setIsClient] = useState(false)
   const [resources, setResources] = useState<Resource[]>([])
   const [resourcesLoading, setResourcesLoading] = useState(true)
@@ -68,13 +67,10 @@ export default function Footer() {
     sameAs: socialLinks.map(link => link.url),
   }
 
-  // Set website URL on client side only to avoid hydration mismatch
+  // Set client-side flag to avoid hydration mismatch
   useEffect(() => {
     setIsClient(true)
-    setWebsiteUrl(
-      typeof window !== 'undefined' ? window.location.origin : baseUrl
-    )
-  }, [baseUrl])
+  }, [])
 
   // Fetch resources from R2 bucket
   useEffect(() => {
@@ -539,14 +535,12 @@ export default function Footer() {
                 aria-label='QR code for mobile access'
                 suppressHydrationWarning
               >
-                {isClient && websiteUrl ? (
-                  <QRCodeSVG
-                    value={websiteUrl}
+                {isClient ? (
+                  <QRCode
+                    value='https://www.bestitconsultants.ca'
                     size={120}
                     level='M'
-                    bgColor='#ffffff'
-                    fgColor='#000000'
-                    className='w-[120px] h-[120px] max-w-full'
+                    style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
                   />
                 ) : (
                   <div className='w-[120px] h-[120px] bg-gray-200 animate-pulse rounded' />

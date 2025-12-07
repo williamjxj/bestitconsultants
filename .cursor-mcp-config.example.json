@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "aceternity-ui": {
+      "command": "aceternityui-mcp",
+      "args": [],
+      "env": {}
+    },
+    "shadcn-ui": {
+      "command": "npx",
+      "args": ["-y", "@shadcn/ui-mcp"],
+      "env": {}
+    }
+  }
+}
+
