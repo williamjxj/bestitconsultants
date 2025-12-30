@@ -40,6 +40,7 @@ import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { ServicesHero } from '@/components/ui/hero-variants'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { getR2ImageUrl } from '@/lib/utils'
+import { WorkflowSection } from '@/components/ui/workflow-section'
 
 // Icon mapping for industries
 const industryIcons: Record<
@@ -578,15 +579,15 @@ const ServicesPage = () => {
     },
     ...(currentContent.services[8]
       ? [
-          {
-            title: currentContent.services[8].title,
-            icon: Shield,
-            gradient: 'from-red-500 to-pink-500',
-            bgGradient: 'from-red-50 to-pink-50',
-            description: currentContent.services[8].description,
-            features: currentContent.services[8].features,
-          },
-        ]
+        {
+          title: currentContent.services[8].title,
+          icon: Shield,
+          gradient: 'from-red-500 to-pink-500',
+          bgGradient: 'from-red-50 to-pink-50',
+          description: currentContent.services[8].description,
+          features: currentContent.services[8].features,
+        },
+      ]
       : []),
   ]
 
@@ -759,106 +760,38 @@ const ServicesPage = () => {
                     ? 'Nuestro Proceso'
                     : '我们的流程'}
             </motion.h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10'>
-              {(language === 'en'
-                ? [
-                    {
-                      title: 'Discovery',
-                      description: 'Understand your needs',
-                    },
+            <WorkflowSection
+              language={language}
+              steps={
+                language === 'en'
+                  ? [
+                    { title: 'Discovery', description: 'Understand your needs' },
                     { title: 'Planning', description: 'Design the solution' },
-                    {
-                      title: 'Development',
-                      description: 'Build with excellence',
-                    },
+                    { title: 'Development', description: 'Build with excellence' },
                     { title: 'Deployment', description: 'Launch and support' },
                   ]
-                : language === 'fr'
-                  ? [
-                      {
-                        title: 'Découverte',
-                        description: 'Comprendre vos besoins',
-                      },
-                      {
-                        title: 'Planification',
-                        description: 'Concevoir la solution',
-                      },
-                      {
-                        title: 'Développement',
-                        description: 'Construire avec excellence',
-                      },
-                      {
-                        title: 'Déploiement',
-                        description: 'Lancer et soutenir',
-                      },
-                    ]
-                  : language === 'es'
+                  : language === 'fr'
                     ? [
-                        {
-                          title: 'Descubrimiento',
-                          description: 'Entender sus necesidades',
-                        },
-                        {
-                          title: 'Planificación',
-                          description: 'Diseñar la solución',
-                        },
-                        {
-                          title: 'Desarrollo',
-                          description: 'Construir con excelencia',
-                        },
+                      { title: 'Découverte', description: 'Comprendre vos besoins' },
+                      { title: 'Planification', description: 'Concevoir la solution' },
+                      { title: 'Développement', description: 'Construire avec excellence' },
+                      { title: 'Déploiement', description: 'Lancer et soutenir' },
+                    ]
+                    : language === 'es'
+                      ? [
+                        { title: 'Descubrimiento', description: 'Entender sus necesidades' },
+                        { title: 'Planificación', description: 'Diseñar la solución' },
+                        { title: 'Desarrollo', description: 'Construir con excelencia' },
                         { title: 'Despliegue', description: 'Lanzar y apoyar' },
                       ]
-                    : [
+                      : [
                         { title: '发现', description: '了解您的需求' },
                         { title: '规划', description: '设计解决方案' },
                         { title: '开发', description: '卓越构建' },
                         { title: '部署', description: '启动和支持' },
                       ]
-              ).map((step, index) => (
-                <motion.div
-                  key={index}
-                  className='text-center group'
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.6,
-                    delay: index * 0.2,
-                    ease: 'easeOut',
-                  }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
-                >
-                  <motion.div
-                    className='w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300'
-                    whileHover={{
-                      scale: 1.1,
-                      rotate: 360,
-                      transition: { duration: 0.5 },
-                    }}
-                    animate={{
-                      boxShadow: [
-                        '0 4px 15px rgba(59, 130, 246, 0.3)',
-                        '0 8px 25px rgba(147, 51, 234, 0.4)',
-                        '0 4px 15px rgba(59, 130, 246, 0.3)',
-                      ],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    }}
-                  >
-                    {index + 1}
-                  </motion.div>
-                  <h3 className='text-lg font-semibold mb-2 group-hover:opacity-90 transition-opacity duration-300 main-content-subtitle'>
-                    {step.title}
-                  </h3>
-                  <p className='text-sm group-hover:opacity-90 transition-opacity duration-300 main-content-paragraph'>
-                    {step.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
+              }
+            />
           </motion.div>
 
           {/* Pricing Section */}
@@ -887,135 +820,135 @@ const ServicesPage = () => {
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
               {(language === 'en'
                 ? [
+                  {
+                    name: 'Starter',
+                    price: '$5K+',
+                    description: 'Perfect for small projects',
+                    features: [
+                      'Basic features',
+                      'Email support',
+                      '3 months support',
+                    ],
+                    popular: false,
+                  },
+                  {
+                    name: 'Professional',
+                    price: '$25K+',
+                    description: 'Ideal for growing businesses',
+                    features: [
+                      'All features',
+                      'Priority support',
+                      '6 months support',
+                    ],
+                    popular: true,
+                  },
+                  {
+                    name: 'Enterprise',
+                    price: 'Custom',
+                    description: 'Tailored for large organizations',
+                    features: [
+                      'Custom features',
+                      '24/7 support',
+                      '1 year support',
+                    ],
+                    popular: false,
+                  },
+                ]
+                : language === 'fr'
+                  ? [
                     {
-                      name: 'Starter',
-                      price: '$5K+',
-                      description: 'Perfect for small projects',
+                      name: 'Démarrage',
+                      price: '5K$+',
+                      description: 'Parfait pour les petits projets',
                       features: [
-                        'Basic features',
-                        'Email support',
-                        '3 months support',
+                        'Fonctionnalités de base',
+                        'Support par email',
+                        '3 mois de support',
                       ],
                       popular: false,
                     },
                     {
-                      name: 'Professional',
-                      price: '$25K+',
-                      description: 'Ideal for growing businesses',
+                      name: 'Professionnel',
+                      price: '25K$+',
+                      description: 'Idéal pour les entreprises en croissance',
                       features: [
-                        'All features',
-                        'Priority support',
-                        '6 months support',
+                        'Toutes les fonctionnalités',
+                        'Support prioritaire',
+                        '6 mois de support',
                       ],
                       popular: true,
                     },
                     {
-                      name: 'Enterprise',
-                      price: 'Custom',
-                      description: 'Tailored for large organizations',
+                      name: 'Entreprise',
+                      price: 'Sur mesure',
+                      description: 'Adapté aux grandes organisations',
                       features: [
-                        'Custom features',
-                        '24/7 support',
-                        '1 year support',
+                        'Fonctionnalités personnalisées',
+                        'Support 24/7',
+                        '1 an de support',
                       ],
                       popular: false,
                     },
                   ]
-                : language === 'fr'
-                  ? [
+                  : language === 'es'
+                    ? [
                       {
-                        name: 'Démarrage',
-                        price: '5K$+',
-                        description: 'Parfait pour les petits projets',
+                        name: 'Inicial',
+                        price: '$5K+',
+                        description: 'Perfecto para proyectos pequeños',
                         features: [
-                          'Fonctionnalités de base',
-                          'Support par email',
-                          '3 mois de support',
+                          'Características básicas',
+                          'Soporte por email',
+                          '3 meses de soporte',
                         ],
                         popular: false,
                       },
                       {
-                        name: 'Professionnel',
-                        price: '25K$+',
-                        description: 'Idéal pour les entreprises en croissance',
+                        name: 'Profesional',
+                        price: '$25K+',
+                        description: 'Ideal para negocios en crecimiento',
                         features: [
-                          'Toutes les fonctionnalités',
-                          'Support prioritaire',
-                          '6 mois de support',
+                          'Todas las características',
+                          'Soporte prioritario',
+                          '6 meses de soporte',
                         ],
                         popular: true,
                       },
                       {
-                        name: 'Entreprise',
-                        price: 'Sur mesure',
-                        description: 'Adapté aux grandes organisations',
+                        name: 'Empresarial',
+                        price: 'Personalizado',
+                        description: 'Adaptado para grandes organizaciones',
                         features: [
-                          'Fonctionnalités personnalisées',
-                          'Support 24/7',
-                          '1 an de support',
+                          'Características personalizadas',
+                          'Soporte 24/7',
+                          '1 año de soporte',
                         ],
                         popular: false,
                       },
                     ]
-                  : language === 'es'
-                    ? [
-                        {
-                          name: 'Inicial',
-                          price: '$5K+',
-                          description: 'Perfecto para proyectos pequeños',
-                          features: [
-                            'Características básicas',
-                            'Soporte por email',
-                            '3 meses de soporte',
-                          ],
-                          popular: false,
-                        },
-                        {
-                          name: 'Profesional',
-                          price: '$25K+',
-                          description: 'Ideal para negocios en crecimiento',
-                          features: [
-                            'Todas las características',
-                            'Soporte prioritario',
-                            '6 meses de soporte',
-                          ],
-                          popular: true,
-                        },
-                        {
-                          name: 'Empresarial',
-                          price: 'Personalizado',
-                          description: 'Adaptado para grandes organizaciones',
-                          features: [
-                            'Características personalizadas',
-                            'Soporte 24/7',
-                            '1 año de soporte',
-                          ],
-                          popular: false,
-                        },
-                      ]
                     : [
-                        {
-                          name: '入门',
-                          price: '5K$+',
-                          description: '适合小型项目',
-                          features: ['基本功能', '邮件支持', '3个月支持'],
-                          popular: false,
-                        },
-                        {
-                          name: '专业',
-                          price: '25K$+',
-                          description: '适合成长中的企业',
-                          features: ['所有功能', '优先支持', '6个月支持'],
-                          popular: true,
-                        },
-                        {
-                          name: '企业',
-                          price: '定制',
-                          description: '适合大型组织',
-                          features: ['定制功能', '24/7支持', '1年支持'],
-                          popular: false,
-                        },
-                      ]
+                      {
+                        name: '入门',
+                        price: '5K$+',
+                        description: '适合小型项目',
+                        features: ['基本功能', '邮件支持', '3个月支持'],
+                        popular: false,
+                      },
+                      {
+                        name: '专业',
+                        price: '25K$+',
+                        description: '适合成长中的企业',
+                        features: ['所有功能', '优先支持', '6个月支持'],
+                        popular: true,
+                      },
+                      {
+                        name: '企业',
+                        price: '定制',
+                        description: '适合大型组织',
+                        features: ['定制功能', '24/7支持', '1年支持'],
+                        popular: false,
+                      },
+                    ]
               ).map((plan, index) => (
                 <motion.div
                   key={index}
@@ -1031,11 +964,10 @@ const ServicesPage = () => {
                   className='group'
                 >
                   <Card
-                    className={`relative transition-all duration-500 ${
-                      plan.popular
-                        ? 'border-purple-500 border-2 shadow-2xl scale-105'
-                        : 'shadow-lg hover:shadow-xl'
-                    } group-hover:shadow-2xl`}
+                    className={`relative transition-all duration-500 ${plan.popular
+                      ? 'border-purple-500 border-2 shadow-2xl scale-105'
+                      : 'shadow-lg hover:shadow-xl'
+                      } group-hover:shadow-2xl`}
                   >
                     {plan.popular && (
                       <motion.div
@@ -1068,8 +1000,8 @@ const ServicesPage = () => {
                           animate={
                             plan.popular
                               ? {
-                                  scale: [1, 1.05, 1],
-                                }
+                                scale: [1, 1.05, 1],
+                              }
                               : {}
                           }
                           transition={{
@@ -1117,11 +1049,10 @@ const ServicesPage = () => {
                         whileTap={{ scale: 0.95 }}
                       >
                         <Button
-                          className={`w-full transition-all duration-300 ${
-                            plan.popular
-                              ? 'bg-purple-600 hover:bg-purple-700 shadow-lg hover:shadow-xl'
-                              : 'hover:shadow-lg'
-                          }`}
+                          className={`w-full transition-all duration-300 ${plan.popular
+                            ? 'bg-purple-600 hover:bg-purple-700 shadow-lg hover:shadow-xl'
+                            : 'hover:shadow-lg'
+                            }`}
                           variant={plan.popular ? 'default' : 'outline'}
                         >
                           {language === 'en'
