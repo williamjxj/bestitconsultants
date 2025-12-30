@@ -38,9 +38,9 @@ import {
 } from '@/components/ui/card'
 import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { ServicesHero } from '@/components/ui/hero-variants'
+import { WorkflowSection } from '@/components/ui/workflow-section'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { getR2ImageUrl } from '@/lib/utils'
-import { WorkflowSection } from '@/components/ui/workflow-section'
 
 // Icon mapping for industries
 const industryIcons: Record<

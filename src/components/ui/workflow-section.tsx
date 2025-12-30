@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll } from 'framer-motion'
 import { Search, ClipboardList, Code, Rocket, CheckCircle2 } from 'lucide-react'
 import React, { useRef } from 'react'
 
@@ -18,10 +18,9 @@ const icons = [Search, ClipboardList, Code, Rocket]
 
 export const WorkflowSection: React.FC<WorkflowSectionProps> = ({
     steps,
-    language,
 }) => {
     const containerRef = useRef<HTMLDivElement>(null)
-    const { scrollYProgress } = useScroll({
+    useScroll({
         target: containerRef,
         offset: ['start end', 'end start'],
     })
