@@ -1,5 +1,6 @@
 'use client'
 
+import Breadcrumb from '@/components/seo/Breadcrumb'
 import BookmarkList from '@/components/ui/bookmark-list'
 import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { OurWorkHero } from '@/components/ui/hero-variants'
@@ -158,6 +159,15 @@ export default function CaseStudiesPage() {
           enableParallax={true}
         />
       </FullWidthHeroWrapper>
+      {/* Breadcrumb Navigation */}
+      <div className='container mx-auto px-4 pt-4'>
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Case Studies', href: '/case-studies', isActive: true },
+          ]}
+        />
+      </div>
       <div className='min-h-screen'>
         {/* Stats Section */}
         <section className='py-16 bg-gray-50'>

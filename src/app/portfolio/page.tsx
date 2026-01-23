@@ -20,6 +20,7 @@ import {
 } from 'lucide-react'
 import React, { useState } from 'react'
 
+import Breadcrumb from '@/components/seo/Breadcrumb'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -552,6 +553,15 @@ export default function PortfolioPage() {
           enableParallax={true}
         />
       </FullWidthHeroWrapper>
+      {/* Breadcrumb Navigation */}
+      <div className='container mx-auto px-4 pt-4'>
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Portfolio', href: '/portfolio', isActive: true },
+          ]}
+        />
+      </div>
       <div className='min-h-screen py-20'>
         <div className='container mx-auto px-4'>
           {/* Filter Tabs */}

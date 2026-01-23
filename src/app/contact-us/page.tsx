@@ -12,6 +12,7 @@ import { Suspense, useEffect } from 'react'
 
 import { AnimatedFAQ } from '@/components/contact/AnimatedFAQ'
 import { ContactForm } from '@/components/contact/ContactForm'
+import Breadcrumb from '@/components/seo/Breadcrumb'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -201,6 +202,16 @@ export default function ContactPage() {
           enableParallax={true}
         />
       </FullWidthHeroWrapper>
+
+      {/* Breadcrumb Navigation */}
+      <div className='container mx-auto px-4 pt-4'>
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Contact', href: '/contact-us', isActive: true },
+          ]}
+        />
+      </div>
 
       {/* Main Content */}
       <div className='min-h-screen py-20'>

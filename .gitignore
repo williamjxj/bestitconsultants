@@ -85,6 +85,9 @@ docs/build/
 
 # Editor folders
 .cursor/
-.vscode/
+.obsidian
+.vscode
+.agent/
+.antigravity/
 public/screenshots/
 # .specify/

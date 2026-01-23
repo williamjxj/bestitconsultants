@@ -5,6 +5,7 @@
 import { Globe, MapPin, Users } from 'lucide-react'
 import React from 'react'
 
+import Breadcrumb from '@/components/seo/Breadcrumb'
 import { EnhancedTeamProfile } from '@/components/team/EnhancedTeamProfile'
 import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { TeamHero } from '@/components/ui/hero-variants'
@@ -497,6 +498,16 @@ const TeamPage = () => {
           enableParallax={true}
         />
       </FullWidthHeroWrapper>
+
+      {/* Breadcrumb Navigation */}
+      <div className='container mx-auto px-4 pt-4'>
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Team', href: '/our-team', isActive: true },
+          ]}
+        />
+      </div>
 
       {/* Main Content */}
       <div className='bg-white py-12 md:py-16'>

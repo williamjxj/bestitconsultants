@@ -27,6 +27,7 @@ import {
 } from 'lucide-react'
 import React from 'react'
 
+import Breadcrumb from '@/components/seo/Breadcrumb'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -613,6 +614,16 @@ const ServicesPage = () => {
           enableParallax={true}
         />
       </FullWidthHeroWrapper>
+
+      {/* Breadcrumb Navigation */}
+      <div className='container mx-auto px-4 pt-4'>
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Services', href: '/services', isActive: true },
+          ]}
+        />
+      </div>
 
       {/* Main Content */}
       <div className='min-h-screen py-20'>

@@ -1,0 +1,573 @@
+openapi: 3.0.0
+info:
+  title: SEO Utilities API
+  description: TypeScript utility functions for SEO metadata and structured data generation
+  version: 1.0.0
+  contact:
+    name: BestIT Consultants
+    url: https://www.bestitconsultants.ca
+
+paths:
+  /lib/seo-utils:
+    description: SEO metadata utility functions
+    
+    buildPageMetadata:
+      summary: Build complete page metadata with fallbacks
+      operationId: buildPageMetadata
+      parameters:
+        - name: title
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 50
+            maxLength: 60
+        - name: description
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 150
+            maxLength: 160
+        - name: path
+          in: query
+          required: true
+          schema:
+            type: string
+            pattern: '^/'
+        - name: keywords
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: ogImage
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uri
+      responses:
+        '200':
+          description: Complete metadata object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageMetadata'
+      tags:
+        - metadata
+
+    getCanonicalUrl:
+      summary: Generate absolute canonical URL
+      operationId: getCanonicalUrl
+      parameters:
+        - name: path
+          in: query
+          required: true
+          schema:
+            type: string
+            pattern: '^/'
+      responses:
+        '200':
+          description: Absolute canonical URL
+          content:
+            application/json:
+              schema:
+                type: string
+                format: uri
+      tags:
+        - metadata
+
+    validateMetadata:
+      summary: Validate metadata meets requirements
+      operationId: validateMetadata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageMetadata'
+      responses:
+        '200':
+          description: Validation passed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid:
+                    type: boolean
+                  errors:
+                    type: array
+                    items:
+                      type: string
+        '400':
+          description: Validation failed
+      tags:
+        - metadata
+
+  /lib/structured-data:
+    description: Structured data utility functions
+    
+    createOrganizationSchema:
+      summary: Create Organization structured data
+      operationId: createOrganizationSchema
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: description
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: url
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uri
+        - name: logo
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uri
+        - name: email
+          in: query
+          required: false
+          schema:
+            type: string
+            format: email
+        - name: sameAs
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              format: uri
+      responses:
+        '200':
+          description: Organization schema object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationSchema'
+      tags:
+        - structured-data
+
+    createServiceSchema:
+      summary: Create Service structured data
+      operationId: createServiceSchema
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: description
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: provider
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/OrganizationSchema'
+        - name: serviceType
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: areaServed
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: offers
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/OfferSchema'
+      responses:
+        '200':
+          description: Service schema object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceSchema'
+      tags:
+        - structured-data
+
+    createArticleSchema:
+      summary: Create Article structured data
+      operationId: createArticleSchema
+      parameters:
+        - name: headline
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: description
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: datePublished
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: dateModified
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: author
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/PersonSchema'
+        - name: publisher
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/OrganizationSchema'
+        - name: image
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              format: uri
+      responses:
+        '200':
+          description: Article schema object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleSchema'
+      tags:
+        - structured-data
+
+    createBreadcrumbSchema:
+      summary: Create BreadcrumbList structured data
+      operationId: createBreadcrumbSchema
+      parameters:
+        - name: items
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/BreadcrumbItem'
+            minItems: 1
+      responses:
+        '200':
+          description: BreadcrumbList schema object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BreadcrumbListSchema'
+      tags:
+        - structured-data
+
+    structuredDataScript:
+      summary: Generate JSON-LD script tag content
+      operationId: structuredDataScript
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StructuredDataSchema'
+      responses:
+        '200':
+          description: JSON-LD script content (stringified JSON)
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - structured-data
+
+components:
+  schemas:
+    PageMetadata:
+      type: object
+      required:
+        - title
+        - description
+        - canonicalUrl
+      properties:
+        title:
+          type: string
+          minLength: 50
+          maxLength: 60
+        description:
+          type: string
+          minLength: 150
+          maxLength: 160
+        keywords:
+          type: array
+          items:
+            type: string
+        canonicalUrl:
+          type: string
+          format: uri
+        openGraph:
+          $ref: '#/components/schemas/OpenGraphMetadata'
+        twitter:
+          $ref: '#/components/schemas/TwitterCardMetadata'
+        structuredData:
+          $ref: '#/components/schemas/StructuredDataSchema'
+
+    OpenGraphMetadata:
+      type: object
+      required:
+        - title
+        - description
+        - image
+        - url
+        - type
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        image:
+          oneOf:
+            - type: string
+              format: uri
+            - type: array
+              items:
+                type: string
+                format: uri
+        url:
+          type: string
+          format: uri
+        type:
+          type: string
+          enum:
+            - website
+            - article
+            - profile
+        siteName:
+          type: string
+        locale:
+          type: string
+          default: en_US
+
+    TwitterCardMetadata:
+      type: object
+      required:
+        - card
+        - title
+        - description
+      properties:
+        card:
+          type: string
+          enum:
+            - summary
+            - summary_large_image
+        title:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+          format: uri
+        site:
+          type: string
+        creator:
+          type: string
+
+    StructuredDataSchema:
+      type: object
+      required:
+        - '@context'
+        - '@type'
+      properties:
+        '@context':
+          type: string
+          enum:
+            - https://schema.org
+        '@type':
+          type: string
+
+    OrganizationSchema:
+      allOf:
+        - $ref: '#/components/schemas/StructuredDataSchema'
+        - type: object
+          required:
+            - name
+            - description
+            - url
+            - logo
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            url:
+              type: string
+              format: uri
+            logo:
+              type: string
+              format: uri
+            email:
+              type: string
+              format: email
+            sameAs:
+              type: array
+              items:
+                type: string
+                format: uri
+
+    ServiceSchema:
+      allOf:
+        - $ref: '#/components/schemas/StructuredDataSchema'
+        - type: object
+          required:
+            - name
+            - description
+            - provider
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            provider:
+              $ref: '#/components/schemas/OrganizationSchema'
+            serviceType:
+              type: string
+            areaServed:
+              oneOf:
+                - type: string
+                - type: array
+                  items:
+                    type: string
+            offers:
+              $ref: '#/components/schemas/OfferSchema'
+
+    ArticleSchema:
+      allOf:
+        - $ref: '#/components/schemas/StructuredDataSchema'
+        - type: object
+          required:
+            - headline
+            - description
+            - datePublished
+            - publisher
+          properties:
+            headline:
+              type: string
+            description:
+              type: string
+            datePublished:
+              type: string
+              format: date-time
+            dateModified:
+              type: string
+              format: date-time
+            author:
+              $ref: '#/components/schemas/PersonSchema'
+            publisher:
+              $ref: '#/components/schemas/OrganizationSchema'
+            image:
+              oneOf:
+                - type: string
+                  format: uri
+                - type: array
+                  items:
+                    type: string
+                    format: uri
+
+    BreadcrumbListSchema:
+      allOf:
+        - $ref: '#/components/schemas/StructuredDataSchema'
+        - type: object
+          required:
+            - itemListElement
+          properties:
+            itemListElement:
+              type: array
+              items:
+                $ref: '#/components/schemas/BreadcrumbItemSchema'
+              minItems: 1
+
+    BreadcrumbItemSchema:
+      type: object
+      required:
+        - '@type'
+        - position
+        - name
+        - item
+      properties:
+        '@type':
+          type: string
+          enum:
+            - ListItem
+        position:
+          type: integer
+          minimum: 1
+        name:
+          type: string
+        item:
+          type: string
+          format: uri
+
+    BreadcrumbItem:
+      type: object
+      required:
+        - label
+        - href
+      properties:
+        label:
+          type: string
+        href:
+          type: string
+        isActive:
+          type: boolean
+          default: false
+
+    PersonSchema:
+      type: object
+      required:
+        - '@type'
+        - name
+      properties:
+        '@type':
+          type: string
+          enum:
+            - Person
+        name:
+          type: string
+
+    OfferSchema:
+      type: object
+      required:
+        - '@type'
+      properties:
+        '@type':
+          type: string
+          enum:
+            - Offer
+        price:
+          type: string
+        priceCurrency:
+          type: string
+
+tags:
+  - name: metadata
+    description: SEO metadata utilities
+  - name: structured-data
+    description: Schema.org structured data utilities

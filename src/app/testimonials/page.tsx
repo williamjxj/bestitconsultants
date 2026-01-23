@@ -5,6 +5,7 @@ import gsap from 'gsap'
 import { Lightbulb, Target } from 'lucide-react'
 import React, { useState, useRef, useEffect } from 'react'
 
+import Breadcrumb from '@/components/seo/Breadcrumb'
 import { Card, CardContent } from '@/components/ui/card'
 import { FullWidthHeroWrapper } from '@/components/ui/full-width-hero-wrapper'
 import { AboutHero } from '@/components/ui/hero-variants'
@@ -344,6 +345,16 @@ export default function AboutPage() {
           enableParallax={true}
         />
       </FullWidthHeroWrapper>
+
+      {/* Breadcrumb Navigation */}
+      <div className='container mx-auto px-4 pt-4'>
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Testimonials', href: '/testimonials', isActive: true },
+          ]}
+        />
+      </div>
 
       {/* Main Content */}
       <div className='bg-white py-12 md:py-16'>
