@@ -52,7 +52,7 @@ export function getImageForContext(context: string): string {
   }
 
   // If it's an object (like teamMembers), return placeholder
-  return '/placeholder.svg'
+  return '/assets/placeholder.svg'
 }
 
 /**
@@ -65,7 +65,7 @@ export function getTeamMemberImage(memberName: string): string {
   return (
     imageMapping.teamMembers[
       normalizedName as keyof typeof imageMapping.teamMembers
-    ] || '/placeholder.svg'
+    ] || '/assets/placeholder.svg'
   )
 }
 

@@ -12,7 +12,7 @@
 | Hero Carousel - Slide 2 | `optimized/b2` (.avif, .webp variants) | ~1920×1080px | Full viewport width × `calc(100vh - 88px)` | | |
 | Hero Carousel - Slide 3 | `optimized/b3` (.avif, .webp variants) | ~1920×1080px | Full viewport width × `calc(100vh - 88px)` | | |
 | AboutSummary - Video | `Best IT Consultants.mov` | Original video dimensions | 612px width × auto (16:9 aspect ratio) | | |
-| AboutSummary - Poster | `Best IT Consultants.jpg` | Original image dimensions | 612px width × auto (16:9 aspect ratio) | | |
+| AboutSummary - Poster | `assets/Best IT Consultants.jpg` | Original image dimensions | 612px width × auto (16:9 aspect ratio) | | |
 
 **Notes:**
 - Hero carousel images use `object-cover` to fill the viewport
@@ -222,7 +222,7 @@ style={{
   - `hs-7.webp` - Testimonials page
   - `hs-8.webp` - (available, not currently used)
 - `/logo.png` - Logo used in Navbar and Footer
-- `/placeholder.svg` - Fallback placeholder image
+- `/assets/placeholder.svg` - Fallback placeholder image
 
 **R2 Storage:**
 - All other images and videos are served from R2 bucket
@@ -239,7 +239,7 @@ style={{
 | **`offices/`** | 3 office images | API Route Only | Office images (not displayed) |
 | **`logos/`** | Client/project logos | Team Pages (optional) | Prestige Project logos |
 | **Root Level** | `Best IT Consultants.mov` | Home Page | AboutSummary - Video |
-| **Root Level** | `Best IT Consultants.jpg` | Home Page | AboutSummary - Poster |
+| **Root Level / assets** | `assets/Best IT Consultants.jpg` | Home Page | AboutSummary - Poster |
 | **Root Level** | `kling_20251012_1.png` | Portfolio Page, Case Studies Page | Portfolio Project (Xperi ML), BookmarkList (AI/ML category) |
 | **Root Level** | `kling_20251012_2.png` | Portfolio Page | Portfolio Project (Netherlands Gov) |
 | **Root Level** | `istockphoto-1212876953-612x612.jpg` | Portfolio Page, Case Studies Page | Portfolio Project (Credit Suisse, Huawei), BookmarkList placeholder |
@@ -283,7 +283,7 @@ style={{
 ## Additional Notes
 
 1. **Image Format Variants**: Hero carousel images support multiple formats (.avif, .webp) for optimization
-2. **Placeholder Fallback**: `/placeholder.svg` is used as fallback in OptimizedImage component (local file)
+2. **Placeholder Fallback**: `/assets/placeholder.svg` is used as fallback in OptimizedImage component (local file)
 3. **Logo**: `/logo.png` is used in Navbar and Footer components (local file, not page-specific)
 4. **OG Images**: `imgs/og-homepage.jpg`, `imgs/og-team.jpg`, `imgs/og-case-studies.jpg` (used in metadata, not displayed on pages)
 5. **R2 URL Configuration**: All R2 image URLs are dynamically generated using `getR2ImageUrl()` function from `@/lib/utils`, which reads from `R2_PUBLIC_URL` or `NEXT_PUBLIC_R2_PUBLIC_URL` environment variables.

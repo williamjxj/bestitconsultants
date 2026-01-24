@@ -203,18 +203,17 @@ export default function ContactPage() {
         />
       </FullWidthHeroWrapper>
 
-      {/* Breadcrumb Navigation */}
-      <div className='container mx-auto px-4 pt-4'>
-        <Breadcrumb
-          items={[
-            { label: 'Home', href: '/' },
-            { label: 'Contact', href: '/contact-us', isActive: true },
-          ]}
-        />
-      </div>
+      {/* Breadcrumb - Hidden visually but provides SEO structured data */}
+      <Breadcrumb
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Contact', href: '/contact-us', isActive: true },
+        ]}
+        hideVisual={true}
+      />
 
       {/* Main Content */}
-      <div className='min-h-screen py-20'>
+      <div className='min-h-screen pt-16 pb-20 bg-gray-50'>
         <div className='container mx-auto px-4'>
           {/* Contact Us Section */}
           <div className='mb-12'>

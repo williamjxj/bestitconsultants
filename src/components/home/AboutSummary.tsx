@@ -25,7 +25,7 @@ export default function AboutSummary() {
           >
             <VideoWithPoster
               videoSrc={`${R2_BASE_URL}/Best IT Consultants.mov`}
-              posterSrc={`${R2_BASE_URL}/Best IT Consultants.jpg`}
+              posterSrc={`${R2_BASE_URL}/assets/Best IT Consultants.jpg`}
               alt='Professional team collaboration in modern office environment with diverse team members working together'
               width={612}
               className='rounded-lg shadow-lg w-full'

@@ -11,7 +11,7 @@
 - `DEEPSEEK_API_KEY` - DeepSeek API key for local development
 
 ✅ Assets already added:
-- `/public/angel.webp` - Chat widget icon image
+- `/public/assets/angel.webp` - Chat widget icon image
 
 ## Installation Steps
 
@@ -238,7 +238,7 @@ export function ChatWidgetIcon({ onClick, isOpen }: ChatWidgetIconProps) {
         aria-label={isOpen ? "Close AI Assistant" : "Open AI Assistant"}
       >
         <Image
-          src="/angel.webp"
+          src="/assets/angel.webp"
           alt="AI Assistant"
           width={80}
           height={80}

@@ -346,18 +346,17 @@ export default function AboutPage() {
         />
       </FullWidthHeroWrapper>
 
-      {/* Breadcrumb Navigation */}
-      <div className='container mx-auto px-4 pt-4'>
-        <Breadcrumb
-          items={[
-            { label: 'Home', href: '/' },
-            { label: 'Testimonials', href: '/testimonials', isActive: true },
-          ]}
-        />
-      </div>
+      {/* Breadcrumb - Hidden visually but provides SEO structured data */}
+      <Breadcrumb
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Testimonials', href: '/testimonials', isActive: true },
+        ]}
+        hideVisual={true}
+      />
 
       {/* Main Content */}
-      <div className='bg-white py-12 md:py-16'>
+      <div className='bg-white pt-16 pb-12 md:pb-16'>
         <div className='container mx-auto px-4 space-y-12 md:space-y-16'>
           {/* Mission and Vision */}
           <section className='grid md:grid-cols-2 gap-8 md:gap-12 items-center'>

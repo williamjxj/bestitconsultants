@@ -112,7 +112,8 @@ src/
     └── chat-widget.ts                # TypeScript type definitions
 
 public/
-└── angel.webp                         # Chat widget icon (already added)
+└── assets/
+    └── angel.webp                         # Chat widget icon (moved to assets)
 ```
 
 **Structure Decision**: Web application structure following Next.js App Router conventions. Components organized in `src/components/chat-widget/`, hooks in `src/lib/hooks/`, utilities in `src/lib/utils/`, types in `src/types/`. API route follows Next.js 15 App Router pattern in `src/app/api/chat/route.ts`.

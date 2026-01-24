@@ -553,16 +553,17 @@ export default function PortfolioPage() {
           enableParallax={true}
         />
       </FullWidthHeroWrapper>
-      {/* Breadcrumb Navigation */}
-      <div className='container mx-auto px-4 pt-4'>
-        <Breadcrumb
-          items={[
-            { label: 'Home', href: '/' },
-            { label: 'Portfolio', href: '/portfolio', isActive: true },
-          ]}
-        />
-      </div>
-      <div className='min-h-screen py-20'>
+      
+      {/* Breadcrumb - Hidden visually but provides SEO structured data */}
+      <Breadcrumb
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Portfolio', href: '/portfolio', isActive: true },
+        ]}
+        hideVisual={true}
+      />
+      
+      <div className='min-h-screen pt-16 pb-20 bg-gray-50'>
         <div className='container mx-auto px-4'>
           {/* Filter Tabs */}
           <Tabs

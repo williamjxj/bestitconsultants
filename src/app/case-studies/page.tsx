@@ -159,18 +159,19 @@ export default function CaseStudiesPage() {
           enableParallax={true}
         />
       </FullWidthHeroWrapper>
-      {/* Breadcrumb Navigation */}
-      <div className='container mx-auto px-4 pt-4'>
-        <Breadcrumb
-          items={[
-            { label: 'Home', href: '/' },
-            { label: 'Case Studies', href: '/case-studies', isActive: true },
-          ]}
-        />
-      </div>
-      <div className='min-h-screen'>
+      
+      {/* Breadcrumb - Hidden visually but provides SEO structured data */}
+      <Breadcrumb
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Case Studies', href: '/case-studies', isActive: true },
+        ]}
+        hideVisual={true}
+      />
+      
+      <div className='min-h-screen bg-gray-50'>
         {/* Stats Section */}
-        <section className='py-16 bg-gray-50'>
+        <section className='pt-16 pb-16 bg-gray-50'>
           <div className='container mx-auto px-4'>
             <div className='max-w-4xl mx-auto text-center'>
               <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-12'>

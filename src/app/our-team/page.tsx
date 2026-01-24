@@ -499,18 +499,17 @@ const TeamPage = () => {
         />
       </FullWidthHeroWrapper>
 
-      {/* Breadcrumb Navigation */}
-      <div className='container mx-auto px-4 pt-4'>
-        <Breadcrumb
-          items={[
-            { label: 'Home', href: '/' },
-            { label: 'Team', href: '/our-team', isActive: true },
-          ]}
-        />
-      </div>
+      {/* Breadcrumb - Hidden visually but provides SEO structured data */}
+      <Breadcrumb
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Team', href: '/our-team', isActive: true },
+        ]}
+        hideVisual={true}
+      />
 
       {/* Main Content */}
-      <div className='bg-white py-12 md:py-16'>
+      <div className='bg-white pt-16 pb-12 md:pb-16'>
         <div className='container mx-auto px-4 space-y-12 md:space-y-16'>
           {/* Strategic Global Presence */}
           <section className='p-8 bg-gray-50 rounded-lg shadow-lg'>

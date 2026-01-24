@@ -265,7 +265,7 @@ export function ChatWidgetPanel({
               <h2 className="text-lg font-semibold">{translations.chat?.title || 'AI Assistant'}</h2>
               <div className="flex items-center gap-2">
                 <Image
-                  src="/angel.webp"
+                  src="/assets/angel.webp"
                   alt="AI Assistant"
                   width={24}
                   height={24}

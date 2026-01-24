@@ -19,7 +19,7 @@
 
 - [x] T001 Install required dependencies (`ai`, `@ai-sdk/react`, `@ai-sdk/deepseek`) via npm install
 - [x] T002 [P] Verify environment variables (`AI_GATEWAY_API_KEY`, `DEEPSEEK_API_KEY`) are set in `.env.local`
-- [x] T003 [P] Verify `/public/angel.webp` exists and is accessible
+- [x] T003 [P] Verify `/public/assets/angel.webp` exists and is accessible
 
 ---
 
@@ -46,7 +46,7 @@
 
 ### Implementation for User Story 1
 
-- [x] T008 [US1] Create ChatWidgetIcon component in `src/components/chat-widget/chat-widget-icon.tsx` (floating button, bottom-right, uses `/angel.webp`, Framer Motion animations)
+- [x] T008 [US1] Create ChatWidgetIcon component in `src/components/chat-widget/chat-widget-icon.tsx` (floating button, bottom-right, uses `/assets/angel.webp`, Framer Motion animations)
 - [x] T009 [US1] Create ChatWidgetPanel component skeleton in `src/components/chat-widget/chat-widget-panel.tsx` (basic structure, message display area, input form)
 - [x] T010 [US1] Implement message display in ChatWidgetPanel (`src/components/chat-widget/chat-widget-panel.tsx`) (render messages from useChat hook, user/assistant styling, timestamps)
 - [x] T011 [US1] Integrate useChat hook from `@ai-sdk/react` in ChatWidgetPanel (`src/components/chat-widget/chat-widget-panel.tsx`) (connect to `/api/chat`, handle streaming responses)

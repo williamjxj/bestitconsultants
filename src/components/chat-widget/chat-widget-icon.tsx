@@ -41,7 +41,7 @@ export function ChatWidgetIcon({
         aria-expanded={isOpen}
       >
         <Image
-          src="/angel.webp"
+          src="/assets/angel.webp"
           alt="AI Assistant"
           width={80}
           height={80}

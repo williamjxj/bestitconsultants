@@ -23,7 +23,7 @@ export const ServiceCategoryCard: React.FC<ServiceCategoryCardProps> = ({
     >
       <div className='relative h-48'>
         <OptimizedImage
-          src={service.icon || '/placeholder.svg'}
+          src={service.icon || '/assets/placeholder.svg'}
           alt={`${service.name} services and solutions`}
           width={400}
           height={192}

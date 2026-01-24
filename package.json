@@ -15,7 +15,8 @@
     "markdown:fix": "markdownlint '**/*.md' --ignore-path .markdownlintignore --fix",
     "check-all": "npm run type-check && npm run lint && npm run format:check && npm run markdown:lint",
     "analyze": "ANALYZE=true npm run build",
-    "test": "echo 'No tests configured'"
+    "test": "echo 'No tests configured'",
+    "validate:seo": "npx ts-node scripts/validate-seo.ts"
   },
   "dependencies": {
     "@ai-sdk/deepseek": "^1.0.29",

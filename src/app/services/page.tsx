@@ -1,6 +1,8 @@
 'use client'
 
+import { useGSAP } from '@gsap/react'
 import { motion } from 'framer-motion'
+import gsap from 'gsap'
 import {
   CheckCircle,
   Brain,
@@ -25,7 +27,7 @@ import {
   // Rocket,
   // Target,
 } from 'lucide-react'
-import React from 'react'
+import React, { useRef } from 'react'
 
 import Breadcrumb from '@/components/seo/Breadcrumb'
 import { Badge } from '@/components/ui/badge'
@@ -60,6 +62,93 @@ const industryIcons: Record<
 
 const ServicesPage = () => {
   const { language, translations } = useLanguage()
+
+  // Refs for Pricing cards and their background images
+  const pricing1Ref = useRef<HTMLDivElement>(null)
+  const pricing2Ref = useRef<HTMLDivElement>(null)
+  const pricing3Ref = useRef<HTMLDivElement>(null)
+  const pricingImage1Ref = useRef<HTMLDivElement>(null)
+  const pricingImage2Ref = useRef<HTMLDivElement>(null)
+  const pricingImage3Ref = useRef<HTMLDivElement>(null)
+
+  // GSAP animations for Pricing cards
+  useGSAP(() => {
+    const pricingCards = [
+      { card: pricing1Ref, image: pricingImage1Ref, rotation: -5 },
+      { card: pricing2Ref, image: pricingImage2Ref, rotation: 5 },
+      { card: pricing3Ref, image: pricingImage3Ref, rotation: -5 },
+    ]
+
+    const observers: IntersectionObserver[] = []
+    const imageElements: HTMLDivElement[] = []
+
+    pricingCards.forEach(({ card, image, rotation }, index) => {
+      if (!card.current || !image.current) return
+
+      const imageEl = image.current
+      const cardEl = card.current
+      imageElements.push(imageEl)
+
+      // Initial state
+      gsap.set(imageEl, {
+        opacity: 0,
+        scale: 1.2,
+        rotation,
+      })
+
+      // Scroll-triggered animation
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // Kill any existing animations first
+              gsap.killTweensOf(imageEl)
+              
+              // Animate image on scroll in
+              gsap.to(imageEl, {
+                opacity: 0.6,
+                scale: 1,
+                rotation: 0,
+                duration: 1.5,
+                ease: 'power3.out',
+                delay: index * 0.1, // Stagger each card
+              })
+
+              // Continuous subtle rotation animation (starts immediately)
+              gsap.to(imageEl, {
+                rotation: rotation > 0 ? -3 : 3,
+                duration: 8,
+                ease: 'sine.inOut',
+                repeat: -1,
+                yoyo: true,
+                delay: index * 0.1 + 1.5, // Start after fade-in
+              })
+
+              // Continuous zoom pulse (starts immediately)
+              gsap.to(imageEl, {
+                scale: 1.05,
+                duration: 4,
+                ease: 'sine.inOut',
+                repeat: -1,
+                yoyo: true,
+                delay: index * 0.2 + 1.5, // Start after fade-in
+              })
+            }
+          })
+        },
+        { threshold: 0.1 } // Trigger earlier for better UX
+      )
+
+      observer.observe(cardEl)
+      observers.push(observer)
+    })
+
+    // Cleanup function
+    return () => {
+      observers.forEach(obs => obs.disconnect())
+      imageElements.forEach(el => gsap.killTweensOf(el))
+    }
+  })
 
   // Services content with translations
   const servicesContent = {
@@ -615,18 +704,17 @@ const ServicesPage = () => {
         />
       </FullWidthHeroWrapper>
 
-      {/* Breadcrumb Navigation */}
-      <div className='container mx-auto px-4 pt-4'>
-        <Breadcrumb
-          items={[
-            { label: 'Home', href: '/' },
-            { label: 'Services', href: '/services', isActive: true },
-          ]}
-        />
-      </div>
+      {/* Breadcrumb - Hidden visually but provides SEO structured data */}
+      <Breadcrumb
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Services', href: '/services', isActive: true },
+        ]}
+        hideVisual={true}
+      />
 
       {/* Main Content */}
-      <div className='min-h-screen py-20'>
+      <div className='min-h-screen pt-16 pb-20 bg-gray-50'>
         <div className='container mx-auto px-4'>
           {/* Services Grid */}
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16'>
@@ -960,45 +1048,70 @@ const ServicesPage = () => {
                         popular: false,
                       },
                     ]
-              ).map((plan, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.6,
-                    delay: index * 0.2,
-                    ease: 'easeOut',
-                  }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  className='group'
-                >
-                  <Card
-                    className={`relative transition-all duration-500 ${plan.popular
-                      ? 'border-purple-500 border-2 shadow-2xl scale-105'
-                      : 'shadow-lg hover:shadow-xl'
-                      } group-hover:shadow-2xl`}
+              ).map((plan, index) => {
+                // Assign refs to each pricing card
+                const cardRefs = [pricing1Ref, pricing2Ref, pricing3Ref]
+                const imageRefs = [
+                  pricingImage1Ref,
+                  pricingImage2Ref,
+                  pricingImage3Ref,
+                ]
+                const cardRef = cardRefs[index]
+                const imageRef = imageRefs[index]
+
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: index * 0.2,
+                      ease: 'easeOut',
+                    }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -10, scale: 1.02 }}
+                    className='group'
                   >
-                    {plan.popular && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                        viewport={{ once: true }}
-                      >
-                        <Badge className='absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-500 animate-pulse-slow'>
-                          {language === 'en'
-                            ? 'Popular'
-                            : language === 'fr'
-                              ? 'Populaire'
-                              : language === 'es'
-                                ? 'Popular'
-                                : '热门'}
-                        </Badge>
-                      </motion.div>
-                    )}
-                    <CardHeader className='text-center'>
+                    <Card
+                      ref={cardRef}
+                      className={`relative overflow-hidden transition-all duration-500 ${plan.popular
+                        ? 'border-purple-500 border-2 shadow-2xl scale-105'
+                        : 'shadow-lg hover:shadow-xl'
+                        } group-hover:shadow-2xl min-h-[450px]`}
+                    >
+                      {/* Background Image */}
+                      <div
+                        ref={imageRef}
+                        className='absolute inset-0 z-0'
+                        style={{
+                          backgroundImage: 'url(/assets/c1.jpg)',
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          backgroundRepeat: 'no-repeat',
+                        }}
+                      />
+                      {/* Overlay for text readability */}
+                      <div className='absolute inset-0 bg-gradient-to-br from-white/80 via-purple-50/80 to-blue-50/80 z-10' />
+                      {plan.popular && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 0.3 }}
+                          viewport={{ once: true }}
+                        >
+                          <Badge className='absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-500 animate-pulse-slow z-30'>
+                            {language === 'en'
+                              ? 'Popular'
+                              : language === 'fr'
+                                ? 'Populaire'
+                                : language === 'es'
+                                  ? 'Popular'
+                                  : '热门'}
+                          </Badge>
+                        </motion.div>
+                      )}
+                      <CardHeader className='text-center relative z-20'>
                       <motion.div
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.3 }}
@@ -1026,9 +1139,9 @@ const ServicesPage = () => {
                         <CardDescription className='group-hover:opacity-90 transition-opacity duration-300 main-content-paragraph'>
                           {plan.description}
                         </CardDescription>
-                      </motion.div>
-                    </CardHeader>
-                    <CardContent>
+                        </motion.div>
+                      </CardHeader>
+                      <CardContent className='relative z-20'>
                       <ul className='space-y-3 mb-8'>
                         {plan.features.map((feature, featureIndex) => (
                           <motion.li
@@ -1056,29 +1169,62 @@ const ServicesPage = () => {
                         ))}
                       </ul>
                       <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        whileHover={{ scale: 1.08, y: -2 }}
+                        whileTap={{ scale: 0.96 }}
+                        transition={{ duration: 0.2, ease: 'easeOut' }}
                       >
                         <Button
-                          className={`w-full transition-all duration-300 ${plan.popular
-                            ? 'bg-purple-600 hover:bg-purple-700 shadow-lg hover:shadow-xl'
-                            : 'hover:shadow-lg'
-                            }`}
-                          variant={plan.popular ? 'default' : 'outline'}
+                          size='lg'
+                          className={`w-full relative overflow-hidden font-bold text-base transition-all duration-300 ${plan.popular
+                            ? 'bg-gradient-to-r from-purple-600 via-purple-500 to-pink-500 hover:from-purple-700 hover:via-purple-600 hover:to-pink-600 text-white shadow-2xl hover:shadow-purple-500/50 border-0 py-6'
+                            : 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-xl hover:shadow-blue-500/50 border-0 py-6'
+                            } group`}
+                          asChild
                         >
-                          {language === 'en'
-                            ? 'Get Started'
-                            : language === 'fr'
-                              ? 'Commencer'
-                              : language === 'es'
-                                ? 'Comenzar'
-                                : '开始'}
+                          <a 
+                            href={`/contact-us?title=${encodeURIComponent(plan.name + ' Plan')}#contact-form`}
+                            className='flex items-center justify-center gap-2'
+                          >
+                            <span className='relative z-10'>
+                              {language === 'en'
+                                ? 'Get Started'
+                                : language === 'fr'
+                                  ? 'Commencer'
+                                  : language === 'es'
+                                    ? 'Comenzar'
+                                    : '开始'}
+                            </span>
+                            <motion.span
+                              className='relative z-10'
+                              animate={{ x: [0, 5, 0] }}
+                              transition={{
+                                duration: 1.5,
+                                repeat: Infinity,
+                                ease: 'easeInOut',
+                              }}
+                            >
+                              →
+                            </motion.span>
+                            {/* Animated shine effect */}
+                            <motion.div
+                              className='absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent'
+                              initial={{ x: '-100%' }}
+                              animate={{ x: '200%' }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: 'linear',
+                                repeatDelay: 1,
+                              }}
+                            />
+                          </a>
                         </Button>
                       </motion.div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                )
+              })}
             </div>
           </motion.div>
 
@@ -1160,42 +1306,91 @@ const ServicesPage = () => {
             </motion.h2>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
               {translations.testimonials.industries.list.map(
-                (industry, index) => (
-                  <motion.div
-                    key={index}
-                    className='flex items-center space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-colors'
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{
-                      duration: 0.4,
-                      delay: index * 0.05,
-                    }}
-                    viewport={{ once: true }}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    {(() => {
-                      const IconComponent = industryIcons[industry.icon]
-                      return IconComponent ? (
-                        <IconComponent className='w-6 h-6 text-blue-600 flex-shrink-0' />
-                      ) : (
-                        <div className='text-2xl'>{industry.icon}</div>
-                      )
-                    })()}
-                    <div>
-                      <div className='font-medium'>{industry.name}</div>
-                      <div className='text-sm main-content-paragraph'>
-                        {industry.projects}{' '}
-                        {language === 'en'
-                          ? 'projects'
-                          : language === 'fr'
-                            ? 'projets'
-                            : language === 'es'
-                              ? 'proyectos'
-                              : '项目'}
-                      </div>
-                    </div>
-                  </motion.div>
-                )
+                (industry, index) => {
+                  // Define gradient colors for each industry
+                  const gradients = [
+                    'from-blue-500 to-cyan-500',
+                    'from-purple-500 to-pink-500',
+                    'from-green-500 to-emerald-500',
+                    'from-orange-500 to-red-500',
+                    'from-indigo-500 to-purple-500',
+                    'from-teal-500 to-cyan-500',
+                    'from-amber-500 to-orange-500',
+                    'from-sky-500 to-blue-500',
+                  ]
+                  const gradient = gradients[index % gradients.length]
+                  
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.5,
+                        delay: index * 0.08,
+                        ease: 'easeOut',
+                      }}
+                      viewport={{ once: true }}
+                      whileHover={{ 
+                        y: -8, 
+                        scale: 1.03,
+                        transition: { duration: 0.3 }
+                      }}
+                      className='group'
+                    >
+                      <Card className='relative overflow-hidden h-full border-0 bg-white shadow-lg hover:shadow-2xl transition-all duration-500'>
+                        {/* Gradient background on hover */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                        
+                        {/* Content */}
+                        <CardContent className='relative z-10 p-6 flex flex-col items-center text-center h-full justify-center min-h-[160px]'>
+                          {/* Icon with gradient background */}
+                          <motion.div
+                            className={`p-4 rounded-2xl bg-gradient-to-br ${gradient} shadow-lg mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}
+                            whileHover={{ rotate: [0, -5, 5, 0] }}
+                            transition={{ duration: 0.5 }}
+                          >
+                            {(() => {
+                              const IconComponent = industryIcons[industry.icon]
+                              return IconComponent ? (
+                                <IconComponent className='w-8 h-8 text-white' />
+                              ) : (
+                                <div className='text-3xl'>{industry.icon}</div>
+                              )
+                            })()}
+                          </motion.div>
+                          
+                          {/* Industry name */}
+                          <h3 className='font-bold text-lg mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300'>
+                            {industry.name}
+                          </h3>
+                          
+                          {/* Project count with badge */}
+                          <Badge 
+                            variant='secondary' 
+                            className='bg-gray-100 group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-purple-500 group-hover:text-white transition-all duration-300'
+                          >
+                            <span className='font-semibold'>
+                              {industry.projects}{' '}
+                              {language === 'en'
+                                ? 'projects'
+                                : language === 'fr'
+                                  ? 'projets'
+                                  : language === 'es'
+                                    ? 'proyectos'
+                                    : '项目'}
+                            </span>
+                          </Badge>
+                        </CardContent>
+                        
+                        {/* Animated corner accent */}
+                        <div className='absolute top-0 right-0 w-20 h-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500'>
+                          <div className={`absolute top-0 right-0 w-full h-full bg-gradient-to-br ${gradient} opacity-20 rounded-bl-full`} />
+                        </div>
+                      </Card>
+                    </motion.div>
+                  )
+                }
               )}
             </div>
           </motion.div>
@@ -1251,53 +1446,137 @@ const ServicesPage = () => {
                       : '让我们讨论您的项目，看看我们如何帮助您取得成功。'}
               </motion.p>
               <motion.div
-                className='flex flex-col sm:flex-row gap-4 justify-center'
+                className='flex flex-col sm:flex-row gap-6 justify-center'
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
                 viewport={{ once: true }}
               >
+                {/* Primary CTA - Free Consultation */}
                 <motion.div
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
+                  whileHover={{ scale: 1.08, y: -4 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
                 >
                   <Button
                     size='lg'
-                    variant='secondary'
-                    className='shadow-lg hover:shadow-xl transition-all duration-300'
+                    className='relative overflow-hidden bg-white text-blue-600 hover:text-blue-700 font-bold text-lg px-8 py-7 shadow-2xl hover:shadow-white/30 border-0 group min-w-[220px]'
                     asChild
                   >
-                    <a href='/contact-us?title=Free Consultation#contact-form'>
-                      {language === 'en'
-                        ? 'Free Consultation'
-                        : language === 'fr'
-                          ? 'Consultation Gratuite'
-                          : language === 'es'
-                            ? 'Consulta Gratuita'
-                            : '免费咨询'}
+                    <a 
+                      href='/contact-us?title=Free Consultation#contact-form'
+                      className='flex items-center justify-center gap-3'
+                    >
+                      {/* Pulsing background effect */}
+                      <motion.div
+                        className='absolute inset-0 bg-gradient-to-r from-white via-blue-50 to-white'
+                        animate={{
+                          scale: [1, 1.05, 1],
+                          opacity: [1, 0.9, 1],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                        }}
+                      />
+                      
+                      <span className='relative z-10'>
+                        {language === 'en'
+                          ? 'Free Consultation'
+                          : language === 'fr'
+                            ? 'Consultation Gratuite'
+                            : language === 'es'
+                              ? 'Consulta Gratuita'
+                              : '免费咨询'}
+                      </span>
+                      
+                      {/* Animated sparkle icon */}
+                      <motion.span
+                        className='relative z-10 text-2xl'
+                        animate={{
+                          scale: [1, 1.3, 1],
+                          rotate: [0, 180, 360],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                        }}
+                      >
+                        ✨
+                      </motion.span>
+                      
+                      {/* Animated shine effect */}
+                      <motion.div
+                        className='absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent'
+                        initial={{ x: '-100%' }}
+                        animate={{ x: '200%' }}
+                        transition={{
+                          duration: 2.5,
+                          repeat: Infinity,
+                          ease: 'linear',
+                          repeatDelay: 0.5,
+                        }}
+                      />
                     </a>
                   </Button>
                 </motion.div>
+
+                {/* Secondary CTA - View Portfolio */}
                 <motion.div
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
+                  whileHover={{ scale: 1.08, y: -4 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
                 >
                   <Button
                     size='lg'
-                    variant='outline'
-                    className='text-white border-white hover:bg-white hover:text-blue-600 shadow-lg hover:shadow-xl transition-all duration-300'
+                    className='relative overflow-hidden bg-transparent text-white font-bold text-lg px-8 py-7 border-2 border-white hover:border-white shadow-2xl hover:shadow-white/20 group min-w-[220px]'
                     asChild
                   >
-                    <a href='/portfolio'>
-                      {language === 'en'
-                        ? 'View Portfolio'
-                        : language === 'fr'
-                          ? 'Voir le Portfolio'
-                          : language === 'es'
-                            ? 'Ver Portafolio'
-                            : '查看作品集'}
+                    <a 
+                      href='/portfolio'
+                      className='flex items-center justify-center gap-3'
+                    >
+                      {/* Gradient fill on hover */}
+                      <motion.div
+                        className='absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10 opacity-0 group-hover:opacity-100'
+                        transition={{ duration: 0.3 }}
+                      />
+                      
+                      <span className='relative z-10'>
+                        {language === 'en'
+                          ? 'View Portfolio'
+                          : language === 'fr'
+                            ? 'Voir le Portfolio'
+                            : language === 'es'
+                              ? 'Ver Portafolio'
+                              : '查看作品集'}
+                      </span>
+                      
+                      {/* Animated arrow */}
+                      <motion.span
+                        className='relative z-10'
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                        }}
+                      >
+                        →
+                      </motion.span>
+                      
+                      {/* Border glow effect */}
+                      <motion.div
+                        className='absolute inset-0 rounded-md'
+                        style={{
+                          boxShadow: '0 0 20px rgba(255,255,255,0.3)',
+                          opacity: 0,
+                        }}
+                        whileHover={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
                     </a>
                   </Button>
                 </motion.div>

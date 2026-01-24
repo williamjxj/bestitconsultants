@@ -53,7 +53,7 @@ interface ChatWidgetIconProps {
 
 **Behavior**:
 - Fixed position bottom-right corner
-- Displays `/angel.webp` image
+- Displays `/assets/angel.webp` image
 - Animated with Framer Motion
 - Accessible (ARIA labels, keyboard support)
 

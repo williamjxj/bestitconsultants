@@ -155,10 +155,12 @@
 - [X] T046 [P] Ensure decorative images use empty alt text (alt="") for accessibility (Note: Manual verification required post-deployment)
 - [X] T047 [P] Update sitemap lastModified dates in src/app/sitemap.ts to reflect actual content modification dates (Note: Using current date; should be updated when content changes)
 - [X] T048 [P] Add fallback Open Graph images for pages missing og:image metadata (Implemented via buildPageMetadata() fallback to homepage metadata)
-- [ ] T049 [P] Validate all structured data using Google Rich Results Test tool (Manual validation required post-deployment)
-- [ ] T050 [P] Validate all Open Graph metadata using Facebook Sharing Debugger (Manual validation required post-deployment)
-- [ ] T051 [P] Validate all Twitter Card metadata using Twitter Card Validator (Manual validation required post-deployment)
-- [ ] T052 [P] Run Lighthouse SEO audit (target score >95) and fix any issues (Manual validation required post-deployment)
+- [ ] T049 [P] Validate all structured data using Google Rich Results Test tool (Manual validation required post-deployment) - See VALIDATION_CHECKLIST.md
+- [ ] T050 [P] Validate all Open Graph metadata using Facebook Sharing Debugger (Manual validation required post-deployment) - See VALIDATION_CHECKLIST.md
+- [ ] T051 [P] Validate all Twitter Card metadata using Twitter Card Validator (Manual validation required post-deployment) - See VALIDATION_CHECKLIST.md
+- [ ] T052 [P] Run Lighthouse SEO audit (target score >95) and fix any issues (Manual validation required post-deployment) - See VALIDATION_CHECKLIST.md
+- [X] T060 [P] Create automated SEO validation script (scripts/validate-seo.ts) for pre-deployment checks
+- [X] T061 [P] Create comprehensive validation checklist (VALIDATION_CHECKLIST.md) for manual post-deployment tasks
 - [X] T053 [P] Verify robots.txt allows all public pages and properly references sitemap (Verified: robots.ts correctly configured)
 - [X] T054 [P] Ensure all canonical URLs are absolute and point to production domain (Implemented via getCanonicalUrl() and buildPageMetadata())
 - [X] T055 [P] Verify no duplicate content issues (all pages have unique canonical URLs) (All pages have unique canonical URLs via buildPageMetadata())

@@ -95,7 +95,7 @@ export function OptimizedImage({
     // R2 images are handled via full URLs, offices folder is now in R2
     const publicFolderPaths: string[] = []
 
-    // Root-level public files (like /placeholder.svg, /favicon.ico, etc.)
+    // Root-level public files (like /assets/placeholder.svg, /favicon.ico, etc.)
     const publicFileExtensions = [
       '.svg',
       '.png',
@@ -112,7 +112,8 @@ export function OptimizedImage({
         originalSrc.toLowerCase().endsWith(ext)
       ) &&
       !originalSrc.includes('/api/') &&
-      originalSrc.split('/').length === 2 // Root level file (e.g., /placeholder.svg)
+      (originalSrc.split('/').length === 2 || // Root level file (e.g., /favicon.ico)
+        originalSrc.startsWith('/assets/')) // Assets folder files (e.g., /assets/placeholder.svg)
 
     if (
       originalSrc.startsWith('/') &&
@@ -134,7 +135,7 @@ export function OptimizedImage({
   const optimizedSrc = getOptimizedSrc(imageSrc)
 
   // Fallback image for errors
-  const fallbackSrc = '/placeholder.svg'
+  const fallbackSrc = '/assets/placeholder.svg'
 
   return (
     <div className={`relative ${className}`} style={style}>

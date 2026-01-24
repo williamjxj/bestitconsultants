@@ -25,7 +25,7 @@ The reference implementation uses:
 
 **Main Components:**
 1. `ChatWidget` - Root component that manages open/close state
-2. `ChatWidgetIcon` - Floating button (bottom-right) with angel.webp image
+2. `ChatWidgetIcon` - Floating button (bottom-right) with assets/angel.webp image
 3. `ChatWidgetPanel` - Full chat interface panel
 
 **Key Files:**
@@ -88,7 +88,7 @@ The reference implementation uses:
 
 **Key UI Elements**:
 - Floating button: Bottom-right corner, fixed position, z-index 9999
-- Icon: Uses `/angel.webp` (already added to public folder)
+- Icon: Uses `/assets/angel.webp` (already added to public/assets folder)
 - Panel: Fixed position, max-width 450px, max-height 700px
 - Animations: Framer Motion for open/close transitions
 - Styling: Tailwind CSS utility classes, shadcn/ui Card component
