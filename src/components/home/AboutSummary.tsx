@@ -44,25 +44,73 @@ export default function AboutSummary() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className='text-3xl md:text-4xl font-bold mb-6 main-content-title'>
+            <h2 className='section-title mb-6'>
               {translations.aboutSummary.title}
             </h2>
-            <p className='text-lg mb-6 main-content-paragraph'>
+            <p className='section-subtitle mb-6 text-left'>
               {translations.aboutSummary.content}
             </p>
-            <div className='grid grid-cols-2 gap-4 mb-6'>
-              <div className='text-center'>
-                <div className='text-3xl font-bold text-blue-600'>20+</div>
-                <div className='text-sm text-gray-600'>Years Experience</div>
-              </div>
-              <div className='text-center'>
-                <div className='text-3xl font-bold text-blue-600'>50+</div>
-                <div className='text-sm text-gray-600'>Projects Completed</div>
-              </div>
+            <div className='grid grid-cols-2 gap-6 mb-8'>
+              <motion.div
+                className='text-center p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300'
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div
+                  className='text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent'
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                >
+                  20+
+                </motion.div>
+                <div className='text-sm font-semibold text-gray-700 mt-2'>Years Experience</div>
+              </motion.div>
+              <motion.div
+                className='text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300'
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div
+                  className='text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent'
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                    delay: 0.5,
+                  }}
+                >
+                  50+
+                </motion.div>
+                <div className='text-sm font-semibold text-gray-700 mt-2'>Projects Completed</div>
+              </motion.div>
             </div>
-            <Link href='/testimonials' className='btn-secondary inline-block'>
-              {translations.aboutSummary.learnMore}
-            </Link>
+            <motion.div
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Link
+                href='/testimonials'
+                className='inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300'
+              >
+                <span>{translations.aboutSummary.learnMore}</span>
+                <motion.span
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                >
+                  →
+                </motion.span>
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </div>

@@ -5,7 +5,7 @@
 export const PRESENTATION_URL =
   'https://gamma.app/docs/Best-IT-Consultants-1v8t3nud1ghb4iq'
 
-export const DEFAULT_WEBSITE_URL = 'https://bestitconsultants.com'
+export const DEFAULT_WEBSITE_URL = 'https://bestitconsultants.ca'
 
 /**
  * Get the website URL for QR code generation
