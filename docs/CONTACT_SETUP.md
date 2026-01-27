@@ -2,9 +2,9 @@
 
 ## Quick Start
 
-The contact form uses **Resend** (v4.7.0) to send two emails per submission:
-business notification and customer auto-reply. Works immediately with
-`onboarding@resend.dev` - no domain verification needed.
+The contact form uses **Resend** (v4.7.0) to send two emails per submission: business notification
+and customer auto-reply. Works immediately with `onboarding@resend.dev` - no domain verification
+needed.
 
 **Minimum Setup:**
 
@@ -13,8 +13,7 @@ business notification and customer auto-reply. Works immediately with
 3. Add: `BUSINESS_EMAIL=williamjxj@gmail.com`
 4. Done! Emails work immediately.
 
-> **Note**: Google Maps integration is documented separately in
-> [GOOGLE_MAPS.md](./GOOGLE_MAPS.md)
+> **Note**: Google Maps integration is documented separately in [GOOGLE_MAPS.md](./GOOGLE_MAPS.md)
 
 ## Contact Form Submission Flow
 
@@ -48,29 +47,27 @@ flowchart TD
 
 ## Email Address Usage
 
-| Email Address | Purpose | Usage | When Required |
-|---|---|---|---|
-| `onboarding@resend.dev` | **FROM address** (default) | Sender for both business notification and customer auto-reply | ✅ Always available (default) |
-| `contact@bestitconsultants.ca` | **FROM address** (custom domain) | Alternative sender - requires domain verification | ❌ Optional (only if `FROM_EMAIL` is set) |
-| `williamjxj@gmail.com` | **TO address** (business email) | Receives contact form submissions | ✅ Required (default or via `BUSINESS_EMAIL`) |
-| Customer's email | **TO address** (customer) | Receives auto-reply confirmation | ✅ From form submission |
-| Customer's email | **REPLY_TO** (business email) | Allows direct reply to customer | ✅ Auto-set in business notification |
-| `williamjxj@gmail.com` | **REPLY_TO** (customer auto-reply) | Ensures replies come to business | ✅ Auto-set in customer auto-reply |
+| Email Address                  | Purpose                            | Usage                                                         | When Required                                 |
+| ------------------------------ | ---------------------------------- | ------------------------------------------------------------- | --------------------------------------------- |
+| `onboarding@resend.dev`        | **FROM address** (default)         | Sender for both business notification and customer auto-reply | ✅ Always available (default)                 |
+| `contact@bestitconsultants.ca` | **FROM address** (custom domain)   | Alternative sender - requires domain verification             | ❌ Optional (only if `FROM_EMAIL` is set)     |
+| `williamjxj@gmail.com`         | **TO address** (business email)    | Receives contact form submissions                             | ✅ Required (default or via `BUSINESS_EMAIL`) |
+| Customer's email               | **TO address** (customer)          | Receives auto-reply confirmation                              | ✅ From form submission                       |
+| Customer's email               | **REPLY_TO** (business email)      | Allows direct reply to customer                               | ✅ Auto-set in business notification          |
+| `williamjxj@gmail.com`         | **REPLY_TO** (customer auto-reply) | Ensures replies come to business                              | ✅ Auto-set in customer auto-reply            |
 
 ### Email Flow Details
 
 **Business Notification Email:**
 
-- **FROM**: `onboarding@resend.dev` (default) or
-  `contact@bestitconsultants.ca` (if set)
+- **FROM**: `onboarding@resend.dev` (default) or `contact@bestitconsultants.ca` (if set)
 - **TO**: `williamjxj@gmail.com` (or `BUSINESS_EMAIL`)
 - **REPLY_TO**: Customer's email (enables direct reply)
 - **Purpose**: Notify you of new contact form submission
 
 **Customer Auto-Reply Email:**
 
-- **FROM**: `onboarding@resend.dev` (default) or
-  `contact@bestitconsultants.ca` (if set)
+- **FROM**: `onboarding@resend.dev` (default) or `contact@bestitconsultants.ca` (if set)
 - **TO**: Customer's email (from form)
 - **REPLY_TO**: `williamjxj@gmail.com` (or `BUSINESS_EMAIL`)
 - **Purpose**: Confirm receipt and provide next steps
@@ -81,15 +78,14 @@ flowchart TD
 
 The system uses intelligent fallback to ensure emails are always sent:
 
-1. **Primary**: If `FROM_EMAIL` or `RESEND_FROM_EMAIL` is **not set** →
-   Uses `BestITConsultants <onboarding@resend.dev>` (works immediately)
+1. **Primary**: If `FROM_EMAIL` or `RESEND_FROM_EMAIL` is **not set** → Uses
+   `BestITConsultants <onboarding@resend.dev>` (works immediately)
 
-2. **Upgrade**: If `FROM_EMAIL` or `RESEND_FROM_EMAIL` **is set** → Uses
-   custom domain email (e.g., `BestITConsultants
-   <contact@bestitconsultants.ca>`)
+2. **Upgrade**: If `FROM_EMAIL` or `RESEND_FROM_EMAIL` **is set** → Uses custom domain email (e.g.,
+   `BestITConsultants <contact@bestitconsultants.ca>`)
 
-3. **Automatic Fallback**: If custom domain email fails (not verified) →
-   Automatically retries with `onboarding@resend.dev`
+3. **Automatic Fallback**: If custom domain email fails (not verified) → Automatically retries with
+   `onboarding@resend.dev`
 
 4. **Error Handling**: If both attempts fail → Returns error to user
 
@@ -111,12 +107,12 @@ FROM_EMAIL=BestITConsultants <contact@bestitconsultants.ca>
 RESEND_FROM_EMAIL=BestITConsultants <contact@bestitconsultants.ca>
 ```
 
-| Variable | Required | Default | Description |
-|---|---|---|---|
-| `RESEND_API_KEY` | ✅ Yes | None | Resend API key (starts with `re_`) |
-| `BUSINESS_EMAIL` | ✅ Yes | `williamjxj@gmail.com` | Where contact submissions are sent |
-| `FROM_EMAIL` | ❌ No | `onboarding@resend.dev` | Custom FROM address (requires verification) |
-| `RESEND_FROM_EMAIL` | ❌ No | `onboarding@resend.dev` | Alternative name for `FROM_EMAIL` |
+| Variable            | Required | Default                 | Description                                 |
+| ------------------- | -------- | ----------------------- | ------------------------------------------- |
+| `RESEND_API_KEY`    | ✅ Yes   | None                    | Resend API key (starts with `re_`)          |
+| `BUSINESS_EMAIL`    | ✅ Yes   | `williamjxj@gmail.com`  | Where contact submissions are sent          |
+| `FROM_EMAIL`        | ❌ No    | `onboarding@resend.dev` | Custom FROM address (requires verification) |
+| `RESEND_FROM_EMAIL` | ❌ No    | `onboarding@resend.dev` | Alternative name for `FROM_EMAIL`           |
 
 ### Custom Domain Setup
 

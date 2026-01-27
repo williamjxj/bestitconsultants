@@ -34,12 +34,7 @@
 ```jsx
 // Hero section with video background
 <div className='relative'>
-  <video
-    autoPlay
-    muted
-    loop
-    className='absolute inset-0 w-full h-full object-cover opacity-20'
-  >
+  <video autoPlay muted loop className='absolute inset-0 w-full h-full object-cover opacity-20'>
     <source src='/videos/code-typing.mp4' type='video/mp4' />
   </video>
   <div className='relative z-10'>{/* Content */}</div>
@@ -73,7 +68,6 @@ Example implementation:
 
 ```jsx
 import { motion } from 'framer-motion'
-
 ;<motion.div
   initial={{ opacity: 0, y: 50 }}
   whileInView={{ opacity: 1, y: 0 }}
@@ -231,19 +225,16 @@ const TypingAnimation = ({ text, speed = 100 }) => {
 ## Best Practices 🎨
 
 1. **Performance First**
-
    - Use `transform` and `opacity` for smooth animations
    - Avoid animating layout properties
    - Use `will-change` sparingly
 
 2. **Accessibility**
-
    - Respect `prefers-reduced-motion`
    - Provide fallbacks for users with motion sensitivity
    - Ensure animations don't interfere with screen readers
 
 3. **Progressive Enhancement**
-
    - Start with CSS animations
    - Add JavaScript enhancements
    - Ensure content is accessible without animations
@@ -273,4 +264,6 @@ const TypingAnimation = ({ text, speed = 100 }) => {
 - **Feather Icons** (feathericons.com) - Simply beautiful icons
 - **Lucide** (lucide.dev) - Icon library (already in use)
 
-The current implementation provides a solid foundation with smooth animations and modern interactions. The next steps would be to implement scroll-triggered animations and consider adding video backgrounds for even more dynamic appeal.
+The current implementation provides a solid foundation with smooth animations and modern
+interactions. The next steps would be to implement scroll-triggered animations and consider adding
+video backgrounds for even more dynamic appeal.

@@ -88,4 +88,3 @@ export function clearWidgetState(userId?: string): void {
     console.error('Failed to clear widget state:', error)
   }
 }
-

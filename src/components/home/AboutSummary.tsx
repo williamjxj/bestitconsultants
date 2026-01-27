@@ -67,7 +67,9 @@ export default function AboutSummary() {
                 >
                   20+
                 </motion.div>
-                <div className='text-sm font-semibold text-gray-700 mt-2'>Years Experience</div>
+                <div className='text-sm font-semibold text-gray-700 mt-2'>
+                  Years Experience
+                </div>
               </motion.div>
               <motion.div
                 className='text-center p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300'
@@ -86,7 +88,9 @@ export default function AboutSummary() {
                 >
                   50+
                 </motion.div>
-                <div className='text-sm font-semibold text-gray-700 mt-2'>Projects Completed</div>
+                <div className='text-sm font-semibold text-gray-700 mt-2'>
+                  Projects Completed
+                </div>
               </motion.div>
             </div>
             <motion.div

@@ -1,7 +1,7 @@
 # shadcn/ui Components Summary
 
-This document provides a summary of all shadcn/ui components currently used in the
-project and their sources.
+This document provides a summary of all shadcn/ui components currently used in the project and their
+sources.
 
 ## Component Registry Configuration
 
@@ -29,7 +29,6 @@ These are standard shadcn/ui components installed via the shadcn CLI:
 - **Dependencies**: `@radix-ui/react-slot`, `class-variance-authority`
 - **Usage**: Used throughout the app for interactive buttons
 - **Files Using**:
-
   - `src/app/contact-us/page.tsx`
   - `src/app/portfolio/page.tsx`
   - `src/app/services/page.tsx`
@@ -199,8 +198,8 @@ Components are installed using the shadcn CLI:
 npx shadcn@latest add [component-name]
 ```
 
-Components are copied directly into the project (not installed as npm packages),
-giving you full control to customize them.
+Components are copied directly into the project (not installed as npm packages), giving you full
+control to customize them.
 
 ## Dependencies
 
@@ -243,5 +242,4 @@ import { Card, CardContent } from '@/components/ui/card'
 - All components follow the shadcn/ui pattern of being copied into the project
 - Components are fully customizable since they're part of the codebase
 - The project uses the "New York" style variant
-- Additional components from Magic UI registry are available via `components.json`
-  configuration
+- Additional components from Magic UI registry are available via `components.json` configuration

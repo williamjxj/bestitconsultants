@@ -1,6 +1,18 @@
 'use client'
 
-import { Mail, Phone, MapPin, Linkedin, Twitter, Github, Video, Music, FileText, Image as ImageIcon, Play } from 'lucide-react'
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Linkedin,
+  Twitter,
+  Github,
+  Video,
+  Music,
+  FileText,
+  Image as ImageIcon,
+  Play,
+} from 'lucide-react'
 import { useEffect, useState } from 'react'
 import QRCode from 'react-qr-code'
 
@@ -154,7 +166,7 @@ export default function Footer() {
       'menubar=no',
       'location=no',
       'status=no',
-      'directories=no'
+      'directories=no',
     ].join(',')
 
     const popup = window.open('', popupName, features)
@@ -210,11 +222,12 @@ export default function Footer() {
           </head>
           <body>
             <h2>${escapeHtml(displayName)}</h2>
-            ${isVideo
-              ? `<video src="${escapeHtml(resource.url)}" controls autoplay style="width: 100%; max-height: 70vh; border-radius: 8px;">
+            ${
+              isVideo
+                ? `<video src="${escapeHtml(resource.url)}" controls autoplay style="width: 100%; max-height: 70vh; border-radius: 8px;">
                    Your browser does not support the video tag.
                  </video>`
-              : `<audio src="${escapeHtml(resource.url)}" controls autoplay style="width: 100%;">
+                : `<audio src="${escapeHtml(resource.url)}" controls autoplay style="width: 100%;">
                    Your browser does not support the audio tag.
                  </audio>`
             }
@@ -227,7 +240,9 @@ export default function Footer() {
       popup.focus()
     } else {
       // If popup was blocked, show alert
-      alert('Please allow popups for this site to play media in a popup window.')
+      alert(
+        'Please allow popups for this site to play media in a popup window.'
+      )
     }
   }
 
@@ -254,7 +269,10 @@ export default function Footer() {
             </h3>
             <div className='space-y-2 sm:space-y-3 mb-4 sm:mb-6 ml-8 sm:ml-0'>
               <div className='flex items-center gap-3'>
-                <Mail className='h-5 w-5 text-white flex-shrink-0' aria-hidden='true' />
+                <Mail
+                  className='h-5 w-5 text-white flex-shrink-0'
+                  aria-hidden='true'
+                />
                 <a
                   href='mailto:service@BestITConsultants.ca'
                   className='text-xs sm:text-sm text-gray-300 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
@@ -264,7 +282,10 @@ export default function Footer() {
                 </a>
               </div>
               <div className='flex items-center gap-3'>
-                <Phone className='h-5 w-5 text-white flex-shrink-0' aria-hidden='true' />
+                <Phone
+                  className='h-5 w-5 text-white flex-shrink-0'
+                  aria-hidden='true'
+                />
                 <a
                   href='tel:+12369923846'
                   className='text-xs sm:text-sm text-gray-300 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
@@ -274,12 +295,21 @@ export default function Footer() {
                 </a>
               </div>
               <div className='flex items-center gap-3'>
-                <MapPin className='h-5 w-5 text-white flex-shrink-0' aria-hidden='true' />
-                <p className='text-xs sm:text-sm text-gray-300'>Great Vancouver, Canada 🇨🇦</p>
+                <MapPin
+                  className='h-5 w-5 text-white flex-shrink-0'
+                  aria-hidden='true'
+                />
+                <p className='text-xs sm:text-sm text-gray-300'>
+                  Great Vancouver, Canada 🇨🇦
+                </p>
               </div>
             </div>
             {/* Social Media Icons */}
-            <div className='flex items-center gap-4 ml-8 sm:ml-0' role='list' aria-label='Social media links'>
+            <div
+              className='flex items-center gap-4 ml-8 sm:ml-0'
+              role='list'
+              aria-label='Social media links'
+            >
               {socialLinks.map(link => {
                 const IconComponent = getSocialIcon(link.platform)
                 if (!IconComponent) return null
@@ -424,7 +454,10 @@ export default function Footer() {
           </nav>
 
           {/* Resources */}
-          <nav aria-label='Footer resources' className='col-span-1 lg:col-span-1'>
+          <nav
+            aria-label='Footer resources'
+            className='col-span-1 lg:col-span-1'
+          >
             <h4 className='text-sm font-semibold mb-2 sm:mb-3 text-white capitalize tracking-wide text-left ml-8 sm:ml-0'>
               resources
             </h4>
@@ -441,7 +474,8 @@ export default function Footer() {
                 {resources.map(resource => {
                   const IconComponent = getResourceIcon(resource.fileType)
                   const displayName = transformFileName(resource.fileName)
-                  const isMp4OrM4a = resource.extension === 'mp4' || resource.extension === 'm4a'
+                  const isMp4OrM4a =
+                    resource.extension === 'mp4' || resource.extension === 'm4a'
 
                   return (
                     <li key={resource.key}>
@@ -460,7 +494,7 @@ export default function Footer() {
                         <span className='truncate'>{displayName}</span>
                         {isMp4OrM4a && (
                           <button
-                            onClick={(e) => handlePlayClick(e, resource)}
+                            onClick={e => handlePlayClick(e, resource)}
                             className='flex-shrink-0 ml-1 p-0.5 text-white hover:text-blue-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
                             aria-label={`Play ${displayName}`}
                             title={`Play ${displayName}`}
@@ -475,7 +509,9 @@ export default function Footer() {
                 })}
               </ul>
             ) : (
-              <p className='text-xs sm:text-sm text-gray-500'>No resources available</p>
+              <p className='text-xs sm:text-sm text-gray-500'>
+                No resources available
+              </p>
             )}
           </nav>
 

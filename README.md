@@ -53,11 +53,11 @@ portfolio and services.
 
 ## 🚀 Quick Links
 
-| Resource | Description |
-|----------|-------------|
-| 🌐 [**Live Website**](https://www.bestitconsultants.ca/) | Visit our production site |
+| Resource                                                                                                                    | Description                  |
+| --------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| 🌐 [**Live Website**](https://www.bestitconsultants.ca/)                                                                    | Visit our production site    |
 | 📊 [**Presentation**](https://gamma.app/docs/Best-IT-Consultants-Elite-Enterprise-Architects-Startup-Speed-1v8t3nud1ghb4iq) | Company overview (Gamma PPT) |
-| 📧 **Contact** | service@bestitconsultants.ca |
+| 📧 **Contact**                                                                                                              | service@bestitconsultants.ca |
 
 ---
 
@@ -82,7 +82,8 @@ expertise:
 - Strong focus on code quality, maintainability, and scalability
 - Track record of measurable results (see case studies on live site)
 
-**[→ View Live Website](https://www.bestitconsultants.ca/)** | **[→ Contact for Projects](https://www.bestitconsultants.ca/contact-us)**
+**[→ View Live Website](https://www.bestitconsultants.ca/)** |
+**[→ Contact for Projects](https://www.bestitconsultants.ca/contact-us)**
 
 ---
 
@@ -299,7 +300,8 @@ The codebase has been cleaned up to remove unused code and fix issues:
 
 **Ready to transform your business with cutting-edge technology?**
 
-Visit our live website: **[www.bestitconsultants.ca](https://www.bestitconsultants.ca/)**, **Email**: service@bestitconsultants.ca
+Visit our live website: **[www.bestitconsultants.ca](https://www.bestitconsultants.ca/)**,
+**Email**: service@bestitconsultants.ca
 
 ---
 

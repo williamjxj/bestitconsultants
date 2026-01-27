@@ -29,4 +29,3 @@ export interface RateLimitInfo {
   limit: number
   windowDuration: number
 }
-

@@ -41,29 +41,20 @@ export default function Breadcrumb({
 
       {/* Visual breadcrumb navigation - Optional */}
       {!hideVisual && (
-        <nav
-          aria-label='Breadcrumb'
-          className={cn('mb-4', className)}
-        >
+        <nav aria-label='Breadcrumb' className={cn('mb-4', className)}>
           <ol className='flex items-center space-x-2 text-sm text-gray-600'>
             {items.map((item, index) => {
               const isLast = index === items.length - 1
               const isActive = item.isActive || isLast
 
               return (
-                <li
-                  key={index}
-                  className='flex items-center'
-                >
+                <li key={index} className='flex items-center'>
                   {index > 0 && (
                     <ChevronRight className='mx-2 h-4 w-4 text-gray-400' />
                   )}
                   {isActive ? (
                     <span
-                      className={cn(
-                        'font-medium',
-                        isActive && 'text-gray-900'
-                      )}
+                      className={cn('font-medium', isActive && 'text-gray-900')}
                       aria-current='page'
                     >
                       {item.label}

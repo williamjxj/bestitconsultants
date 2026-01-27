@@ -5,7 +5,8 @@
 
 ## Overview
 
-This guide provides step-by-step instructions for implementing SEO improvements across all pages of the BestIT Consultants website.
+This guide provides step-by-step instructions for implementing SEO improvements across all pages of
+the BestIT Consultants website.
 
 ## Prerequisites
 
@@ -21,6 +22,7 @@ This guide provides step-by-step instructions for implementing SEO improvements 
 Create `src/lib/seo-utils.ts` with metadata building and validation functions.
 
 **Key Functions**:
+
 - `buildPageMetadata()` - Builds complete metadata with fallbacks
 - `getCanonicalUrl()` - Generates absolute canonical URLs
 - `validateMetadata()` - Validates metadata requirements
@@ -34,6 +36,7 @@ Create `src/lib/seo-utils.ts` with metadata building and validation functions.
 Create `src/lib/structured-data.ts` with Schema.org structured data generators.
 
 **Key Functions**:
+
 - `createOrganizationSchema()` - Organization structured data
 - `createServiceSchema()` - Service structured data
 - `createArticleSchema()` - Article structured data
@@ -49,12 +52,14 @@ Create `src/lib/structured-data.ts` with Schema.org structured data generators.
 Create `src/components/seo/Breadcrumb.tsx` component.
 
 **Features**:
+
 - Visual breadcrumb navigation
 - BreadcrumbList structured data (JSON-LD)
 - Accessible semantic HTML
 - Tailwind CSS styling
 
 **Usage**:
+
 ```typescript
 <Breadcrumb
   items={[
@@ -72,6 +77,7 @@ Create `src/components/seo/Breadcrumb.tsx` component.
 For each page, create or update `layout.tsx` with metadata export.
 
 **Example** (`src/app/services/layout.tsx`):
+
 ```typescript
 import type { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/seo-utils'
@@ -109,6 +115,7 @@ export default function ServicesLayout({ children }: { children: React.ReactNode
 ```
 
 **Pages to Update**:
+
 1. ✅ Homepage (`src/app/layout.tsx`) - Already has metadata, enhance Organization schema
 2. ⬜ Services (`src/app/services/layout.tsx`) - Add metadata + Service schema
 3. ⬜ Portfolio (`src/app/portfolio/layout.tsx`) - Add metadata
@@ -124,12 +131,14 @@ export default function ServicesLayout({ children }: { children: React.ReactNode
 Update `src/app/sitemap.ts` to include all pages with correct priorities.
 
 **Priority Assignment**:
+
 - Homepage: 1.0
 - Main pages (services, case studies): 0.9
 - Secondary pages (team, testimonials): 0.8
 - Lower priority pages: 0.7
 
 **Fix Issues**:
+
 - Remove duplicate `/case-studies` entry
 - Add missing pages (portfolio, testimonials)
 - Set appropriate priorities
@@ -142,6 +151,7 @@ Update `src/app/sitemap.ts` to include all pages with correct priorities.
 Add `<Breadcrumb />` component to each page (except homepage).
 
 **Example** (`src/app/services/page.tsx`):
+
 ```typescript
 import Breadcrumb from '@/components/seo/Breadcrumb'
 
@@ -167,6 +177,7 @@ export default function ServicesPage() {
 Ensure all images have descriptive alt text.
 
 **Check**:
+
 - All `<img>` tags have `alt` attribute
 - All Next.js `<Image>` components have `alt` prop
 - Decorative images use empty string: `alt=""`
@@ -179,6 +190,7 @@ Ensure all images have descriptive alt text.
 Enhance `src/components/seo/StructuredData.tsx` or add to homepage layout.
 
 **Required Fields**:
+
 - name, description, url, logo (required)
 - email, sameAs (optional, from clarification)
 
@@ -238,11 +250,13 @@ Enhance `src/components/seo/StructuredData.tsx` or add to homepage layout.
 
 ### Issue: Metadata not appearing in page source
 
-**Solution**: Ensure `metadata` is exported from `layout.tsx`, not `page.tsx`. Next.js App Router requires metadata in layout files.
+**Solution**: Ensure `metadata` is exported from `layout.tsx`, not `page.tsx`. Next.js App Router
+requires metadata in layout files.
 
 ### Issue: Structured data validation fails
 
-**Solution**: 
+**Solution**:
+
 - Verify all required fields are present for the schema type
 - Check that `@context` and `@type` are correct
 - Ensure all URLs are absolute
@@ -251,13 +265,15 @@ Enhance `src/components/seo/StructuredData.tsx` or add to homepage layout.
 ### Issue: Breadcrumbs not showing
 
 **Solution**:
+
 - Verify Breadcrumb component is imported and used
 - Check that items array has at least one item
 - Ensure Tailwind CSS classes are applied correctly
 
 ### Issue: Sitemap has duplicate entries
 
-**Solution**: Review `sitemap.ts` and remove duplicate URL entries. Each page should appear exactly once.
+**Solution**: Review `sitemap.ts` and remove duplicate URL entries. Each page should appear exactly
+once.
 
 ### Issue: Images missing alt text
 
@@ -288,6 +304,7 @@ Enhance `src/components/seo/StructuredData.tsx` or add to homepage layout.
 ## Support
 
 For questions or issues:
+
 1. Review the specification (`spec.md`)
 2. Check the data model (`data-model.md`)
 3. Review research decisions (`research.md`)

@@ -27,14 +27,17 @@ ChatWidget (root)
 **Props**: None
 
 **State**:
+
 - `isOpen: boolean` - Whether chat panel is open
 
 **Behavior**:
+
 - Renders `ChatWidgetIcon` when closed
 - Renders `ChatWidgetPanel` when open
 - Manages open/close state
 
 **Exports**:
+
 ```typescript
 export function ChatWidget(): JSX.Element
 ```
@@ -44,20 +47,23 @@ export function ChatWidget(): JSX.Element
 **File**: `src/components/chat-widget/chat-widget-icon.tsx`
 
 **Props**:
+
 ```typescript
 interface ChatWidgetIconProps {
-  onClick: () => void;
-  isOpen: boolean;
+  onClick: () => void
+  isOpen: boolean
 }
 ```
 
 **Behavior**:
+
 - Fixed position bottom-right corner
 - Displays `/assets/angel.webp` image
 - Animated with Framer Motion
 - Accessible (ARIA labels, keyboard support)
 
 **Exports**:
+
 ```typescript
 export function ChatWidgetIcon({ onClick, isOpen }: ChatWidgetIconProps): JSX.Element
 ```
@@ -67,19 +73,22 @@ export function ChatWidgetIcon({ onClick, isOpen }: ChatWidgetIconProps): JSX.El
 **File**: `src/components/chat-widget/chat-widget-panel.tsx`
 
 **Props**:
+
 ```typescript
 interface ChatWidgetPanelProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen: boolean
+  onClose: () => void
 }
 ```
 
 **State**:
+
 - `input: string` - Current input value
 - `copiedMessageId: string | null` - ID of copied message
 - `isInitialized: boolean` - Whether messages loaded from storage
 
 **Behavior**:
+
 - Displays message list
 - Handles message input and submission
 - Manages streaming responses
@@ -88,6 +97,7 @@ interface ChatWidgetPanelProps {
 - Handles Escape key to close
 
 **Exports**:
+
 ```typescript
 export function ChatWidgetPanel({ isOpen, onClose }: ChatWidgetPanelProps): JSX.Element
 ```
@@ -101,20 +111,22 @@ export function ChatWidgetPanel({ isOpen, onClose }: ChatWidgetPanelProps): JSX.
 **Parameters**: None (or optional `userId?: string` for future extensibility)
 
 **Returns**:
+
 ```typescript
 interface UseChatWidgetReturn {
-  isOpen: boolean;
-  messages: Message[];
-  openWidget: () => void;
-  closeWidget: () => void;
-  toggleWidget: () => void;
-  addMessage: (message: Message) => void;
-  clearMessages: () => void;
-  clearAll: () => void;
+  isOpen: boolean
+  messages: Message[]
+  openWidget: () => void
+  closeWidget: () => void
+  toggleWidget: () => void
+  addMessage: (message: Message) => void
+  clearMessages: () => void
+  clearAll: () => void
 }
 ```
 
 **Behavior**:
+
 - Manages chat widget state
 - Persists to sessionStorage
 - Loads from sessionStorage on mount
@@ -122,6 +134,7 @@ interface UseChatWidgetReturn {
 - Limits messages to 100
 
 **Exports**:
+
 ```typescript
 export function useChatWidget(userId?: string): UseChatWidgetReturn
 ```
@@ -134,11 +147,11 @@ export function useChatWidget(userId?: string): UseChatWidgetReturn
 
 ```typescript
 interface Message {
-  id: string;
-  role: "user" | "assistant";
-  content: string;
-  timestamp: number;
-  parts?: MessagePart[];
+  id: string
+  role: 'user' | 'assistant'
+  content: string
+  timestamp: number
+  parts?: MessagePart[]
 }
 ```
 
@@ -146,8 +159,8 @@ interface Message {
 
 ```typescript
 interface MessagePart {
-  type: "text" | "image" | "tool";
-  text?: string;
+  type: 'text' | 'image' | 'tool'
+  text?: string
 }
 ```
 
@@ -155,11 +168,11 @@ interface MessagePart {
 
 ```typescript
 interface WidgetState {
-  isOpen: boolean;
-  messages: Message[];
-  lastUpdated: number;
-  language?: "en" | "fr" | "es" | "cn";
-  rateLimit?: RateLimitInfo;
+  isOpen: boolean
+  messages: Message[]
+  lastUpdated: number
+  language?: 'en' | 'fr' | 'es' | 'cn'
+  rateLimit?: RateLimitInfo
 }
 ```
 
@@ -167,10 +180,10 @@ interface WidgetState {
 
 ```typescript
 interface RateLimitInfo {
-  messageCount: number;
-  windowStart: number;
-  limit: number;
-  windowDuration: number;
+  messageCount: number
+  windowStart: number
+  limit: number
+  windowDuration: number
 }
 ```
 
@@ -181,19 +194,13 @@ interface RateLimitInfo {
 **File**: `src/lib/utils/storage.ts`
 
 **Functions**:
+
 ```typescript
-export function saveWidgetState(
-  state: WidgetState,
-  userId?: string
-): void
+export function saveWidgetState(state: WidgetState, userId?: string): void
 
-export function loadWidgetState(
-  userId?: string
-): WidgetState | null
+export function loadWidgetState(userId?: string): WidgetState | null
 
-export function clearWidgetState(
-  userId?: string
-): void
+export function clearWidgetState(userId?: string): void
 
 export function isStorageAvailable(): boolean
 ```
@@ -207,16 +214,18 @@ export function isStorageAvailable(): boolean
 **Package**: `@ai-sdk/react`
 
 **Usage**:
+
 ```typescript
 const { messages, sendMessage, status, error, setMessages } = useChat({
-  transport: new DefaultChatTransport({ api: "/api/chat" }),
-  onError: (error) => {
-    console.error("Chat error:", error);
+  transport: new DefaultChatTransport({ api: '/api/chat' }),
+  onError: error => {
+    console.error('Chat error:', error)
   },
-});
+})
 ```
 
 **Returns**:
+
 - `messages`: Array of UI messages from AI SDK
 - `sendMessage`: Function to send a message
 - `status`: "idle" | "streaming" | "submitted" | "error"
@@ -230,27 +239,31 @@ const { messages, sendMessage, status, error, setMessages } = useChat({
 **File**: `src/contexts/LanguageContext.tsx`
 
 **Usage**:
-```typescript
-import { useLanguage } from "@/contexts/LanguageContext";
 
-const { language, translations } = useLanguage();
+```typescript
+import { useLanguage } from '@/contexts/LanguageContext'
+
+const { language, translations } = useLanguage()
 ```
 
 **Integration**:
+
 - Pass `language` to API route via headers or request body
 - Use `translations` for UI text (welcome message, placeholders, errors)
 
 ### Navigation Integration
 
 **Usage**:
-```typescript
-import { useRouter } from "next/navigation";
 
-const router = useRouter();
-router.push("/services");
+```typescript
+import { useRouter } from 'next/navigation'
+
+const router = useRouter()
+router.push('/services')
 ```
 
 **Integration**:
+
 - Navigate to suggested pages from chatbot responses
 - Maintain chat state during navigation (sessionStorage)
 
@@ -260,28 +273,29 @@ router.push("/services");
 
 ```typescript
 type ErrorType =
-  | "validation"
-  | "timeout"
-  | "rate_limit"
-  | "service"
-  | "network"
-  | "authentication"
-  | "authorization"
-  | "configuration";
+  | 'validation'
+  | 'timeout'
+  | 'rate_limit'
+  | 'service'
+  | 'network'
+  | 'authentication'
+  | 'authorization'
+  | 'configuration'
 
 interface ChatError {
-  type: ErrorType;
-  message: string;
-  retryable: boolean;
-  retryAfter?: number;
-  details?: string;
-  actionUrl?: string;
+  type: ErrorType
+  message: string
+  retryable: boolean
+  retryAfter?: number
+  details?: string
+  actionUrl?: string
 }
 ```
 
 ### Error Display Component
 
 **Behavior**:
+
 - Shows error message
 - Shows retry button if `retryable: true`
 - Shows action link if `actionUrl` provided
@@ -334,23 +348,25 @@ interface ChatError {
 ### Component Testing
 
 **Mock Interfaces**:
+
 ```typescript
 interface MockChatWidgetProps {
-  initialIsOpen?: boolean;
-  initialMessages?: Message[];
-  mockApiResponse?: (messages: Message[]) => Promise<Response>;
+  initialIsOpen?: boolean
+  initialMessages?: Message[]
+  mockApiResponse?: (messages: Message[]) => Promise<Response>
 }
 ```
 
 ### Hook Testing
 
 **Mock Storage**:
+
 ```typescript
 interface MockStorage {
-  getItem: (key: string) => string | null;
-  setItem: (key: string, value: string) => void;
-  removeItem: (key: string) => void;
-  clear: () => void;
+  getItem: (key: string) => string | null
+  setItem: (key: string, value: string) => void
+  removeItem: (key: string) => void
+  clear: () => void
 }
 ```
 
@@ -370,4 +386,3 @@ interface MockStorage {
 - MessagePart structure supports future types
 - WidgetState can accommodate new fields
 - Component props can be extended without breaking changes
-

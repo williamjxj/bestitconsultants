@@ -76,19 +76,16 @@ export function useChatWidget(userId?: string, language?: Language) {
   }, [])
 
   const toggleWidget = useCallback(() => {
-    setIsOpen((prev) => !prev)
+    setIsOpen(prev => !prev)
   }, [])
 
-  const addMessage = useCallback(
-    (message: Message) => {
-      setMessages((prev) => {
-        const updated = [...prev, message]
-        // Limit to MAX_MESSAGES, keeping the most recent
-        return updated.slice(-MAX_MESSAGES)
-      })
-    },
-    []
-  )
+  const addMessage = useCallback((message: Message) => {
+    setMessages(prev => {
+      const updated = [...prev, message]
+      // Limit to MAX_MESSAGES, keeping the most recent
+      return updated.slice(-MAX_MESSAGES)
+    })
+  }, [])
 
   const clearMessages = useCallback(() => {
     setMessages([])
@@ -191,4 +188,3 @@ export function useChatWidget(userId?: string, language?: Language) {
     recordMessage,
   }
 }
-

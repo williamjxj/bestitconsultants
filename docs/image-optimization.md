@@ -38,7 +38,6 @@ The `OptimizedImage` component provides enhanced image functionality:
 
 ```tsx
 import { OptimizedImage } from '@/components/ui/optimized-image'
-
 ;<OptimizedImage
   src='/imgs/hero-image.jpg'
   alt='Hero image description'
@@ -70,7 +69,6 @@ The `ImageGallery` component provides responsive gallery layouts:
 
 ```tsx
 import { ImageGallery } from '@/components/ui/image-gallery'
-
 ;<ImageGallery
   images={galleryImages}
   layout='grid'
@@ -281,13 +279,11 @@ const hoverEffects = {
 ### Image Selection
 
 1. **Use appropriate formats**:
-
    - JPEG for photographs
    - PNG for images with transparency
    - WebP/AVIF for better compression
 
 2. **Optimize dimensions**:
-
    - Use appropriate sizes for different viewports
    - Avoid oversized images
    - Consider aspect ratios
@@ -300,12 +296,10 @@ const hoverEffects = {
 ### Performance Considerations
 
 1. **Lazy loading**:
-
    - Use lazy loading for below-fold content
    - Set appropriate loading priorities
 
 2. **Format optimization**:
-
    - Use modern formats when supported
    - Provide fallbacks for older browsers
 
@@ -316,13 +310,11 @@ const hoverEffects = {
 ### Accessibility Guidelines
 
 1. **Alt text**:
-
    - Always provide descriptive alt text
    - Use empty alt text for decorative images
    - Include context and purpose
 
 2. **Keyboard navigation**:
-
    - Ensure all interactive images are keyboard accessible
    - Provide clear focus indicators
 
@@ -336,13 +328,11 @@ const hoverEffects = {
 ### Common Issues
 
 1. **Images not loading**:
-
    - Check file paths and permissions
    - Verify image formats are supported
    - Check network connectivity
 
 2. **Performance issues**:
-
    - Optimize image sizes
    - Use appropriate formats
    - Implement lazy loading
@@ -355,13 +345,11 @@ const hoverEffects = {
 ### Debugging Tools
 
 1. **Browser DevTools**:
-
    - Network tab for loading analysis
    - Performance tab for Core Web Vitals
    - Accessibility tab for compliance
 
 2. **Lighthouse**:
-
    - Performance scoring
    - Accessibility compliance
    - SEO optimization
@@ -376,13 +364,11 @@ const hoverEffects = {
 ### Planned Features
 
 1. **Advanced optimization**:
-
    - Automatic format conversion
    - Dynamic quality adjustment
    - Smart cropping
 
 2. **Enhanced accessibility**:
-
    - Voice descriptions
    - High contrast modes
    - Reduced motion support
@@ -395,13 +381,11 @@ const hoverEffects = {
 ### Integration Opportunities
 
 1. **CMS integration**:
-
    - Automatic optimization
    - Batch processing
    - Metadata management
 
 2. **Analytics integration**:
-
    - Performance monitoring
    - User behavior tracking
    - Optimization insights

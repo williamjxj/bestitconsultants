@@ -62,7 +62,7 @@ paths:
                       type: validation
                       message: Message exceeds token limit. Please shorten your message.
                       retryable: false
-                      details: Maximum tokens: 8000
+                      details: 'Maximum tokens: 8000'
         '408':
           description: Request timeout
           content:
@@ -162,7 +162,17 @@ components:
           properties:
             type:
               type: string
-              enum: [validation, timeout, rate_limit, service, network, authentication, authorization, configuration]
+              enum:
+                [
+                  validation,
+                  timeout,
+                  rate_limit,
+                  service,
+                  network,
+                  authentication,
+                  authorization,
+                  configuration,
+                ]
               description: Error type
             message:
               type: string
@@ -181,4 +191,3 @@ components:
               type: string
               description: URL for user action (e.g., add credit card)
               format: uri
-

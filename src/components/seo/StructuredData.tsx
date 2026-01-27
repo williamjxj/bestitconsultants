@@ -1,6 +1,9 @@
 import React from 'react'
 
-import { createOrganizationSchema, structuredDataScript } from '@/lib/structured-data'
+import {
+  createOrganizationSchema,
+  structuredDataScript,
+} from '@/lib/structured-data'
 import { getBaseUrl } from '@/lib/utils'
 
 export const StructuredData: React.FC = () => {

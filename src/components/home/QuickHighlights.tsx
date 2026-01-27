@@ -45,8 +45,10 @@ export const QuickHighlights: React.FC = () => {
             >
               <Card className='relative overflow-hidden h-full border-0 bg-white shadow-lg hover:shadow-2xl transition-all duration-500'>
                 {/* Gradient background on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${highlight.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${highlight.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                />
+
                 {/* Content */}
                 <CardContent className='relative z-10 p-8 text-center h-full flex flex-col items-center justify-center min-h-[280px]'>
                   {/* Icon with gradient background */}
@@ -57,21 +59,23 @@ export const QuickHighlights: React.FC = () => {
                   >
                     <div className='text-4xl'>{highlight.icon}</div>
                   </motion.div>
-                  
+
                   {/* Title */}
                   <h3 className='text-xl font-bold mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300 main-content-subtitle'>
                     {highlight.title}
                   </h3>
-                  
+
                   {/* Description */}
                   <p className='text-gray-600 leading-relaxed main-content-paragraph'>
                     {highlight.description}
                   </p>
                 </CardContent>
-                
+
                 {/* Animated corner accent */}
                 <div className='absolute top-0 right-0 w-24 h-24 opacity-0 group-hover:opacity-100 transition-opacity duration-500'>
-                  <div className={`absolute top-0 right-0 w-full h-full bg-gradient-to-br ${highlight.gradient} opacity-20 rounded-bl-full`} />
+                  <div
+                    className={`absolute top-0 right-0 w-full h-full bg-gradient-to-br ${highlight.gradient} opacity-20 rounded-bl-full`}
+                  />
                 </div>
               </Card>
             </motion.div>

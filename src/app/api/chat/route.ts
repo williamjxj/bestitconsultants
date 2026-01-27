@@ -102,10 +102,7 @@ Guidelines:
 
     // Create AbortController for timeout handling
     const controller = new AbortController()
-    const timeoutId = setTimeout(
-      () => controller.abort(),
-      REQUEST_TIMEOUT_MS
-    )
+    const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
 
     try {
       // Stream text using Vercel AI Gateway routing (production) or Deepseek provider (local)
@@ -190,9 +187,7 @@ Guidelines:
       console.error('Chat API Error:', error)
 
       // Try to get fallback response for the last user message
-      const lastUserMessage = messages
-        .filter((msg) => msg.role === 'user')
-        .pop()
+      const lastUserMessage = messages.filter(msg => msg.role === 'user').pop()
 
       if (lastUserMessage && typeof lastUserMessage.content === 'string') {
         const fallback = getFallbackResponse(lastUserMessage.content)
@@ -201,7 +196,11 @@ Guidelines:
           const fallbackMessage = {
             id: `fallback-${Date.now()}`,
             role: 'assistant' as const,
-            content: fallback.response + (fallback.suggestedPage ? `\n\nVisit: ${fallback.suggestedPage}` : ''),
+            content:
+              fallback.response +
+              (fallback.suggestedPage
+                ? `\n\nVisit: ${fallback.suggestedPage}`
+                : ''),
           }
 
           // Create a simple streaming response with the fallback message
@@ -250,4 +249,3 @@ Guidelines:
     )
   }
 }
-

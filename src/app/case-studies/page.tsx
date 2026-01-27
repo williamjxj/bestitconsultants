@@ -159,7 +159,7 @@ export default function CaseStudiesPage() {
           enableParallax={true}
         />
       </FullWidthHeroWrapper>
-      
+
       {/* Breadcrumb - Hidden visually but provides SEO structured data */}
       <Breadcrumb
         items={[
@@ -168,7 +168,7 @@ export default function CaseStudiesPage() {
         ]}
         hideVisual={true}
       />
-      
+
       <div className='min-h-screen bg-gray-50'>
         {/* Stats Section */}
         <section className='pt-16 pb-16 bg-gray-50'>

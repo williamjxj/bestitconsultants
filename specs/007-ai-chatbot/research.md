@@ -6,13 +6,16 @@
 
 ## Overview
 
-This research document consolidates findings from analyzing the reference implementation and determines the technical approach for migrating the AI chatbot feature to the BestIT Consultants website.
+This research document consolidates findings from analyzing the reference implementation and
+determines the technical approach for migrating the AI chatbot feature to the BestIT Consultants
+website.
 
 ## Reference Implementation Analysis
 
 ### Architecture Overview
 
 The reference implementation uses:
+
 - **Next.js 16** with App Router
 - **Vercel AI SDK** (`@ai-sdk/react`) for chat functionality
 - **DeepSeek LLM** via Vercel AI Gateway (production) or direct API (local)
@@ -24,11 +27,13 @@ The reference implementation uses:
 ### Component Structure
 
 **Main Components:**
+
 1. `ChatWidget` - Root component that manages open/close state
 2. `ChatWidgetIcon` - Floating button (bottom-right) with assets/angel.webp image
 3. `ChatWidgetPanel` - Full chat interface panel
 
 **Key Files:**
+
 - `components/chat-widget/chat-widget.tsx` - Main widget component
 - `components/chat-widget/chat-widget-icon.tsx` - Icon/trigger button
 - `components/chat-widget/chat-widget-panel.tsx` - Chat panel with messages
@@ -39,54 +44,67 @@ The reference implementation uses:
 ### Technical Decisions
 
 #### Decision 1: AI Service Architecture
+
 **Decision**: Use Vercel AI Gateway with DeepSeek LLM, with fallback to rule-based responses
 
 **Rationale**:
+
 - Reference implementation uses Vercel AI Gateway for production (cost-effective, reliable)
 - DeepSeek provides good quality responses at lower cost than OpenAI/Anthropic
 - User already has `AI_GATEWAY_API_KEY` and `DEEPSEEK_API_KEY` configured
 - Fallback to rule-based responses ensures availability when API is unavailable
 
 **Alternatives Considered**:
+
 - Direct OpenAI API: Higher cost, no gateway benefits
 - Self-hosted model: Requires significant infrastructure
 - Hybrid approach: More complex, but provides best reliability
 
 **Implementation Notes**:
+
 - Production: Use model string format `"deepseek/deepseek-chat"` which routes through AI Gateway
 - Local: Use `@ai-sdk/deepseek` provider directly with `DEEPSEEK_API_KEY`
 - Fallback: Implement rule-based responses for common FAQs when API fails
 
 #### Decision 2: State Management & Persistence
+
 **Decision**: Use browser sessionStorage (not localStorage) for chat persistence
 
 **Rationale**:
+
 - Spec requirement: "Sessions persist within the same browser session"
 - sessionStorage automatically clears when browser closes (matches spec)
 - Reference uses localStorage but we need sessionStorage per spec
 - No server-side persistence needed (out of scope)
 
 **Alternatives Considered**:
+
 - localStorage: Persists across browser sessions (doesn't match spec)
 - Server-side storage: Requires authentication (out of scope)
 - No persistence: Poor UX, loses context on navigation
 
 **Implementation Notes**:
+
 - Use `sessionStorage` instead of `localStorage` in the hook
 - Store messages, timestamps, and session metadata
 - Clear on browser close automatically
 - Persist across page navigations within same session
 
 #### Decision 3: UI/UX Implementation
-**Decision**: Match reference implementation exactly - bottom-right floating button, same animations, same styling
+
+**Decision**: Match reference implementation exactly - bottom-right floating button, same
+animations, same styling
 
 **Rationale**:
-- User explicitly requested: "implement the ai-chatbot exactly the same as looks in https://images-hub-pim.vercel.app/"
+
+- User explicitly requested: "implement the ai-chatbot exactly the same as looks in
+  https://images-hub-pim.vercel.app/"
 - Reference has proven UX patterns
 - Consistent with modern chatbot implementations
 - Uses existing design system (shadcn/ui, Tailwind CSS)
 
 **Key UI Elements**:
+
 - Floating button: Bottom-right corner, fixed position, z-index 9999
 - Icon: Uses `/assets/angel.webp` (already added to public/assets folder)
 - Panel: Fixed position, max-width 450px, max-height 700px
@@ -94,60 +112,72 @@ The reference implementation uses:
 - Styling: Tailwind CSS utility classes, shadcn/ui Card component
 
 **Alternatives Considered**:
+
 - Different placement: Doesn't match user requirement
 - Different styling: Doesn't match user requirement
 - Custom CSS: Violates constitution (Tailwind only)
 
 #### Decision 4: Rate Limiting Strategy
+
 **Decision**: Client-side rate limiting with sessionStorage tracking (20 messages/hour per visitor)
 
 **Rationale**:
+
 - Spec requirement: "Per-visitor rate limiting (e.g., 20 messages per hour)"
 - No authentication means client-side tracking is necessary
 - Use sessionStorage to track message count and timestamp
 - Reset counter after 1 hour window
 
 **Alternatives Considered**:
+
 - Server-side rate limiting: Requires user identification (not available without auth)
 - IP-based rate limiting: Less accurate, can affect shared IPs
 - No rate limiting: High cost risk, potential abuse
 
 **Implementation Notes**:
+
 - Track message count and first message timestamp in sessionStorage
 - Check before sending each message
 - Show friendly error message when limit reached
 - Suggest alternative contact methods
 
 #### Decision 5: Multi-Language Support
+
 **Decision**: Integrate with existing LanguageContext system
 
 **Rationale**:
+
 - Website already has multi-language support (en, fr, es, cn)
 - Spec requires: "consistent with the website's language support"
 - Reference implementation doesn't have multi-language (we need to add this)
 - Use existing `LanguageContext` from `src/contexts/LanguageContext.tsx`
 
 **Alternatives Considered**:
+
 - Separate language detection: Duplicates existing functionality
 - Browser language only: Doesn't respect user's site language choice
 - No multi-language: Violates spec requirement
 
 **Implementation Notes**:
+
 - Use `useLanguage()` hook from LanguageContext
 - Pass language to API route for AI responses
 - Translate UI elements (welcome message, placeholders, errors)
 - Support language switching mid-conversation
 
 #### Decision 6: Error Handling & Fallback
+
 **Decision**: Comprehensive error handling with rule-based fallback for common questions
 
 **Rationale**:
+
 - Spec requirement: "fallback to rule-based responses when API is unavailable"
 - Reference has good error handling patterns we can adapt
 - Rule-based responses ensure availability for common questions
 - Graceful degradation improves user experience
 
 **Common Questions for Rule-Based Fallback**:
+
 - "What services do you offer?"
 - "How can I contact you?"
 - "Where are your case studies?"
@@ -155,25 +185,30 @@ The reference implementation uses:
 - General company information
 
 **Alternatives Considered**:
+
 - No fallback: Poor UX when API is down
 - Generic error only: Doesn't help users
 - Full rule-based system: Too complex, AI is better
 
 #### Decision 7: Dependencies & Packages
+
 **Decision**: Add required packages from reference implementation
 
 **Required Packages**:
+
 - `ai` - Vercel AI SDK core
 - `@ai-sdk/react` - React hooks for AI SDK
 - `@ai-sdk/deepseek` - DeepSeek provider (for local dev)
 
 **Rationale**:
+
 - Reference uses Vercel AI SDK (industry standard)
 - Already compatible with Next.js 15
 - Well-maintained, good TypeScript support
 - Matches reference implementation
 
 **Alternatives Considered**:
+
 - Custom AI integration: More work, less reliable
 - Different AI SDK: Doesn't match reference
 - Direct API calls: More complex, less features
@@ -208,6 +243,7 @@ The reference implementation uses:
 **Route**: `/app/api/chat/route.ts`
 
 **Key Features**:
+
 - Edge runtime for lower latency
 - Use Vercel AI Gateway in production
 - Use DeepSeek provider directly in local dev
@@ -216,6 +252,7 @@ The reference implementation uses:
 - Multi-language support via request headers
 
 **Request Format**:
+
 ```typescript
 {
   messages: Array<{
@@ -229,6 +266,7 @@ The reference implementation uses:
 ```
 
 **Response Format**:
+
 - Streaming response (Vercel AI SDK format)
 - Error responses with retry information
 - Fallback responses when API unavailable
@@ -236,12 +274,14 @@ The reference implementation uses:
 ## Migration Strategy
 
 ### Phase 1: Core Components
+
 1. Copy and adapt `ChatWidget`, `ChatWidgetIcon`, `ChatWidgetPanel` components
 2. Adapt to use sessionStorage instead of localStorage
 3. Integrate with existing LanguageContext
 4. Match styling exactly from reference
 
 ### Phase 2: API Route
+
 1. Create `/app/api/chat/route.ts`
 2. Implement Vercel AI Gateway integration
 3. Add fallback to rule-based responses
@@ -249,18 +289,21 @@ The reference implementation uses:
 5. Add multi-language support
 
 ### Phase 3: State Management
+
 1. Create `use-chat-widget.ts` hook
 2. Adapt to use sessionStorage
 3. Add rate limiting tracking
 4. Integrate with LanguageContext
 
 ### Phase 4: Knowledge Base & Fallback
+
 1. Create rule-based response system
 2. Extract company information from data files
 3. Create FAQ mapping
 4. Implement fallback logic
 
 ### Phase 5: Integration & Testing
+
 1. Add ChatWidget to root layout
 2. Test multi-language support
 3. Test rate limiting
@@ -318,4 +361,3 @@ A: Copy component structure, use same animations, same styling, same positioning
 - Source Code: https://github.com/williamjxj/images-hub
 - Vercel AI SDK Docs: https://sdk.vercel.ai/docs
 - DeepSeek API Docs: https://platform.deepseek.com/docs
-

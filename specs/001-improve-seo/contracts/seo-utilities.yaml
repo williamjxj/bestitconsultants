@@ -10,7 +10,7 @@ info:
 paths:
   /lib/seo-utils:
     description: SEO metadata utility functions
-    
+
     buildPageMetadata:
       summary: Build complete page metadata with fallbacks
       operationId: buildPageMetadata
@@ -109,7 +109,7 @@ paths:
 
   /lib/structured-data:
     description: Structured data utility functions
-    
+
     createOrganizationSchema:
       summary: Create Organization structured data
       operationId: createOrganizationSchema

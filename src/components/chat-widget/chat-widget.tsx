@@ -17,7 +17,7 @@ export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleWidget = () => {
-    setIsOpen((prev) => !prev)
+    setIsOpen(prev => !prev)
   }
 
   const closeWidget = () => {
@@ -26,13 +26,8 @@ export function ChatWidget() {
 
   return (
     <>
-      {!isOpen && (
-        <ChatWidgetIcon onClick={toggleWidget} isOpen={isOpen} />
-      )}
-      {isOpen && (
-        <ChatWidgetPanel isOpen={isOpen} onClose={closeWidget} />
-      )}
+      {!isOpen && <ChatWidgetIcon onClick={toggleWidget} isOpen={isOpen} />}
+      {isOpen && <ChatWidgetPanel isOpen={isOpen} onClose={closeWidget} />}
     </>
   )
 }
-

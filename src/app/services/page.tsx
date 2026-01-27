@@ -103,7 +103,7 @@ const ServicesPage = () => {
             if (entry.isIntersecting) {
               // Kill any existing animations first
               gsap.killTweensOf(imageEl)
-              
+
               // Animate image on scroll in
               gsap.to(imageEl, {
                 opacity: 0.6,
@@ -359,25 +359,25 @@ const ServicesPage = () => {
           ],
         },
         {
-          title: 'Analyse de Données et Intelligence d\'Affaires',
+          title: "Analyse de Données et Intelligence d'Affaires",
           description:
-            'Transformez les données brutes en informations exploitables avec des solutions d\'analyse avancées et d\'intelligence d\'affaires. Nous aidons les entreprises à prendre des décisions basées sur les données avec des plateformes d\'analyse alimentées par l\'IA.',
+            "Transformez les données brutes en informations exploitables avec des solutions d'analyse avancées et d'intelligence d'affaires. Nous aidons les entreprises à prendre des décisions basées sur les données avec des plateformes d'analyse alimentées par l'IA.",
           features: [
             'Entrepôt de Données et Pipelines ETL',
-            'Tableaux de Bord et Rapports d\'Intelligence d\'Affaires',
-            'Analyse Prédictive et Modèles d\'Apprentissage Automatique',
+            "Tableaux de Bord et Rapports d'Intelligence d'Affaires",
+            "Analyse Prédictive et Modèles d'Apprentissage Automatique",
             'Traitement de Données en Temps Réel et Analyse de Flux',
           ],
         },
         {
           title: 'Assurance Qualité et Tests',
           description:
-            'Services complets d\'assurance qualité et de tests pour garantir que votre logiciel répond aux normes de qualité les plus élevées. Nous livrons des solutions logicielles fiables et sans erreur grâce aux tests automatisés et de performance.',
+            "Services complets d'assurance qualité et de tests pour garantir que votre logiciel répond aux normes de qualité les plus élevées. Nous livrons des solutions logicielles fiables et sans erreur grâce aux tests automatisés et de performance.",
           features: [
             'Tests Automatisés (Unitaires, Intégration, E2E)',
             'Tests de Performance et de Charge',
             'Tests de Sécurité et Évaluation des Vulnérabilités',
-            'Tests d\'Applications Mobiles (iOS, Android)',
+            "Tests d'Applications Mobiles (iOS, Android)",
           ],
         },
       ],
@@ -669,15 +669,15 @@ const ServicesPage = () => {
     },
     ...(currentContent.services[8]
       ? [
-        {
-          title: currentContent.services[8].title,
-          icon: Shield,
-          gradient: 'from-red-500 to-pink-500',
-          bgGradient: 'from-red-50 to-pink-50',
-          description: currentContent.services[8].description,
-          features: currentContent.services[8].features,
-        },
-      ]
+          {
+            title: currentContent.services[8].title,
+            icon: Shield,
+            gradient: 'from-red-500 to-pink-500',
+            bgGradient: 'from-red-50 to-pink-50',
+            description: currentContent.services[8].description,
+            features: currentContent.services[8].features,
+          },
+        ]
       : []),
   ]
 
@@ -864,31 +864,64 @@ const ServicesPage = () => {
               steps={
                 language === 'en'
                   ? [
-                    { title: 'Discovery', description: 'Understand your needs' },
-                    { title: 'Planning', description: 'Design the solution' },
-                    { title: 'Development', description: 'Build with excellence' },
-                    { title: 'Deployment', description: 'Launch and support' },
-                  ]
+                      {
+                        title: 'Discovery',
+                        description: 'Understand your needs',
+                      },
+                      { title: 'Planning', description: 'Design the solution' },
+                      {
+                        title: 'Development',
+                        description: 'Build with excellence',
+                      },
+                      {
+                        title: 'Deployment',
+                        description: 'Launch and support',
+                      },
+                    ]
                   : language === 'fr'
                     ? [
-                      { title: 'Découverte', description: 'Comprendre vos besoins' },
-                      { title: 'Planification', description: 'Concevoir la solution' },
-                      { title: 'Développement', description: 'Construire avec excellence' },
-                      { title: 'Déploiement', description: 'Lancer et soutenir' },
-                    ]
+                        {
+                          title: 'Découverte',
+                          description: 'Comprendre vos besoins',
+                        },
+                        {
+                          title: 'Planification',
+                          description: 'Concevoir la solution',
+                        },
+                        {
+                          title: 'Développement',
+                          description: 'Construire avec excellence',
+                        },
+                        {
+                          title: 'Déploiement',
+                          description: 'Lancer et soutenir',
+                        },
+                      ]
                     : language === 'es'
                       ? [
-                        { title: 'Descubrimiento', description: 'Entender sus necesidades' },
-                        { title: 'Planificación', description: 'Diseñar la solución' },
-                        { title: 'Desarrollo', description: 'Construir con excelencia' },
-                        { title: 'Despliegue', description: 'Lanzar y apoyar' },
-                      ]
+                          {
+                            title: 'Descubrimiento',
+                            description: 'Entender sus necesidades',
+                          },
+                          {
+                            title: 'Planificación',
+                            description: 'Diseñar la solución',
+                          },
+                          {
+                            title: 'Desarrollo',
+                            description: 'Construir con excelencia',
+                          },
+                          {
+                            title: 'Despliegue',
+                            description: 'Lanzar y apoyar',
+                          },
+                        ]
                       : [
-                        { title: '发现', description: '了解您的需求' },
-                        { title: '规划', description: '设计解决方案' },
-                        { title: '开发', description: '卓越构建' },
-                        { title: '部署', description: '启动和支持' },
-                      ]
+                          { title: '发现', description: '了解您的需求' },
+                          { title: '规划', description: '设计解决方案' },
+                          { title: '开发', description: '卓越构建' },
+                          { title: '部署', description: '启动和支持' },
+                        ]
               }
             />
           </motion.div>
@@ -919,135 +952,135 @@ const ServicesPage = () => {
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
               {(language === 'en'
                 ? [
-                  {
-                    name: 'Starter',
-                    price: '$5K+',
-                    description: 'Perfect for small projects',
-                    features: [
-                      'Basic features',
-                      'Email support',
-                      '3 months support',
-                    ],
-                    popular: false,
-                  },
-                  {
-                    name: 'Professional',
-                    price: '$25K+',
-                    description: 'Ideal for growing businesses',
-                    features: [
-                      'All features',
-                      'Priority support',
-                      '6 months support',
-                    ],
-                    popular: true,
-                  },
-                  {
-                    name: 'Enterprise',
-                    price: 'Custom',
-                    description: 'Tailored for large organizations',
-                    features: [
-                      'Custom features',
-                      '24/7 support',
-                      '1 year support',
-                    ],
-                    popular: false,
-                  },
-                ]
-                : language === 'fr'
-                  ? [
                     {
-                      name: 'Démarrage',
-                      price: '5K$+',
-                      description: 'Parfait pour les petits projets',
+                      name: 'Starter',
+                      price: '$5K+',
+                      description: 'Perfect for small projects',
                       features: [
-                        'Fonctionnalités de base',
-                        'Support par email',
-                        '3 mois de support',
+                        'Basic features',
+                        'Email support',
+                        '3 months support',
                       ],
                       popular: false,
                     },
                     {
-                      name: 'Professionnel',
-                      price: '25K$+',
-                      description: 'Idéal pour les entreprises en croissance',
+                      name: 'Professional',
+                      price: '$25K+',
+                      description: 'Ideal for growing businesses',
                       features: [
-                        'Toutes les fonctionnalités',
-                        'Support prioritaire',
-                        '6 mois de support',
+                        'All features',
+                        'Priority support',
+                        '6 months support',
                       ],
                       popular: true,
                     },
                     {
-                      name: 'Entreprise',
-                      price: 'Sur mesure',
-                      description: 'Adapté aux grandes organisations',
+                      name: 'Enterprise',
+                      price: 'Custom',
+                      description: 'Tailored for large organizations',
                       features: [
-                        'Fonctionnalités personnalisées',
-                        'Support 24/7',
-                        '1 an de support',
+                        'Custom features',
+                        '24/7 support',
+                        '1 year support',
                       ],
                       popular: false,
                     },
                   ]
+                : language === 'fr'
+                  ? [
+                      {
+                        name: 'Démarrage',
+                        price: '5K$+',
+                        description: 'Parfait pour les petits projets',
+                        features: [
+                          'Fonctionnalités de base',
+                          'Support par email',
+                          '3 mois de support',
+                        ],
+                        popular: false,
+                      },
+                      {
+                        name: 'Professionnel',
+                        price: '25K$+',
+                        description: 'Idéal pour les entreprises en croissance',
+                        features: [
+                          'Toutes les fonctionnalités',
+                          'Support prioritaire',
+                          '6 mois de support',
+                        ],
+                        popular: true,
+                      },
+                      {
+                        name: 'Entreprise',
+                        price: 'Sur mesure',
+                        description: 'Adapté aux grandes organisations',
+                        features: [
+                          'Fonctionnalités personnalisées',
+                          'Support 24/7',
+                          '1 an de support',
+                        ],
+                        popular: false,
+                      },
+                    ]
                   : language === 'es'
                     ? [
-                      {
-                        name: 'Inicial',
-                        price: '$5K+',
-                        description: 'Perfecto para proyectos pequeños',
-                        features: [
-                          'Características básicas',
-                          'Soporte por email',
-                          '3 meses de soporte',
-                        ],
-                        popular: false,
-                      },
-                      {
-                        name: 'Profesional',
-                        price: '$25K+',
-                        description: 'Ideal para negocios en crecimiento',
-                        features: [
-                          'Todas las características',
-                          'Soporte prioritario',
-                          '6 meses de soporte',
-                        ],
-                        popular: true,
-                      },
-                      {
-                        name: 'Empresarial',
-                        price: 'Personalizado',
-                        description: 'Adaptado para grandes organizaciones',
-                        features: [
-                          'Características personalizadas',
-                          'Soporte 24/7',
-                          '1 año de soporte',
-                        ],
-                        popular: false,
-                      },
-                    ]
+                        {
+                          name: 'Inicial',
+                          price: '$5K+',
+                          description: 'Perfecto para proyectos pequeños',
+                          features: [
+                            'Características básicas',
+                            'Soporte por email',
+                            '3 meses de soporte',
+                          ],
+                          popular: false,
+                        },
+                        {
+                          name: 'Profesional',
+                          price: '$25K+',
+                          description: 'Ideal para negocios en crecimiento',
+                          features: [
+                            'Todas las características',
+                            'Soporte prioritario',
+                            '6 meses de soporte',
+                          ],
+                          popular: true,
+                        },
+                        {
+                          name: 'Empresarial',
+                          price: 'Personalizado',
+                          description: 'Adaptado para grandes organizaciones',
+                          features: [
+                            'Características personalizadas',
+                            'Soporte 24/7',
+                            '1 año de soporte',
+                          ],
+                          popular: false,
+                        },
+                      ]
                     : [
-                      {
-                        name: '入门',
-                        price: '5K$+',
-                        description: '适合小型项目',
-                        features: ['基本功能', '邮件支持', '3个月支持'],
-                        popular: false,
-                      },
-                      {
-                        name: '专业',
-                        price: '25K$+',
-                        description: '适合成长中的企业',
-                        features: ['所有功能', '优先支持', '6个月支持'],
-                        popular: true,
-                      },
-                      {
-                        name: '企业',
-                        price: '定制',
-                        description: '适合大型组织',
-                        features: ['定制功能', '24/7支持', '1年支持'],
-                        popular: false,
-                      },
-                    ]
+                        {
+                          name: '入门',
+                          price: '5K$+',
+                          description: '适合小型项目',
+                          features: ['基本功能', '邮件支持', '3个月支持'],
+                          popular: false,
+                        },
+                        {
+                          name: '专业',
+                          price: '25K$+',
+                          description: '适合成长中的企业',
+                          features: ['所有功能', '优先支持', '6个月支持'],
+                          popular: true,
+                        },
+                        {
+                          name: '企业',
+                          price: '定制',
+                          description: '适合大型组织',
+                          features: ['定制功能', '24/7支持', '1年支持'],
+                          popular: false,
+                        },
+                      ]
               ).map((plan, index) => {
                 // Assign refs to each pricing card
                 const cardRefs = [pricing1Ref, pricing2Ref, pricing3Ref]
@@ -1075,10 +1108,11 @@ const ServicesPage = () => {
                   >
                     <Card
                       ref={cardRef}
-                      className={`relative overflow-hidden transition-all duration-500 ${plan.popular
-                        ? 'border-purple-500 border-2 shadow-2xl scale-105'
-                        : 'shadow-lg hover:shadow-xl'
-                        } group-hover:shadow-2xl min-h-[450px]`}
+                      className={`relative overflow-hidden transition-all duration-500 ${
+                        plan.popular
+                          ? 'border-purple-500 border-2 shadow-2xl scale-105'
+                          : 'shadow-lg hover:shadow-xl'
+                      } group-hover:shadow-2xl min-h-[450px]`}
                     >
                       {/* Background Image */}
                       <div
@@ -1112,114 +1146,115 @@ const ServicesPage = () => {
                         </motion.div>
                       )}
                       <CardHeader className='text-center relative z-20'>
-                      <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <CardTitle className='text-2xl group-hover:text-purple-600 transition-colors duration-300'>
-                          {plan.name}
-                        </CardTitle>
                         <motion.div
-                          className='text-3xl font-bold text-blue-600 my-4'
-                          animate={
-                            plan.popular
-                              ? {
-                                scale: [1, 1.05, 1],
-                              }
-                              : {}
-                          }
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: 'easeInOut',
-                          }}
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.3 }}
                         >
-                          {plan.price}
-                        </motion.div>
-                        <CardDescription className='group-hover:opacity-90 transition-opacity duration-300 main-content-paragraph'>
-                          {plan.description}
-                        </CardDescription>
+                          <CardTitle className='text-2xl group-hover:text-purple-600 transition-colors duration-300'>
+                            {plan.name}
+                          </CardTitle>
+                          <motion.div
+                            className='text-3xl font-bold text-blue-600 my-4'
+                            animate={
+                              plan.popular
+                                ? {
+                                    scale: [1, 1.05, 1],
+                                  }
+                                : {}
+                            }
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: 'easeInOut',
+                            }}
+                          >
+                            {plan.price}
+                          </motion.div>
+                          <CardDescription className='group-hover:opacity-90 transition-opacity duration-300 main-content-paragraph'>
+                            {plan.description}
+                          </CardDescription>
                         </motion.div>
                       </CardHeader>
                       <CardContent className='relative z-20'>
-                      <ul className='space-y-3 mb-8'>
-                        {plan.features.map((feature, featureIndex) => (
-                          <motion.li
-                            key={featureIndex}
-                            className='flex items-start'
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{
-                              duration: 0.4,
-                              delay: index * 0.2 + featureIndex * 0.1 + 0.5,
-                            }}
-                            viewport={{ once: true }}
-                          >
-                            <motion.span
-                              className='text-green-500 mr-2'
-                              whileHover={{ scale: 1.2, rotate: 360 }}
-                              transition={{ duration: 0.3 }}
+                        <ul className='space-y-3 mb-8'>
+                          {plan.features.map((feature, featureIndex) => (
+                            <motion.li
+                              key={featureIndex}
+                              className='flex items-start'
+                              initial={{ opacity: 0, x: -20 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              transition={{
+                                duration: 0.4,
+                                delay: index * 0.2 + featureIndex * 0.1 + 0.5,
+                              }}
+                              viewport={{ once: true }}
                             >
-                              ✓
-                            </motion.span>
-                            <span className='group-hover:opacity-90 transition-opacity duration-300 main-content-paragraph'>
-                              {feature}
-                            </span>
-                          </motion.li>
-                        ))}
-                      </ul>
-                      <motion.div
-                        whileHover={{ scale: 1.08, y: -2 }}
-                        whileTap={{ scale: 0.96 }}
-                        transition={{ duration: 0.2, ease: 'easeOut' }}
-                      >
-                        <Button
-                          size='lg'
-                          className={`w-full relative overflow-hidden font-bold text-base transition-all duration-300 ${plan.popular
-                            ? 'bg-gradient-to-r from-purple-600 via-purple-500 to-pink-500 hover:from-purple-700 hover:via-purple-600 hover:to-pink-600 text-white shadow-2xl hover:shadow-purple-500/50 border-0 py-6'
-                            : 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-xl hover:shadow-blue-500/50 border-0 py-6'
-                            } group`}
-                          asChild
+                              <motion.span
+                                className='text-green-500 mr-2'
+                                whileHover={{ scale: 1.2, rotate: 360 }}
+                                transition={{ duration: 0.3 }}
+                              >
+                                ✓
+                              </motion.span>
+                              <span className='group-hover:opacity-90 transition-opacity duration-300 main-content-paragraph'>
+                                {feature}
+                              </span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                        <motion.div
+                          whileHover={{ scale: 1.08, y: -2 }}
+                          whileTap={{ scale: 0.96 }}
+                          transition={{ duration: 0.2, ease: 'easeOut' }}
                         >
-                          <a 
-                            href={`/contact-us?title=${encodeURIComponent(plan.name + ' Plan')}#contact-form`}
-                            className='flex items-center justify-center gap-2'
+                          <Button
+                            size='lg'
+                            className={`w-full relative overflow-hidden font-bold text-base transition-all duration-300 ${
+                              plan.popular
+                                ? 'bg-gradient-to-r from-purple-600 via-purple-500 to-pink-500 hover:from-purple-700 hover:via-purple-600 hover:to-pink-600 text-white shadow-2xl hover:shadow-purple-500/50 border-0 py-6'
+                                : 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-xl hover:shadow-blue-500/50 border-0 py-6'
+                            } group`}
+                            asChild
                           >
-                            <span className='relative z-10'>
-                              {language === 'en'
-                                ? 'Get Started'
-                                : language === 'fr'
-                                  ? 'Commencer'
-                                  : language === 'es'
-                                    ? 'Comenzar'
-                                    : '开始'}
-                            </span>
-                            <motion.span
-                              className='relative z-10'
-                              animate={{ x: [0, 5, 0] }}
-                              transition={{
-                                duration: 1.5,
-                                repeat: Infinity,
-                                ease: 'easeInOut',
-                              }}
+                            <a
+                              href={`/contact-us?title=${encodeURIComponent(plan.name + ' Plan')}#contact-form`}
+                              className='flex items-center justify-center gap-2'
                             >
-                              →
-                            </motion.span>
-                            {/* Animated shine effect */}
-                            <motion.div
-                              className='absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent'
-                              initial={{ x: '-100%' }}
-                              animate={{ x: '200%' }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: 'linear',
-                                repeatDelay: 1,
-                              }}
-                            />
-                          </a>
-                        </Button>
-                      </motion.div>
+                              <span className='relative z-10'>
+                                {language === 'en'
+                                  ? 'Get Started'
+                                  : language === 'fr'
+                                    ? 'Commencer'
+                                    : language === 'es'
+                                      ? 'Comenzar'
+                                      : '开始'}
+                              </span>
+                              <motion.span
+                                className='relative z-10'
+                                animate={{ x: [0, 5, 0] }}
+                                transition={{
+                                  duration: 1.5,
+                                  repeat: Infinity,
+                                  ease: 'easeInOut',
+                                }}
+                              >
+                                →
+                              </motion.span>
+                              {/* Animated shine effect */}
+                              <motion.div
+                                className='absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent'
+                                initial={{ x: '-100%' }}
+                                animate={{ x: '200%' }}
+                                transition={{
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  ease: 'linear',
+                                  repeatDelay: 1,
+                                }}
+                              />
+                            </a>
+                          </Button>
+                        </motion.div>
                       </CardContent>
                     </Card>
                   </motion.div>
@@ -1267,7 +1302,9 @@ const ServicesPage = () => {
                   <Card className='text-center hover:shadow-lg transition-shadow border-0 bg-white/50 backdrop-blur-sm h-full'>
                     <CardContent className='p-6'>
                       <div className='text-4xl mb-4'>{award.icon}</div>
-                      <h3 className='font-bold text-lg mb-2 main-content-subtitle'>{award.title}</h3>
+                      <h3 className='font-bold text-lg mb-2 main-content-subtitle'>
+                        {award.title}
+                      </h3>
                       <p className='text-sm mb-3 main-content-paragraph'>
                         {award.organization}
                       </p>
@@ -1319,7 +1356,7 @@ const ServicesPage = () => {
                     'from-sky-500 to-blue-500',
                   ]
                   const gradient = gradients[index % gradients.length]
-                  
+
                   return (
                     <motion.div
                       key={index}
@@ -1331,17 +1368,19 @@ const ServicesPage = () => {
                         ease: 'easeOut',
                       }}
                       viewport={{ once: true }}
-                      whileHover={{ 
-                        y: -8, 
+                      whileHover={{
+                        y: -8,
                         scale: 1.03,
-                        transition: { duration: 0.3 }
+                        transition: { duration: 0.3 },
                       }}
                       className='group'
                     >
                       <Card className='relative overflow-hidden h-full border-0 bg-white shadow-lg hover:shadow-2xl transition-all duration-500'>
                         {/* Gradient background on hover */}
-                        <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                        
+                        <div
+                          className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                        />
+
                         {/* Content */}
                         <CardContent className='relative z-10 p-6 flex flex-col items-center text-center h-full justify-center min-h-[160px]'>
                           {/* Icon with gradient background */}
@@ -1359,15 +1398,15 @@ const ServicesPage = () => {
                               )
                             })()}
                           </motion.div>
-                          
+
                           {/* Industry name */}
                           <h3 className='font-bold text-lg mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300'>
                             {industry.name}
                           </h3>
-                          
+
                           {/* Project count with badge */}
-                          <Badge 
-                            variant='secondary' 
+                          <Badge
+                            variant='secondary'
                             className='bg-gray-100 group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-purple-500 group-hover:text-white transition-all duration-300'
                           >
                             <span className='font-semibold'>
@@ -1382,10 +1421,12 @@ const ServicesPage = () => {
                             </span>
                           </Badge>
                         </CardContent>
-                        
+
                         {/* Animated corner accent */}
                         <div className='absolute top-0 right-0 w-20 h-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500'>
-                          <div className={`absolute top-0 right-0 w-full h-full bg-gradient-to-br ${gradient} opacity-20 rounded-bl-full`} />
+                          <div
+                            className={`absolute top-0 right-0 w-full h-full bg-gradient-to-br ${gradient} opacity-20 rounded-bl-full`}
+                          />
                         </div>
                       </Card>
                     </motion.div>
@@ -1463,7 +1504,7 @@ const ServicesPage = () => {
                     className='relative overflow-hidden bg-white text-blue-600 hover:text-blue-700 font-bold text-lg px-8 py-7 shadow-2xl hover:shadow-white/30 border-0 group min-w-[220px]'
                     asChild
                   >
-                    <a 
+                    <a
                       href='/contact-us?title=Free Consultation#contact-form'
                       className='flex items-center justify-center gap-3'
                     >
@@ -1480,7 +1521,7 @@ const ServicesPage = () => {
                           ease: 'easeInOut',
                         }}
                       />
-                      
+
                       <span className='relative z-10'>
                         {language === 'en'
                           ? 'Free Consultation'
@@ -1490,7 +1531,7 @@ const ServicesPage = () => {
                               ? 'Consulta Gratuita'
                               : '免费咨询'}
                       </span>
-                      
+
                       {/* Animated sparkle icon */}
                       <motion.span
                         className='relative z-10 text-2xl'
@@ -1506,7 +1547,7 @@ const ServicesPage = () => {
                       >
                         ✨
                       </motion.span>
-                      
+
                       {/* Animated shine effect */}
                       <motion.div
                         className='absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent'
@@ -1534,7 +1575,7 @@ const ServicesPage = () => {
                     className='relative overflow-hidden bg-transparent text-white font-bold text-lg px-8 py-7 border-2 border-white hover:border-white shadow-2xl hover:shadow-white/20 group min-w-[220px]'
                     asChild
                   >
-                    <a 
+                    <a
                       href='/portfolio'
                       className='flex items-center justify-center gap-3'
                     >
@@ -1543,7 +1584,7 @@ const ServicesPage = () => {
                         className='absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10 opacity-0 group-hover:opacity-100'
                         transition={{ duration: 0.3 }}
                       />
-                      
+
                       <span className='relative z-10'>
                         {language === 'en'
                           ? 'View Portfolio'
@@ -1553,7 +1594,7 @@ const ServicesPage = () => {
                               ? 'Ver Portafolio'
                               : '查看作品集'}
                       </span>
-                      
+
                       {/* Animated arrow */}
                       <motion.span
                         className='relative z-10'
@@ -1566,7 +1607,7 @@ const ServicesPage = () => {
                       >
                         →
                       </motion.span>
-                      
+
                       {/* Border glow effect */}
                       <motion.div
                         className='absolute inset-0 rounded-md'

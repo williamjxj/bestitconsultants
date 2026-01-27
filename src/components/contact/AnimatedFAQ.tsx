@@ -3,12 +3,7 @@
 import { motion, useAnimation, useInView } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 
 interface FAQItem {
@@ -26,11 +21,7 @@ interface AnimatedFAQProps {
  * AnimatedFAQ component with modern card styles, smooth animations, and ref-based interactions
  * Uses shadcn/ui Card components with enhanced styling and hover effects
  */
-export function AnimatedFAQ({
-  items,
-  className,
-  title,
-}: AnimatedFAQProps) {
+export function AnimatedFAQ({ items, className, title }: AnimatedFAQProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(containerRef, { once: true, margin: '-100px' })
   const controls = useAnimation()
@@ -71,7 +62,7 @@ export function AnimatedFAQ({
           initial={{ opacity: 0, y: -20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-3xl font-bold text-center mb-12"
+          className='text-3xl font-bold text-center mb-12'
         >
           {title}
         </motion.h2>
@@ -79,16 +70,12 @@ export function AnimatedFAQ({
 
       <motion.div
         variants={containerVariants}
-        initial="hidden"
+        initial='hidden'
         animate={controls}
-        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        className='grid grid-cols-1 md:grid-cols-2 gap-6'
       >
         {items.map((item, index) => (
-          <motion.div
-            key={index}
-            variants={itemVariants}
-            className="h-full"
-          >
+          <motion.div key={index} variants={itemVariants} className='h-full'>
             <Card
               className={cn(
                 'group relative overflow-hidden h-full',
@@ -108,7 +95,7 @@ export function AnimatedFAQ({
                 'hover:after:scale-x-100'
               )}
             >
-              <CardHeader className="pb-3">
+              <CardHeader className='pb-3'>
                 <CardTitle
                   className={cn(
                     'text-lg font-semibold',

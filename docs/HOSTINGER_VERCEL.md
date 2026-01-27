@@ -6,7 +6,7 @@ applications.
 ## Overview
 
 | Domain                 | Vercel App                     | Status        |
-| --- | --- | --- |
+| ---------------------- | ------------------------------ | ------------- |
 | `bestitconsultants.ca` | `bestitconsultants.vercel.app` | ✅ Configured |
 | `bestitconsulting.ca`  | `bestitconsultants.ca`         | ✅ Configured |
 
@@ -19,7 +19,7 @@ applications.
 #### Required DNS Records:
 
 | Type  | Name | Value                  | TTL   | Purpose                 |
-| --- | --- | --- | --- | --- |
+| ----- | ---- | ---------------------- | ----- | ----------------------- |
 | A     | @    | `76.76.21.21`          | 14400 | Root domain to Vercel   |
 | CNAME | www  | `cname.vercel-dns.com` | 14400 | WWW subdomain to Vercel |
 
@@ -40,7 +40,7 @@ applications.
 #### Required DNS Records:
 
 | Type  | Name | Value                                 | TTL   | Purpose                                      |
-| --- | --- | --- | --- | --- |
+| ----- | ---- | ------------------------------------- | ----- | -------------------------------------------- |
 | A     | @    | `76.76.21.21`                         | 14400 | Root domain to Vercel                        |
 | CNAME | www  | `128f30c0bdb20f4e.vercel-dns-017.com` | 300   | WWW subdomain to Vercel (already configured) |
 
@@ -116,7 +116,7 @@ dig www.bestitconsulting.ca CNAME
 ## DNS Propagation Timeline
 
 | Time           | Expected Status                    |
-| --- | --- |
+| -------------- | ---------------------------------- |
 | 0-15 minutes   | DNS changes applied to Hostinger   |
 | 15-30 minutes  | Most regions updated               |
 | 30-60 minutes  | Global propagation mostly complete |

@@ -142,13 +142,9 @@ export function validateMetadata(metadata: {
   if (metadata.description) {
     const descLength = metadata.description.length
     if (descLength < 150) {
-      errors.push(
-        `Description is too short (${descLength} chars, minimum 150)`
-      )
+      errors.push(`Description is too short (${descLength} chars, minimum 150)`)
     } else if (descLength > 160) {
-      errors.push(
-        `Description is too long (${descLength} chars, maximum 160)`
-      )
+      errors.push(`Description is too long (${descLength} chars, maximum 160)`)
     }
   } else {
     errors.push('Description is required')

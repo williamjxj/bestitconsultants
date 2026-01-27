@@ -78,11 +78,11 @@ export default function ContactSnippet() {
                         ease: 'easeInOut',
                       }}
                     />
-                    
+
                     <span className='relative z-10'>
                       {translations.contactSnippet.cta}
                     </span>
-                    
+
                     {/* Animated sparkle */}
                     <motion.span
                       className='relative z-10 text-2xl'

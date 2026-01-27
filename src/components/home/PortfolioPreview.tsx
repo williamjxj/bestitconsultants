@@ -36,7 +36,7 @@ export default function PortfolioPreview() {
         <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12'>
           {translations.portfolioPreview.projects.map((project, index) => {
             const gradient = projectGradients[index % projectGradients.length]
-            
+
             return (
               <motion.div
                 key={project.id}
@@ -54,25 +54,27 @@ export default function PortfolioPreview() {
                 <Card className='relative overflow-hidden h-full border-0 bg-white shadow-lg hover:shadow-2xl transition-all duration-500'>
                   {/* Gradient header */}
                   <div className={`h-2 bg-gradient-to-r ${gradient}`} />
-                  
+
                   {/* Gradient background on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-                  
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+                  />
+
                   <CardContent className='relative z-10 p-6'>
                     <h3 className='text-xl font-bold mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300 main-content-subtitle'>
                       {project.name}
                     </h3>
-                    
-                    <Badge 
+
+                    <Badge
                       className={`mb-4 bg-gradient-to-r ${gradient} text-white border-0`}
                     >
                       {project.tech}
                     </Badge>
-                    
+
                     <p className='mb-6 text-gray-600 leading-relaxed main-content-paragraph'>
                       {project.description}
                     </p>
-                    
+
                     <motion.button
                       className='flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold group/btn'
                       whileHover={{ x: 5 }}
@@ -91,10 +93,12 @@ export default function PortfolioPreview() {
                       </motion.span>
                     </motion.button>
                   </CardContent>
-                  
+
                   {/* Decorative corner */}
                   <div className='absolute top-0 right-0 w-20 h-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500'>
-                    <div className={`absolute top-0 right-0 w-full h-full bg-gradient-to-br ${gradient} opacity-20 rounded-bl-full`} />
+                    <div
+                      className={`absolute top-0 right-0 w-full h-full bg-gradient-to-br ${gradient} opacity-20 rounded-bl-full`}
+                    />
                   </div>
                 </Card>
               </motion.div>

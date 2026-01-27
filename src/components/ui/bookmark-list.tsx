@@ -159,7 +159,8 @@ const websites: Website[] = [
     name: 'Erongdan',
     url: 'https://www.erongdan.com',
     githubUrl: '',
-    description: 'Digital solutions and business services platform for a Fortune 500 company ',
+    description:
+      'Digital solutions and business services platform for a Fortune 500 company ',
     category: 'Business',
     icon: Building2,
     status: 'active',

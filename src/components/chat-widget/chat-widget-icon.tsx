@@ -17,10 +17,7 @@ interface ChatWidgetIconProps {
 /**
  * Chat widget icon button that triggers the widget
  */
-export function ChatWidgetIcon({
-  onClick,
-  isOpen,
-}: ChatWidgetIconProps) {
+export function ChatWidgetIcon({ onClick, isOpen }: ChatWidgetIconProps) {
   return (
     <motion.div
       initial={false}
@@ -29,26 +26,25 @@ export function ChatWidgetIcon({
     >
       <Button
         onClick={onClick}
-        onKeyDown={(e) => {
+        onKeyDown={e => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault()
             onClick()
           }
         }}
-        variant="ghost"
-        className="fixed bottom-6 right-6 z-[9999] h-auto rounded-full shadow-lg hover:shadow-xl transition-shadow p-0 bg-background/80 backdrop-blur-sm border border-border/50 hover:bg-background/90"
+        variant='ghost'
+        className='fixed bottom-6 right-6 z-[9999] h-auto rounded-full shadow-lg hover:shadow-xl transition-shadow p-0 bg-background/80 backdrop-blur-sm border border-border/50 hover:bg-background/90'
         aria-label={isOpen ? 'Close AI Assistant' : 'Open AI Assistant'}
         aria-expanded={isOpen}
       >
         <Image
-          src="/assets/angel.webp"
-          alt="AI Assistant"
+          src='/assets/angel.webp'
+          alt='AI Assistant'
           width={80}
           height={80}
-          className="object-cover rounded-full"
+          className='object-cover rounded-full'
         />
       </Button>
     </motion.div>
   )
 }
-

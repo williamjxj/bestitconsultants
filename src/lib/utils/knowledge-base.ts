@@ -12,8 +12,8 @@ import { teamMembersData } from '@/data/teamMembers'
  */
 export function getCompanyServicesSummary(): string {
   const services = serviceCategoriesData
-    .filter((cat) => cat.isActive)
-    .map((cat) => `- ${cat.name}: ${cat.description}`)
+    .filter(cat => cat.isActive)
+    .map(cat => `- ${cat.name}: ${cat.description}`)
     .join('\n')
 
   return `Company Services:
@@ -27,7 +27,7 @@ export function getCaseStudiesSummary(): string {
   const studies = caseStudiesData
     .slice(0, 5) // Limit to top 5 for context
     .map(
-      (study) =>
+      study =>
         `- ${study.title}: ${study.result} (${study.metrics.length} key metrics)`
     )
     .join('\n')
@@ -43,7 +43,7 @@ export function getTeamSummary(): string {
   const team = teamMembersData
     .slice(0, 5) // Limit to top 5 for context
     .map(
-      (member) =>
+      member =>
         `- ${member.name}: ${member.title} - ${member.bio.substring(0, 100)}...`
     )
     .join('\n')
@@ -101,7 +101,7 @@ export function isNavigationQuestion(question: string): boolean {
     'contact',
   ]
 
-  return navigationKeywords.some((keyword) => lowerQuestion.includes(keyword))
+  return navigationKeywords.some(keyword => lowerQuestion.includes(keyword))
 }
 
 /**
@@ -147,4 +147,3 @@ export function extractSuggestedPage(question: string): string | null {
 
   return null
 }
-

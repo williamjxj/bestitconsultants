@@ -553,7 +553,7 @@ export default function PortfolioPage() {
           enableParallax={true}
         />
       </FullWidthHeroWrapper>
-      
+
       {/* Breadcrumb - Hidden visually but provides SEO structured data */}
       <Breadcrumb
         items={[
@@ -562,7 +562,7 @@ export default function PortfolioPage() {
         ]}
         hideVisual={true}
       />
-      
+
       <div className='min-h-screen pt-16 pb-20 bg-gray-50'>
         <div className='container mx-auto px-4'>
           {/* Filter Tabs */}

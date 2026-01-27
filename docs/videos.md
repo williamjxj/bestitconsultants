@@ -51,7 +51,6 @@ Example:
 - **Project showcases**: Time-lapse of development processes
 - **Client testimonials**: Video testimonials from satisfied clients
 
-
 ## Hero Section background images
 
 Recommended opacity solution
@@ -73,7 +72,8 @@ Recommended opacity solution
 
 - 50–55% primary overlay: balances background visibility and text readability
 - Layered approach: multiple overlays create depth without being too dark
-- Gradient from bottom to top: darker at bottom improves text contrast; lighter at top preserves background
+- Gradient from bottom to top: darker at bottom improves text contrast; lighter at top preserves
+  background
 - Subtle vignette: adds focus without being heavy
 
 ### Result
@@ -83,4 +83,5 @@ Recommended opacity solution
 - Professional, balanced appearance
 - Consistent across all pages
 
-The **50–55%** range is a common choice for hero sections. If you want to adjust, try **48–52% **for lighter or **55–58%** for more contrast.
+The **50–55%** range is a common choice for hero sections. If you want to adjust, try **48–52%**for
+lighter or **55–58%** for more contrast.

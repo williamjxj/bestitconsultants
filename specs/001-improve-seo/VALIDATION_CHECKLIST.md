@@ -6,7 +6,8 @@
 
 ## Overview
 
-This checklist covers all validation tasks (T049-T052) that require manual testing after deployment. These tasks cannot be automated because they require:
+This checklist covers all validation tasks (T049-T052) that require manual testing after deployment.
+These tasks cannot be automated because they require:
 
 1. Live production URLs
 2. External validation tools (Google, Facebook, Twitter)
@@ -23,6 +24,7 @@ npm run validate:seo
 ```
 
 This will verify:
+
 - ✅ Sitemap configuration
 - ✅ Robots.txt configuration
 - ✅ Page metadata exports
@@ -42,6 +44,7 @@ This will verify:
 Test each page below and verify structured data:
 
 #### 1. Homepage (`/`)
+
 - [ ] **Organization Schema**
   - URL: `https://bestitconsultants.ca/`
   - Expected: Organization schema with name, description, logo, URL, email, social profiles
@@ -49,9 +52,11 @@ Test each page below and verify structured data:
   - Status: ⬜ Not Started
 
 #### 2. Services Page (`/services`)
+
 - [ ] **Service Schema**
   - URL: `https://bestitconsultants.ca/services`
-  - Expected: Service schema with name, description, provider (Organization), serviceType, areaServed
+  - Expected: Service schema with name, description, provider (Organization), serviceType,
+    areaServed
   - Validation: Should show "Service" in rich results
   - Status: ⬜ Not Started
 
@@ -60,6 +65,7 @@ Test each page below and verify structured data:
   - Status: ⬜ Not Started
 
 #### 3. Case Studies Page (`/case-studies`)
+
 - [ ] **Article Schema**
   - URL: `https://bestitconsultants.ca/case-studies`
   - Expected: Article schema with headline, description, datePublished, publisher (Organization)
@@ -71,8 +77,10 @@ Test each page below and verify structured data:
   - Status: ⬜ Not Started
 
 #### 4. All Pages with Breadcrumbs
+
 - [ ] **BreadcrumbList Schema**
-  - Test pages: `/services`, `/portfolio`, `/case-studies`, `/our-team`, `/testimonials`, `/contact-us`
+  - Test pages: `/services`, `/portfolio`, `/case-studies`, `/our-team`, `/testimonials`,
+    `/contact-us`
   - Expected: BreadcrumbList schema with itemListElement array
   - Validation: Should show breadcrumb navigation in search results
   - Status: ⬜ Not Started
@@ -86,12 +94,12 @@ Test each page below and verify structured data:
 
 ### Common Issues & Fixes
 
-| Issue | Fix |
-|-------|-----|
+| Issue                   | Fix                                     |
+| ----------------------- | --------------------------------------- |
 | Missing required fields | Check schema generation in layout files |
-| Invalid JSON-LD | Verify `structuredDataScript()` output |
-| Wrong schema type | Verify correct schema function is used |
-| Missing Organization | Ensure `StructuredData.tsx` is included |
+| Invalid JSON-LD         | Verify `structuredDataScript()` output  |
+| Wrong schema type       | Verify correct schema function is used  |
+| Missing Organization    | Ensure `StructuredData.tsx` is included |
 
 ---
 
@@ -105,6 +113,7 @@ Test each page below and verify structured data:
 Test all 7 pages and verify Open Graph tags:
 
 #### 1. Homepage (`/`)
+
 - [ ] URL: `https://bestitconsultants.ca/`
 - [ ] **og:title**: Should match page title
 - [ ] **og:description**: Should match meta description
@@ -115,36 +124,42 @@ Test all 7 pages and verify Open Graph tags:
 - [ ] Status: ⬜ Not Started
 
 #### 2. Services Page (`/services`)
+
 - [ ] URL: `https://bestitconsultants.ca/services`
 - [ ] Verify all OG tags present and correct
 - [ ] Image displays correctly
 - [ ] Status: ⬜ Not Started
 
 #### 3. Portfolio Page (`/portfolio`)
+
 - [ ] URL: `https://bestitconsultants.ca/portfolio`
 - [ ] Verify all OG tags present and correct
 - [ ] Image displays correctly
 - [ ] Status: ⬜ Not Started
 
 #### 4. Case Studies Page (`/case-studies`)
+
 - [ ] URL: `https://bestitconsultants.ca/case-studies`
 - [ ] Verify all OG tags present and correct
 - [ ] Image displays correctly
 - [ ] Status: ⬜ Not Started
 
 #### 5. Team Page (`/our-team`)
+
 - [ ] URL: `https://bestitconsultants.ca/our-team`
 - [ ] Verify all OG tags present and correct
 - [ ] Image displays correctly
 - [ ] Status: ⬜ Not Started
 
 #### 6. Testimonials Page (`/testimonials`)
+
 - [ ] URL: `https://bestitconsultants.ca/testimonials`
 - [ ] Verify all OG tags present and correct
 - [ ] Image displays correctly
 - [ ] Status: ⬜ Not Started
 
 #### 7. Contact Page (`/contact-us`)
+
 - [ ] URL: `https://bestitconsultants.ca/contact-us`
 - [ ] Verify all OG tags present and correct
 - [ ] Image displays correctly
@@ -159,12 +174,12 @@ Test all 7 pages and verify Open Graph tags:
 
 ### Common Issues & Fixes
 
-| Issue | Fix |
-|-------|-----|
-| Image not loading | Verify image URL is absolute and accessible |
-| Missing og:image | Check `buildPageMetadata()` fallback logic |
-| Wrong image dimensions | Ensure images are 1200×630px |
-| Cache issues | Use "Scrape Again" button in Facebook Debugger |
+| Issue                  | Fix                                            |
+| ---------------------- | ---------------------------------------------- |
+| Image not loading      | Verify image URL is absolute and accessible    |
+| Missing og:image       | Check `buildPageMetadata()` fallback logic     |
+| Wrong image dimensions | Ensure images are 1200×630px                   |
+| Cache issues           | Use "Scrape Again" button in Facebook Debugger |
 
 ---
 
@@ -178,6 +193,7 @@ Test all 7 pages and verify Open Graph tags:
 Test all 7 pages and verify Twitter Card tags:
 
 #### 1. Homepage (`/`)
+
 - [ ] URL: `https://bestitconsultants.ca/`
 - [ ] **twitter:card**: Should be "summary_large_image"
 - [ ] **twitter:title**: Should match page title
@@ -186,36 +202,42 @@ Test all 7 pages and verify Twitter Card tags:
 - [ ] Status: ⬜ Not Started
 
 #### 2. Services Page (`/services`)
+
 - [ ] URL: `https://bestitconsultants.ca/services`
 - [ ] Verify all Twitter Card tags present and correct
 - [ ] Image displays correctly
 - [ ] Status: ⬜ Not Started
 
 #### 3. Portfolio Page (`/portfolio`)
+
 - [ ] URL: `https://bestitconsultants.ca/portfolio`
 - [ ] Verify all Twitter Card tags present and correct
 - [ ] Image displays correctly
 - [ ] Status: ⬜ Not Started
 
 #### 4. Case Studies Page (`/case-studies`)
+
 - [ ] URL: `https://bestitconsultants.ca/case-studies`
 - [ ] Verify all Twitter Card tags present and correct
 - [ ] Image displays correctly
 - [ ] Status: ⬜ Not Started
 
 #### 5. Team Page (`/our-team`)
+
 - [ ] URL: `https://bestitconsultants.ca/our-team`
 - [ ] Verify all Twitter Card tags present and correct
 - [ ] Image displays correctly
 - [ ] Status: ⬜ Not Started
 
 #### 6. Testimonials Page (`/testimonials`)
+
 - [ ] URL: `https://bestitconsultants.ca/testimonials`
 - [ ] Verify all Twitter Card tags present and correct
 - [ ] Image displays correctly
 - [ ] Status: ⬜ Not Started
 
 #### 7. Contact Page (`/contact-us`)
+
 - [ ] URL: `https://bestitconsultants.ca/contact-us`
 - [ ] Verify all Twitter Card tags present and correct
 - [ ] Image displays correctly
@@ -230,12 +252,12 @@ Test all 7 pages and verify Twitter Card tags:
 
 ### Common Issues & Fixes
 
-| Issue | Fix |
-|-------|-----|
-| Image not loading | Verify image URL is absolute and accessible |
-| Missing twitter:image | Check `buildPageMetadata()` fallback logic |
-| Wrong card type | Verify `twitter:card` is "summary_large_image" |
-| Cache issues | Twitter may cache - wait or use different URL |
+| Issue                 | Fix                                            |
+| --------------------- | ---------------------------------------------- |
+| Image not loading     | Verify image URL is absolute and accessible    |
+| Missing twitter:image | Check `buildPageMetadata()` fallback logic     |
+| Wrong card type       | Verify `twitter:card` is "summary_large_image" |
+| Cache issues          | Twitter may cache - wait or use different URL  |
 
 ---
 
@@ -249,36 +271,43 @@ Test all 7 pages and verify Twitter Card tags:
 Run Lighthouse SEO audit on all 7 pages:
 
 #### 1. Homepage (`/`)
+
 - [ ] URL: `https://bestitconsultants.ca/`
 - [ ] SEO Score: Target >95
 - [ ] Status: ⬜ Not Started
 
 #### 2. Services Page (`/services`)
+
 - [ ] URL: `https://bestitconsultants.ca/services`
 - [ ] SEO Score: Target >95
 - [ ] Status: ⬜ Not Started
 
 #### 3. Portfolio Page (`/portfolio`)
+
 - [ ] URL: `https://bestitconsultants.ca/portfolio`
 - [ ] SEO Score: Target >95
 - [ ] Status: ⬜ Not Started
 
 #### 4. Case Studies Page (`/case-studies`)
+
 - [ ] URL: `https://bestitconsultants.ca/case-studies`
 - [ ] SEO Score: Target >95
 - [ ] Status: ⬜ Not Started
 
 #### 5. Team Page (`/our-team`)
+
 - [ ] URL: `https://bestitconsultants.ca/our-team`
 - [ ] SEO Score: Target >95
 - [ ] Status: ⬜ Not Started
 
 #### 6. Testimonials Page (`/testimonials`)
+
 - [ ] URL: `https://bestitconsultants.ca/testimonials`
 - [ ] SEO Score: Target >95
 - [ ] Status: ⬜ Not Started
 
 #### 7. Contact Page (`/contact-us`)
+
 - [ ] URL: `https://bestitconsultants.ca/contact-us`
 - [ ] SEO Score: Target >95
 - [ ] Status: ⬜ Not Started
@@ -310,13 +339,13 @@ Run Lighthouse SEO audit on all 7 pages:
 
 ### Common Issues & Fixes
 
-| Issue | Fix |
-|-------|-----|
+| Issue                    | Fix                                         |
+| ------------------------ | ------------------------------------------- |
 | Missing meta description | Check `buildPageMetadata()` in layout files |
-| Images missing alt text | Add alt attributes to all images |
-| Duplicate titles | Ensure unique titles per page |
-| Missing canonical URL | Verify `getCanonicalUrl()` is used |
-| Slow page load | Optimize images and code |
+| Images missing alt text  | Add alt attributes to all images            |
+| Duplicate titles         | Ensure unique titles per page               |
+| Missing canonical URL    | Verify `getCanonicalUrl()` is used          |
+| Slow page load           | Optimize images and code                    |
 
 ---
 
@@ -354,6 +383,7 @@ For each page, verify in page source:
 ## Validation Summary
 
 ### Automated Checks (Pre-Deployment)
+
 - ✅ Sitemap configuration
 - ✅ Robots.txt configuration
 - ✅ Page metadata exports
@@ -362,6 +392,7 @@ For each page, verify in page source:
 - ✅ Breadcrumb component
 
 ### Manual Checks (Post-Deployment)
+
 - ⏳ T049: Google Rich Results Test
 - ⏳ T050: Facebook Sharing Debugger
 - ⏳ T051: Twitter Card Validator

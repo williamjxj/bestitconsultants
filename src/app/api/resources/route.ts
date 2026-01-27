@@ -25,14 +25,17 @@ export async function GET() {
         const extension = fileName.split('.').pop()?.toLowerCase() || ''
 
         // Determine file type and icon
-        let fileType: 'video' | 'audio' | 'document' | 'image' | 'other' = 'other'
+        let fileType: 'video' | 'audio' | 'document' | 'image' | 'other' =
+          'other'
         if (['mp4', 'webm', 'mov', 'avi'].includes(extension)) {
           fileType = 'video'
         } else if (['mp3', 'm4a', 'wav', 'ogg', 'aac'].includes(extension)) {
           fileType = 'audio'
         } else if (['pdf', 'doc', 'docx', 'txt'].includes(extension)) {
           fileType = 'document'
-        } else if (['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'].includes(extension)) {
+        } else if (
+          ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'].includes(extension)
+        ) {
           fileType = 'image'
         }
 
@@ -68,4 +71,3 @@ export async function GET() {
     )
   }
 }
-

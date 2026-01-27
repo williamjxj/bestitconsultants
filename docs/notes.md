@@ -11,10 +11,12 @@
 ### Hero Section Enhancements
 
 - **Typography**: Increased font sizes with responsive scaling (text-3xl to text-6xl for titles)
-- **Buttons**: Enhanced with rounded-full design, improved hover effects (scale 1.08, y: -2), arrow icons, and better shadows
+- **Buttons**: Enhanced with rounded-full design, improved hover effects (scale 1.08, y: -2), arrow
+  icons, and better shadows
 - **Spacing**: Improved margins and padding for better visual hierarchy
 - **Animations**: Smoother transitions and hover states
-- **Font Size Adjustment**: Reduced from xl:text-8xl to lg:text-6xl to fit within hero section viewport
+- **Font Size Adjustment**: Reduced from xl:text-8xl to lg:text-6xl to fit within hero section
+  viewport
 
 ### Color Changes Applied to Main Content Sections
 
@@ -24,7 +26,8 @@
 
 **Applied to:**
 
-- Home page components (AboutSummary, ServicesSummary, PortfolioPreview, QuickHighlights, TestimonialsPreview)
+- Home page components (AboutSummary, ServicesSummary, PortfolioPreview, QuickHighlights,
+  TestimonialsPreview)
 - Services page (all main content sections)
 - Portfolio page (project descriptions, stats)
 - Contact page (form sections, location info)

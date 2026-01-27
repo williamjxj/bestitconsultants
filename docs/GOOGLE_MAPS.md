@@ -2,14 +2,15 @@
 
 ## Overview
 
-The contact page includes Google Maps integration to display the office location
-and provide easy navigation options for visitors.
+The contact page includes Google Maps integration to display the office location and provide easy
+navigation options for visitors.
 
 ## Implementation
 
 ### Current Setup
 
 The Google Maps integration uses **Google Maps Embed API** which is:
+
 - **Free to use** - No API key required
 - **Simple iframe embed** - No JavaScript needed
 - **No billing** - No usage limits for basic embedding
@@ -58,6 +59,7 @@ The Google Maps integration uses **Google Maps Embed API** which is:
 ### Navigation Links
 
 **Google Maps Link:**
+
 ```tsx
 <a
   href='https://www.google.com/maps/search/?api=1&query=10355%20152%20St%2C%20Surrey%2C%20BC%20V3R%207C3'
@@ -69,6 +71,7 @@ The Google Maps integration uses **Google Maps Embed API** which is:
 ```
 
 **Apple Maps Link:**
+
 ```tsx
 <a
   href='https://maps.apple.com/?q=10355+152+St,+Surrey,+BC+V3R+7C3'
@@ -86,25 +89,25 @@ The Google Maps integration uses **Google Maps Embed API** which is:
 **Answer: No** - The current implementation does **NOT** require a Google API key.
 
 **Why?**
+
 - Google Maps Embed API (iframe embed) is free and doesn't require authentication
 - The embed URL format `?q=ADDRESS&output=embed` works without API keys
 - Simple iframe embeds have no usage limits
 
-**Note:** If you see `GOOGLE_API_KEY` in your `.env.local`, it might be used for
-other features in the project (if any), but it's **not required** for the
-contact page Google Maps integration.
+**Note:** If you see `GOOGLE_API_KEY` in your `.env.local`, it might be used for other features in
+the project (if any), but it's **not required** for the contact page Google Maps integration.
 
 ### When Would You Need an API Key?
 
 You would only need `GOOGLE_API_KEY` if you want to:
+
 - Use Google Maps JavaScript API (custom maps, markers, directions)
 - Use Google Places API (autocomplete, place details)
 - Use Google Geocoding API (address to coordinates conversion)
 - Use Google Directions API (route planning)
 - Exceed free tier limits for advanced features
 
-**Current Implementation**: None of these features are used, so no API key is
-needed.
+**Current Implementation**: None of these features are used, so no API key is needed.
 
 ## Customization
 
@@ -113,18 +116,21 @@ needed.
 To change the office location, update the address in these locations:
 
 1. **Map Embed URL** (`src/app/contact/page.tsx` line 687):
+
    ```tsx
-   src='https://www.google.com/maps?q=YOUR+NEW+ADDRESS&output=embed'
+   src = 'https://www.google.com/maps?q=YOUR+NEW+ADDRESS&output=embed'
    ```
 
 2. **Google Maps Link** (line 644):
+
    ```tsx
-   href='https://www.google.com/maps/search/?api=1&query=YOUR+NEW+ADDRESS'
+   href = 'https://www.google.com/maps/search/?api=1&query=YOUR+NEW+ADDRESS'
    ```
 
 3. **Apple Maps Link** (line 658):
+
    ```tsx
-   href='https://maps.apple.com/?q=YOUR+NEW+ADDRESS'
+   href = 'https://maps.apple.com/?q=YOUR+NEW+ADDRESS'
    ```
 
 4. **Translations** (`src/lib/translations.ts`):
@@ -134,6 +140,7 @@ To change the office location, update the address in these locations:
 ### URL Encoding
 
 When adding addresses to URLs:
+
 - Replace spaces with `+` or `%20`
 - Encode special characters (e.g., `#` becomes `%23`)
 - Example: `123 Main St, City` → `123+Main+St%2C+City`
@@ -141,6 +148,7 @@ When adding addresses to URLs:
 ## Styling
 
 The map is styled with:
+
 - Responsive aspect ratio (square on mobile, 16:9 on desktop)
 - Shadow and border styling via Card component
 - Full width and height within container
@@ -214,4 +222,3 @@ If you want more advanced features, you could:
 - [Google Maps Embed API](https://developers.google.com/maps/documentation/embed)
 - [Google Maps Platform Pricing](https://mapsplatform.google.com/pricing/)
 - [Google Maps URLs](https://developers.google.com/maps/documentation/urls/overview)
-

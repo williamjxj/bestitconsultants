@@ -19,7 +19,7 @@ export default function ServicesSummary() {
 
   const services = translations.servicesSummary.services
   const icons = [Globe2, Smartphone, Cloud, Brain, CheckCircle2]
-  
+
   const gradients = [
     'from-blue-500 to-cyan-500',
     'from-purple-500 to-pink-500',
@@ -67,8 +67,10 @@ export default function ServicesSummary() {
               >
                 <Card className='relative overflow-hidden h-full border-0 bg-white shadow-lg hover:shadow-2xl transition-all duration-500 dark:border-slate-800 dark:bg-slate-900'>
                   {/* Gradient background on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                  
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                  />
+
                   <CardHeader className='relative z-10'>
                     {/* Icon with gradient background */}
                     <motion.div
@@ -87,10 +89,12 @@ export default function ServicesSummary() {
                       {service.description}
                     </p>
                   </CardContent>
-                  
+
                   {/* Animated corner accent */}
                   <div className='absolute bottom-0 left-0 w-20 h-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500'>
-                    <div className={`absolute bottom-0 left-0 w-full h-full bg-gradient-to-br ${gradient} opacity-20 rounded-tr-full`} />
+                    <div
+                      className={`absolute bottom-0 left-0 w-full h-full bg-gradient-to-br ${gradient} opacity-20 rounded-tr-full`}
+                    />
                   </div>
                 </Card>
               </motion.div>
