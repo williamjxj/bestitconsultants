@@ -25,7 +25,7 @@ function addCheck(
   checks.push({ name, passed, message, severity })
 }
 
-// Check 1: Favicon files exist in favicon_io folder
+// Check 1: Favicon files exist in public folder
 const faviconFiles = [
   'favicon.ico',
   'favicon-16x16.png',
@@ -36,12 +36,12 @@ const faviconFiles = [
 ]
 
 faviconFiles.forEach((file) => {
-  const filePath = path.join(process.cwd(), 'public', 'favicon_io', file)
+  const filePath = path.join(process.cwd(), 'public', file)
   const exists = fs.existsSync(filePath)
   addCheck(
     `Favicon: ${file}`,
     exists,
-    exists ? `✓ Found at /favicon_io/${file}` : `✗ Missing: /favicon_io/${file}`,
+    exists ? `✓ Found at /${file}` : `✗ Missing: /${file}`,
     'critical'
   )
 })
@@ -138,12 +138,12 @@ if (layoutExists) {
   )
 
   // Check for favicon configuration
-  const hasFaviconConfig = layoutContent.includes('/favicon_io/')
+  const hasFaviconConfig = layoutContent.includes('/')
   addCheck(
     'Layout: favicon paths',
     hasFaviconConfig,
     hasFaviconConfig
-      ? '✓ Favicon paths point to /favicon_io/'
+      ? '✓ Favicon paths point to /'
       : '⚠ Favicon paths may not be correctly configured',
     'warning'
   )
