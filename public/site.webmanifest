@@ -1,19 +1,23 @@
 {
-  "name": "Best IT Consultants",
-  "short_name": "bestitconsultants",
+  "name": "BestIT Consultants - Elite IT Outsourcing & AI Consulting",
+  "short_name": "BestIT",
+  "description": "Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation. Canadian Quality, Global Talent.",
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
+      "src": "/favicon_io/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/android-chrome-512x512.png",
+      "src": "/favicon_io/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
-  "theme_color": "#ffffff",
+  "theme_color": "#1e40af",
   "background_color": "#ffffff",
-  "display": "standalone"
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "orientation": "portrait-primary"
 }
