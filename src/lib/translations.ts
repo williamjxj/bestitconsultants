@@ -146,6 +146,18 @@ export const translations = {
             ],
           },
           {
+            name: 'Gulfam Khan',
+            role: 'Sales Manager — International Business Growth & High-Ticket Closer',
+            bio: 'Leads sales and marketing to extend BestIT\'s business reach. Nearly 8 years in high-ticket consultative sales (EdTech, travel). $70K peak month (Jan 2026), $750K+ career revenue including $238K+ at BYJU\'S. Skilled in complex sales cycles, senior stakeholder engagement, and advising technology professionals across 14 engineering domains.',
+            image: getR2ImageUrl('selfies/gulfam-khan.png'),
+            specialties: [
+              'International business growth & market expansion',
+              'High-ticket consultative sales',
+              'Key account management',
+              'Sales enablement & team coaching',
+            ],
+          },
+          {
             name: 'Chengdu Zhanying Technology Co., Ltd.',
             role: 'Strategic Development Partner',
             bio: 'Professional software development company with teams in Chengdu and Hangzhou. Specializes in OA systems, engineering cost management, mobile development, and government solutions. Serves Fortune 500 clients, government agencies, and major engineering companies.',

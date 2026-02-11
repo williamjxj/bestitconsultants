@@ -5,6 +5,21 @@ import type {
   StructuredDataSchema,
 } from '@/types/seo'
 
+/** Vancouver BC headquarters address for local SEO */
+export const VANCOUVER_ADDRESS = {
+  '@type': 'PostalAddress' as const,
+  addressLocality: 'Vancouver',
+  addressRegion: 'BC',
+  addressCountry: 'CA',
+}
+
+/** Vancouver BC geo coordinates for local / map SEO */
+export const VANCOUVER_GEO = {
+  '@type': 'GeoCoordinates' as const,
+  latitude: 49.2827,
+  longitude: -123.1207,
+}
+
 /**
  * Create Organization structured data schema
  * @param options - Organization information
@@ -17,6 +32,8 @@ export function createOrganizationSchema(options: {
   logo: string
   email?: string
   sameAs?: string[]
+  address?: typeof VANCOUVER_ADDRESS
+  geo?: typeof VANCOUVER_GEO
 }): StructuredDataSchema {
   const schema: StructuredDataSchema = {
     '@context': 'https://schema.org',
@@ -33,6 +50,62 @@ export function createOrganizationSchema(options: {
 
   if (options.sameAs && options.sameAs.length > 0) {
     schema.sameAs = options.sameAs
+  }
+
+  if (options.address) {
+    schema.address = options.address
+  }
+
+  if (options.geo) {
+    schema.geo = options.geo
+  }
+
+  return schema
+}
+
+/**
+ * Create LocalBusiness structured data for Google local / yellow pages SEO
+ * @param options - Local business information
+ * @returns LocalBusiness structured data object
+ */
+export function createLocalBusinessSchema(options: {
+  name: string
+  description: string
+  url: string
+  logo: string
+  email?: string
+  sameAs?: string[]
+  address?: typeof VANCOUVER_ADDRESS
+  geo?: typeof VANCOUVER_GEO
+  areaServed?: string | string[]
+}): StructuredDataSchema {
+  const schema: StructuredDataSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: options.name,
+    description: options.description,
+    url: options.url,
+    image: options.logo,
+  }
+
+  if (options.email) {
+    schema.email = options.email
+  }
+
+  if (options.sameAs && options.sameAs.length > 0) {
+    schema.sameAs = options.sameAs
+  }
+
+  if (options.address) {
+    schema.address = options.address
+  }
+
+  if (options.geo) {
+    schema.geo = options.geo
+  }
+
+  if (options.areaServed) {
+    schema.areaServed = options.areaServed
   }
 
   return schema

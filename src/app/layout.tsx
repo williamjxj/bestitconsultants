@@ -33,10 +33,16 @@ const baseUrl = getBaseUrl()
 
 export const metadata = {
   metadataBase: new URL(baseUrl),
-  title: 'BestIT Consultants - Elite IT Outsourcing & AI Consulting',
+  title: 'BestIT Consultants - Vancouver BC | Elite IT Outsourcing & AI Consulting',
   description:
-    'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation. Canadian Quality, Global Talent.',
+    'Vancouver, BC, Canada software & IT consulting. Elite IT outsourcing, AI solutions, and SME software development. Canadian Quality, Global Talent. Headquartered in Vancouver.',
   keywords: [
+    'Vancouver software company',
+    'Vancouver IT consulting',
+    'software company Vancouver BC',
+    'SME software company Vancouver',
+    'IT outsourcing Vancouver Canada',
+    'AI consulting Vancouver',
     'IT Outsourcing Canada',
     'AI Consulting Services',
     'Global Software Development',
@@ -44,9 +50,9 @@ export const metadata = {
     'Fortune 500 Experience',
   ],
   openGraph: {
-    title: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting',
+    title: 'BestIT Consulting - Vancouver BC | Elite IT Outsourcing & AI Consulting',
     description:
-      'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation.',
+      'Vancouver, BC, Canada. Elite IT consulting, outsourcing solutions, and AI innovation. SME software development. Canadian Quality, Global Talent.',
     images: [getR2ImageUrl('imgs/og-homepage.jpg')],
     url: baseUrl,
     siteName: 'BestIT Consulting',
@@ -55,9 +61,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting',
+    title: 'BestIT Consulting - Vancouver BC | Elite IT Outsourcing & AI Consulting',
     description:
-      'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation.',
+      'Vancouver, BC, Canada. Elite IT consulting, outsourcing solutions, and AI innovation. SME software development.',
     images: [getR2ImageUrl('imgs/og-homepage.jpg')],
   },
   icons: {
