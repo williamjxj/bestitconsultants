@@ -599,6 +599,10 @@ const TeamPage = () => {
                     <MapPin size={16} className='inline mr-2 text-teal-500' />
                     East Asia Branch
                   </p>
+                  <p className='font-medium text-gray-700'>
+                    <MapPin size={16} className='inline mr-2 text-teal-500' />
+                    New Delhi, India
+                  </p>
                 </div>
               </div>
             </div>
