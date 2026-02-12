@@ -147,7 +147,7 @@ export const translations = {
           },
           {
             name: 'Gulfam Khan',
-            role: 'AI-driven Business Growth Strategy Partner',
+            role: 'AI growth straggliest international business growth | partner ',
             bio: 'Leads sales and marketing to extend BestIT\'s business reach. Nearly 8 years in high-ticket consultative sales (EdTech, travel). $70K peak month (Jan 2026), $750K+ career revenue including $238K+ at BYJU\'S. Skilled in complex sales cycles, senior stakeholder engagement, and advising technology professionals across 14 engineering domains.',
             image: getR2ImageUrl('selfies/gulfam-khan.png'),
             specialties: [
