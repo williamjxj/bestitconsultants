@@ -72,7 +72,7 @@ const teamMembers: TeamMember[] = [
   {
     id: 'gulfam-khan',
     name: 'Gulfam Khan',
-    title: 'Sales Manager — International Business Growth & High-Ticket Closer',
+    title: 'AI-driven Business Growth Strategy Partner',
     location: 'New Delhi, India (relocating to Dubai)',
     experience: 8,
     avatar: getR2ImageUrl('selfies/gulfam-khan.png'),
