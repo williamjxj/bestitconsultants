@@ -57,7 +57,7 @@ portfolio and services.
 | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
 | 🌐 [**Live Website**](https://www.bestitconsultants.ca/)                                                                    | Visit our production site    |
 | 📊 [**Presentation**](https://gamma.app/docs/Best-IT-Consultants-Elite-Enterprise-Architects-Startup-Speed-1v8t3nud1ghb4iq) | Company overview (Gamma PPT) |
-| 📧 **Contact**                                                                                                              | service@bestitconsultants.ca |
+| 📧 **Contact**                                                                                                              | service@bestitconsulting.ca |
 
 ---
 
@@ -301,7 +301,7 @@ The codebase has been cleaned up to remove unused code and fix issues:
 **Ready to transform your business with cutting-edge technology?**
 
 Visit our live website: **[www.bestitconsultants.ca](https://www.bestitconsultants.ca/)**,
-**Email**: service@bestitconsultants.ca
+**Email**: service@bestitconsulting.ca
 
 ---
 

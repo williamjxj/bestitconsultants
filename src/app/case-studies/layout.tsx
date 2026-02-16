@@ -39,7 +39,7 @@ export default function CaseStudiesLayout({
       'Elite IT consulting, outsourcing solutions, and AI innovation. Canadian Quality, Global Talent.',
     url: baseUrl,
     logo: `${baseUrl}/logo.png`,
-    email: process.env.BUSINESS_EMAIL || 'service@bestitconsultants.ca',
+    email: process.env.BUSINESS_EMAIL || 'service@bestitconsulting.ca',
     sameAs: [
       'https://linkedin.com/company/bestitconsultants',
       'https://twitter.com/bestitconsultants',

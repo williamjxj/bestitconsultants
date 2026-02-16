@@ -66,7 +66,7 @@ export default function Footer() {
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+1 (236) 992-3846',
-      email: 'service@BestITConsultants.ca',
+      email: 'service@BestITConsulting.ca',
       contactType: 'customer service',
       areaServed: 'Worldwide',
     },
@@ -274,11 +274,11 @@ export default function Footer() {
                   aria-hidden='true'
                 />
                 <a
-                  href='mailto:service@BestITConsultants.ca'
+                  href='mailto:service@BestITConsulting.ca'
                   className='text-xs sm:text-sm text-gray-300 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-800 rounded'
-                  aria-label='Email us at service@BestITConsultants.ca'
+                  aria-label='Email us at service@BestITConsulting.ca'
                 >
-                  service@BestITConsultants.ca
+                  service@BestITConsulting.ca
                 </a>
               </div>
               <div className='flex items-center gap-3'>

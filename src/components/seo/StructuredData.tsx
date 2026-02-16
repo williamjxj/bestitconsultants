@@ -16,7 +16,7 @@ export const StructuredData: React.FC = () => {
   const businessEmail =
     process.env.BUSINESS_EMAIL ||
     process.env.CONTACT_EMAIL ||
-    'service@bestitconsultants.ca'
+    'service@bestitconsulting.ca'
 
   const sameAs = [
     'https://linkedin.com/company/bestitconsultants',

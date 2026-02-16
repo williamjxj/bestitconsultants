@@ -198,7 +198,7 @@ const orgSchema = createOrganizationSchema({
   description: 'Elite IT consulting...',
   url: 'https://bestitconsultants.ca',
   logo: 'https://bestitconsultants.ca/logo.png',
-  email: 'service@bestitconsultants.ca',
+  email: 'service@bestitconsulting.ca',
   sameAs: ['https://linkedin.com/company/bestit'],
 })
 ```
@@ -541,9 +541,9 @@ Required environment variables for SEO:
 NEXT_PUBLIC_BASE_URL=https://bestitconsultants.ca
 
 # Business email (for Organization structured data)
-BUSINESS_EMAIL=service@bestitconsultants.ca
+BUSINESS_EMAIL=service@bestitconsulting.ca
 # or
-CONTACT_EMAIL=service@bestitconsultants.ca
+CONTACT_EMAIL=service@bestitconsulting.ca
 ```
 
 ## File Structure Reference
