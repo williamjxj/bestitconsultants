@@ -658,7 +658,7 @@ export const translations = {
           {
             icon: '📧',
             label: 'Email',
-            value: ['service@bestitconsulting.ca', 'jxjwilliam@gmail.com'],
+            value: ['service@bestitconsulting.ca', 'sales@bestitconsulting.ca'],
           },
           {
             icon: '🌐',

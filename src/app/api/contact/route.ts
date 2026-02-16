@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
     const fromEmailAddress =
       process.env.FROM_EMAIL ||
       process.env.RESEND_FROM_EMAIL ||
-      'BestITConsultants <contact@bestitconsultants.ca>'
+      'BestITConsultants <sales@bestitconsulting.ca>'
 
     const resend = await getResendInstance()
 
