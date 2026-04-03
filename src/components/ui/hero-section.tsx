@@ -41,6 +41,11 @@ export interface HeroSectionProps {
   imageContrast?: number // 0-2, default 1
   imagePosition?: string // CSS object-position, default 'center'
   enableParallax?: boolean // Enable subtle parallax effect, default false
+  /**
+   * On first mount, scale image background 1 → 1.1 over 3s (ease-in-out). Only applies when `backgroundImage` is set.
+   * The landing page uses `HeroCarousel`, not this component — set false if an image hero is ever used on `/`.
+   */
+  introBackgroundZoom?: boolean
 
   // Animation
   animation?: 'fade' | 'slide' | 'scale' | 'stagger'
@@ -108,6 +113,7 @@ export function HeroSection({
   imageContrast = 1,
   imagePosition = 'center',
   enableParallax = false,
+  introBackgroundZoom = true,
   animation: _animation = 'slide',
   animationDelay = 0,
   animationDuration: _animationDuration = 0.8,
@@ -186,28 +192,38 @@ export function HeroSection({
         <>
           {/* Background Image with Next.js Image component - 2.35:1 aspect ratio */}
           <div className='absolute inset-0 w-full h-full overflow-hidden'>
-            <div
-              ref={imageRef}
-              className='relative w-full h-full transition-transform duration-300 ease-out'
-              style={{
-                willChange: enableParallax ? 'transform' : 'auto',
+            <motion.div
+              className='relative h-full w-full origin-center'
+              initial={{ scale: 1 }}
+              animate={{ scale: introBackgroundZoom ? 1.1 : 1 }}
+              transition={{
+                duration: introBackgroundZoom ? 3 : 0,
+                ease: 'easeInOut',
               }}
             >
-              <Image
-                src={backgroundImage}
-                alt='Hero background'
-                fill
-                priority
-                quality={90}
-                className='object-cover'
+              <div
+                ref={imageRef}
+                className='relative h-full w-full transition-transform duration-300 ease-out'
                 style={{
-                  filter: filterValue,
-                  objectPosition: imagePosition,
-                  transition: 'filter 0.5s ease-out, transform 0.3s ease-out',
+                  willChange: enableParallax ? 'transform' : 'auto',
                 }}
-                sizes='100vw'
-              />
-            </div>
+              >
+                <Image
+                  src={backgroundImage}
+                  alt='Hero background'
+                  fill
+                  priority
+                  quality={90}
+                  className='object-cover'
+                  style={{
+                    filter: filterValue,
+                    objectPosition: imagePosition,
+                    transition: 'filter 0.5s ease-out, transform 0.3s ease-out',
+                  }}
+                  sizes='100vw'
+                />
+              </div>
+            </motion.div>
           </div>
           {/* Gradient Overlay - more sophisticated than solid black */}
           {overlay && (

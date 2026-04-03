@@ -15,31 +15,18 @@ export const runtime = 'nodejs'
 const REQUEST_TIMEOUT_MS = 60_000
 
 /**
- * Get the model to use based on environment
- * Production: Use model string format for Vercel AI Gateway routing
- * Local: Use Deepseek provider directly
+ * DeepSeek chat model via direct API (same in local and Vercel).
+ * Uses DEEPSEEK_API_KEY — not the Vercel AI Gateway string form, which ignores that env var
+ * and requires separate Gateway billing/setup.
  */
 const getModel = () => {
-  // Check if running on Vercel (production)
-  const isVercelProduction = process.env.VERCEL === '1'
-
-  if (isVercelProduction) {
-    // On Vercel, model string format automatically routes through AI Gateway
-    // The DEEPSEEK_API_KEY should be configured in Vercel Dashboard → AI Gateway → Integrations
-    return 'deepseek/deepseek-chat'
-  } else {
-    // Local development: Use Deepseek provider directly with API key from env
-    const apiKey = process.env.DEEPSEEK_API_KEY
-    if (!apiKey) {
-      throw new Error(
-        'DEEPSEEK_API_KEY is required for local development. ' +
-          'Please set it in your .env.local file or configure it in Vercel Dashboard for production.'
-      )
-    }
-    // Create Deepseek provider with API key
-    const provider = createDeepSeek({ apiKey })
-    return provider.chat('deepseek-chat')
+  const apiKey = process.env.DEEPSEEK_API_KEY
+  if (!apiKey) {
+    throw new Error(
+      'DEEPSEEK_API_KEY is required. Set it in .env.local (local) or Vercel → Project → Environment Variables (production).'
+    )
   }
+  return createDeepSeek({ apiKey }).chat('deepseek-chat')
 }
 
 export async function POST(req: Request) {
@@ -105,7 +92,7 @@ Guidelines:
     const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
 
     try {
-      // Stream text using Vercel AI Gateway routing (production) or Deepseek provider (local)
+      // Stream text via DeepSeek direct API (createDeepSeek + DEEPSEEK_API_KEY)
       const result = streamText({
         model: getModel(),
         messages: messagesWithContext,

@@ -11,7 +11,7 @@ company's services, team, and case studies.
 - **Framework**: Next.js App Router
 - **AI SDK**: Vercel AI SDK (`ai`, `@ai-sdk/deepseek`)
 - **Model**: Deepseek Chat (`deepseek-chat`)
-- **Infrastructure**: Vercel AI Gateway (Production) / Direct API (Local)
+- **Infrastructure**: Direct DeepSeek API (`DEEPSEEK_API_KEY` in all environments)
 
 ---
 
@@ -81,16 +81,10 @@ This block is inserted into the `system` role message sent to Deepseek.
 
 The integration is handled in `src/app/api/chat/route.ts`.
 
-### Production vs. Local
+### Environment (local and Vercel)
 
-- **Production (Vercel)**:
-  - Uses **Vercel AI Gateway**.
-  - Model: `'deepseek/deepseek-chat'`
-  - The request is routed through Vercel's infrastructure, which manages the API keys and caching.
-- **Local Development**:
-  - Uses **Direct API**.
-  - Provider: `createDeepSeek({ apiKey: process.env.DEEPSEEK_API_KEY })`
-  - Connects directly to Deepseek's servers.
+- Uses **DeepSeek’s API directly** via `createDeepSeek({ apiKey: process.env.DEEPSEEK_API_KEY })` and `provider.chat('deepseek-chat')`.
+- Set **`DEEPSEEK_API_KEY`** in `.env.local` locally and in **Vercel → Project → Environment Variables** for production. The model string `'deepseek/deepseek-chat'` alone routes through **Vercel AI Gateway**, which does not use `DEEPSEEK_API_KEY`; the app uses the provider + key so behavior matches local.
 
 ---
 
