@@ -213,28 +213,36 @@ export default function ContactPage() {
       />
 
       {/* Main Content */}
-      <div className='min-h-screen pt-16 pb-20 bg-gray-50'>
+      <div className='min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100/60 pt-16 pb-20'>
         <div className='container mx-auto px-4'>
           {/* Contact Us Section */}
           <div className='mb-12'>
-            <h2 className='text-3xl font-bold text-center mb-12 main-content-title'>
-              {translations.contact.form.title}
-            </h2>
-            <div className='grid grid-cols-1 lg:grid-cols-3 gap-12'>
+            <div className='mx-auto mb-10 max-w-3xl text-center'>
+              <p className='mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-primary'>
+                Contact
+              </p>
+              <h2 className='text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl main-content-title'>
+                {translations.contact.form.title}
+              </h2>
+              <p className='mt-4 text-sm leading-7 text-slate-600 sm:text-base'>
+                {translations.contact.form.subtitle}
+              </p>
+            </div>
+            <div className='grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-10'>
               {/* Contact Form */}
               <div id='contact-form' className='lg:col-span-2'>
-                <Card className='relative w-full overflow-hidden border-0 shadow-xl bg-white/50 backdrop-blur-sm'>
+                <Card className='relative w-full overflow-hidden border border-white/60 bg-white/75 shadow-[0_24px_90px_rgba(15,23,42,0.12)] backdrop-blur-xl'>
                   <ShineBorder shineColor={['#A07CFE', '#FE8FB5', '#FFBE7B']} />
-                  <CardHeader>
-                    <CardDescription>
+                  <CardHeader className='pb-3 pt-6 sm:pt-8'>
+                    <CardDescription className='max-w-2xl text-sm leading-7 text-slate-600'>
                       {translations.contact.form.subtitle}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className='pb-6 sm:pb-8'>
                     <Suspense
                       fallback={
-                        <div className='flex items-center justify-center py-8'>
-                          <div className='text-muted-foreground'>
+                        <div className='flex items-center justify-center py-10'>
+                          <div className='rounded-full border border-border/60 bg-background px-4 py-2 text-sm text-muted-foreground shadow-sm'>
                             Loading form...
                           </div>
                         </div>
@@ -247,13 +255,13 @@ export default function ContactPage() {
               </div>
 
               {/* Contact Information */}
-              <div className='space-y-8'>
+              <div className='space-y-8 lg:pt-2'>
                 {/* Contact Details */}
-                <Card className='border-0 shadow-xl bg-white/50 backdrop-blur-sm'>
-                  <CardHeader>
+                <Card className='border border-white/60 bg-white/75 shadow-[0_20px_70px_rgba(15,23,42,0.1)] backdrop-blur-xl'>
+                  <CardHeader className='pb-3 pt-6'>
                     <CardTitle>{translations.contact.info.title}</CardTitle>
                   </CardHeader>
-                  <CardContent className='space-y-6'>
+                  <CardContent className='space-y-6 pb-6'>
                     {translations.contact.info.details
                       .filter(
                         detail =>

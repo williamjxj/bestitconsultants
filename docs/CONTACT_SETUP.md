@@ -2,16 +2,15 @@
 
 ## Quick Start
 
-The contact form uses **Resend** (v4.7.0) to send two emails per submission: business notification
-and customer auto-reply. Works immediately with `onboarding@resend.dev` - no domain verification
-needed.
+The contact form now uses **Gmail SMTP via nodemailer** to send the business notification email.
+The receiver is fixed to `jxjwilliam@gmail.com`, matching the reference implementation.
 
 **Minimum Setup:**
 
-1. Get Resend API key from [resend.com](https://resend.com)
-2. Add to `.env.local`: `RESEND_API_KEY=re_your_key`
-3. Add: `BUSINESS_EMAIL=williamjxj@gmail.com`
-4. Done! Emails work immediately.
+1. Add to `.env.local`: `SMTP_EMAIL=your_gmail_address@gmail.com`
+2. Add to `.env.local`: `SMTP_PASSWORD=your_gmail_app_password`
+3. Restart the Next.js dev server so the new environment variables are loaded
+4. Submit the contact form and check `jxjwilliam@gmail.com`
 
 > **Note**: Google Maps integration is documented separately in [GOOGLE_MAPS.md](./GOOGLE_MAPS.md)
 
@@ -21,121 +20,58 @@ needed.
 flowchart TD
     A[User Submits Form] --> B{Validate Fields}
     B -->|Invalid| C[Return Error 400]
-    B -->|Valid| D{Check RESEND_API_KEY}
+    B -->|Valid| D{Check SMTP_EMAIL and SMTP_PASSWORD}
     D -->|Missing| E[Return Error 500]
-    D -->|Present| F[Get FROM Email Address]
-    F --> G{Is FROM_EMAIL Set?}
-    G -->|Yes| H[Use Custom Domain]
-    G -->|No| I[Use onboarding@resend.dev]
-    H --> J[Send Business Email]
-    I --> J
-    J --> K{Email Sent?}
-    K -->|Failed| L{Custom Domain?}
-    L -->|Yes| M[Fallback to onboarding@resend.dev]
-    L -->|No| N[Return Error]
-    M --> O[Send Business Email Again]
-    K -->|Success| O
-    O --> P[Send Customer Auto-Reply]
-    P --> Q{Email Sent?}
-    Q -->|Failed| R{Custom Domain?}
-    R -->|Yes| S[Fallback to onboarding@resend.dev]
-    R -->|No| T[Return Error]
-    S --> U[Send Auto-Reply Again]
-    Q -->|Success| U
-    U --> V[Return Success 200]
+    D -->|Present| F[Create Gmail SMTP transporter]
+    F --> G[Send business email to jxjwilliam@gmail.com]
+    G --> H{Email Sent?}
+    H -->|No| I[Return Error 500]
+    H -->|Yes| J[Return Success 200]
 ```
 
 ## Email Address Usage
 
-| Email Address                  | Purpose                            | Usage                                                         | When Required                                 |
-| ------------------------------ | ---------------------------------- | ------------------------------------------------------------- | --------------------------------------------- |
-| `onboarding@resend.dev`        | **FROM address** (default)         | Sender for both business notification and customer auto-reply | ✅ Always available (default)                 |
-| `contact@bestitconsultants.ca` | **FROM address** (custom domain)   | Alternative sender - requires domain verification             | ❌ Optional (only if `FROM_EMAIL` is set)     |
-| `williamjxj@gmail.com`         | **TO address** (business email)    | Receives contact form submissions                             | ✅ Required (default or via `BUSINESS_EMAIL`) |
-| Customer's email               | **TO address** (customer)          | Receives auto-reply confirmation                              | ✅ From form submission                       |
-| Customer's email               | **REPLY_TO** (business email)      | Allows direct reply to customer                               | ✅ Auto-set in business notification          |
-| `williamjxj@gmail.com`         | **REPLY_TO** (customer auto-reply) | Ensures replies come to business                              | ✅ Auto-set in customer auto-reply            |
+| Email Address           | Purpose                         | Usage                              | When Required |
+| ----------------------- | ------------------------------- | ---------------------------------- | ------------- |
+| `SMTP_EMAIL`            | SMTP login sender               | Gmail account used to send mail    | ✅ Required   |
+| `SMTP_PASSWORD`         | SMTP app password               | Gmail app password for nodemailer   | ✅ Required   |
+| `jxjwilliam@gmail.com`  | Business inbox                  | Receives contact form submissions   | ✅ Fixed      |
+| Visitor email           | Reply-to header                  | Lets you reply directly to sender   | ✅ From form  |
 
 ### Email Flow Details
 
 **Business Notification Email:**
 
-- **FROM**: `onboarding@resend.dev` (default) or `contact@bestitconsultants.ca` (if set)
-- **TO**: `williamjxj@gmail.com` (or `BUSINESS_EMAIL`)
+- **FROM**: `SMTP_EMAIL`
+- **TO**: `jxjwilliam@gmail.com`
 - **REPLY_TO**: Customer's email (enables direct reply)
 - **Purpose**: Notify you of new contact form submission
 
-**Customer Auto-Reply Email:**
-
-- **FROM**: `onboarding@resend.dev` (default) or `contact@bestitconsultants.ca` (if set)
-- **TO**: Customer's email (from form)
-- **REPLY_TO**: `williamjxj@gmail.com` (or `BUSINESS_EMAIL`)
-- **Purpose**: Confirm receipt and provide next steps
-
-## Advanced Configuration
-
-### Email Address Priority Logic
-
-The system uses intelligent fallback to ensure emails are always sent:
-
-1. **Primary**: If `FROM_EMAIL` or `RESEND_FROM_EMAIL` is **not set** → Uses
-   `BestITConsultants <onboarding@resend.dev>` (works immediately)
-
-2. **Upgrade**: If `FROM_EMAIL` or `RESEND_FROM_EMAIL` **is set** → Uses custom domain email (e.g.,
-   `BestITConsultants <contact@bestitconsultants.ca>`)
-
-3. **Automatic Fallback**: If custom domain email fails (not verified) → Automatically retries with
-   `onboarding@resend.dev`
-
-4. **Error Handling**: If both attempts fail → Returns error to user
+There is no customer auto-reply in the SMTP version. The form now mirrors the reference
+implementation and sends the submission directly to the business inbox.
 
 ### Environment Variables
 
 **Required:**
 
 ```bash
-RESEND_API_KEY=re_your_api_key_here
-BUSINESS_EMAIL=williamjxj@gmail.com
+SMTP_EMAIL=your_gmail_address@gmail.com
+SMTP_PASSWORD=your_gmail_app_password
 ```
 
-**Optional:**
+| Variable       | Required | Default | Description                      |
+| -------------- | -------- | ------- | -------------------------------- |
+| `SMTP_EMAIL`   | ✅ Yes   | None    | Gmail address used to send mail  |
+| `SMTP_PASSWORD`| ✅ Yes   | None    | Gmail app password               |
 
-```bash
-# Only set AFTER verifying domain in Resend dashboard
-FROM_EMAIL=BestITConsultants <contact@bestitconsultants.ca>
-# OR
-RESEND_FROM_EMAIL=BestITConsultants <contact@bestitconsultants.ca>
-```
+### Gmail Setup
 
-| Variable            | Required | Default                 | Description                                 |
-| ------------------- | -------- | ----------------------- | ------------------------------------------- |
-| `RESEND_API_KEY`    | ✅ Yes   | None                    | Resend API key (starts with `re_`)          |
-| `BUSINESS_EMAIL`    | ✅ Yes   | `williamjxj@gmail.com`  | Where contact submissions are sent          |
-| `FROM_EMAIL`        | ❌ No    | `onboarding@resend.dev` | Custom FROM address (requires verification) |
-| `RESEND_FROM_EMAIL` | ❌ No    | `onboarding@resend.dev` | Alternative name for `FROM_EMAIL`           |
+Use a Gmail account with app passwords enabled:
 
-### Custom Domain Setup
-
-**To use `contact@bestitconsultants.ca`:**
-
-1. **Verify Domain in Resend:**
-   - Go to [Resend Dashboard → Domains](https://resend.com/domains)
-   - Add domain `bestitconsultants.ca`
-   - Get DNS records (SPF, DKIM, DMARC)
-
-2. **Add DNS Records:**
-   - Add TXT records to your domain registrar
-   - Wait for DNS propagation (5-60 minutes)
-
-3. **Set Environment Variable:**
-
-   ```bash
-   FROM_EMAIL=BestITConsultants <contact@bestitconsultants.ca>
-   ```
-
-4. **System Automatically:**
-   - Uses custom domain if verified
-   - Falls back to `onboarding@resend.dev` if verification fails
+1. Sign in to the Gmail account you want to send from
+2. Enable 2-Step Verification if it is not already on
+3. Create an App Password for Mail
+4. Paste that app password into `SMTP_PASSWORD`
 
 ## Form Fields
 
@@ -167,47 +103,25 @@ RESEND_FROM_EMAIL=BestITConsultants <contact@bestitconsultants.ca>
 - Full customer message
 - Reply-To set to customer's email
 
-### Customer Auto-Reply Email
-
-**Location:** `src/app/api/contact/route.ts` (variable: `customerEmailHtml`)
-
-**Content:**
-
-- Personalized greeting
-- Message summary
-- Next steps (24-hour review, consultation call)
-- Company contact information
-- Professional signature
-
 ## Troubleshooting
 
 ### Common Issues
 
-1. **"Module 'resend' not found"**
-   - Run: `npm install resend`
+1. **"Email service not configured"**
+   - Check: `SMTP_EMAIL` is set in `.env.local`
+   - Check: `SMTP_PASSWORD` is set in `.env.local`
+   - Restart: Development server after editing `.env.local`
 
-2. **"Email service not configured"**
-   - Check: `RESEND_API_KEY` is set in `.env.local`
-   - Verify: API key starts with `re_`
-   - Restart: Development server
-
-3. **Emails not sending**
-   - ✅ Verify `RESEND_API_KEY` is correct
-   - ✅ Verify `BUSINESS_EMAIL` is set
-   - ✅ Check Resend dashboard for API key status
+2. **Emails not sending**
+   - ✅ Verify `SMTP_EMAIL` is correct
+   - ✅ Verify `SMTP_PASSWORD` is a Gmail app password
    - ✅ Check browser console and server logs
 
-4. **Custom domain fails (fallback works)**
-   - Expected: System automatically uses `onboarding@resend.dev`
-   - Fix: Verify domain in Resend dashboard
-   - Check: DNS records are correctly added
-   - Wait: DNS propagation (up to 24 hours)
-
-5. **Form validation errors**
+3. **Form validation errors**
    - Required: Name, Email, Message
    - Error: "Name, email, and message are required fields"
 
-6. **Form submission fails**
+4. **Form submission fails**
    - Check: Browser Network tab
    - Check: Server logs
    - Verify: `/api/contact` endpoint is accessible
@@ -217,22 +131,15 @@ RESEND_FROM_EMAIL=BestITConsultants <contact@bestitconsultants.ca>
 **Required Environment Variables:**
 
 ```bash
-RESEND_API_KEY=re_your_production_api_key
-BUSINESS_EMAIL=williamjxj@gmail.com
-```
-
-**Optional (Recommended):**
-
-```bash
-FROM_EMAIL=BestITConsultants <contact@bestitconsultants.ca>
+SMTP_EMAIL=your_gmail_address@gmail.com
+SMTP_PASSWORD=your_gmail_app_password
 ```
 
 **Deployment Checklist:**
 
 1. ✅ Set environment variables in hosting platform
-2. ✅ Verify domain in Resend (if using custom domain)
-3. ✅ Test email delivery on production
-4. ✅ Monitor logs and Resend dashboard
+2. ✅ Test email delivery on production
+3. ✅ Monitor logs and server output
 
 **Platform-Specific:**
 
@@ -263,7 +170,7 @@ src/
 
 ## Dependencies
 
-- `resend`: `^4.7.0` (already in `package.json`)
+- `nodemailer`: `^6.10.1`
 
 ## Related Documentation
 

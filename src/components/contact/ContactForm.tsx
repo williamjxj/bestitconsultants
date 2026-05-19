@@ -142,15 +142,17 @@ export function ContactForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
-        {/* Required Fields */}
-        <div className='space-y-4'>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className='space-y-8 rounded-[28px] border border-border/60 bg-gradient-to-b from-background via-background to-muted/20 p-5 shadow-[0_24px_80px_rgba(15,23,42,0.08)] sm:p-6 lg:p-8'
+      >
+        <div className='grid gap-5 md:grid-cols-2'>
           {/* Name Field */}
           <FormField
             control={form.control}
             name='name'
             render={({ field }) => (
-              <FormItem>
+              <FormItem className='space-y-2'>
                 <FormLabel>
                   {formTranslations.fields.name.label}
                   <span className='text-destructive ml-1'>*</span>
@@ -161,6 +163,7 @@ export function ContactForm() {
                     placeholder={formTranslations.fields.name.placeholder}
                     disabled={isSubmitting}
                     aria-required='true'
+                    className='h-12 rounded-2xl border-border/70 bg-muted/25 px-4 text-sm shadow-sm transition-colors placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-primary/20'
                   />
                 </FormControl>
                 <FormMessage />
@@ -173,7 +176,7 @@ export function ContactForm() {
             control={form.control}
             name='email'
             render={({ field }) => (
-              <FormItem>
+              <FormItem className='space-y-2'>
                 <FormLabel>
                   {formTranslations.fields.email.label}
                   <span className='text-destructive ml-1'>*</span>
@@ -187,6 +190,7 @@ export function ContactForm() {
                     aria-required='true'
                     inputMode='email'
                     autoComplete='email'
+                    className='h-12 rounded-2xl border-border/70 bg-muted/25 px-4 text-sm shadow-sm transition-colors placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-primary/20'
                   />
                 </FormControl>
                 <FormMessage />
@@ -199,13 +203,14 @@ export function ContactForm() {
             control={form.control}
             name='title'
             render={({ field }) => (
-              <FormItem>
+              <FormItem className='space-y-2 md:col-span-2'>
                 <FormLabel>{formTranslations.fields.title.label}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     placeholder={formTranslations.fields.title.placeholder}
                     disabled={isSubmitting}
+                    className='h-12 rounded-2xl border-border/70 bg-muted/25 px-4 text-sm shadow-sm transition-colors placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-primary/20'
                   />
                 </FormControl>
                 <FormMessage />
@@ -218,7 +223,7 @@ export function ContactForm() {
             control={form.control}
             name='message'
             render={({ field }) => (
-              <FormItem>
+              <FormItem className='space-y-2 md:col-span-2'>
                 <FormLabel>{formTranslations.fields.message.label}</FormLabel>
                 <FormControl>
                   <Textarea
@@ -227,7 +232,7 @@ export function ContactForm() {
                     disabled={isSubmitting}
                     rows={5}
                     aria-required='true'
-                    className='resize-none'
+                    className='min-h-36 resize-none rounded-2xl border-border/70 bg-muted/25 px-4 py-3 text-sm shadow-sm transition-colors placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-primary/20'
                   />
                 </FormControl>
                 <FormMessage />
@@ -237,33 +242,35 @@ export function ContactForm() {
         </div>
 
         {/* Optional Fields - Collapsible Section */}
-        <div className='border-t pt-4'>
+        <div className='rounded-[24px] border border-border/60 bg-muted/15 px-4 py-3 sm:px-5 sm:py-4'>
           <button
             type='button'
             onClick={() => setShowOptionalFields(!showOptionalFields)}
-            className='flex w-full items-center justify-between py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors'
+            className='flex w-full items-center justify-between gap-3 rounded-2xl px-1 py-1 text-left text-sm font-medium text-muted-foreground transition-colors hover:text-foreground'
             aria-expanded={showOptionalFields}
             aria-controls='optional-fields'
           >
-            <span>{formTranslations.tellUsMore}</span>
+            <span className='text-[11px] font-semibold uppercase tracking-[0.2em]'>
+              {formTranslations.tellUsMore}
+            </span>
             {showOptionalFields ? (
-              <ChevronUpIcon className='h-4 w-4' />
+              <ChevronUpIcon className='h-4 w-4 shrink-0' />
             ) : (
-              <ChevronDownIcon className='h-4 w-4' />
+              <ChevronDownIcon className='h-4 w-4 shrink-0' />
             )}
           </button>
 
           {showOptionalFields && (
             <div
               id='optional-fields'
-              className='mt-4 space-y-4 animate-in slide-in-from-top-2 duration-200'
+              className='mt-4 grid gap-5 md:grid-cols-2 animate-in slide-in-from-top-2 duration-200'
             >
               {/* Company Field */}
               <FormField
                 control={form.control}
                 name='company'
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className='space-y-2'>
                     <FormLabel>
                       {formTranslations.fields.company.label}
                     </FormLabel>
@@ -274,6 +281,7 @@ export function ContactForm() {
                           formTranslations.fields.company.placeholder
                         }
                         disabled={isSubmitting}
+                        className='h-12 rounded-2xl border-border/70 bg-background px-4 text-sm shadow-sm transition-colors placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-primary/20'
                       />
                     </FormControl>
                     <FormMessage />
@@ -286,7 +294,7 @@ export function ContactForm() {
                 control={form.control}
                 name='phone'
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className='space-y-2'>
                     <FormLabel>{formTranslations.fields.phone.label}</FormLabel>
                     <FormControl>
                       <Input
@@ -296,6 +304,7 @@ export function ContactForm() {
                         disabled={isSubmitting}
                         inputMode='tel'
                         autoComplete='tel'
+                        className='h-12 rounded-2xl border-border/70 bg-background px-4 text-sm shadow-sm transition-colors placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-primary/20'
                       />
                     </FormControl>
                     <FormMessage />
@@ -308,7 +317,7 @@ export function ContactForm() {
                 control={form.control}
                 name='service'
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className='space-y-2 md:col-span-2'>
                     <FormLabel>
                       {formTranslations.fields.service.label}
                     </FormLabel>
@@ -318,7 +327,7 @@ export function ContactForm() {
                       disabled={isSubmitting}
                     >
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger className='h-12 rounded-2xl border-border/70 bg-background px-4 text-sm shadow-sm transition-colors focus:ring-primary/20'>
                           <SelectValue
                             placeholder={
                               formTranslations.fields.service.placeholder
@@ -345,10 +354,10 @@ export function ContactForm() {
         {/* Submit Status Messages */}
         {submitStatus.type && (
           <div
-            className={`rounded-lg border p-4 text-sm ${
+            className={`rounded-2xl border px-4 py-3 text-sm shadow-sm ${
               submitStatus.type === 'success'
-                ? 'bg-green-50 text-green-800 border-green-200'
-                : 'bg-red-50 text-red-800 border-red-200'
+                ? 'border-emerald-200/70 bg-emerald-50/80 text-emerald-900'
+                : 'border-rose-200/70 bg-rose-50/80 text-rose-900'
             }`}
             role='alert'
             aria-live='polite'
@@ -361,7 +370,7 @@ export function ContactForm() {
         <Button
           type='submit'
           size='lg'
-          className='w-full'
+          className='h-12 w-full rounded-2xl bg-gradient-to-r from-primary to-primary/80 px-6 text-sm font-semibold shadow-lg shadow-primary/20 transition-transform hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/25'
           disabled={isSubmitting}
           aria-busy={isSubmitting}
         >

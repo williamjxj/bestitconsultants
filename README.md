@@ -71,7 +71,7 @@ expertise:
 - 🏗️ **Modern Architecture** - Next.js 15, React 19, TypeScript, Server Components
 - 🎨 **UI/UX Excellence** - Responsive design, accessibility (WCAG 2.1 AA), performance optimized
 - 🔌 **API Design** - RESTful endpoints, structured data, robust error handling
-- 📧 **Email Integration** - Professional contact form with Resend API
+- 📧 **Email Integration** - Professional contact form with Gmail SMTP
 - 🚀 **Production Ready** - SEO optimized, deployed on Vercel, custom domain configured
 - 📚 **Documentation** - Comprehensive technical docs, API references, deployment guides
 
@@ -91,7 +91,7 @@ expertise:
 
 - **Modern Tech Stack**: Next.js 15, React 19, TypeScript, Tailwind CSS
 - **Responsive Design**: Optimized for desktop, tablet, and mobile devices
-- **Contact Form**: Professional email integration with Resend service
+- **Contact Form**: Professional email integration with Gmail SMTP
 - **Portfolio Showcase**: Interactive project gallery with filtering
 - **Enhanced Team Profiles**: Professional team member presentations with prestige projects
 - **Case Studies**: Detailed success stories with measurable outcomes
@@ -108,7 +108,7 @@ expertise:
 - **Frontend**: React 19, TypeScript
 - **Styling**: Tailwind CSS 3.4.17
 - **UI Components**: Radix UI, Lucide React icons
-- **Email Service**: Resend for contact form
+- **Email Service**: Gmail SMTP for contact form
 - **Development**: ESLint, Prettier, Markdown linting
 
 ## 📁 Project Structure
@@ -185,8 +185,8 @@ docs/                     # Project documentation
    Edit `.env` and add your configuration:
 
    ```env
-   RESEND_API_KEY=your_resend_api_key
-   BUSINESS_EMAIL=your_business_email@domain.com
+   SMTP_EMAIL=your_gmail_address@gmail.com
+   SMTP_PASSWORD=your_gmail_app_password
    ```
 
 4. **Run the development server**
@@ -199,18 +199,18 @@ docs/                     # Project documentation
 
 ## 📧 Contact Form Setup
 
-The contact form uses Resend for email delivery:
+The contact form uses Gmail SMTP via nodemailer:
 
-1. Sign up at [resend.com](https://resend.com)
-2. Get your API key from the dashboard
-3. Add `RESEND_API_KEY` to your `.env` file
-4. Set `BUSINESS_EMAIL` to your business email address
+1. Add `SMTP_EMAIL` to your `.env` file
+2. Add `SMTP_PASSWORD` to your `.env` file
+3. Use a Gmail app password for `SMTP_PASSWORD`
+4. The receiver is fixed to `jxjwilliam@gmail.com`
 
 **Email Flow:**
 
-- Business notifications → Your business email
-- Customer auto-replies → Customer's email
-- Professional templates with company branding
+- Business notifications → `jxjwilliam@gmail.com`
+- Reply-To → visitor email address
+- Professional HTML template with company branding
 
 ## 🏗️ Development
 
