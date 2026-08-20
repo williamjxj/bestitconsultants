@@ -28,9 +28,18 @@ export default function Navbar() {
   const { language, changeLanguage, translations } = useLanguage()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const [navItems, setNavItems] = useState<NavigationItem[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const pathname = usePathname()
+
+  // Add a soft shadow once the page is scrolled
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 12)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Load navigation items from service
   useEffect(() => {
@@ -221,26 +230,29 @@ export default function Navbar() {
   }, [isLangDropdownOpen])
 
   return (
-    <nav className='bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-100'>
+    <nav
+      className={`bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b transition-shadow duration-300 ${
+        isScrolled
+          ? 'border-gray-200 shadow-lg shadow-gray-900/5'
+          : 'border-gray-100 shadow-sm'
+      }`}
+    >
       <div className='container mx-auto px-4'>
         <div className='flex justify-between items-center h-16 md:h-20'>
           {/* Logo with animation */}
           <Link
             href='/'
-            className='flex items-center space-x-1 sm:space-x-2 transition-all duration-300 hover:scale-105'
+            className='flex items-center transition-all duration-300 hover:scale-105'
           >
             <img
-              src='/logo.png'
-              alt='BestITConsultants Logo'
-              className='h-8 sm:h-9 md:h-12 lg:h-14 w-auto object-contain max-h-full'
+              src='/b11-logo.png'
+              alt='BestIT Consultants Logo'
+              className='h-7 sm:h-8 md:h-9 lg:h-10 w-auto object-contain max-h-full'
             />
-            <span className='text-base sm:text-lg md:text-xl font-bold text-gray-800 hover:text-blue-600 transition-colors duration-200 leading-none'>
-              bestitconsultants
-            </span>
           </Link>
 
           {/* Desktop Navigation Links with improved styling */}
-          <div className='hidden md:flex space-x-8 items-center'>
+          <div className='hidden md:flex items-center gap-0.5'>
             {isLoading ? (
               <div className='flex space-x-8'>
                 {[...Array(7)].map((_, i) => (
@@ -255,15 +267,16 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 group ${
+                  aria-current={link.isActive ? 'page' : undefined}
+                  className={`relative px-3.5 py-2 rounded-lg font-semibold text-sm transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 ${
                     link.isActive
-                      ? 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg shadow-blue-500/25'
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:shadow-md'
+                      ? 'text-blue-600 bg-blue-50'
+                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
                   }`}
                 >
                   {link.label}
-                  {!link.isActive && (
-                    <span className='absolute inset-0 rounded-lg bg-gradient-to-r from-blue-600/10 to-indigo-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></span>
+                  {link.isActive && (
+                    <span className='absolute bottom-0.5 left-1/2 -translate-x-1/2 h-1 w-1 rounded-full bg-blue-600' />
                   )}
                 </Link>
               ))
@@ -419,24 +432,36 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`relative py-3 px-4 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:translate-x-2 ${
+                    aria-current={link.isActive ? 'page' : undefined}
+                    className={`relative mx-3 py-3 px-4 rounded-xl font-semibold text-sm transition-all duration-300 ${
                       link.isActive
-                        ? 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 shadow-lg shadow-blue-500/25'
-                        : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:shadow-md'
+                        ? 'text-blue-700 bg-blue-50 border border-blue-100'
+                        : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
                     {link.label}
-                    {!link.isActive && (
-                      <span className='absolute inset-0 rounded-lg bg-gradient-to-r from-blue-600/10 to-indigo-600/10 opacity-0 hover:opacity-100 transition-opacity duration-300'></span>
+                    {link.isActive && (
+                      <span className='absolute right-4 top-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-blue-600' />
                     )}
                   </Link>
                 ))
               )}
 
+              {/* Mobile CTA */}
+              <div className='mx-3 pt-1'>
+                <Link
+                  href='/contact-us?title=Free Consultation#contact-form'
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className='flex items-center justify-center gap-2 w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:shadow-blue-500/40 hover:brightness-110'
+                >
+                  Start Your Project
+                </Link>
+              </div>
+
               {/* Mobile Language Switcher */}
-              <div className='pt-4 border-t border-gray-200 mt-3'>
+              <div className='pt-4 border-t border-gray-200 mt-3 mx-3'>
                 <div className='flex items-center space-x-2 mb-3 px-1'>
                   <Globe size={18} className='text-gray-500' />
                   <p className='text-sm font-semibold text-gray-700'>

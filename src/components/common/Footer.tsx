@@ -265,7 +265,7 @@ export default function Footer() {
                   aria-hidden='true'
                 />
                 <p className='text-xs sm:text-sm text-gray-300'>
-                  Great Vancouver, Canada 🇨🇦
+                  Greater Vancouver, Canada 🇨🇦
                 </p>
               </div>
             </div>

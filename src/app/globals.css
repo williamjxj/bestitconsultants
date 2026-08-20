@@ -3,6 +3,20 @@
 /* Import hero animations */
 @import '../styles/hero-animations.css';
 
+/* Smooth scrolling + anchor offset for the sticky header */
+html {
+  scroll-behavior: smooth;
+}
+
+section[id],
+div[id] {
+  scroll-margin-top: 6rem;
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.25);
+}
+
 /* Custom font variables */
 :root {
   --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
