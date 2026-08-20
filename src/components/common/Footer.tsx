@@ -17,7 +17,6 @@ import { useEffect, useState } from 'react'
 import QRCode from 'react-qr-code'
 
 import { useLanguage } from '@/contexts/LanguageContext'
-import { getBaseUrl } from '@/lib/utils'
 
 /**
  * Footer component with company information, links, and contact details
@@ -40,9 +39,6 @@ export default function Footer() {
   const [resources, setResources] = useState<Resource[]>([])
   const [resourcesLoading, setResourcesLoading] = useState(true)
 
-  // Use consistent base URL for organization schema (server-side compatible)
-  const baseUrl = getBaseUrl()
-
   // Get social media links from translations
   const socialLinks = translations.footer.social?.links || []
 
@@ -54,29 +50,6 @@ export default function Footer() {
       return Twitter
     if (platformLower.includes('github')) return Github
     return null
-  }
-
-  // Organization schema for SEO - use consistent base URL
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Best IT Consultants',
-    url: baseUrl,
-    logo: `${baseUrl}/logo.png`,
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: '+1 (236) 992-3846',
-      email: 'service@BestITConsulting.ca',
-      contactType: 'customer service',
-      areaServed: 'Worldwide',
-    },
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Great Vancouver',
-      addressRegion: 'BC',
-      addressCountry: 'CA',
-    },
-    sameAs: socialLinks.map(link => link.url),
   }
 
   // Set client-side flag to avoid hydration mismatch
@@ -252,14 +225,6 @@ export default function Footer() {
       role='contentinfo'
       aria-label='Site footer'
     >
-      {/* Structured data for SEO */}
-      <script
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(organizationSchema),
-        }}
-      />
-
       <div className='container mx-auto px-4'>
         <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5 lg:gap-6'>
           {/* Company Info */}

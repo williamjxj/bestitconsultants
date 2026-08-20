@@ -98,7 +98,9 @@ expertise:
 - **Our Work Page**: External project showcase with bookmark-style presentation
 - **Enhanced Hero Section**: Professional messaging with quick highlights
 - **Performance Optimized**: Fast loading with modern web standards
-- **SEO Optimized**: Structured data, sitemap, and robots.txt
+- **SEO + GEO Optimized**: Structured data, sitemap, robots.txt with AI
+  crawlers allowed, branded social preview images, and `llms.txt` /
+  `llms-full.txt` for AI engines
 - **Accessibility**: WCAG 2.1 AA compliant components
 - **Documentation**: Comprehensive technical documentation
 

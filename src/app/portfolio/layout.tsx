@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 import { buildPageMetadata } from '@/lib/seo-utils'
-import { getR2ImageUrl } from '@/lib/utils'
+import { getBaseUrl } from '@/lib/utils'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Portfolio - BestIT Consultants',
@@ -15,8 +15,8 @@ export const metadata: Metadata = buildPageMetadata({
     'Software Solutions',
     'Digital Transformation',
   ],
-  ogImage: getR2ImageUrl('imgs/og-portfolio.jpg'),
-  twitterImage: getR2ImageUrl('imgs/og-portfolio.jpg'),
+  ogImage: `${getBaseUrl()}/og-images/portfolio.png`,
+  twitterImage: `${getBaseUrl()}/og-images/portfolio.png`,
 })
 
 export default function PortfolioLayout({

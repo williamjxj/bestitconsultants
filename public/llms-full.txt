@@ -1,0 +1,54 @@
+# BestIT Consultants
+
+> BestIT Consultants is an elite IT outsourcing and AI consulting company headquartered in Surrey, BC (Greater Vancouver), Canada. Led by industry veterans with 20+ years of combined Fortune 500 experience, we deliver AI/ML solutions, enterprise systems, and cloud platforms for global clients. Canadian Quality, Global Talent.
+
+## About
+
+BestIT Consultants provides software and IT consulting services to businesses of all sizes - from startups to Fortune 500 enterprises. We help businesses integrate AI and modern software architectures, design event-driven and microservices platforms, and operationalize AI safely at scale with MLOps, vector search, and robust observability. We serve banking and financial services, healthcare, retail and e-commerce, education, manufacturing, automotive, hospitality, and technology sectors.
+
+Headquarters: 10355 152 Street, Surrey, BC V3R 7C3, Canada (Greater Vancouver Area).
+
+## Services
+
+- **AI & Machine Learning Solutions**: Enterprise-grade AI/ML with MLOps, GPU/CPU optimization in Kubernetes, AI tool integration (ChatGPT, Claude, LangChain), real-time data processing, and model training/deployment automation.
+- **Enterprise Software Development**: Full-stack enterprise applications with Fortune 500 experience, including React.js, Node.js, Python, .NET Core, Java Spring Boot, microservices, GraphQL, and real-time systems for banking and financial services.
+- **System Integration & Automation**: RPA (UiPath, BluePrism, WorkFusion), ETL platforms, BizTalk and enterprise service bus, API integration, and legacy modernization.
+- **Cloud & DevOps Solutions**: Kubernetes and Docker orchestration, AWS/Azure/Google Cloud migration, CI/CD pipelines, infrastructure as code, and observability with Prometheus and ElasticSearch.
+- **Mobile & Cross-Platform Development**: iOS (Swift, Objective-C), Android (Java, Kotlin), React Native, and enterprise mobile architecture.
+- **OA & Enterprise Management Systems**: OA systems, ERP/MES/EKP solutions, engineering cost management, and government project systems.
+- **Data Analytics & Business Intelligence**: Data warehousing, BI dashboards, predictive analytics, and real-time streaming analytics.
+- **Quality Assurance & Testing**: Automated, performance, security, and mobile testing.
+- **Cybersecurity**: Security assessments, hardening, and secure architecture.
+
+## Process
+
+1. **Discovery**: Understand business needs, technical requirements, and current infrastructure.
+2. **Strategy & Architecture**: Define architecture, milestones, and delivery plan.
+3. **Implementation**: Agile delivery with regular communication and feedback.
+4. **Support & Optimization**: Ongoing monitoring, support, and optimization.
+
+## Team
+
+- **William Jiang** - Founder & Full Stack Engineer, AI Consultant. 20+ years of experience in full-stack development, software architecture, and AI-driven solutions across the US, Canada, China, and Singapore. Significant contributor to a FedEx project awarded the APEC 2002 accolade. Expertise: React.js, Node.js, Python, Java, Kubernetes, Docker, AWS, MLOps, Microservices, GraphQL, MongoDB, LangChain, LlamaIndex, Hugging Face, Kafka, ElasticSearch, Prometheus.
+
+## Frequently Asked Questions
+
+**What is your typical project timeline?**
+Project timelines vary based on complexity, but most projects take 2-6 months from start to finish.
+
+**Do you provide ongoing support?**
+Yes, we offer comprehensive support and maintenance packages for all our projects.
+
+**What technologies do you specialize in?**
+Modern web and mobile technologies including React, Node.js, Python, and cloud platforms.
+
+**How do you ensure project quality?**
+Rigorous testing protocols, code reviews, and agile development methodologies.
+
+## Contact
+
+- Website: https://www.bestitconsultants.ca
+- Email: service@bestitconsulting.ca, sales@bestitconsulting.ca
+- Phone: +1 (236) 992-3846
+- Address: 10355 152 Street, Surrey, BC V3R 7C3, Canada
+- Consultation: Free initial consultation available

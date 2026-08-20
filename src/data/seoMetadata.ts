@@ -1,4 +1,4 @@
-import { getBaseUrl, getR2ImageUrl } from '@/lib/utils'
+import { getBaseUrl } from '@/lib/utils'
 import { SEOMetadata } from '@/types/seo'
 
 const baseUrl = getBaseUrl()
@@ -7,9 +7,9 @@ export const seoMetadataData: SEOMetadata[] = [
   {
     id: 'homepage-seo',
     page: 'home',
-    title: 'BestIT Consulting - Vancouver BC | Elite IT Outsourcing & AI Consulting',
+    title: 'BestIT Consultants - Vancouver IT & AI Consulting',
     description:
-      'Vancouver, BC, Canada software & IT consulting. Elite IT outsourcing, AI solutions, and SME software development. Canadian Quality, Global Talent. Headquartered in Vancouver.',
+      'Vancouver BC software and IT consulting. Elite IT outsourcing, AI solutions, and SME software development. Canadian Quality, Global Talent.',
     keywords: [
       'Vancouver software company',
       'Vancouver IT consulting',
@@ -23,35 +23,38 @@ export const seoMetadataData: SEOMetadata[] = [
       'Elite IT Consulting',
       'Fortune 500 Experience',
     ],
-    ogTitle: 'BestIT Consulting - Vancouver BC | Elite IT Outsourcing & AI Consulting',
+    ogTitle: 'BestIT Consultants - Vancouver IT & AI Consulting',
     ogDescription:
-      'Vancouver, BC, Canada. Elite IT consulting, outsourcing solutions, and AI innovation. SME software development. Canadian Quality, Global Talent.',
-    ogImage: getR2ImageUrl('imgs/og-homepage.jpg'),
+      'Vancouver BC software and IT consulting. Elite IT outsourcing, AI solutions, and SME software development. Canadian Quality, Global Talent.',
+    ogImage: `${baseUrl}/og-images/home.png`,
     canonicalUrl: baseUrl,
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: 'BestIT Consulting',
-      description: 'Elite IT consulting and AI solutions. Vancouver, BC, Canada.',
+      name: 'BestIT Consultants',
+      description:
+        'Elite IT consulting and AI solutions. Surrey, BC (Greater Vancouver), Canada.',
       url: baseUrl,
       logo: `${baseUrl}/logo.png`,
       address: {
         '@type': 'PostalAddress',
-        addressLocality: 'Vancouver',
+        streetAddress: '10355 152 Street',
+        addressLocality: 'Surrey',
         addressRegion: 'BC',
+        postalCode: 'V3R 7C3',
         addressCountry: 'CA',
       },
       geo: {
         '@type': 'GeoCoordinates',
-        latitude: 49.2827,
-        longitude: -123.1207,
+        latitude: 49.189201,
+        longitude: -122.804169,
       },
     },
   },
   {
     id: 'team-seo',
     page: 'team',
-    title: 'Our Expert Team - BestIT Consulting',
+    title: 'Our Team - BestIT Consultants',
     description:
       'Meet our elite team of Fortune 500 experienced professionals. AI experts, full-stack developers, and enterprise architects.',
     keywords: [
@@ -61,10 +64,10 @@ export const seoMetadataData: SEOMetadata[] = [
       'Enterprise Architects',
       'Fortune 500 Experience',
     ],
-    ogTitle: 'Our Expert Team - BestIT Consulting',
+    ogTitle: 'Our Team - BestIT Consultants',
     ogDescription:
       'Meet our elite team of Fortune 500 experienced professionals.',
-    ogImage: getR2ImageUrl('imgs/og-team.jpg'),
+    ogImage: `${baseUrl}/og-images/team.png`,
     canonicalUrl: `${baseUrl}/our-team`,
     structuredData: {
       '@context': 'https://schema.org',
@@ -77,7 +80,7 @@ export const seoMetadataData: SEOMetadata[] = [
   {
     id: 'case-studies-seo',
     page: 'case-studies',
-    title: 'Success Stories & Case Studies - BestIT Consulting',
+    title: 'Case Studies - BestIT Consultants',
     description:
       "Discover how we've helped businesses achieve measurable results through innovative technology solutions.",
     keywords: [
@@ -87,10 +90,10 @@ export const seoMetadataData: SEOMetadata[] = [
       'Software Development Results',
       'Business Transformation',
     ],
-    ogTitle: 'Success Stories & Case Studies - BestIT Consulting',
+    ogTitle: 'Case Studies - BestIT Consultants',
     ogDescription:
       "Discover how we've helped businesses achieve measurable results.",
-    ogImage: getR2ImageUrl('imgs/og-case-studies.jpg'),
+    ogImage: `${baseUrl}/og-images/case-studies.png`,
     canonicalUrl: `${baseUrl}/case-studies`,
     structuredData: {
       '@context': 'https://schema.org',

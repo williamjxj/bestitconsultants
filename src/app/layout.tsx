@@ -5,7 +5,7 @@ import Footer from '@/components/common/Footer'
 import Navbar from '@/components/common/Navbar'
 import { StructuredData } from '@/components/seo/StructuredData'
 import { LanguageProvider } from '@/contexts/LanguageContext'
-import { getBaseUrl, getR2ImageUrl } from '@/lib/utils'
+import { getBaseUrl } from '@/lib/utils'
 
 // Initialize fonts with Latin subset
 const inter = Inter({
@@ -33,9 +33,9 @@ const baseUrl = getBaseUrl()
 
 export const metadata = {
   metadataBase: new URL(baseUrl),
-  title: 'BestIT Consultants - Vancouver BC | Elite IT Outsourcing & AI Consulting',
+  title: 'BestIT Consultants - Vancouver IT & AI Consulting',
   description:
-    'Vancouver, BC, Canada software & IT consulting. Elite IT outsourcing, AI solutions, and SME software development. Canadian Quality, Global Talent. Headquartered in Vancouver.',
+    'Vancouver BC software and IT consulting. Elite IT outsourcing, AI solutions, and SME software development. Canadian Quality, Global Talent.',
   keywords: [
     'Vancouver software company',
     'Vancouver IT consulting',
@@ -50,21 +50,35 @@ export const metadata = {
     'Fortune 500 Experience',
   ],
   openGraph: {
-    title: 'BestIT Consulting - Vancouver BC | Elite IT Outsourcing & AI Consulting',
+    title: 'BestIT Consultants - Vancouver IT & AI Consulting',
     description:
-      'Vancouver, BC, Canada. Elite IT consulting, outsourcing solutions, and AI innovation. SME software development. Canadian Quality, Global Talent.',
-    images: [getR2ImageUrl('imgs/og-homepage.jpg')],
+      'Vancouver BC software and IT consulting. Elite IT outsourcing, AI solutions, and SME software development. Canadian Quality, Global Talent.',
+    images: [`${baseUrl}/og-images/home.png`],
     url: baseUrl,
-    siteName: 'BestIT Consulting',
+    siteName: 'BestIT Consultants',
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BestIT Consulting - Vancouver BC | Elite IT Outsourcing & AI Consulting',
+    title: 'BestIT Consultants - Vancouver IT & AI Consulting',
     description:
-      'Vancouver, BC, Canada. Elite IT consulting, outsourcing solutions, and AI innovation. SME software development.',
-    images: [getR2ImageUrl('imgs/og-homepage.jpg')],
+      'Vancouver BC software and IT consulting. Elite IT outsourcing, AI solutions, and SME software development.',
+    images: [`${baseUrl}/og-images/home.png`],
+  },
+  alternates: {
+    canonical: baseUrl,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
   },
   icons: {
     icon: [

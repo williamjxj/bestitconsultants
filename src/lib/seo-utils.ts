@@ -19,21 +19,21 @@ const homepageMetadata: PageMetadata = {
   ],
   canonicalUrl: getBaseUrl(),
   openGraph: {
-    title: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting',
+    title: 'BestIT Consultants - Elite IT Outsourcing & AI Consulting',
     description:
       'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation.',
-    image: `${getBaseUrl()}/og-homepage.jpg`,
+    image: `${getBaseUrl()}/og-images/home.png`,
     url: getBaseUrl(),
     type: 'website',
-    siteName: 'BestIT Consulting',
+    siteName: 'BestIT Consultants',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BestIT Consulting - Elite IT Outsourcing & AI Consulting',
+    title: 'BestIT Consultants - Elite IT Outsourcing & AI Consulting',
     description:
       'Empowering businesses with elite IT consulting, outsourcing solutions, and AI innovation.',
-    image: `${getBaseUrl()}/og-homepage.jpg`,
+    image: `${getBaseUrl()}/og-images/home.png`,
   },
 }
 
@@ -89,6 +89,7 @@ export function buildPageMetadata(options: {
   }
 
   return {
+    metadataBase: new URL(baseUrl),
     title,
     description,
     keywords,

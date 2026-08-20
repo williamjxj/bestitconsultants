@@ -7,18 +7,31 @@ export function cn(...inputs: ClassValue[]) {
 
 /**
  * Get base URL for the application
+ *
+ * The live site 307-redirects the apex domain (bestitconsultants.ca) to
+ * www.bestitconsultants.ca, so we normalize configured apex URLs to the www
+ * host. This keeps canonicals, sitemaps, and Open Graph URLs pointing at the
+ * final (non-redirected) URL.
+ *
  * @returns Base URL from environment variable or fallback
  */
 export function getBaseUrl(): string {
-  if (process.env.NEXT_PUBLIC_BASE_URL) {
-    return process.env.NEXT_PUBLIC_BASE_URL
-  }
+  const configured =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.NEXT_PUBLIC_VERCEL_URL
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : 'https://bestitconsultants.ca')
 
-  if (process.env.NEXT_PUBLIC_VERCEL_URL) {
-    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+  try {
+    const url = new URL(configured)
+    if (url.hostname === 'bestitconsultants.ca') {
+      url.hostname = 'www.bestitconsultants.ca'
+    }
+    return url.toString().replace(/\/$/, '')
+  } catch {
+    return 'https://www.bestitconsultants.ca'
   }
-
-  return 'https://bestitconsultants.ca'
 }
 
 /**

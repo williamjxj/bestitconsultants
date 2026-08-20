@@ -9,6 +9,7 @@ import ContactSnippet from '@/components/home/ContactSnippet'
 import PortfolioPreview from '@/components/home/PortfolioPreview'
 import { QuickHighlights } from '@/components/home/QuickHighlights'
 import ServicesSummary from '@/components/home/ServicesSummary'
+import { WebsiteSchema } from '@/components/seo/WebsiteSchema'
 import { HeroCarousel, HeroCarouselItem } from '@/components/ui/hero-carousel'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { getR2BaseUrl } from '@/lib/utils'
@@ -187,6 +188,9 @@ export default function HomePage() {
 
   return (
     <div className='space-y-16 md:space-y-24'>
+      {/* WebSite structured data (homepage only) */}
+      <WebsiteSchema />
+
       {/* Hero section: Main introductory content - Full viewport height with navbar */}
       <div
         className='relative -mx-4 -mt-8 -mb-8 w-screen'

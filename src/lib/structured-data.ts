@@ -5,19 +5,21 @@ import type {
   StructuredDataSchema,
 } from '@/types/seo'
 
-/** Vancouver BC headquarters address for local SEO */
+/** Headquarters address for local SEO (Greater Vancouver Area) */
 export const VANCOUVER_ADDRESS = {
   '@type': 'PostalAddress' as const,
-  addressLocality: 'Vancouver',
+  streetAddress: '10355 152 Street',
+  addressLocality: 'Surrey',
   addressRegion: 'BC',
+  postalCode: 'V3R 7C3',
   addressCountry: 'CA',
 }
 
-/** Vancouver BC geo coordinates for local / map SEO */
+/** Office geo coordinates for local / map SEO */
 export const VANCOUVER_GEO = {
   '@type': 'GeoCoordinates' as const,
-  latitude: 49.2827,
-  longitude: -123.1207,
+  latitude: 49.189201,
+  longitude: -122.804169,
 }
 
 /**
@@ -31,6 +33,7 @@ export function createOrganizationSchema(options: {
   url: string
   logo: string
   email?: string
+  telephone?: string
   sameAs?: string[]
   address?: typeof VANCOUVER_ADDRESS
   geo?: typeof VANCOUVER_GEO
@@ -60,6 +63,10 @@ export function createOrganizationSchema(options: {
     schema.geo = options.geo
   }
 
+  if (options.telephone) {
+    schema.telephone = options.telephone
+  }
+
   return schema
 }
 
@@ -74,6 +81,7 @@ export function createLocalBusinessSchema(options: {
   url: string
   logo: string
   email?: string
+  telephone?: string
   sameAs?: string[]
   address?: typeof VANCOUVER_ADDRESS
   geo?: typeof VANCOUVER_GEO
@@ -102,6 +110,10 @@ export function createLocalBusinessSchema(options: {
 
   if (options.geo) {
     schema.geo = options.geo
+  }
+
+  if (options.telephone) {
+    schema.telephone = options.telephone
   }
 
   if (options.areaServed) {

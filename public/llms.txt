@@ -1,0 +1,13 @@
+# BestIT Consultants
+
+> BestIT Consultants is an elite IT outsourcing and AI consulting company headquartered in Surrey, BC (Greater Vancouver), Canada. We deliver AI/ML solutions, enterprise software, cloud platforms, and full-stack development for global clients with Fortune 500 experience - Canadian Quality, Global Talent.
+
+## Pages
+
+- [Home](https://www.bestitconsultants.ca/): IT outsourcing and AI consulting for businesses; Canadian Quality, Global Talent.
+- [Services](https://www.bestitconsultants.ca/services): AI & Machine Learning, enterprise software, cloud & DevOps, system integration, mobile development, data analytics, QA, and cybersecurity.
+- [Case Studies](https://www.bestitconsultants.ca/case-studies): Featured projects, live demos, and partnerships.
+- [Portfolio](https://www.bestitconsultants.ca/portfolio): Enterprise project portfolio across industries.
+- [Our Team](https://www.bestitconsultants.ca/our-team): Meet founder William Jiang and the engineering team.
+- [Testimonials](https://www.bestitconsultants.ca/testimonials): Client testimonials and success stories.
+- [Contact](https://www.bestitconsultants.ca/contact-us): Free consultation, contact form, phone, and office details.

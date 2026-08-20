@@ -1,7 +1,31 @@
 # SEO Implementation Guide
 
-**Last Updated**: 2026-01-23  
+**Last Updated**: 2026-08-20  
 **Status**: Production Ready
+
+## Update (2026-08-20) — SEO fixes + GEO
+
+Verified against the live site and local production builds:
+
+- **Canonical URLs added** to the root layout (homepage previously had no
+  canonical) and normalized to `www.bestitconsultants.ca` (matching the live
+  apex → www redirect) via `getBaseUrl()` in `src/lib/utils.ts`.
+- **Social preview images fixed**: all R2 `imgs/og-*.jpg` references returned
+  404; replaced with local branded `public/og-images/*.png` (1200×630).
+  Regenerate with `scripts/generate-og-images.sh`.
+- **Structured data consolidated**: removed the duplicate/conflicting
+  Organization schema from the Footer (which used "Great Vancouver" and a
+  personal email); one consistent Organization + ProfessionalService is now
+  emitted with the real Surrey, BC address, phone, and business email.
+- **New schemas**: WebSite (homepage), FAQPage (contact page, matching visible
+  FAQs), Person (founder on the team page), CollectionPage (case studies —
+  replaced an invalid Article schema on a listing page).
+- **robots.txt** explicitly allows AI crawlers (GPTBot, ClaudeBot,
+  PerplexityBot, Google-Extended, etc.) — GEO best practice.
+- **GEO files**: `public/llms.txt` and `public/llms-full.txt` added.
+- **Title/description** trimmed to search-friendly lengths.
+
+Deploy + verification steps live in `SEO_DEPLOY_CHECKLIST.md`.
 
 ## Overview
 

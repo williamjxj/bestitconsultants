@@ -6,7 +6,7 @@ import {
   createServiceSchema,
   structuredDataScript,
 } from '@/lib/structured-data'
-import { getBaseUrl, getR2ImageUrl } from '@/lib/utils'
+import { getBaseUrl } from '@/lib/utils'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'IT Services - BestIT Consultants',
@@ -20,8 +20,8 @@ export const metadata: Metadata = buildPageMetadata({
     'Enterprise Software',
     'Web Development',
   ],
-  ogImage: getR2ImageUrl('imgs/og-services.jpg'),
-  twitterImage: getR2ImageUrl('imgs/og-services.jpg'),
+  ogImage: `${getBaseUrl()}/og-images/services.png`,
+  twitterImage: `${getBaseUrl()}/og-images/services.png`,
 })
 
 export default function ServicesLayout({

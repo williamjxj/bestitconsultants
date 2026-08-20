@@ -275,9 +275,9 @@ style={{
 | **`imgs/`**                                         | `testimonial-1.jpg`                          | Testimonials Page, Translations               | Testimonial Avatar                                                           |
 | **`imgs/`**                                         | `testimonial-2.jpg`                          | Testimonials Page, Translations               | Testimonial Avatar                                                           |
 | **`imgs/`**                                         | `testimonial-3.jpg`                          | Testimonials Page, Translations               | Testimonial Avatar                                                           |
-| **`imgs/og-homepage.jpg`**                          | N/A                                          | SEO Metadata (not displayed)                  | Open Graph image for homepage                                                |
-| **`imgs/og-team.jpg`**                              | N/A                                          | SEO Metadata (not displayed)                  | Open Graph image for team page                                               |
-| **`imgs/og-case-studies.jpg`**                      | N/A                                          | SEO Metadata (not displayed)                  | Open Graph image for case studies page                                       |
+| **`public/og-images/home.png`**                     | Local repo file                              | SEO Metadata (not displayed)                  | Branded Open Graph image for homepage                                        |
+| **`public/og-images/team.png`**                     | Local repo file                              | SEO Metadata (not displayed)                  | Branded Open Graph image for team page                                       |
+| **`public/og-images/case-studies.png`**             | Local repo file                              | SEO Metadata (not displayed)                  | Branded Open Graph image for case studies page                               |
 | **`imgs/case-studies/ai-textile-design.jpg`**       | N/A                                          | Case Studies Data (not currently displayed)   | Case study image                                                             |
 | **`imgs/case-studies/ecommerce-modernization.jpg`** | N/A                                          | Case Studies Data (not currently displayed)   | Case study image                                                             |
 | **`imgs/case-studies/ai-logistics.jpg`**            | N/A                                          | Case Studies Data (not currently displayed)   | Case study image                                                             |
@@ -312,7 +312,7 @@ style={{
 2. **Placeholder Fallback**: `/assets/placeholder.svg` is used as fallback in OptimizedImage
    component (local file)
 3. **Logo**: `/logo.png` is used in Navbar and Footer components (local file, not page-specific)
-4. **OG Images**: `imgs/og-homepage.jpg`, `imgs/og-team.jpg`, `imgs/og-case-studies.jpg` (used in
+4. **OG Images**: `public/og-images/*.png` (generated locally; used in
    metadata, not displayed on pages)
 5. **R2 URL Configuration**: All R2 image URLs are dynamically generated using `getR2ImageUrl()`
    function from `@/lib/utils`, which reads from `R2_PUBLIC_URL` or `NEXT_PUBLIC_R2_PUBLIC_URL`

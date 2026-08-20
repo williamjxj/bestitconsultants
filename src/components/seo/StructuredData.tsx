@@ -14,9 +14,9 @@ export const StructuredData: React.FC = () => {
 
   // Get business email from environment or use default
   const businessEmail =
-    process.env.BUSINESS_EMAIL ||
-    process.env.CONTACT_EMAIL ||
-    'service@bestitconsulting.ca'
+    process.env.NEXT_PUBLIC_BUSINESS_EMAIL || 'service@bestitconsulting.ca'
+
+  const telephone = '+1-236-992-3846'
 
   const sameAs = [
     'https://linkedin.com/company/bestitconsultants',
@@ -30,6 +30,7 @@ export const StructuredData: React.FC = () => {
     url: baseUrl,
     logo: `${baseUrl}/logo.png`,
     email: businessEmail,
+    telephone,
     sameAs,
     address: VANCOUVER_ADDRESS,
     geo: VANCOUVER_GEO,
@@ -42,10 +43,16 @@ export const StructuredData: React.FC = () => {
     url: baseUrl,
     logo: `${baseUrl}/logo.png`,
     email: businessEmail,
+    telephone,
     sameAs,
     address: VANCOUVER_ADDRESS,
     geo: VANCOUVER_GEO,
-    areaServed: ['Vancouver, BC, Canada', 'Canada'],
+    areaServed: [
+      'Vancouver, BC, Canada',
+      'Surrey, BC, Canada',
+      'Canada',
+      'Worldwide',
+    ],
   })
 
   return (
