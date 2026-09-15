@@ -57,7 +57,7 @@ portfolio and services.
 | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
 | 🌐 [**Live Website**](https://www.bestitconsultants.ca/)                                                                    | Visit our production site    |
 | 📊 [**Presentation**](https://gamma.app/docs/Best-IT-Consultants-Elite-Enterprise-Architects-Startup-Speed-1v8t3nud1ghb4iq) | Company overview (Gamma PPT) |
-| 📧 **Contact**                                                                                                              | service@bestitconsulting.ca |
+| 📧 **Contact**                                                                                                              | bestitconsultingca@gmail.com |
 
 ---
 
@@ -189,6 +189,8 @@ docs/                     # Project documentation
    ```env
    SMTP_EMAIL=your_gmail_address@gmail.com
    SMTP_PASSWORD=your_gmail_app_password
+   BUSINESS_EMAIL=jxjwilliam@gmail.com,bestitconsultingca@gmail.com
+   NEXT_PUBLIC_CONTACT_EMAIL=bestitconsultingca@gmail.com
    ```
 
 4. **Run the development server**
@@ -201,18 +203,23 @@ docs/                     # Project documentation
 
 ## 📧 Contact Form Setup
 
-The contact form uses Gmail SMTP via nodemailer:
+The contact form sends through Gmail SMTP, and switches to Resend automatically
+once a sending domain is verified. Full details: [docs/email-setup.md](docs/email-setup.md).
 
-1. Add `SMTP_EMAIL` to your `.env` file
-2. Add `SMTP_PASSWORD` to your `.env` file
-3. Use a Gmail app password for `SMTP_PASSWORD`
-4. The receiver is fixed to `jxjwilliam@gmail.com`
+1. Add `SMTP_EMAIL` and `SMTP_PASSWORD` (a Gmail **app password**) to `.env`
+2. `BUSINESS_EMAIL` lists the receiving inboxes - comma separated, delivered to
+   independently. Default: `jxjwilliam@gmail.com,bestitconsultingca@gmail.com`
+3. `NEXT_PUBLIC_CONTACT_EMAIL` is the address published to customers
+4. Set `EMAIL_PROVIDER=auto` (default) or force `smtp` / `resend`
 
 **Email Flow:**
 
-- Business notifications → `jxjwilliam@gmail.com`
+- Business notifications → every address in `BUSINESS_EMAIL`
+- Customer auto-reply → the visitor's email, with the reference number
 - Reply-To → visitor email address
-- Professional HTML template with company branding
+- Table-based HTML templates with company branding and a plain-text alternative
+- Submissions are also stored in Supabase (`bestitconsultants_contacts`) when
+  configured; a database failure never fails the request
 
 ## 🏗️ Development
 
@@ -303,7 +310,7 @@ The codebase has been cleaned up to remove unused code and fix issues:
 **Ready to transform your business with cutting-edge technology?**
 
 Visit our live website: **[www.bestitconsultants.ca](https://www.bestitconsultants.ca/)**,
-**Email**: service@bestitconsulting.ca
+**Email**: bestitconsultingca@gmail.com
 
 ---
 

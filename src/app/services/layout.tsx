@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import { PUBLIC_CONTACT_EMAIL } from '@/lib/contact-info'
 import { buildPageMetadata } from '@/lib/seo-utils'
 import {
   createOrganizationSchema,
@@ -38,7 +39,7 @@ export default function ServicesLayout({
       'Elite IT consulting, outsourcing solutions, and AI innovation. Canadian Quality, Global Talent.',
     url: baseUrl,
     logo: `${baseUrl}/logo.png`,
-    email: process.env.BUSINESS_EMAIL || 'service@bestitconsulting.ca',
+    email: PUBLIC_CONTACT_EMAIL,
     sameAs: [
       'https://linkedin.com/company/bestitconsultants',
       'https://twitter.com/bestitconsultants',

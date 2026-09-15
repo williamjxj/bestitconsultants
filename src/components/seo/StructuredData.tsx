@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { PUBLIC_CONTACT_EMAIL } from '@/lib/contact-info'
 import {
   createLocalBusinessSchema,
   createOrganizationSchema,
@@ -12,9 +13,9 @@ import { getBaseUrl } from '@/lib/utils'
 export const StructuredData: React.FC = () => {
   const baseUrl = getBaseUrl()
 
-  // Get business email from environment or use default
+  // Single source of truth for the published contact address.
   const businessEmail =
-    process.env.NEXT_PUBLIC_BUSINESS_EMAIL || 'service@bestitconsulting.ca'
+    process.env.NEXT_PUBLIC_BUSINESS_EMAIL || PUBLIC_CONTACT_EMAIL
 
   const telephone = '+1-236-992-3846'
 

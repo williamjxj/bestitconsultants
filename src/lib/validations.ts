@@ -24,8 +24,14 @@ export const contactFormSchema = z.object({
     .or(z.literal('')),
   phone: z
     .string()
+    .max(40, 'Phone number must not exceed 40 characters')
+    /*
+     * Deliberately lenient. The previous pattern rejected very common formats
+     * such as "+1 604 555 0142" (two spaces), which silently blocked real
+     * submissions. Keep the server-side check identical to avoid drift.
+     */
     .regex(
-      /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,9}$/,
+      /^[+()\d][\d\s().-]{5,}$/,
       'Please enter a valid phone number'
     )
     .trim()

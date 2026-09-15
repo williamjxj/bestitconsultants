@@ -17,6 +17,26 @@ div[id] {
   background: rgba(59, 130, 246, 0.25);
 }
 
+/*
+ * Form control interaction guarantees.
+ *
+ * `user-select: none` must never apply to a form control - a single wrapper
+ * styled by an overlay/animation/drag library is enough to make the text inside
+ * inputs impossible to select or copy. Keep controls selectable and editable,
+ * and never blanket a whole form with `cursor: text !important` (it puts a text
+ * cursor on buttons and breaks long-press selection on iOS Safari).
+ */
+input,
+textarea,
+select,
+[contenteditable='true'] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  -webkit-touch-callout: default;
+}
+
 /* Custom font variables */
 :root {
   --font-inter: 'Inter', system-ui, -apple-system, sans-serif;

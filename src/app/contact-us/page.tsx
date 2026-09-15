@@ -17,7 +17,6 @@ import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
@@ -233,12 +232,7 @@ export default function ContactPage() {
               <div id='contact-form' className='lg:col-span-2'>
                 <Card className='relative w-full overflow-hidden border border-white/60 bg-white/75 shadow-[0_24px_90px_rgba(15,23,42,0.12)] backdrop-blur-xl'>
                   <ShineBorder shineColor={['#A07CFE', '#FE8FB5', '#FFBE7B']} />
-                  <CardHeader className='pb-3 pt-6 sm:pt-8'>
-                    <CardDescription className='max-w-2xl text-sm leading-7 text-slate-600'>
-                      {translations.contact.form.subtitle}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className='pb-6 sm:pb-8'>
+                  <CardContent className='px-2 pb-6 pt-6 sm:px-6 sm:pb-8 sm:pt-8'>
                     <Suspense
                       fallback={
                         <div className='flex items-center justify-center py-10'>

@@ -1,4 +1,5 @@
 // Translation data for multi-language support
+import { PUBLIC_CONTACT_EMAIL } from './contact-info'
 import { getBaseUrl, getR2ImageUrl } from './utils'
 
 export const translations = {
@@ -581,9 +582,29 @@ export const translations = {
         success:
           "Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.",
         error: 'Failed to send message. Please try again.',
+        errorTitle: 'We could not send your message',
         networkError:
           'Network error. Please check your connection and try again.',
         tellUsMore: 'Tell us more (optional)',
+        successTitle: 'Message sent successfully',
+        referenceLabel: 'Reference',
+        confirmationNote:
+          'A confirmation email is on its way to your inbox.',
+        sendAnother: 'Send another message',
+        privacy:
+          'We reply within 24 hours. Your details stay private and are never shared.',
+        messageHint: 'The more detail you give us, the sharper our reply.',
+        sections: {
+          details: 'Your details',
+          project: 'Your project',
+          projectHint:
+            'A short description is enough - we will ask the rest.',
+        },
+        successSteps: {
+          step1: 'A senior engineer reviews your message.',
+          step2: 'You get a written reply within 24 hours.',
+          step3: 'If it fits, we book a free 30-minute consultation.',
+        },
         fields: {
           name: {
             label: 'Full Name',
@@ -603,7 +624,7 @@ export const translations = {
             },
           },
           message: {
-            label: 'Message * (max 2000 chars)',
+            label: 'Message',
             placeholder: 'Tell us about your project or inquiry...',
             error: {
               required: 'Message is required',
@@ -658,7 +679,7 @@ export const translations = {
           {
             icon: '📧',
             label: 'Email',
-            value: ['service@bestitconsulting.ca', 'sales@bestitconsulting.ca'],
+            value: [PUBLIC_CONTACT_EMAIL],
           },
           {
             icon: '🌐',
@@ -709,7 +730,7 @@ export const translations = {
           {
             label: 'Send Email',
             icon: '📧',
-            link: 'mailto:service@bestitconsulting.ca',
+            link: `mailto:${PUBLIC_CONTACT_EMAIL}`,
           },
           { label: 'Live Chat', icon: '💬', link: '#chat' },
         ],
@@ -778,7 +799,7 @@ export const translations = {
       vancouver: 'Vancouver HQ: 10355 152 St, Surrey, BC, Canada V3R 7C1',
       eastAsia:
         'East Asia Branch: 621 Hitech Park, Nanshan District, Shenzhen China',
-      email: 'service@bestitconsulting.ca',
+      email: PUBLIC_CONTACT_EMAIL,
       phone: '+1 (236) 992-3846',
       mobileAccess: 'Mobile Access',
       scanQrCode: 'Scan to visit us',
